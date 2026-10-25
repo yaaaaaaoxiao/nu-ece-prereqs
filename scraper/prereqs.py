@@ -1,0 +1,199 @@
+"""Turn a catalog prerequisite sentence into an expression tree.
+
+    tree := "DEPT NNN-N" | {"and": [tree, ...]} | {"or": [tree, ...]}
+
+The catalog writes prerequisites as free text ("A or B; C recommended",
+"(A and B), or C, or instructor consent"), so this is a heuristic parser.
+Conditions that are not courses (consent, standing, "or equivalent") are
+pulled out as notes. Anything it gets wrong is fixed in overrides.json.
+"""
+
+import re
+
+CODE_RE = re.compile(r"\b([A-Z][A-Z_]+) (\d{3}-\d)\b")
+
+# (pattern, note); note=None means drop the phrase without recording it.
+NOTE_PATTERNS = [
+    (r"\bor (?:the )?(?:consent|permission) of (?:the )?instructor", "or instructor consent"),
+    (r"\b(?:consent|permission) of (?:the )?instructor", "instructor consent"),
+    (r"\bor instructor (?:consent|permission)", "or instructor consent"),
+    (r"\bor graduate standing", "or graduate standing"),
+    (r"\bsenior standing", "senior standing"),
+    (r"\bjunior standing", "junior standing"),
+    (r"\bor equivalent", "or equivalent"),
+    (r"\bCE or EE majors? only", "CE or EE majors only"),
+    (r"\band basic programming skills", "basic programming skills"),
+    (r"Students must have completed", None),
+    (r"Basic probability theory", None),
+]
+
+
+def clean(text):
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def normalize_codes(text, aliases):
+    """'CS 214' / 'Comp_sci 208' / 'COMP_SCI 180_0' -> 'COMP_SCI 214-0' etc.
+
+    aliases maps short names to catalog codes, e.g. {"CS": "COMP_SCI"}.
+    """
+    def fix(m):
+        word, num, seq = m.groups()
+        dept = word.upper()
+        if dept in aliases:
+            dept = aliases[dept]
+        elif not ("_" in word or (word.isupper() and len(word) > 2)):
+            return m.group(0)  # an ordinary word that happens to precede a number
+        return f"{dept} {num}-{seq or '0'}"
+
+    return re.sub(r"\b([A-Za-z][A-Za-z_]+) (\d{3})(?:[-_](\d))?(?![\d-])", fix, text)
+
+
+def strip_exclusions(text):
+    """Drop sentences like 'Students cannot concurrently be enrolled in X' or
+    'may not receive credit for both X and Y' - they name courses but aren't prerequisites."""
+    sentences = re.split(r"(?<=\.)\s+(?=[A-Z])", text)
+    keep = [s for s in sentences
+            if not re.search(r"\b(cannot|may not|not receive credit|not open to|not be taken)\b", s, re.I)]
+    return " ".join(keep)
+
+
+def tokenize(text):
+    tokens = []
+    for m in re.finditer(r"[A-Z][A-Z_]+ \d{3}-\d|\(|\)|;|,|&|\band\b|\bor\b", text, re.I):
+        t = m.group(0)
+        if CODE_RE.fullmatch(t):
+            tokens.append(("CODE", t))
+        elif t in "();,":
+            tokens.append((t, t))
+        elif t == "&" or t.lower() == "and":
+            tokens.append(("and", t))
+        else:
+            tokens.append(("or", t))
+    return resolve_commas(tokens)
+
+
+def resolve_commas(tokens):
+    """Commas mean OR in lists like 'A, B, or C' and AND in 'A, B'."""
+    out = []
+    for i, tok in enumerate(tokens):
+        # ", or" -> "or"
+        if tok[0] == "," and i + 1 < len(tokens) and tokens[i + 1][0] == "or":
+            continue
+        out.append(tok)
+    # Decide separately for each parenthesis level.
+    stack, levels = [[]], []
+    for idx, (kind, _) in enumerate(out):
+        if kind == "(":
+            stack.append([])
+        elif kind == ")" and len(stack) > 1:
+            levels.append(stack.pop())
+        else:
+            stack[-1].append(idx)
+    levels.extend(stack)
+    for level in levels:
+        kinds = {out[i][0] for i in level}
+        as_or = "or" in kinds and not ({"and", ";"} & kinds)
+        for i in level:
+            if out[i][0] == ",":
+                out[i] = ("or" if as_or else "and", ",")
+    return out
+
+
+class _Parser:
+    """Precedence, loosest first: ';'  then 'or'  then 'and' / ','."""
+
+    def __init__(self, tokens):
+        self.t, self.i = tokens, 0
+
+    def peek(self):
+        return self.t[self.i][0] if self.i < len(self.t) else None
+
+    def take(self):
+        self.i += 1
+        return self.t[self.i - 1]
+
+    def semi(self):
+        parts = [self.or_()]
+        while self.peek() == ";":
+            self.take()
+            parts.append(self.or_())
+        return combine("and", parts)
+
+    def or_(self):
+        parts = [self.and_()]
+        while self.peek() == "or":
+            self.take()
+            parts.append(self.and_())
+        return combine("or", parts)
+
+    def and_(self):
+        parts = [self.atom()]
+        while self.peek() == "and":
+            self.take()
+            parts.append(self.atom())
+        return combine("and", parts)
+
+    def atom(self):
+        # Skip stray separators left behind after notes were removed.
+        while self.peek() in ("and", "or", ";"):
+            self.take()
+        kind = self.peek()
+        if kind == "CODE":
+            return self.take()[1]
+        if kind == "(":
+            self.take()
+            node = self.semi()
+            if self.peek() == ")":
+                self.take()
+            return node
+        return None
+
+
+def combine(op, parts):
+    flat = []
+    for p in parts:
+        if p is None:
+            continue
+        for item in (p[op] if isinstance(p, dict) and op in p else [p]):
+            if item not in flat:
+                flat.append(item)
+    if not flat:
+        return None
+    return flat[0] if len(flat) == 1 else {op: flat}
+
+
+def parse_expression(text):
+    return _Parser(tokenize(text)).semi()
+
+
+def parse_requirements(raw, aliases=None):
+    """Split a catalog line into prereq / coreq trees, recommended courses and notes."""
+    result = {"prereq": None, "coreq": None, "recommended": [], "notes": []}
+    text = normalize_codes(strip_exclusions(raw), aliases or {})
+    parts = re.split(r"(Prerequisites?|Corequisites?)\s*:", text)
+    for label, body in zip(parts[1::2], parts[2::2]):
+        body = clean(body).rstrip(".")
+        key = "coreq" if label.lower().startswith("co") else "prereq"
+        kept = []
+        for seg in body.split(";"):
+            if "recommended" in seg.lower():
+                result["recommended"] += [" ".join(c) for c in CODE_RE.findall(seg)]
+            else:
+                kept.append(seg)
+        body = ";".join(kept)
+        for pattern, note in NOTE_PATTERNS:
+            if re.search(pattern, body, re.I):
+                if note and note not in result["notes"]:
+                    result["notes"].append(note)
+                body = re.sub(pattern, " ", body, flags=re.I)
+        result[key] = parse_expression(body)
+    return result
+
+
+def codes_in(tree):
+    if tree is None:
+        return []
+    if isinstance(tree, str):
+        return [tree]
+    return [c for sub in next(iter(tree.values())) for c in codes_in(sub)]

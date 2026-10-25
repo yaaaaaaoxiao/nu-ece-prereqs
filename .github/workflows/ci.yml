@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r scraper/requirements.txt
+      - name: Parser tests
+        run: python -m unittest discover scraper
+      - name: Data files are valid JSON and listed in maps.json
+        run: |
+          python - <<'EOF'
+          import json, pathlib
+          index = json.loads(pathlib.Path("data/maps.json").read_text())
+          for entry in index["maps"]:
+              data = json.loads(pathlib.Path("data", entry["file"]).read_text())
+              ids = {c["id"] for c in data["courses"]}
+              print(f'{entry["id"]}: {len(ids)} courses')
+              assert len(ids) == len(data["courses"]), "duplicate course ids"
+          EOF

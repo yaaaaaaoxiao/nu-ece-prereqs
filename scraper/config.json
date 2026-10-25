@@ -1,0 +1,43 @@
+{
+ "_comment": "Each entry in 'maps' becomes data/<id>.json and appears in the site's map menu. To add a major: add an entry, run the scraper, review the flagged prerequisites.",
+ "catalog": "https://catalogs.northwestern.edu",
+ "abbreviations": {
+  "BMD_ENG": "BME",
+  "COMP_ENG": "CE",
+  "COMP_SCI": "CS",
+  "ELEC_ENG": "EE",
+  "GEN_ENG": "GEN ENG",
+  "MECH_ENG": "ME",
+  "PHYSICS": "PHYS"
+ },
+ "maps": [
+  {
+   "id": "ece",
+   "name": "Electrical & Computer Engineering",
+   "departments": ["COMP_ENG", "ELEC_ENG"],
+   "degrees": [
+    {
+     "id": "EE",
+     "name": "Electrical Engineering BS",
+     "path": "/undergraduate/engineering-applied-science/electrical-computer-engineering/electrical-engineering-degree/"
+    },
+    {
+     "id": "CE",
+     "name": "Computer Engineering BS",
+     "path": "/undergraduate/engineering-applied-science/electrical-computer-engineering/computer-engineering-degree/"
+    }
+   ],
+   "groupLabels": {
+    "_comment": "Degree-page list headings -> label shown on the site (null = ignore the list).",
+    "4 courses chosen from the options below": "Breadth electives (choose 4)",
+    "1 course chosen from options below": "Math foundation (choose 1)",
+    "2 courses chosen from the options below": null,
+    "3 elective courses chosen from the options below": null
+   },
+   "schedule": {
+    "format": "mccormick",
+    "url": "https://www.mccormick.northwestern.edu/electrical-computer/academics/courses/"
+   }
+  }
+ ]
+}

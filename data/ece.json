@@ -1,0 +1,2453 @@
+{
+ "id": "ece",
+ "name": "Electrical & Computer Engineering",
+ "generated": "2026-10-25",
+ "catalogYear": "2026-2027",
+ "quarters": [
+  "Fall 2026",
+  "Winter 2027",
+  "Spring 2027"
+ ],
+ "departments": {
+  "COMP_ENG": {
+   "name": "Computer Engineering",
+   "abbr": "CE",
+   "main": true
+  },
+  "ELEC_ENG": {
+   "name": "Electrical Engineering",
+   "abbr": "EE",
+   "main": true
+  },
+  "BMD_ENG": {
+   "name": "Biomedical Engineering",
+   "abbr": "BME",
+   "main": false
+  },
+  "COMP_SCI": {
+   "name": "Computer Science",
+   "abbr": "CS",
+   "main": false
+  },
+  "GEN_ENG": {
+   "name": "General Engineering",
+   "abbr": "GEN ENG",
+   "main": false
+  },
+  "MATH": {
+   "name": "Mathematics",
+   "abbr": "MATH",
+   "main": false
+  },
+  "MECH_ENG": {
+   "name": "Mechanical Engineering",
+   "abbr": "ME",
+   "main": false
+  },
+  "PHYSICS": {
+   "name": "Physics",
+   "abbr": "PHYS",
+   "main": false
+  }
+ },
+ "degrees": [
+  {
+   "id": "EE",
+   "name": "Electrical Engineering BS",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/electrical-computer-engineering/electrical-engineering-degree/",
+   "groups": [
+    {
+     "label": "Required courses",
+     "kind": "required",
+     "courses": [
+      "COMP_ENG 203-0",
+      "GEN_ENG 251-0",
+      "ELEC_ENG 202-0",
+      "ELEC_ENG 221-0",
+      "ELEC_ENG 222-0",
+      "ELEC_ENG 223-0",
+      "ELEC_ENG 224-0",
+      "ELEC_ENG 225-0",
+      "ELEC_ENG 302-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Design project",
+     "kind": "design",
+     "courses": [
+      "COMP_ENG 347-1",
+      "COMP_ENG 392-0",
+      "ELEC_ENG 327-0",
+      "ELEC_ENG 398-0",
+      "ELEC_ENG 399-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Biomedical Engineering Track",
+     "kind": "track",
+     "courses": [
+      "BMD_ENG 325-0",
+      "BMD_ENG 327-0",
+      "BMD_ENG 333-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Circuits and Electronics Track",
+     "kind": "track",
+     "courses": [
+      "COMP_ENG 303-0",
+      "COMP_ENG 346-0",
+      "COMP_ENG 347-2",
+      "COMP_ENG 355-0",
+      "COMP_ENG 391-0",
+      "COMP_ENG 393-0",
+      "ELEC_ENG 326-0",
+      "ELEC_ENG 327-0",
+      "ELEC_ENG 353-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Communications Systems Track",
+     "kind": "track",
+     "courses": [
+      "ELEC_ENG 307-0",
+      "ELEC_ENG 328-0",
+      "ELEC_ENG 333-0",
+      "ELEC_ENG 334-0",
+      "ELEC_ENG 378-0",
+      "ELEC_ENG 380-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Control Systems Track",
+     "kind": "track",
+     "courses": [
+      "ELEC_ENG 360-0",
+      "ELEC_ENG 374-0",
+      "ELEC_ENG 390-0",
+      "MECH_ENG 333-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Signal Processing and Machine Learning Track",
+     "kind": "track",
+     "courses": [
+      "ELEC_ENG 332-0",
+      "ELEC_ENG 335-0",
+      "ELEC_ENG 359-0",
+      "ELEC_ENG 363-0",
+      "ELEC_ENG 373-0",
+      "ELEC_ENG 375-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Electromagnetics Engineering Track",
+     "kind": "track",
+     "courses": [
+      "ELEC_ENG 308-0",
+      "ELEC_ENG 379-0",
+      "ELEC_ENG 382-0",
+      "ELEC_ENG 383-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Solid-State Engineering Track",
+     "kind": "track",
+     "courses": [
+      "ELEC_ENG 250-0",
+      "ELEC_ENG 381-0",
+      "ELEC_ENG 384-0",
+      "ELEC_ENG 385-0",
+      "ELEC_ENG 388-0",
+      "MECH_ENG 381-0"
+     ],
+     "unlisted": []
+    }
+   ]
+  },
+  {
+   "id": "CE",
+   "name": "Computer Engineering BS",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/electrical-computer-engineering/computer-engineering-degree/",
+   "groups": [
+    {
+     "label": "Required courses",
+     "kind": "required",
+     "courses": [
+      "COMP_ENG 203-0",
+      "COMP_ENG 205-0",
+      "COMP_ENG 303-0",
+      "COMP_ENG 361-0",
+      "COMP_SCI 211-0",
+      "ELEC_ENG 202-0",
+      "ELEC_ENG 302-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Breadth electives (choose 4)",
+     "kind": "elective",
+     "courses": [
+      "COMP_SCI 180-0",
+      "COMP_SCI 208-0",
+      "COMP_SCI 213-0",
+      "ELEC_ENG 221-0",
+      "ELEC_ENG 222-0",
+      "ELEC_ENG 223-0",
+      "ELEC_ENG 224-0",
+      "ELEC_ENG 225-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Math foundation (choose 1)",
+     "kind": "elective",
+     "courses": [
+      "COMP_SCI 212-0",
+      "GEN_ENG 251-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Design project",
+     "kind": "design",
+     "courses": [
+      "COMP_ENG 347-1",
+      "COMP_ENG 362-0",
+      "COMP_ENG 392-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Architecture and High-Performance Computing",
+     "kind": "track",
+     "courses": [
+      "COMP_ENG 329-0",
+      "COMP_ENG 358-0",
+      "COMP_ENG 362-0",
+      "COMP_ENG 368-0"
+     ],
+     "unlisted": [
+      "COMP_ENG 452-0",
+      "COMP_ENG 453-0",
+      "COMP_ENG 468-0"
+     ]
+    },
+    {
+     "label": "VLSI and CAD",
+     "kind": "track",
+     "courses": [
+      "COMP_ENG 355-0",
+      "COMP_ENG 357-0",
+      "COMP_ENG 387-0",
+      "COMP_ENG 391-0",
+      "COMP_ENG 392-0",
+      "COMP_ENG 393-0",
+      "ELEC_ENG 353-0"
+     ],
+     "unlisted": [
+      "COMP_ENG 459-0",
+      "COMP_ENG 493-0"
+     ]
+    },
+    {
+     "label": "Embedded Systems",
+     "kind": "track",
+     "courses": [
+      "COMP_ENG 346-0",
+      "COMP_ENG 347-1",
+      "COMP_ENG 347-2",
+      "COMP_ENG 364-0",
+      "COMP_ENG 365-0",
+      "COMP_ENG 366-0",
+      "COMP_ENG 369-0",
+      "COMP_SCI 301-0",
+      "ELEC_ENG 326-0",
+      "ELEC_ENG 327-0",
+      "ELEC_ENG 332-0",
+      "ELEC_ENG 360-0",
+      "ELEC_ENG 390-0",
+      "MECH_ENG 333-0"
+     ],
+     "unlisted": [
+      "COMP_ENG 464-0",
+      "COMP_ENG 465-0",
+      "COMP_ENG 466-0",
+      "ELEC_ENG 432-0",
+      "MECH_ENG 433-0"
+     ]
+    },
+    {
+     "label": "Software Systems",
+     "kind": "track",
+     "courses": [
+      "COMP_SCI 212-0",
+      "COMP_SCI 321-0",
+      "COMP_SCI 322-0",
+      "COMP_SCI 336-0",
+      "COMP_SCI 339-0",
+      "COMP_SCI 343-0",
+      "COMP_SCI 394-0"
+     ],
+     "unlisted": []
+    },
+    {
+     "label": "Networks and Security",
+     "kind": "track",
+     "courses": [
+      "COMP_ENG 334-0",
+      "COMP_SCI 340-0",
+      "COMP_SCI 350-0",
+      "COMP_SCI 354-0",
+      "ELEC_ENG 333-0"
+     ],
+     "unlisted": []
+    }
+   ]
+  }
+ ],
+ "sources": [
+  "https://catalogs.northwestern.edu/undergraduate/courses-az/comp_eng/",
+  "https://catalogs.northwestern.edu/undergraduate/courses-az/elec_eng/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/electrical-computer-engineering/electrical-engineering-degree/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/electrical-computer-engineering/computer-engineering-degree/",
+  "https://www.mccormick.northwestern.edu/electrical-computer/academics/courses/"
+ ],
+ "courses": [
+  {
+   "id": "COMP_ENG 203-0",
+   "dept": "COMP_ENG",
+   "num": "203-0",
+   "title": "Introduction to Computer Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MTuWF 4:00-4:50 · Szefer",
+    "Winter 2027": "MTuWF 11-11:50 · Zhou"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20203-0"
+  },
+  {
+   "id": "COMP_ENG 205-0",
+   "dept": "COMP_ENG",
+   "num": "205-0",
+   "title": "Fundamentals of Computer System Software",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "COMP_SCI 111-0",
+     "GEN_ENG 205-1"
+    ]
+   },
+   "coreq": null,
+   "recommended": [
+    "COMP_ENG 203-0"
+   ],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 111-0 or GEN_ENG 205-1 ; COMP_ENG 203-0 recommended.",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MTWF 2:00-2:50 · Joseph"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20205-0"
+  },
+  {
+   "id": "COMP_ENG 295-0",
+   "dept": "COMP_ENG",
+   "num": "295-0",
+   "title": "Special Topics in Computer Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20295-0"
+  },
+  {
+   "id": "COMP_ENG 303-0",
+   "dept": "COMP_ENG",
+   "num": "303-0",
+   "title": "Advanced Digital Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "COMP_ENG 203-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_ENG 203-0 .",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "TuTh 12:30-1:50 · Ogrenci",
+    "Spring 2027": "TuTh 3:30-4:50 · Gu"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20303-0"
+  },
+  {
+   "id": "COMP_ENG 329-0",
+   "dept": "COMP_ENG",
+   "num": "329-0",
+   "title": "The Art of Multicore Concurrent Programming",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "COMP_SCI 110-0",
+     "COMP_SCI 111-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 110-0 or COMP_SCI 111-0 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20329-0"
+  },
+  {
+   "id": "COMP_ENG 334-0",
+   "dept": "COMP_ENG",
+   "num": "334-0",
+   "title": "Fundamentals of Blockchains and Decentralization",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "COMP_SCI 212-0",
+     "ELEC_ENG 302-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or graduate standing",
+    "or equivalent",
+    "basic programming skills"
+   ],
+   "text": "Prerequisites: COMP_SCI 212-0 or ELEC_ENG 302-0 or equivalent or graduate standing and basic programming skills.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20334-0"
+  },
+  {
+   "id": "COMP_ENG 346-0",
+   "dept": "COMP_ENG",
+   "num": "346-0",
+   "title": "Microcontroller System Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "COMP_SCI 211-0",
+     {
+      "or": [
+       "COMP_ENG 205-0",
+       "COMP_SCI 213-0"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "CE or EE majors only"
+   ],
+   "text": "Prerequisite: CE or EE major only and COMP_SCI 211-0 and ( COMP_ENG 205-0 or COMP_SCI 213-0 ).",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "TuTh 3:30-4:50 · Ghena · (Lab: TBD)",
+    "Winter 2027": "MW 12:30-1:50 · Xia · (Lab: F 3:00-4:50)",
+    "Spring 2027": "TuTh 2:00-3:20 · Ghena · (Lab: (Lab: F 1-2:50 OR F 3-4:50pm))"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20346-0"
+  },
+  {
+   "id": "COMP_ENG 347-1",
+   "dept": "COMP_ENG",
+   "num": "347-1",
+   "title": "Microprocessor Systems Project I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "COMP_ENG 346-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_ENG 346-0 .",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MWF 12:30-1:50 · Zaretsky"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20347-1"
+  },
+  {
+   "id": "COMP_ENG 347-2",
+   "dept": "COMP_ENG",
+   "num": "347-2",
+   "title": "Microprocessor Systems Project II",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "COMP_ENG 347-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_ENG 347-1 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20347-2"
+  },
+  {
+   "id": "COMP_ENG 355-0",
+   "dept": "COMP_ENG",
+   "num": "355-0",
+   "title": "ASIC and FPGA Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "COMP_ENG 303-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_ENG 303-0 .",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MW 11:00-12:20 · Zaretsky"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20355-0"
+  },
+  {
+   "id": "COMP_ENG 356-0",
+   "dept": "COMP_ENG",
+   "num": "356-0",
+   "title": "Introduction to Formal Specification & Verification",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MW 3:30-4:50 · Zhou"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20356-0"
+  },
+  {
+   "id": "COMP_ENG 357-0",
+   "dept": "COMP_ENG",
+   "num": "357-0",
+   "title": "Design Automation in VLSI",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "COMP_SCI 214-0",
+     "COMP_ENG 303-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 214-0, COMP_ENG 303-0 .",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "MW 3:30-4:50 · Zhou"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20357-0"
+  },
+  {
+   "id": "COMP_ENG 358-0",
+   "dept": "COMP_ENG",
+   "num": "358-0",
+   "title": "Introduction to Parallel Computing",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "COMP_SCI 213-0",
+     {
+      "and": [
+       "COMP_ENG 205-0",
+       "COMP_SCI 211-0"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or MS/PhD student in CS/CE",
+    "or instructor permission"
+   ],
+   "text": "Prerequisite: (CS 213 or (CE 205 & 211)) or MS CS/CE or PhDs CS/CE or permission of Instructor.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20358-0"
+  },
+  {
+   "id": "COMP_ENG 361-0",
+   "dept": "COMP_ENG",
+   "num": "361-0",
+   "title": "Computer Architecture I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "COMP_ENG 205-0",
+       "COMP_SCI 213-0"
+      ]
+     },
+     {
+      "or": [
+       "COMP_ENG 303-0",
+       "COMP_ENG 355-0"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ( COMP_ENG 205-0 or COMP_SCI 213-0 ) AND ( COMP_ENG 303-0 or COMP_ENG 355-0 ).",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MW 12:30-1:50 · Joseph"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20361-0"
+  },
+  {
+   "id": "COMP_ENG 362-0",
+   "dept": "COMP_ENG",
+   "num": "362-0",
+   "title": "Computer Architecture Projects",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "COMP_ENG 361-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_ENG 361-0 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20362-0"
+  },
+  {
+   "id": "COMP_ENG 364-0",
+   "dept": "COMP_ENG",
+   "num": "364-0",
+   "title": "CyberPhysical Systems Design and Application",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20364-0"
+  },
+  {
+   "id": "COMP_ENG 365-0",
+   "dept": "COMP_ENG",
+   "num": "365-0",
+   "title": "Internet-of-things Sensors, Systems, And Applications",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TuThu 2:00-3:20 · Xia"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20365-0"
+  },
+  {
+   "id": "COMP_ENG 366-0",
+   "dept": "COMP_ENG",
+   "num": "366-0",
+   "title": "Embedded Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TuTh 11-12:20 · Zhu"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20366-0"
+  },
+  {
+   "id": "COMP_ENG 368-0",
+   "dept": "COMP_ENG",
+   "num": "368-0",
+   "title": "Programming Massively Parallel Processors with CUDA",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "COMP_SCI 213-0",
+     {
+      "or": [
+       "COMP_SCI 211-0",
+       "COMP_SCI 230-0"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "text": "Prerequisites: ( COMP_SCI 213-0 and ( COMP_SCI 211-0 or COMP_SCI 230-0)) or permission of instructor.",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "TuTh 2:00 – 3:20 · Hardavellas"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20368-0"
+  },
+  {
+   "id": "COMP_ENG 369-0",
+   "dept": "COMP_ENG",
+   "num": "369-0",
+   "title": "Introduction to Sensor Networks",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "COMP_SCI 343-0",
+     "COMP_SCI 340-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 343-0 or COMP_SCI 340-0 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20369-0"
+  },
+  {
+   "id": "COMP_ENG 387-0",
+   "dept": "COMP_ENG",
+   "num": "387-0",
+   "title": "Real-Time Digital Systems Design and Verification with FPGAs",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "COMP_ENG 303-0",
+     "COMP_ENG 355-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_ENG 303-0 and COMP_ENG 355-0 .",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MW 10-11:20 · Zaretsky"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20387-0"
+  },
+  {
+   "id": "COMP_ENG 391-0",
+   "dept": "COMP_ENG",
+   "num": "391-0",
+   "title": "CMOS VLSI Circuit Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TuTh 12:30-1:50 · Gu"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20391-0"
+  },
+  {
+   "id": "COMP_ENG 392-0",
+   "dept": "COMP_ENG",
+   "num": "392-0",
+   "title": "VLSI Systems Design Projects",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "COMP_ENG 391-0",
+     "COMP_ENG 355-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_ENG 391-0 or COMP_ENG 355-0 .",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "MW 3:30-4:50 · Zaretsky"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20392-0"
+  },
+  {
+   "id": "COMP_ENG 393-0",
+   "dept": "COMP_ENG",
+   "num": "393-0",
+   "title": "Advanced Low Power VLSI and Mixed-signal IC Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TuTh 2:00-3:20 · Gu"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20393-0"
+  },
+  {
+   "id": "COMP_ENG 395-0",
+   "dept": "COMP_ENG",
+   "num": "395-0",
+   "title": "Special Topics in Computer Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20395-0"
+  },
+  {
+   "id": "COMP_ENG 399-0",
+   "dept": "COMP_ENG",
+   "num": "399-0",
+   "title": "Projects",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20399-0"
+  },
+  {
+   "id": "ELEC_ENG 100-0",
+   "dept": "ELEC_ENG",
+   "num": "100-0",
+   "title": "Electrons, Photons, and Bits: Adventures in Electrical and Computer Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20100-0"
+  },
+  {
+   "id": "ELEC_ENG 195-0",
+   "dept": "ELEC_ENG",
+   "num": "195-0",
+   "title": "Special Topics in Electrical Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20195-0"
+  },
+  {
+   "id": "ELEC_ENG 202-0",
+   "dept": "ELEC_ENG",
+   "num": "202-0",
+   "title": "Introduction to Electrical Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MTuWF 2-2:50 · Mikhelson",
+    "Spring 2027": "MTuWF 10-10:50 · Mikhelson"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20202-0"
+  },
+  {
+   "id": "ELEC_ENG 221-0",
+   "dept": "ELEC_ENG",
+   "num": "221-0",
+   "title": "Fundamentals of Circuits",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 202-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: ELEC_ENG 202-0 .",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MTuWF 10-10:50 · Khalili",
+    "Spring 2027": "MTuWF 2-2:50 · Hosseini"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20221-0"
+  },
+  {
+   "id": "ELEC_ENG 222-0",
+   "dept": "ELEC_ENG",
+   "num": "222-0",
+   "title": "Fundamentals of Signals & Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 202-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: ELEC_ENG 202-0 .",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MTuWF 2-2:50 · Pappas",
+    "Winter 2027": "MTuWF 1-1:50 · Berry"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20222-0"
+  },
+  {
+   "id": "ELEC_ENG 223-0",
+   "dept": "ELEC_ENG",
+   "num": "223-0",
+   "title": "Fundamentals of Solid State Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "ELEC_ENG 202-0",
+     "PHYSICS 135-3",
+     "MATH 228-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ELEC_ENG 202-0 ; PHYSICS 135-3 ; MATH 228-2 .",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MTuWF 9-9:50 · Grayson",
+    "Spring 2027": "MTuWF 11-11:50 · Aydin"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20223-0"
+  },
+  {
+   "id": "ELEC_ENG 224-0",
+   "dept": "ELEC_ENG",
+   "num": "224-0",
+   "title": "Fund of Electromagnetics & Photonics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "ELEC_ENG 202-0",
+     "ELEC_ENG 221-0",
+     "PHYSICS 135-2",
+     "MATH 228-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "text": "Prerequisites: ( ELEC_ENG 202-0 and ELEC_ENG 221-0 and PHYSICS 135-2 and MATH 228-2 ) or consent of instructor.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MTuWF 11-11:50 · Aydin",
+    "Winter 2027": "MTuWF 11-11:50 · Kumar"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20224-0"
+  },
+  {
+   "id": "ELEC_ENG 225-0",
+   "dept": "ELEC_ENG",
+   "num": "225-0",
+   "title": "Fundamentals of Electronics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 221-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ELEC_ENG 221-0 .",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MTuWF 3-3:50 · Sahakian",
+    "Winter 2027": "MTuWF 3-3:50 · TBD"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20225-0"
+  },
+  {
+   "id": "ELEC_ENG 250-0",
+   "dept": "ELEC_ENG",
+   "num": "250-0",
+   "title": "Physical Electronics and Devices",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "ELEC_ENG 221-0",
+     "PHYSICS 135-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ELEC_ENG 221-0 ; PHYSICS 135-2 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20250-0"
+  },
+  {
+   "id": "ELEC_ENG 295-0",
+   "dept": "ELEC_ENG",
+   "num": "295-0",
+   "title": "Special Topics in Electrical Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20295-0"
+  },
+  {
+   "id": "ELEC_ENG 302-0",
+   "dept": "ELEC_ENG",
+   "num": "302-0",
+   "title": "Probabilistic Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "GEN_ENG 231-0",
+   "coreq": "MATH 228-2",
+   "recommended": [],
+   "notes": [
+    "or equivalent (for the MATH 228-2 corequisite)",
+    "GEN_ENG 231-0 prerequisite is from the EE degree page footnote, not the course entry"
+   ],
+   "text": "Corequisite: MATH 228-2 or equivalent.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MTuWF 9-9:50 · Wei",
+    "Spring 2027": "MTuWF 10-10:50 · Guo"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20302-0"
+  },
+  {
+   "id": "ELEC_ENG 307-0",
+   "dept": "ELEC_ENG",
+   "num": "307-0",
+   "title": "Communications Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "ELEC_ENG 222-0",
+     "ELEC_ENG 302-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "text": "Prerequisites: ELEC_ENG 222-0 , ELEC_ENG 302-0 or equivalent.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MW 11:00-12:20 · Kadota"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20307-0"
+  },
+  {
+   "id": "ELEC_ENG 308-0",
+   "dept": "ELEC_ENG",
+   "num": "308-0",
+   "title": "Applied Electromagnetics and Photonics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 224-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: ELEC_ENG 224-0 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20308-0"
+  },
+  {
+   "id": "ELEC_ENG 326-0",
+   "dept": "ELEC_ENG",
+   "num": "326-0",
+   "title": "Electronic System Design I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     {
+      "and": [
+       "ELEC_ENG 225-0",
+       "COMP_SCI 211-0"
+      ]
+     },
+     "MECH_ENG 333-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "or graduate standing"
+   ],
+   "text": "Prerequisite: Students must have completed ( ELEC_ENG 225-0 and COMP_SCI 211-0 ), or MECH_ENG 333-0 , or graduate standing, or instructor consent.",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "TuTh 3:30-4:50 · Mikhelson"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20326-0"
+  },
+  {
+   "id": "ELEC_ENG 327-0",
+   "dept": "ELEC_ENG",
+   "num": "327-0",
+   "title": "Electronic System Design II: Project",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 326-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "text": "Prerequisite: ELEC_ENG 326-0 or instructor consent.",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "TuTh 12:30-1:50 · Mikhelson"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20327-0"
+  },
+  {
+   "id": "ELEC_ENG 328-0",
+   "dept": "ELEC_ENG",
+   "num": "328-0",
+   "title": "Information Theory & Learning",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 302-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "text": "Prerequisite: Basic probability theory ( ELEC_ENG 302-0 or equivalent).",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "MW 3:30-4:50 · Berry"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20328-0"
+  },
+  {
+   "id": "ELEC_ENG 331-0",
+   "dept": "ELEC_ENG",
+   "num": "331-0",
+   "title": "Introduction to Computational Photography",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "COMP_SCI 150-0",
+     "COMP_SCI 211-0",
+     "GEN_ENG 150-0",
+     "GEN_ENG 151-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "text": "Prerequisite: COMP_SCI 150-0 , COMP_SCI 211-0 , GEN_ENG 150-0 , or GEN_ENG 151-0 , or consent of instructor.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20331-0"
+  },
+  {
+   "id": "ELEC_ENG 332-0",
+   "dept": "ELEC_ENG",
+   "num": "332-0",
+   "title": "Introduction to Computer Vision",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "COMP_SCI 212-0",
+     "ELEC_ENG 302-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or graduate standing",
+    "or equivalent"
+   ],
+   "text": "Prerequisites: COMP_SCI 212-0 or ELEC_ENG 302-0 or equivalent or graduate standing.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "TuTh 11:00-12:20 · Y. Wu"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20332-0"
+  },
+  {
+   "id": "ELEC_ENG 333-0",
+   "dept": "ELEC_ENG",
+   "num": "333-0",
+   "title": "Introduction to Communication Networks",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 302-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "text": "Prerequisite: ELEC_ENG 302-0 or equivalent.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20333-0"
+  },
+  {
+   "id": "ELEC_ENG 334-0",
+   "dept": "ELEC_ENG",
+   "num": "334-0",
+   "title": "Fundamentals of Blockchains and Decentralization",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "COMP_SCI 212-0",
+     "ELEC_ENG 302-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or graduate standing",
+    "or equivalent",
+    "basic programming skills"
+   ],
+   "text": "Prerequisites: COMP_SCI 212-0 or ELEC_ENG 302-0 or equivalent or graduate standing and basic programming skills.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20334-0"
+  },
+  {
+   "id": "ELEC_ENG 335-0",
+   "dept": "ELEC_ENG",
+   "num": "335-0",
+   "title": "Deep Learning Foundations from Scratch",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20335-0"
+  },
+  {
+   "id": "ELEC_ENG 353-0",
+   "dept": "ELEC_ENG",
+   "num": "353-0",
+   "title": "Digital Microelectronics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "COMP_ENG 203-0",
+     "ELEC_ENG 225-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_ENG 203-0 , ELEC_ENG 225-0 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20353-0"
+  },
+  {
+   "id": "ELEC_ENG 359-0",
+   "dept": "ELEC_ENG",
+   "num": "359-0",
+   "title": "Digital Signal Processing",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 222-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: ELEC_ENG 222-0 .",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "TuTh 3:30-4:50 · Pappas"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20359-0"
+  },
+  {
+   "id": "ELEC_ENG 360-0",
+   "dept": "ELEC_ENG",
+   "num": "360-0",
+   "title": "Introduction to Feedback Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "ELEC_ENG 222-0",
+     "MECH_ENG 390-0",
+     "BMD_ENG 309-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "text": "Prerequisite: ELEC_ENG 222-0 or MECH_ENG 390-0 or BMD_ENG 309-0 or equivalent.",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MWF 10-10:50 · Freeman"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20360-0"
+  },
+  {
+   "id": "ELEC_ENG 363-0",
+   "dept": "ELEC_ENG",
+   "num": "363-0",
+   "title": "Digital Filtering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 359-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: ELEC_ENG 359-0 .",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MWF 1:00-1:50 · Butz"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20363-0"
+  },
+  {
+   "id": "ELEC_ENG 372-1",
+   "dept": "ELEC_ENG",
+   "num": "372-1",
+   "title": "Robot Design Studio",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "instructor consent"
+   ],
+   "text": "Prerequisite: Consent of Instructor.",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MWF 1:00-2:20 · E. Colgate"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20372-1"
+  },
+  {
+   "id": "ELEC_ENG 372-2",
+   "dept": "ELEC_ENG",
+   "num": "372-2",
+   "title": "Robot Design Studio",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 372-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: ELEC_ENG 372-1 .",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "MWF 1:00-2:20 · E. Colgate"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20372-2"
+  },
+  {
+   "id": "ELEC_ENG 373-0",
+   "dept": "ELEC_ENG",
+   "num": "373-0",
+   "title": "Deep Reinforcement Learning",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "ELEC_ENG 375-0",
+     "ELEC_ENG 335-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ELEC_ENG 375-0 and ELEC_ENG 335-0 .",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "M 5:00-8:00 · Katsaggelos"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20373-0"
+  },
+  {
+   "id": "ELEC_ENG 374-0",
+   "dept": "ELEC_ENG",
+   "num": "374-0",
+   "title": "Introduction to Digital Control",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 360-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: ELEC_ENG 360-0 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20374-0"
+  },
+  {
+   "id": "ELEC_ENG 375-0",
+   "dept": "ELEC_ENG",
+   "num": "375-0",
+   "title": "Machine Learning: Foundations, Applications, and Algorithms",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "M 5-7:50 · Katsaggelos"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20375-0"
+  },
+  {
+   "id": "ELEC_ENG 378-0",
+   "dept": "ELEC_ENG",
+   "num": "378-0",
+   "title": "Digital Communications",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 302-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "text": "Prerequisite: ELEC_ENG 302-0 or equivalent.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20378-0"
+  },
+  {
+   "id": "ELEC_ENG 379-0",
+   "dept": "ELEC_ENG",
+   "num": "379-0",
+   "title": "Lasers and Coherent Optics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TuTh 12:30-1:50 · Ho"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20379-0"
+  },
+  {
+   "id": "ELEC_ENG 380-0",
+   "dept": "ELEC_ENG",
+   "num": "380-0",
+   "title": "Wireless Communications",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 378-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: ELEC_ENG 378-0 .",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "TuTh 12:30-1:50 · Kadota"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20380-0"
+  },
+  {
+   "id": "ELEC_ENG 381-0",
+   "dept": "ELEC_ENG",
+   "num": "381-0",
+   "title": "Electronic Properties of Materials",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 223-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "text": "Prerequisite: ELEC_ENG 223-0 or consent of instructor.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MWF 1:00-1:50 · Mohseni"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20381-0"
+  },
+  {
+   "id": "ELEC_ENG 382-0",
+   "dept": "ELEC_ENG",
+   "num": "382-0",
+   "title": "Photonic Information Processing",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "ELEC_ENG 222-0",
+     "ELEC_ENG 224-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "text": "Prerequisites: ELEC_ENG 222-0 and ELEC_ENG 224-0 or consent of instructor.",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "TuTh 12:30-1:50 · Ho"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20382-0"
+  },
+  {
+   "id": "ELEC_ENG 383-0",
+   "dept": "ELEC_ENG",
+   "num": "383-0",
+   "title": "Fiber-Optic Communications",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "ELEC_ENG 223-0",
+     "ELEC_ENG 224-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ELEC_ENG 223-0 , ELEC_ENG 224-0 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20383-0"
+  },
+  {
+   "id": "ELEC_ENG 384-0",
+   "dept": "ELEC_ENG",
+   "num": "384-0",
+   "title": "Solid State Electronic Devices",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 381-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "text": "Prerequisite: ELEC_ENG 381-0 or consent of instructor.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20384-0"
+  },
+  {
+   "id": "ELEC_ENG 385-0",
+   "dept": "ELEC_ENG",
+   "num": "385-0",
+   "title": "Optoelectronics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 381-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "text": "Prerequisite: ELEC_ENG 381-0 or consent of instructor.",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "MWF 1:00-1:50 · Aydin"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20385-0"
+  },
+  {
+   "id": "ELEC_ENG 387-0",
+   "dept": "ELEC_ENG",
+   "num": "387-0",
+   "title": "Advanced Digital Systems Design with FPGAs",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MW 10-11:20 · Zaretsky"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20387-0"
+  },
+  {
+   "id": "ELEC_ENG 388-0",
+   "dept": "ELEC_ENG",
+   "num": "388-0",
+   "title": "Nanotechnology",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 223-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "text": "Prerequisite: ELEC_ENG 223-0 or consent of instructor.",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "TuTh 9:30-10:50 · Razeghi"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20388-0"
+  },
+  {
+   "id": "ELEC_ENG 389-0",
+   "dept": "ELEC_ENG",
+   "num": "389-0",
+   "title": "Superconductivity and Its Applications",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ELEC_ENG 381-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "text": "Prerequisite: ELEC_ENG 381-0 or consent of instructor.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20389-0"
+  },
+  {
+   "id": "ELEC_ENG 390-0",
+   "dept": "ELEC_ENG",
+   "num": "390-0",
+   "title": "Introduction to Robotics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "COMP_SCI 230-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 230-0.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20390-0"
+  },
+  {
+   "id": "ELEC_ENG 395-0",
+   "dept": "ELEC_ENG",
+   "num": "395-0",
+   "title": "Special Topics in Electrical Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20395-0"
+  },
+  {
+   "id": "ELEC_ENG 398-0",
+   "dept": "ELEC_ENG",
+   "num": "398-0",
+   "title": "Electrical Engineering Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "senior standing"
+   ],
+   "text": "Prerequisite: senior standing.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20398-0"
+  },
+  {
+   "id": "ELEC_ENG 399-0",
+   "dept": "ELEC_ENG",
+   "num": "399-0",
+   "title": "Projects",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20399-0"
+  },
+  {
+   "id": "BMD_ENG 309-0",
+   "dept": "BMD_ENG",
+   "num": "309-0",
+   "title": "Biomedical Systems Analysis",
+   "units": 1.25,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: BMD_ENG 207-0 ; BMD_ENG 308-0 ; BMD_ENG 220-0; GEN_ENG 205-4 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20309-0"
+  },
+  {
+   "id": "BMD_ENG 325-0",
+   "dept": "BMD_ENG",
+   "num": "325-0",
+   "title": "Introduction to Medical Imaging",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: Students must have completed PHYSICS 135-3 and knowledge of Fourier concepts.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20325-0",
+   "links": [
+    "PHYSICS 135-3"
+   ]
+  },
+  {
+   "id": "BMD_ENG 327-0",
+   "dept": "BMD_ENG",
+   "num": "327-0",
+   "title": "Magnetic Resonance Imaging",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: PHYSICS 135-3 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20327-0",
+   "links": [
+    "PHYSICS 135-3"
+   ]
+  },
+  {
+   "id": "BMD_ENG 333-0",
+   "dept": "BMD_ENG",
+   "num": "333-0",
+   "title": "Modern Optical Microscopy & Imaging",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: BMD_ENG 220-0, GEN_ENG 205-4 , PHYSICS 135-3 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20333-0",
+   "links": [
+    "PHYSICS 135-3"
+   ]
+  },
+  {
+   "id": "COMP_SCI 110-0",
+   "dept": "COMP_SCI",
+   "num": "110-0",
+   "title": "Introduction to Computer Programming",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20110-0"
+  },
+  {
+   "id": "COMP_SCI 111-0",
+   "dept": "COMP_SCI",
+   "num": "111-0",
+   "title": "Fundamentals of Computer Programming",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "1-1:50 or 2-2:50 MWF Bain",
+    "Winter 2027": "11-11:50 MWF · Sood",
+    "Spring 2027": "1-1:50 MWF · Sood"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20111-0"
+  },
+  {
+   "id": "COMP_SCI 150-0",
+   "dept": "COMP_SCI",
+   "num": "150-0",
+   "title": "Fundamentals of Programming and Computational Problem Solving",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20150-0"
+  },
+  {
+   "id": "COMP_SCI 180-0",
+   "dept": "COMP_SCI",
+   "num": "180-0",
+   "title": "Software Design & Composition",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: GEN_ENG 150-0 or GEN_ENG 151-0 or COMP_SCI 150 or COMP_SCI 1CA. Students cannot concurrently be enrolled in COMP_SCI 208_0 or COMP_SCI 211_0.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20180-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 208-0",
+   "dept": "COMP_SCI",
+   "num": "208-0",
+   "title": "Data Structures & Algorithms",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 150 or GEN_ENG 150 or GEN_ENG 151 and COMP_SCI 180. Students cannot concurrently be enrolled in COMP_SCI 211-0 or COMP_SCI 180_0.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20208-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "COMP_SCI 180-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 211-0",
+   "dept": "COMP_SCI",
+   "num": "211-0",
+   "title": "Programming in Systems-Level Languages",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 150 or GEN_ENG 150 or GEN_ENG 151. Students cannot concurrently be enrolled in COMP_SCI 180-0 or COMP_SCI 208-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "12:30-1:50 TuTh · Hummel",
+    "Winter 2027": "9:30-10:50 Or 12:30-1:50 TuTh (2 sections) · Zhang",
+    "Spring 2027": "2-3:20 TuTH · Hummel"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20211-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 212-0",
+   "dept": "COMP_SCI",
+   "num": "212-0",
+   "title": "Math Foundations of CS Part 1: Discrete Math for CS",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: CS 110 or CS 111.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20212-0",
+   "links": [
+    "COMP_SCI 110-0",
+    "COMP_SCI 111-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 213-0",
+   "dept": "COMP_SCI",
+   "num": "213-0",
+   "title": "Introduction to Computer System",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 211-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TuTh 9:30-10:50 · Dinda",
+    "Winter 2027": "2-3:20 TuTh (2 sections) · Ghena",
+    "Spring 2027": "2-3:20 TuTh · Hardavellas"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20213-0",
+   "links": [
+    "COMP_SCI 211-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 214-0",
+   "dept": "COMP_SCI",
+   "num": "214-0",
+   "title": "Data Structures and Algorithms",
+   "units": null,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "11-12:20 TuTh (2 sections) · St-Amour",
+    "Winter 2027": "11-12:20 TuTh (2 sections) · Bhagavatula",
+    "Spring 2027": "11-12:20 TuTh (2 sections) · St-Amour"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20214-0",
+   "missing": true
+  },
+  {
+   "id": "COMP_SCI 230-0",
+   "dept": "COMP_SCI",
+   "num": "230-0",
+   "title": "",
+   "units": null,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20230-0",
+   "missing": true
+  },
+  {
+   "id": "COMP_SCI 301-0",
+   "dept": "COMP_SCI",
+   "num": "301-0",
+   "title": "Introduction to Robotics Laboratory",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 110-0 , COMP_SCI 111-0 , COMP_SCI 150, GEN_ENG 150-0 , GEN_ENG 151-0 , MECH_ENG 224-0 , or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20301-0",
+   "links": [
+    "COMP_SCI 110-0",
+    "COMP_SCI 111-0",
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 321-0",
+   "dept": "COMP_SCI",
+   "num": "321-0",
+   "title": "Programming Languages",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: (COMP_SCI 211 and (COMP_SCI 214 or COMP_SCI 208)) or COMP_SCI MS or COMP_SCI PhDs or Instructor permission.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20321-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 211-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 322-0",
+   "dept": "COMP_SCI",
+   "num": "322-0",
+   "title": "Compiler Construction",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: Students must have completed ((CS 214 or CS 208) & (CS 213 or CE 205)), or be CS MS or CS PhD in order to register for this course.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "5 -6:20 TuTh · Geisler",
+    "Spring 2027": "5 -6:20 TuTh · Geisler"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20322-0",
+   "links": [
+    "COMP_ENG 205-0",
+    "COMP_SCI 208-0",
+    "COMP_SCI 213-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 336-0",
+   "dept": "COMP_SCI",
+   "num": "336-0",
+   "title": "Design & Analysis of Algorithms",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: Comp_sci S 212 and (Comp_sci 208 or Comp_Sci 214), or Comp_Sci MS or Comp_Sci PhDs or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20336-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 339-0",
+   "dept": "COMP_SCI",
+   "num": "339-0",
+   "title": "Introduction to Database Systems",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ( COMP_SCI 208-0 or COMP_SCI 214-0) and ( COMP_SCI 213-0 or COMP_ENG 205-0 ) or CS Graduate Standing.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20339-0",
+   "links": [
+    "COMP_ENG 205-0",
+    "COMP_SCI 208-0",
+    "COMP_SCI 213-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 340-0",
+   "dept": "COMP_SCI",
+   "num": "340-0",
+   "title": "Introduction to Networking",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ( COMP_SCI 208-0 or COMP_SCI 214-0) and ( COMP_SCI 213-0 or COMP_ENG 205-0 ) or CS MS or CS PhD.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "5-6:20 TuTh or MW · Bustamante",
+    "Winter 2027": "12:30-1:50 TuTh · Kuzmanovic"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20340-0",
+   "links": [
+    "COMP_ENG 205-0",
+    "COMP_SCI 208-0",
+    "COMP_SCI 213-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 343-0",
+   "dept": "COMP_SCI",
+   "num": "343-0",
+   "title": "Operating Systems",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ( COMP_SCI 208-0 or COMP_SCI 214-0) and COMP_SCI 213-0 , or ( COMP_SCI 208-0 or COMP_SCI 214-0) and COMP_ENG 205-0 or CS MS or CS PhD.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "12:30-1:50 TuTh · Ghena",
+    "Winter 2027": "2-3:20 MW · Dinda"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20343-0",
+   "links": [
+    "COMP_ENG 205-0",
+    "COMP_SCI 208-0",
+    "COMP_SCI 213-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 350-0",
+   "dept": "COMP_SCI",
+   "num": "350-0",
+   "title": "Introduction to Computer Security",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 213-0 or equivalent or consent of instructor; COMP_SCI 340-0 highly recommended.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20350-0",
+   "links": [
+    "COMP_SCI 213-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 354-0",
+   "dept": "COMP_SCI",
+   "num": "354-0",
+   "title": "Computer System Security",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 211-0 and COMP_SCI 213-0 or COMP_SCI 211-0 and COMP_ENG 205-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20354-0",
+   "links": [
+    "COMP_ENG 205-0",
+    "COMP_SCI 211-0",
+    "COMP_SCI 213-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 394-0",
+   "dept": "COMP_SCI",
+   "num": "394-0",
+   "title": "Agile Software Development",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: Consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20394-0"
+  },
+  {
+   "id": "GEN_ENG 150-0",
+   "dept": "GEN_ENG",
+   "num": "150-0",
+   "title": "Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20150-0"
+  },
+  {
+   "id": "GEN_ENG 151-0",
+   "dept": "GEN_ENG",
+   "num": "151-0",
+   "title": "Honors Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 1CA or instructor permission. Students may not receive credit for both GEN_ENG 151-0 and COMP_SCI 150-0 or GEN_ENG 150-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20151-0"
+  },
+  {
+   "id": "GEN_ENG 205-1",
+   "dept": "GEN_ENG",
+   "num": "205-1",
+   "title": "Engineering Analysis I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-1"
+  },
+  {
+   "id": "GEN_ENG 231-0",
+   "dept": "GEN_ENG",
+   "num": "231-0",
+   "title": "Probability and Statistics for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20231-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0"
+   ]
+  },
+  {
+   "id": "GEN_ENG 251-0",
+   "dept": "GEN_ENG",
+   "num": "251-0",
+   "title": "Applied Ordinary Differential Equations",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151 or CS 150, MATH 220-2 , PHYS 135-1 or GEN_ENG 212 (may be taken concurrently), GEN_ENG 241 (may be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20251-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0"
+   ]
+  },
+  {
+   "id": "MATH 228-2",
+   "dept": "MATH",
+   "num": "228-2",
+   "title": "Multivariable Integral Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 228-1 or MATH 230-0 (former) or MATH 230-1 or MATH 281-1 or MATH 285-2 or MATH 290-2 or MATH 291-2 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-2"
+  },
+  {
+   "id": "MECH_ENG 333-0",
+   "dept": "MECH_ENG",
+   "num": "333-0",
+   "title": "Introduction to Mechatronics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MECH_ENG 233-0 or ELEC_ENG 221-0 or BMD_ENG 308-0 , or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20333-0",
+   "links": [
+    "ELEC_ENG 221-0"
+   ]
+  },
+  {
+   "id": "MECH_ENG 381-0",
+   "dept": "MECH_ENG",
+   "num": "381-0",
+   "title": "Introduction to Micro-electro-mechanical Systems",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: CIV_ENV 216-0 or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20381-0"
+  },
+  {
+   "id": "MECH_ENG 390-0",
+   "dept": "MECH_ENG",
+   "num": "390-0",
+   "title": "Intro to Dynamic Systems",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: MECH_ENG 241-0 ; CIV_ENV 216-0 ; GEN_ENG 205-4 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20390-0"
+  },
+  {
+   "id": "PHYSICS 135-2",
+   "dept": "PHYSICS",
+   "num": "135-2",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-1 ; MATH 230-2 OR MATH 290-2 OR MATH 291-2 (may be taken concurrently).\".",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-2"
+  },
+  {
+   "id": "PHYSICS 135-3",
+   "dept": "PHYSICS",
+   "num": "135-3",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-3",
+   "links": [
+    "PHYSICS 135-2"
+   ]
+  }
+ ]
+}

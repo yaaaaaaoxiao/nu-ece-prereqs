@@ -1,0 +1,32 @@
+{
+ "_comment": "Hand-checked prerequisites. Fields here replace what scrape.py parsed. 'why' explains the correction.",
+ "COMP_ENG 358-0": {
+  "text": "Prerequisite: (CS 213 or (CE 205 & 211)) or MS CS/CE or PhDs CS/CE or permission of Instructor.",
+  "prereq": {
+   "or": [
+    "COMP_SCI 213-0",
+    {
+     "and": [
+      "COMP_ENG 205-0",
+      "COMP_SCI 211-0"
+     ]
+    }
+   ]
+  },
+  "notes": [
+   "or MS/PhD student in CS/CE",
+   "or instructor permission"
+  ],
+  "why": "Catalog uses abbreviations: '(CS 213 or (CE 205 & 211))'. There is no COMP_ENG 211; 211 is COMP_SCI 211-0."
+ },
+ "ELEC_ENG 302-0": {
+  "text": "Corequisite: MATH 228-2 or equivalent.",
+  "prereq": "GEN_ENG 231-0",
+  "coreq": "MATH 228-2",
+  "notes": [
+   "or equivalent (for the MATH 228-2 corequisite)",
+   "GEN_ENG 231-0 prerequisite is from the EE degree page footnote, not the course entry"
+  ],
+  "why": "Course entry only lists a MATH 228-2 corequisite; the EE degree page says GEN_ENG 231-0 is required first."
+ }
+}
