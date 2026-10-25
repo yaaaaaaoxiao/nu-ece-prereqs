@@ -11,6 +11,7 @@ take next, and highlight a degree requirement, technical track or quarter.
 
 ## Features
 
+- **Level rows:** courses sit in rows by level (100, 200, 300) and columns by department.
 - **Prerequisite chains:** selecting a course lights up its full chain of prerequisites
   (violet) and every course it leads to (orange). Dashed links mean "one of several options".
 - **Planner:** mark courses as taken (saved in your browser only) and courses whose
@@ -41,7 +42,7 @@ assets/css/style.css    all styles (light/dark tokens at the top)
 assets/js/
   main.js               state, URL sync, wiring
   model.js              data model: edges, chains, search, planner logic
-  graph.js              dagre layout + SVG rendering, pan/zoom, keyboard nav
+  graph.js              level layout + SVG rendering, pan/zoom, keyboard nav
   panel.js              details panel
   list.js               list view
   search.js             search combobox
@@ -58,8 +59,16 @@ scraper/
   verified.json         catalog text of prerequisites that were checked by hand
 ```
 
-The graph uses [d3](https://d3js.org/) and [dagre](https://github.com/dagrejs/dagre),
-loaded from jsDelivr with pinned versions and integrity hashes. No build step.
+The graph uses [d3](https://d3js.org/) for rendering and pan/zoom, loaded from
+jsDelivr with a pinned version and integrity hash. No build step.
+
+**How the graph is laid out.** Each row is a course level (100, 200, 300, …)
+and each column a department (the map's own, then "Other departments"). Within
+a level, a course that needs another course of the same level is placed in a
+lower tier, so progressions like CE 303 → 355 → 387 read top to bottom. The
+number of card columns per department is chosen to fit the screen. Links are
+drawn on demand (hover, keyboard focus, selection, highlighted lists), or all at
+once with "Show every link" in the legend.
 
 ## Updating the data
 

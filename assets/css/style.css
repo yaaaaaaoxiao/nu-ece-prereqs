@@ -25,6 +25,7 @@
   --good-ink: #006300;
   --accent: #6250d6;
   --accent-wash: rgba(98, 80, 214, 0.10);
+  --band: rgba(11, 11, 11, 0.03);
   --shadow-1: 0 1px 2px rgba(11, 11, 11, 0.06), 0 2px 8px rgba(11, 11, 11, 0.05);
   --shadow-2: 0 10px 32px rgba(11, 11, 11, 0.16);
   --radius: 10px;
@@ -53,6 +54,7 @@
     --good-ink: #3fc23f;
     --accent: #9085e9;
     --accent-wash: rgba(144, 133, 233, 0.14);
+    --band: rgba(255, 255, 255, 0.035);
     --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
     --shadow-2: 0 10px 32px rgba(0, 0, 0, 0.55);
   }
@@ -78,6 +80,7 @@
   --good-ink: #3fc23f;
   --accent: #9085e9;
   --accent-wash: rgba(144, 133, 233, 0.14);
+  --band: rgba(255, 255, 255, 0.035);
   --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-2: 0 10px 32px rgba(0, 0, 0, 0.55);
 }
@@ -288,9 +291,11 @@ svg { flex: none; }
 .node.is-up .card { stroke: var(--up); stroke-width: 2; stroke-dasharray: none; }
 .node.is-down .card { stroke: var(--down); stroke-width: 2; stroke-dasharray: none; }
 .node.is-selected .card { stroke: var(--ink); stroke-width: 2.5; stroke-dasharray: none; filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.18)); }
-.node.is-dim { opacity: 0.2; }
-/* A highlighted list stays faintly visible behind a selection. */
-.node.is-dim.is-match { opacity: 0.5; }
+/* Dimmed cards stay opaque (so links pass cleanly behind them) with faded content. */
+.node.is-dim .card { fill: var(--surface); stroke: var(--hairline); stroke-dasharray: none; filter: none; }
+.node.is-dim text, .node.is-dim .badge { opacity: 0.28; }
+/* A highlighted list stays half visible behind a selection. */
+.node.is-dim.is-match text, .node.is-dim.is-match .badge { opacity: 0.6; }
 .node.is-taken .card { fill: color-mix(in srgb, var(--good) 9%, var(--raised)); }
 
 .node .badge { display: none; }
@@ -300,7 +305,7 @@ svg { flex: none; }
 .node.is-available .badge circle { fill: var(--raised); stroke: var(--good); stroke-width: 2.2; }
 .node.is-available .badge .check { display: none; }
 
-.graph.has-hover .node:not(.is-hovered):not(.is-near) { opacity: 0.4; }
+.graph.has-hover .node:not(.is-hovered):not(.is-near) text { opacity: 0.4; }
 .graph.has-hover .edge:not(.is-hover) { opacity: 0.2; }
 
 /* ---- edges ---- */
@@ -320,7 +325,21 @@ svg { flex: none; }
 .arrow-up { fill: var(--up); }
 .arrow-down { fill: var(--down); }
 
-.loose-label { font: 650 11px var(--font); fill: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+/* Links show on demand: the selected chain, a hover/focus preview, links inside
+   a highlighted list, or all of them when "Show every link" is on. */
+.graph:not(.show-links) .edge:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl) { display: none; }
+.graph.show-links .edge:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl):not(.is-dim) { opacity: 0.45; }
+
+/* ---- level bands and column titles ---- */
+.band { fill: transparent; }
+.band.is-alt { fill: var(--band); }
+.band-label { font: 700 12px var(--font); fill: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.group-label { font: 650 11.5px var(--font); fill: var(--ink-2); letter-spacing: 0.05em; text-transform: uppercase; }
+.group-label.short { display: none; }
+.graph.is-far .band-label { font-size: 22px; }
+.graph.is-far .group-label { font-size: 22px; }
+.graph.is-far .group-label.full { display: none; }
+.graph.is-far .group-label.short { display: inline; }
 
 /* ---- floating controls ---- */
 .zoom-controls {
@@ -339,6 +358,9 @@ svg { flex: none; }
 .legend summary::before { content: ""; width: 6px; height: 6px; border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: rotate(-135deg) translate(-1px, -1px); transition: transform 0.15s; }
 .legend[open] summary::before { transform: rotate(45deg) translate(-2px, -2px); }
 .legend ul { margin: 0; padding: 0 12px 10px; list-style: none; display: grid; gap: 5px; }
+.legend-note { margin: 0 12px 8px; max-width: 260px; color: var(--muted); }
+.legend-toggle { display: flex; align-items: center; gap: 8px; margin: 0 12px 10px; color: var(--ink); cursor: pointer; }
+.legend-toggle input { width: 15px; height: 15px; margin: 0; accent-color: var(--accent); }
 .legend li { display: flex; align-items: center; gap: 10px; }
 .legend svg { width: 36px; height: 12px; }
 .legend path { fill: none; stroke-width: 2; }

@@ -50,16 +50,6 @@ export class CourseMap {
     this.byId = new Map(this.courses.map(c => [c.id, c]));
 
     this.edges = buildEdges(this.courses, this.byId);
-    // Other-department courses that no course here requires; they are on the
-    // map only because a degree lists them, so the graph shows them apart.
-    const required = new Set();
-    for (const c of this.courses) {
-      if (c.role !== 'main') continue;
-      eachCode(c.prereq, id => required.add(id));
-      eachCode(c.coreq, id => required.add(id));
-      (c.recommended || []).forEach(id => required.add(id));
-    }
-    this.degreeOnly = new Set(this.courses.filter(c => c.role !== 'main' && !required.has(c.id)).map(c => c.id));
     this.parents = new Map(this.courses.map(c => [c.id, []]));
     this.children = new Map(this.courses.map(c => [c.id, []]));
     for (const e of this.edges) {

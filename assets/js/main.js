@@ -45,14 +45,15 @@ const state = {
   view: 'graph',
   query: '',
   showExternal: prefs.get('showExternal', true),
+  showLinks: prefs.get('showLinks', false),
   taken: new Set(prefs.get('taken', [])),
 };
 let maps = [];
 
-// The graph needs d3 + dagre from the CDN; without them the list still works.
-const graph = window.d3 && window.dagre
-  ? new GraphView(els.graph, { onSelect: (id, opts) => select(id, opts) })
-  : null;
+// The graph needs d3 from the CDN; without it the list still works.
+const graph = window.d3 ? new GraphView(els.graph, { onSelect: (id, opts) => select(id, opts) }) : null;
+graph?.setShowLinks(state.showLinks);
+$('#show-links').checked = state.showLinks;
 
 const search = new Search(els.search, els.results, {
   find: q => (state.map ? state.map.search(q, 8) : []),
@@ -293,6 +294,7 @@ function setView(view) {
   if (view === state.view || (view === 'graph' && !graph)) return;
   state.view = view;
   render({ history: 'replace' });
+  if (view === 'graph') graph.refit();
   revealSelected({ animate: false });
 }
 
@@ -357,6 +359,19 @@ els.list.addEventListener('change', e => {
   if (e.target.matches('input[data-action="toggle-taken"]')) toggleTaken(e.target.dataset.id);
 });
 els.highlight.addEventListener('change', () => setHighlight(els.highlight.value));
+$('#show-links').addEventListener('change', e => {
+  state.showLinks = e.target.checked;
+  prefs.set('showLinks', state.showLinks);
+  graph?.setShowLinks(state.showLinks);
+});
+// The layout picks column counts to suit the stage's shape.
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (state.view === 'graph' && graph?.refit()) revealSelected({ force: false });
+  }, 250);
+});
 els.showExternal.addEventListener('change', () => setShowExternal(els.showExternal.checked));
 els.mapSelect.addEventListener('change', () => {
   openMap({ map: els.mapSelect.value }).then(() => writeURL('push'));

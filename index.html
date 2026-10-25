@@ -15,7 +15,6 @@
     } catch (e) {}
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/dagre@0.8.5/dist/dagre.min.js" integrity="sha384-2IH3T69EIKYC4c+RXZifZRvaH5SRUdacJW7j6HtE5rQbvLhKKdawxq6vpIzJ7j9M" crossorigin="anonymous"></script>
   <script type="module" src="assets/js/main.js"></script>
 </head>
 <body>
@@ -117,6 +116,8 @@
 
       <details class="legend" id="legend">
         <summary>Legend</summary>
+        <p class="legend-note">Rows are course levels, columns are departments. Links appear when you hover over or select a course.</p>
+        <label class="legend-toggle"><input type="checkbox" id="show-links"> Show every link</label>
         <ul>
           <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-up" d="M2 6h32"/></svg>Prerequisite chain of the selected course</li>
           <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-down" d="M2 6h32"/></svg>Courses it unlocks</li>
@@ -146,6 +147,7 @@
     </form>
     <h2 id="help-title">How to use this map</h2>
     <ul class="help-list">
+      <li><b>Reading the map:</b> each row is a course level (100, 200, 300) and each column a department. Within a level, a course that needs another course of the same level sits lower down.</li>
       <li><b>Select a course</b> by clicking it, searching, or picking it from the list. Its prerequisite chain turns violet and the courses it unlocks turn orange.</li>
       <li><b>Plan ahead:</b> mark the courses you've taken (in the details panel or the list). Courses you can take next get a green ring. This is saved only in this browser.</li>
       <li><b>Highlight</b> the courses in a degree requirement, a technical track, or a quarter's schedule from the toolbar.</li>
