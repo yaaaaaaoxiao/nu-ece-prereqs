@@ -451,7 +451,7 @@ function programsHTML(map, c, state) {
     .sort((a, b) => Number(state.myPrograms.has(b.program.id)) - Number(state.myPrograms.has(a.program.id)));
   if (!entries.length) {
     // In no program's lists: its department's map, if it has one.
-    const home = page && state.deptMaps.get(c.dept);
+    const home = page ? state.deptMaps.get(c.dept) : null;
     return home?.programs.length ? `<section><h3>Degree map</h3><button type="button" class="btn" data-action="open-map"
       data-programs="${esc(home.programs.join(','))}">Open the ${esc(home.name)} map</button></section>` : '';
   }
