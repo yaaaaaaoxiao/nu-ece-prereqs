@@ -1,9 +1,11 @@
 // App entry: loads a map, owns the state, keeps the URL in sync and wires the
-// graph, list, panel, search and toolbar together.
+// graph, list, plan, panel, search and toolbar together.
 import { CourseMap, fetchJSON } from './model.js';
 import { GraphView } from './graph.js';
-import { renderPanel, aboutHTML, esc } from './panel.js';
+import { renderPanel, aboutHTML, esc, statusIcon } from './panel.js';
 import { renderList } from './list.js';
+import { renderPlanView } from './planview.js';
+import { Plan, currentTerm, termLabel, termOrder } from './plan.js';
 import { Search } from './search.js';
 import { prefs } from './store.js';
 
@@ -14,7 +16,11 @@ const REPO = '';
 // On narrow screens the details panel is a bottom sheet; collapsed, it shows
 // only this much of its top (the course title).
 const SHEET_PEEK = 104;
+const SHEET_PEEK_PICKING = 116; // the header plus the row of buttons
 const narrow = window.matchMedia('(max-width: 760px)');
+const touch = window.matchMedia('(pointer: coarse)');
+const VIEWS = ['graph', 'list', 'plan'];
+const TOAST_MS = 6000;
 
 const $ = sel => document.querySelector(sel);
 const els = {
@@ -26,16 +32,18 @@ const els = {
   highlight: $('#highlight'),
   showExternal: $('#show-external'),
   planner: $('#planner'),
-  viewButtons: document.querySelectorAll('[data-view]'),
+  viewButtons: document.querySelectorAll('.segmented [data-view]'),
   stage: $('#stage'),
   graph: $('#graph'),
   list: $('#list'),
+  planView: $('#plan'),
   status: $('#stage-status'),
   panel: $('#panel'),
   announcer: $('#announcer'),
   help: $('#help'),
   helpData: $('#help-data'),
   themeBtn: $('#theme-btn'),
+  toast: $('#toast'),
 };
 
 const state = {
@@ -44,24 +52,49 @@ const state = {
   highlight: '',
   view: 'graph',
   query: '',
+  addTerm: null, // set while the search box adds a course to a quarter
+  // Several courses selected at once (Shift-click, Shift-drag, long press or
+  // "Mark courses") to mark them taken or planned together.
+  picked: new Set(),
+  picking: false, // "Mark courses" mode: plain clicks pick too, until Done
   showExternal: prefs.get('showExternal', true),
-  showLinks: prefs.get('showLinks', false),
-  taken: new Set(prefs.get('taken', [])),
+  showLinks: prefs.get('showLinks', true),
+  plan: new Plan(),
+  // Derived from the plan and map by derive():
+  taken: new Set(),
+  planned: new Set(),
+  ready: new Set(), // on the map, not taken or planned, prerequisites done
+  myPrograms: new Set(),
+  activePrograms: [],
+  visible: new Set(),
 };
 let maps = [];
+const undoStack = []; // plan snapshots, newest last
 
 // The graph needs d3 from the CDN; without it the list still works.
-const graph = window.d3 ? new GraphView(els.graph, { onSelect: (id, opts) => select(id, opts) }) : null;
+const graph = window.d3
+  ? new GraphView(els.graph, {
+    onSelect: (id, opts) => select(id, opts),
+    onPick: (ids, opts) => pickCourses(ids, opts),
+    minimap: $('#minimap'),
+  })
+  : null;
 graph?.setShowLinks(state.showLinks);
 $('#show-links').checked = state.showLinks;
 
 const search = new Search(els.search, els.results, {
   find: q => (state.map ? state.map.search(q, 8) : []),
   describe: optionHTML,
-  onPick: id => select(id, { source: 'search' }),
+  onPick: id => (state.addTerm ? addToTerm(id, state.addTerm) : select(id, { source: 'search' })),
   onQuery: q => {
     state.query = q;
-    if (state.view === 'list' && state.map) renderList(els.list, { map: state.map, state, query: q });
+    if (state.view === 'list' && state.map && !state.addTerm) renderList(els.list, { map: state.map, state, query: q });
+  },
+  onBlur: () => {
+    if (state.addTerm) {
+      state.addTerm = null;
+      syncControls();
+    }
   },
 });
 
@@ -73,7 +106,7 @@ async function init() {
     document.querySelector('[data-view="graph"]').disabled = true;
     announce('The graph library could not be loaded, so courses are shown as a list.');
   }
-  setStatus('Loading course data…');
+  setStageStatus('Loading course data…');
   try {
     maps = (await fetchJSON('data/maps.json')).maps;
     if (!maps.length) throw new Error('data/maps.json lists no maps.');
@@ -82,7 +115,7 @@ async function init() {
     await openMap(readURL());
   } catch (err) {
     console.error(err);
-    setStatus(`<div class="error"><p><b>Couldn't load the course data.</b></p><p>${esc(err.message)}</p>
+    setStageStatus(`<div class="error"><p><b>Couldn't load the course data.</b></p><p>${esc(err.message)}</p>
       <button type="button" class="btn" data-action="reload">Try again</button></div>`);
   }
 }
@@ -91,25 +124,70 @@ async function openMap(params) {
   const entry = maps.find(m => m.id === params.map) || maps[0];
   const fresh = !state.map || state.map.id !== entry.id;
   if (fresh) {
-    setStatus('Loading course data…');
+    setStageStatus('Loading course data…');
     state.map = new CourseMap(await fetchJSON(`data/${entry.file}`));
     els.mapSelect.value = entry.id;
     els.mapName.textContent = state.map.name;
     els.helpData.innerHTML = aboutHTML(state.map);
-    fillHighlightSelect();
   }
+  derive();
   const map = state.map;
   state.selected = params.course && map.get(params.course) ? params.course : null;
   state.highlight = params.hl && map.highlight(params.hl) ? params.hl : '';
-  state.view = params.view === 'list' || !graph ? 'list' : 'graph';
-  setStatus('');
+  state.view = VIEWS.includes(params.view) ? params.view : 'graph';
+  if (!graph && state.view === 'graph') state.view = 'list';
+  setStageStatus('');
   if (fresh && graph) {
-    graph.setData(map, visibleIds());
+    graph.setData(map, state.visible);
     syncInsets();
     graph.fitAll({ animate: false, minScale: 0.45 });
   }
   render({ history: 'replace' });
   if (state.selected) revealSelected({ animate: !fresh });
+}
+
+// Everything that follows from the plan: status sets, the programs in play,
+// which courses are on the graph, and the "your plan" highlights.
+function derive() {
+  const { map, plan } = state;
+  state.taken = new Set(plan.ids('taken'));
+  state.planned = new Set(plan.ids('planned'));
+  const chosen = plan.chosenPrograms(map.id);
+  state.myPrograms = new Set(chosen || []);
+  // With no programs chosen, the map's own majors stand in.
+  state.activePrograms = chosen ? chosen.map(id => map.program(id)).filter(Boolean) : map.programs.filter(p => p.default);
+
+  const visible = new Set(map.courses.filter(c => c.role === 'main').map(c => c.id));
+  if (state.showExternal) {
+    map.required.forEach(id => visible.add(id));
+    state.activePrograms.forEach(p => p.courses.forEach(id => visible.add(id)));
+    [...state.taken, ...state.planned].forEach(id => map.get(id) && visible.add(id));
+  }
+  state.visible = visible;
+  // "Can take now" only means something once some courses are marked taken.
+  const planning = [...state.taken].some(id => map.get(id));
+  state.ready = new Set(planning
+    ? [...visible].filter(id => !state.planned.has(id) && map.status(map.get(id), state.taken) === 'available')
+    : []);
+  for (const id of state.picked) if (!visible.has(id)) state.picked.delete(id);
+
+  map.setExtraHighlights([
+    { key: 'plan:taken', group: 'Your plan', label: "Courses you've taken", ids: state.taken },
+    { key: 'plan:planned', group: 'Your plan', label: "Courses you've planned", ids: state.planned },
+    { key: 'plan:ready', group: 'Your plan', label: 'Courses you can take now', ids: state.ready },
+  ]);
+  fillHighlightSelect();
+  if (state.highlight && !highlightOptions().some(h => h.key === state.highlight)) state.highlight = '';
+}
+
+// After any change to the plan: recompute, re-lay out the graph if the set of
+// courses on it changed, and redraw.
+function planChanged() {
+  const before = state.visible;
+  derive();
+  const same = before.size === state.visible.size && [...before].every(id => state.visible.has(id));
+  if (!same && graph) graph.setData(state.map, state.visible, { animate: state.view === 'graph' });
+  render();
 }
 
 // Frame the selected course in the part of the graph that nothing covers
@@ -124,7 +202,8 @@ function syncInsets() {
   const sheet = els.panel;
   let bottom = 0;
   if (narrow.matches && sheet.classList.contains('is-open')) {
-    bottom = sheet.classList.contains('is-collapsed') ? SHEET_PEEK : sheet.offsetHeight;
+    const peek = isPicking() ? SHEET_PEEK_PICKING : SHEET_PEEK;
+    bottom = sheet.classList.contains('is-collapsed') ? peek : sheet.offsetHeight;
   }
   graph?.setInsets({ top: narrow.matches ? 52 : 0, bottom });
 }
@@ -140,15 +219,12 @@ function writeURL(mode) {
   if (state.map.id !== maps[0].id) p.set('map', state.map.id);
   if (state.selected) p.set('course', state.selected);
   if (state.highlight) p.set('hl', state.highlight);
-  if (state.view === 'list') p.set('view', 'list');
+  if (state.view !== 'graph') p.set('view', state.view);
   const qs = p.toString();
   const url = `${location.pathname}${qs ? `?${qs}` : ''}${location.hash}`;
   if (url === location.pathname + location.search + location.hash) return;
   history[mode === 'push' ? 'pushState' : 'replaceState'](null, '', url);
 }
-
-const visibleIds = () => new Set(state.map.courses
-  .filter(c => c.role === 'main' || state.showExternal).map(c => c.id));
 
 // -------------------------------------------------------------- rendering
 
@@ -159,71 +235,103 @@ function render({ history: mode = 'replace' } = {}) {
     graph?.update(state);
     renderPanel(els.panel, { map, state, repo: repoSlug() });
     if (state.view === 'list') renderList(els.list, { map, state, query: state.query });
+    if (state.view === 'plan') renderPlanView(els.planView, { map, state });
     renderPlanner();
   });
-  // On phones the panel is a bottom sheet; open it only for a course so a
-  // highlight stays visible on the graph.
-  els.panel.classList.toggle('is-open', !!state.selected);
+  // On phones the panel is a bottom sheet; open it only for a course (or the
+  // courses being marked) so a highlight stays visible on the graph.
+  els.panel.classList.toggle('is-open', !!state.selected || isPicking());
+  els.panel.classList.toggle('is-picking', isPicking());
   syncControls();
   writeURL(mode);
 }
 
-// Re-rendering replaces buttons; put keyboard focus back on the equivalent one.
+// Re-rendering replaces controls; put keyboard focus back on the equivalent one.
+const FOCUS_KEYS = ['action', 'select', 'highlight', 'id', 'status', 'term', 'program', 'view'];
 function keepFocus(fn) {
   const active = document.activeElement;
-  const key = active?.dataset && ['action', 'select', 'highlight'].find(k => active.dataset[k]);
-  const selector = key && `[data-${key}="${CSS.escape(active.dataset[key])}"]${
-    active.dataset.id ? `[data-id="${CSS.escape(active.dataset.id)}"]` : ''}`;
-  const container = active?.closest('#panel, #list, #planner');
+  const container = active?.closest?.('#panel, #list, #planner, #plan');
+  const selector = container && FOCUS_KEYS.filter(k => active.dataset[k] !== undefined)
+    .map(k => `[data-${k}="${CSS.escape(active.dataset[k])}"]`).join('');
   fn();
-  if (selector && container && !container.contains(active)) container.querySelector(selector)?.focus();
+  if (selector && !container.contains(active)) container.querySelector(selector)?.focus();
 }
 
 function syncControls() {
-  const list = state.view === 'list';
+  const { view } = state;
   els.highlight.value = state.highlight;
   els.highlight.classList.toggle('is-active', !!state.highlight);
   els.showExternal.checked = state.showExternal;
-  els.stage.classList.toggle('is-list', list);
-  els.list.hidden = !list;
-  els.viewButtons.forEach(b => b.setAttribute('aria-checked', String(b.dataset.view === state.view)));
-  search.setDropdown(!list);
-  els.search.placeholder = list ? 'Filter the list by number or title' : 'Search courses, e.g. EE 221 or signals';
+  els.stage.classList.toggle('is-list', view === 'list');
+  els.stage.classList.toggle('is-plan', view === 'plan');
+  els.list.hidden = view !== 'list';
+  els.planView.hidden = view !== 'plan';
+  els.viewButtons.forEach(b => b.setAttribute('aria-checked', String(b.dataset.view === view)));
+  // The list view filters as you type; elsewhere (or when adding) a dropdown suggests courses.
+  search.setDropdown(view !== 'list' || !!state.addTerm);
+  els.search.placeholder = state.addTerm
+    ? `Add a course to ${termLabel(state.addTerm)}…`
+    : view === 'list' ? 'Filter the list by number or title' : 'Search courses, e.g. EE 221 or signals';
+  els.search.classList.toggle('is-adding', !!state.addTerm);
+}
+
+// The highlights on offer: lists from the programs in play, your plan, and the schedule.
+function highlightOptions() {
+  const active = new Set(state.activePrograms.map(p => p.id));
+  const plan = state.map.extraHighlights.filter(h => h.ids.size && [...h.ids].some(id => state.map.get(id)));
+  return [
+    ...state.map.highlights.filter(h => h.program && active.has(h.program)),
+    ...plan,
+    ...state.map.highlights.filter(h => !h.program),
+  ];
 }
 
 function fillHighlightSelect() {
   const groups = new Map();
-  for (const h of state.map.highlights) {
+  for (const h of highlightOptions()) {
     if (!groups.has(h.group)) groups.set(h.group, []);
     groups.get(h.group).push(h);
   }
-  els.highlight.innerHTML = '<option value="">None</option>' + [...groups].map(([group, items]) =>
+  const count = h => [...h.ids].filter(id => state.map.get(id)).length;
+  const html = '<option value="">None</option>' + [...groups].map(([group, items]) =>
     `<optgroup label="${esc(group)}">${items.map(h =>
-      `<option value="${esc(h.key)}">${esc(h.label)} (${h.ids.size})</option>`).join('')}</optgroup>`).join('');
+      `<option value="${esc(h.key)}">${esc(h.label)} (${count(h)})</option>`).join('')}</optgroup>`).join('');
+  if (html !== els.highlight.dataset.html) {
+    els.highlight.innerHTML = html;
+    els.highlight.dataset.html = html;
+    els.highlight.value = state.highlight;
+  }
 }
 
 function renderPlanner() {
-  const { map, taken } = state;
-  const mine = [...taken].filter(id => map.get(id));
-  if (!mine.length) {
-    els.planner.innerHTML = '<span class="muted">Mark courses you\'ve taken to see what you can take next.</span>';
+  const { map, taken, planned, ready } = state;
+  const picking = isPicking();
+  const nTaken = [...taken].filter(id => map.get(id)).length;
+  const nPlanned = [...planned].filter(id => map.get(id)).length;
+  const start = `<button type="button" class="tool-btn" data-action="${picking ? 'stop-picking' : 'start-picking'}" aria-pressed="${picking}"
+    title="Select several courses, then mark them taken or planned">${statusIcon('taken')}<span class="wide-only">Mark courses</span><span class="narrow-only">Mark</span></button>`;
+  if (!nTaken && !nPlanned) {
+    els.planner.innerHTML = `${start}<span class="muted planner-hint">or Shift-click courses to mark what you've taken</span>`;
     return;
   }
-  const open = map.courses.filter(c => map.status(c, taken) === 'available').length;
-  els.planner.innerHTML = `<span><b>${mine.length}</b> taken · <span class="dot" aria-hidden="true"></span>
-    <b>${open}</b> can take now</span>
-    <button type="button" class="link-btn" data-action="clear-taken">Clear</button>`;
+  // Each count highlights its courses on the map.
+  const stat = (key, kind, n, label) => `<button type="button" class="stat-btn" data-highlight="${key}"
+    aria-pressed="${state.highlight === key}"${n ? '' : ' disabled'} title="Highlight them">${statusIcon(kind)}<b>${n}</b> <span class="stat-label">${label}</span></button>`;
+  els.planner.innerHTML = `<span class="plan-stats">${stat('plan:taken', 'taken', nTaken, 'taken')}${
+    stat('plan:planned', 'planned', nPlanned, 'planned')}${stat('plan:ready', 'ready', ready.size, 'can take now')}</span>${start}`;
 }
 
 function optionHTML(c) {
   const map = state.map;
-  const taken = state.taken.has(c.id) ? ' · taken' : '';
+  const status = state.plan.status(c.id);
+  const term = state.plan.term(c.id);
+  const mine = status ? ` · ${status}${term ? ` ${termLabel(term)}` : ''}` : '';
   return `<span class="r-code">${esc(map.label(c))}</span>
     <span class="r-title">${esc(c.title || 'Not in the current catalog')}</span>
-    <span class="r-meta">${esc(map.deptName(c))}${taken}</span>`;
+    <span class="r-meta">${esc(map.deptName(c))}${esc(mine)}</span>`;
 }
 
-function setStatus(html) {
+function setStageStatus(html) {
   els.status.innerHTML = html;
 }
 
@@ -242,9 +350,15 @@ function repoSlug() {
 
 // ----------------------------------------------------------------- actions
 
-function select(id, { source = 'panel' } = {}) {
+function select(id, { source = 'panel', toggle = false } = {}) {
   const map = state.map;
   if (!map || (id && !map.get(id))) return;
+  // Shift, Cmd or Ctrl-click picks several courses; while picking, any click does.
+  if (toggle || isPicking()) {
+    if (id) togglePick(id);
+    else if (!toggle && !state.picking) stopPicking(); // a plain click on empty space
+    return;
+  }
   // Clicking (or pressing Enter on) the selected course again deselects it.
   if (id && id === state.selected && (source === 'graph' || source === 'keyboard')) id = null;
   if (id !== state.selected) {
@@ -261,21 +375,174 @@ function select(id, { source = 'panel' } = {}) {
   if (source === 'search') els.panel.focus({ preventScroll: true });
 }
 
-function toggleTaken(id) {
-  const c = state.map.get(id);
-  if (state.taken.has(id)) state.taken.delete(id);
-  else state.taken.add(id);
-  prefs.set('taken', [...state.taken]);
-  render();
-  announce(`${state.map.label(c)} ${state.taken.has(id) ? 'marked as taken' : 'no longer marked as taken'}.`);
+// ------------------------------------------------------ several at once
+
+const isPicking = () => state.picking || state.picked.size > 0;
+const countText = n => `${n} course${n === 1 ? '' : 's'}`;
+
+// The panel lists what's selected, with what to do with it. On phones it
+// starts as a peek (its header holds the buttons) so the map stays in view.
+function beginPicking() {
+  if (!isPicking()) els.panel.classList.add('is-collapsed');
 }
 
-function clearTaken() {
-  const mine = [...state.taken].filter(id => state.map.get(id));
-  if (!mine.length || !window.confirm(`Clear the ${mine.length} course${mine.length === 1 ? '' : 's'} you marked as taken?`)) return;
-  mine.forEach(id => state.taken.delete(id));
-  prefs.set('taken', [...state.taken]);
+function togglePick(id) {
+  const { picked, map } = state;
+  beginPicking();
+  // The course open in the panel comes along when picking starts.
+  if (!picked.size && state.selected && state.selected !== id) picked.add(state.selected);
+  if (picked.has(id)) picked.delete(id);
+  else picked.add(id);
+  state.selected = null;
   render();
+  announce(`${map.label(map.get(id))} ${picked.has(id) ? 'selected' : 'unselected'}. ${countText(picked.size)} selected.`);
+}
+
+// From a Shift-drag box, a long press, or "Select it and what it requires".
+function pickCourses(ids, { toggle = false } = {}) {
+  if (toggle && ids.length === 1) {
+    togglePick(ids[0]);
+    return;
+  }
+  beginPicking();
+  if (!state.picked.size && state.selected) state.picked.add(state.selected);
+  ids.forEach(id => state.picked.add(id));
+  state.selected = null;
+  render();
+  announce(`${countText(state.picked.size)} selected.`);
+}
+
+function startPicking() {
+  beginPicking();
+  state.picking = true;
+  state.selected = null;
+  render();
+  announce(`${touch.matches ? 'Tap' : 'Click'} courses to select them, then mark them taken or planned.`);
+}
+
+function stopPicking() {
+  if (!isPicking()) return;
+  state.picked.clear();
+  state.picking = false;
+  render();
+}
+
+// An action uses up the selection; "Mark courses" mode stays on.
+function takePicked() {
+  const ids = [...state.picked];
+  state.picked.clear();
+  return ids;
+}
+
+// ------------------------------------------------------------ plan changes
+// Every change to the plan's courses goes through changePlan, which says what
+// happened and offers Undo (Cmd/Ctrl+Z works too).
+
+function changePlan(message, fn) {
+  const before = state.plan.snapshot();
+  fn(state.plan);
+  if (state.plan.snapshot() === before) {
+    render();
+    return;
+  }
+  undoStack.push(before);
+  if (undoStack.length > 50) undoStack.shift();
+  planChanged();
+  showToast(message, { canUndo: true });
+  announce(message);
+}
+
+function undo() {
+  const snapshot = undoStack.pop();
+  if (snapshot === undefined) return;
+  state.plan.restore(snapshot);
+  planChanged();
+  showToast('Undone.');
+  announce('Undone.');
+}
+
+let toastTimer;
+function showToast(message, { canUndo = false } = {}) {
+  els.toast.querySelector('.toast-text').textContent = message;
+  els.toast.querySelector('[data-action="undo"]').hidden = !canUndo;
+  els.toast.hidden = false;
+  hideToastLater(TOAST_MS);
+}
+
+function hideToastLater(ms) {
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { els.toast.hidden = true; }, ms);
+}
+
+const isPast = term => termOrder(term) < termOrder(currentTerm());
+const STATUS_DONE = { taken: 'marked taken', planned: 'marked planned', '': 'removed from your plan' };
+
+// Taken / planned / not taken for one or more courses. A course keeps its
+// quarter only if it still fits (taken courses sit in past quarters, plans in
+// the current one or later).
+function setStatus(ids, status) {
+  const { map } = state;
+  const what = ids.length === 1 ? map.label(map.get(ids[0])) : countText(ids.length);
+  changePlan(`${what} ${STATUS_DONE[status || '']}.`, plan => {
+    for (const id of ids) {
+      const term = plan.term(id);
+      const keep = term && (status === 'taken' ? termOrder(term) <= termOrder(currentTerm()) : !isPast(term));
+      plan.set(id, status || null, keep ? term : null);
+    }
+  });
+}
+
+function setCourseTerm(id, term) {
+  const c = state.map.get(id);
+  changePlan(`${state.map.label(c)}: ${term ? termLabel(term) : 'no quarter'}.`,
+    plan => plan.set(id, plan.status(id), term || null));
+}
+
+// A drop or "+ Add" into a quarter: past quarters mean taken, others planned.
+function moveToTerm(ids, term, verb = term && isPast(term) ? 'marked taken in' : 'planned for') {
+  const { map } = state;
+  const what = ids.length === 1 ? map.label(map.get(ids[0])) : countText(ids.length);
+  changePlan(`${what} ${verb} ${term ? termLabel(term) : 'no quarter'}.`, plan => {
+    for (const id of ids) {
+      const status = term ? (isPast(term) ? 'taken' : 'planned') : plan.status(id) || 'planned';
+      plan.set(id, status, term || null);
+    }
+  });
+}
+
+// T, P and N: the selected courses, else the focused or open one.
+function quickMark(status) {
+  if (state.picked.size) {
+    setStatus(takePicked(), status);
+    return;
+  }
+  const el = document.activeElement;
+  const id = el?.closest?.('.node')?.dataset.id || el?.closest?.('[data-select]')?.dataset.select || state.selected;
+  if (id && state.map.get(id)) setStatus([id], status);
+}
+
+function startAdding(term) {
+  state.addTerm = term;
+  syncControls();
+  els.search.value = '';
+  els.search.focus();
+  announce(`Type a course to add to ${termLabel(term)}.`);
+}
+
+function addToTerm(id, term) {
+  state.addTerm = null;
+  moveToTerm([id], term, 'added to');
+}
+
+function setPrograms(ids) {
+  state.plan.setPrograms(state.map.id, ids);
+  planChanged();
+}
+
+function clearPlan() {
+  const mine = Object.keys(state.plan.courses).filter(id => state.map.get(id));
+  if (!mine.length || !window.confirm(`Remove all ${mine.length} courses from your plan?`)) return;
+  changePlan(`Removed ${countText(mine.length)} from your plan.`, plan => plan.clear(mine));
 }
 
 function setHighlight(key) {
@@ -293,6 +560,10 @@ function setHighlight(key) {
 function setView(view) {
   if (view === state.view || (view === 'graph' && !graph)) return;
   state.view = view;
+  if (view === 'plan') {
+    state.picked.clear();
+    state.picking = false;
+  }
   render({ history: 'replace' });
   if (view === 'graph') graph.refit();
   revealSelected({ animate: false });
@@ -306,8 +577,7 @@ function toggleSheet() {
 function setShowExternal(on) {
   state.showExternal = on;
   prefs.set('showExternal', on);
-  graph?.setData(state.map, visibleIds(), { animate: true });
-  render();
+  planChanged();
 }
 
 function zoom(kind) {
@@ -337,27 +607,78 @@ function syncThemeButton() {
 document.addEventListener('click', e => {
   // Tapping a collapsed sheet (anywhere but its buttons) expands it.
   if (narrow.matches && els.panel.classList.contains('is-collapsed') && e.target.closest('#panel')
-      && !e.target.closest('[data-action="close"], [data-action="toggle-sheet"]')) {
+      && !e.target.closest('[data-action], select')) {
     toggleSheet();
     return;
   }
   const t = e.target.closest('[data-select], [data-action], [data-highlight], [data-zoom], [data-view]');
-  if (!t || t.disabled) return;
-  if (t.dataset.select) select(t.dataset.select, { source: t.closest('#list') ? 'list' : 'panel' });
+  if (!t || t.disabled || t.tagName === 'SELECT') return;
+  const { action, id } = t.dataset;
+  const toggle = state.view !== 'plan' && (e.shiftKey || e.metaKey || e.ctrlKey);
+  if (t.dataset.select) select(t.dataset.select, { source: t.closest('#list') ? 'list' : 'panel', toggle });
   else if (t.dataset.highlight) setHighlight(state.highlight === t.dataset.highlight ? '' : t.dataset.highlight);
   else if (t.dataset.zoom) zoom(t.dataset.zoom);
   else if (t.dataset.view) setView(t.dataset.view);
-  else if (t.dataset.action === 'close') select(null);
-  else if (t.dataset.action === 'toggle-taken' && t.type !== 'checkbox') toggleTaken(t.dataset.id);
-  else if (t.dataset.action === 'clear-taken') clearTaken();
-  else if (t.dataset.action === 'clear-highlight') setHighlight('');
-  else if (t.dataset.action === 'toggle-sheet') toggleSheet();
-  else if (t.dataset.action === 'reload') window.location.reload();
+  else if (action === 'close') select(null);
+  else if (action === 'set-status') setStatus([id], t.dataset.status);
+  else if (action === 'pick-status') setStatus(takePicked(), t.dataset.status);
+  else if (action === 'start-picking') startPicking();
+  else if (action === 'stop-picking') stopPicking();
+  else if (action === 'unpick') togglePick(id);
+  else if (action === 'pick-chain') pickCourses([id, ...[...state.map.requiredAncestors(id)].filter(c => state.visible.has(c))]);
+  else if (action === 'undo') undo();
+  else if (action === 'add-to-term') startAdding(t.dataset.term);
+  else if (action === 'remove-program') setPrograms([...state.myPrograms].filter(p => p !== t.dataset.program));
+  else if (action === 'clear-plan') clearPlan();
+  else if (action === 'clear-highlight') setHighlight('');
+  else if (action === 'toggle-sheet') toggleSheet();
+  else if (action === 'reload') window.location.reload();
 });
 
-els.list.addEventListener('change', e => {
-  if (e.target.matches('input[data-action="toggle-taken"]')) toggleTaken(e.target.dataset.id);
+// Selects in the panel, list and plan view.
+document.addEventListener('change', e => {
+  const t = e.target;
+  const { action, id } = t.dataset;
+  if (action === 'set-status') setStatus([id], t.value);
+  else if (action === 'set-term') setCourseTerm(id, t.value);
+  else if (action === 'pick-term' && t.value) moveToTerm(takePicked(), t.value);
+  else if (action === 'add-program' && t.value) setPrograms([...state.myPrograms, t.value]);
+  else if (action === 'set-start') {
+    state.plan.setStart(Number(t.value));
+    render();
+  }
 });
+
+// Drag courses between quarters in the plan view.
+els.planView.addEventListener('dragstart', e => {
+  const chip = e.target.closest?.('.pchip');
+  if (!chip) return;
+  e.dataTransfer.setData('text/plain', chip.dataset.id);
+  e.dataTransfer.effectAllowed = 'move';
+  chip.classList.add('is-dragging');
+});
+els.planView.addEventListener('dragend', e => e.target.closest?.('.pchip')?.classList.remove('is-dragging'));
+els.planView.addEventListener('dragover', e => {
+  const quarter = e.target.closest('.quarter');
+  if (!quarter) return;
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  els.planView.querySelectorAll('.drag-over').forEach(q => q !== quarter && q.classList.remove('drag-over'));
+  quarter.classList.add('drag-over');
+});
+els.planView.addEventListener('dragleave', e => {
+  const quarter = e.target.closest('.quarter');
+  if (quarter && !quarter.contains(e.relatedTarget)) quarter.classList.remove('drag-over');
+});
+els.planView.addEventListener('drop', e => {
+  const quarter = e.target.closest('.quarter');
+  if (!quarter) return;
+  e.preventDefault();
+  quarter.classList.remove('drag-over');
+  const id = e.dataTransfer.getData('text/plain');
+  if (state.map.get(id) && state.plan.term(id) !== (quarter.dataset.term || null)) moveToTerm([id], quarter.dataset.term, 'moved to');
+});
+
 els.highlight.addEventListener('change', () => setHighlight(els.highlight.value));
 $('#show-links').addEventListener('change', e => {
   state.showLinks = e.target.checked;
@@ -392,18 +713,30 @@ els.stage.addEventListener('scroll', () => { els.stage.scrollTop = 0; els.stage.
 document.addEventListener('keydown', e => {
   if (e.defaultPrevented || els.help.open) return;
   const typing = e.target.matches('input, select, textarea') || e.target.isContentEditable;
-  if (e.key === '/' && !typing) {
+  if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'z' && !typing) {
+    if (undoStack.length) {
+      e.preventDefault();
+      undo();
+    }
+  } else if (e.key === '/' && !typing) {
     e.preventDefault();
     els.search.focus();
-  } else if (e.key === 'Escape' && (state.selected || state.highlight)) {
-    // Step back one level: the selected course first, then the highlight.
-    if (state.selected) select(null);
+  } else if (e.key === 'Escape' && (isPicking() || state.selected || state.highlight)) {
+    // Step back one level: the multi-selection, the selected course, then the highlight.
+    if (isPicking()) stopPicking();
+    else if (state.selected) select(null);
     else setHighlight('');
   } else if (!typing && !e.metaKey && !e.ctrlKey && !e.altKey) {
-    if (e.key === '+' || e.key === '=') zoom('in');
+    const mark = { t: 'taken', p: 'planned', n: '' }[e.key.toLowerCase()];
+    if (mark !== undefined && state.view !== 'plan') quickMark(mark);
+    else if (e.key === '+' || e.key === '=') zoom('in');
     else if (e.key === '-' || e.key === '_') zoom('out');
     else if (e.key === '0') zoom('fit');
   }
 });
+
+// The toast stays while the pointer is on it.
+els.toast.addEventListener('pointerenter', () => clearTimeout(toastTimer));
+els.toast.addEventListener('pointerleave', () => hideToastLater(2500));
 
 init();

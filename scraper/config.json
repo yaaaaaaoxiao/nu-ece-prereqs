@@ -1,5 +1,5 @@
 {
- "_comment": "Each entry in 'maps' becomes data/<id>.json and appears in the site's map menu. To add a major: add an entry, run the scraper, review the flagged prerequisites.",
+ "_comment": "Each entry in 'maps' becomes data/<id>.json and appears in the site's map menu. 'programs' are majors/minors students can combine on a map. To add one: add it here, list it in a map's 'programs', run the scraper and review what it flags.",
  "catalog": "https://catalogs.northwestern.edu",
  "abbreviations": {
   "BMD_ENG": "BME",
@@ -10,30 +10,82 @@
   "MECH_ENG": "ME",
   "PHYSICS": "PHYS"
  },
+ "programs": {
+  "_comment": "'labels' renames a list heading on the site (null hides that list, e.g. lists of courses outside engineering).",
+  "ee-bs": {
+   "name": "Electrical Engineering BS",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/electrical-computer-engineering/electrical-engineering-degree/",
+   "labels": {
+    "11 required courses": "Required courses",
+    "1 design course from the options below": "Design project",
+    "2 courses chosen from the options below": null
+   }
+  },
+  "ce-bs": {
+   "name": "Computer Engineering BS",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/electrical-computer-engineering/computer-engineering-degree/",
+   "labels": {
+    "8 required courses": "Required courses",
+    "4 courses chosen from the options below": "Breadth electives (choose 4)",
+    "1 course chosen from options below": "Math foundation (choose 1)",
+    "1 design course chosen from the options below": "Design project",
+    "3 elective courses chosen from the options below": null
+   }
+  },
+  "cs-minor": {
+   "name": "Computer Science minor (McCormick)",
+   "type": "minor",
+   "path": "/undergraduate/engineering-applied-science/computer-science/computer-science-minor/",
+   "labels": {
+    "3 engineering foundations courses": {
+     "label": "Prerequisites: engineering foundations",
+     "kind": "prereq"
+    }
+   }
+  },
+  "ai-minor": {
+   "name": "Artificial Intelligence minor",
+   "type": "minor",
+   "path": "/undergraduate/engineering-applied-science/artificial-intelligence/artificial-intelligence-minor/"
+  },
+  "mlds-minor": {
+   "name": "Machine Learning and Data Science minor",
+   "type": "minor",
+   "path": "/undergraduate/engineering-applied-science/machine-learning-data-science/machine-learning-data-science-minor/"
+  },
+  "math-minor": {
+   "name": "Mathematics minor",
+   "type": "minor",
+   "path": "/undergraduate/arts-sciences/mathematics/mathematics-minor/",
+   "labels": {
+    "Basic Courses": {
+     "kind": "required"
+    }
+   }
+  }
+ },
  "maps": [
   {
    "id": "ece",
    "name": "Electrical & Computer Engineering",
-   "departments": ["COMP_ENG", "ELEC_ENG"],
-   "degrees": [
-    {
-     "id": "EE",
-     "name": "Electrical Engineering BS",
-     "path": "/undergraduate/engineering-applied-science/electrical-computer-engineering/electrical-engineering-degree/"
-    },
-    {
-     "id": "CE",
-     "name": "Computer Engineering BS",
-     "path": "/undergraduate/engineering-applied-science/electrical-computer-engineering/computer-engineering-degree/"
-    }
+   "departments": [
+    "COMP_ENG",
+    "ELEC_ENG"
    ],
-   "groupLabels": {
-    "_comment": "Degree-page list headings -> label shown on the site (null = ignore the list).",
-    "4 courses chosen from the options below": "Breadth electives (choose 4)",
-    "1 course chosen from options below": "Math foundation (choose 1)",
-    "2 courses chosen from the options below": null,
-    "3 elective courses chosen from the options below": null
-   },
+   "programs": [
+    "ee-bs",
+    "ce-bs",
+    "cs-minor",
+    "ai-minor",
+    "mlds-minor",
+    "math-minor"
+   ],
+   "defaultPrograms": [
+    "ee-bs",
+    "ce-bs"
+   ],
    "schedule": {
     "format": "mccormick",
     "url": "https://www.mccormick.northwestern.edu/electrical-computer/academics/courses/"

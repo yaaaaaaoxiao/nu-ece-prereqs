@@ -1,9 +1,10 @@
 /* ==========================================================================
    Tokens. Dark values are declared for the OS setting (unless the viewer
    chose light) and again for an explicit dark choice.
-   Chain colors (violet "requires" / orange "unlocks") are validated for
-   color-vision deficiency in both themes; status green always ships with
-   an icon shape (check vs ring), never color alone.
+   Chain colors (violet "requires" / orange "unlocks") and plan colors (blue
+   "your courses" / green "can take now") are validated for color-vision
+   deficiency in both themes. Plan colors always ship with an icon (check,
+   clock, arrow) and a fill or dash pattern, never color alone.
    ========================================================================== */
 :root {
   color-scheme: light;
@@ -23,6 +24,13 @@
   --down: #eb6834;
   --good: #0ca30c;
   --good-ink: #006300;
+  --good-wash: color-mix(in srgb, var(--good) 13%, var(--raised));
+  --mine: #2a78d6;
+  --mine-ink: #1c5cab;
+  --mine-wash: color-mix(in srgb, var(--mine) 15%, var(--raised));
+  --mine-tint: color-mix(in srgb, var(--mine) 5%, var(--raised));
+  --mine-line: color-mix(in srgb, var(--mine) 55%, var(--raised));
+  --warn: #fab219;
   --accent: #6250d6;
   --accent-wash: rgba(98, 80, 214, 0.10);
   --band: rgba(11, 11, 11, 0.03);
@@ -52,6 +60,13 @@
     --down: #d95926;
     --good: #0ca30c;
     --good-ink: #3fc23f;
+    --good-wash: color-mix(in srgb, var(--good) 22%, var(--raised));
+    --mine: #3987e5;
+    --mine-ink: #86b6ef;
+    --mine-wash: color-mix(in srgb, var(--mine) 27%, var(--raised));
+    --mine-tint: color-mix(in srgb, var(--mine) 9%, var(--raised));
+    --mine-line: color-mix(in srgb, var(--mine) 62%, var(--raised));
+    --warn: #fab219;
     --accent: #9085e9;
     --accent-wash: rgba(144, 133, 233, 0.14);
     --band: rgba(255, 255, 255, 0.035);
@@ -78,6 +93,13 @@
   --down: #d95926;
   --good: #0ca30c;
   --good-ink: #3fc23f;
+  --good-wash: color-mix(in srgb, var(--good) 22%, var(--raised));
+  --mine: #3987e5;
+  --mine-ink: #86b6ef;
+  --mine-wash: color-mix(in srgb, var(--mine) 27%, var(--raised));
+  --mine-tint: color-mix(in srgb, var(--mine) 9%, var(--raised));
+  --mine-line: color-mix(in srgb, var(--mine) 62%, var(--raised));
+  --warn: #fab219;
   --accent: #9085e9;
   --accent-wash: rgba(144, 133, 233, 0.14);
   --band: rgba(255, 255, 255, 0.035);
@@ -148,7 +170,6 @@ svg { flex: none; }
 }
 .btn:hover { border-color: var(--ink-2); }
 .btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.btn[aria-pressed="true"] { background: var(--good); border-color: var(--good); color: #fff; }
 
 .link-btn { border: 0; background: none; padding: 0; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
 
@@ -246,10 +267,36 @@ svg { flex: none; }
 .switch input:checked + .switch-track::after { transform: translateX(14px); }
 .switch input:focus-visible + .switch-track { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-.planner { flex: 1 1 auto; min-width: 0; font-size: 13px; color: var(--ink-2); display: flex; align-items: center; gap: 10px; }
+.planner { flex: 1 1 auto; min-width: 0; font-size: 13px; color: var(--ink-2); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
 .planner .muted { color: var(--muted); }
 .planner b { color: var(--ink); font-variant-numeric: tabular-nums; }
-.planner .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--good); vertical-align: -1px; }
+.planner-hint { font-size: 12.5px; }
+.tool-btn, .pick-btn {
+  display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 10px;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--raised);
+  font-size: 13px; font-weight: 600; color: var(--ink); white-space: nowrap;
+}
+.tool-btn:hover, .pick-btn:hover:not(:disabled) { border-color: var(--ink-2); }
+.plan-stats { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 2px; }
+.stat-btn {
+  display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 8px;
+  border: 1px solid transparent; border-radius: 7px; background: none; color: var(--ink-2); white-space: nowrap;
+}
+.stat-btn:hover:not(:disabled) { background: var(--sunken); }
+.stat-btn[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-wash); color: var(--ink); }
+.stat-btn:disabled { opacity: 0.55; cursor: default; }
+/* Several courses selected: the panel says what to do with them. */
+.tool-btn[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-wash); }
+.pick-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 12px 0 4px; }
+.pick-btn:disabled, .pick-term select:disabled { opacity: 0.5; cursor: default; }
+.pick-term select { height: 30px; padding: 0 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--raised); font-size: 13px; font-weight: 600; }
+.pick-list { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.pick-item { display: flex; align-items: center; gap: 8px; min-width: 0; padding: 2px 0 2px 10px; border-radius: 8px; background: var(--raised); border: 1px solid var(--hairline); }
+.pick-code { font-weight: 650; white-space: nowrap; }
+.pick-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink-2); font-size: 13px; }
+.pick-item .icon-btn { width: 30px; height: 30px; }
+.pick-tips { margin-top: 12px !important; font-size: 12.5px; }
+.pick-done { height: 30px; padding: 0 14px; border: 0; border-radius: 8px; background: var(--ink); color: var(--raised); font-size: 13px; font-weight: 650; }
 
 .segmented { display: inline-flex; padding: 2px; border-radius: 9px; background: var(--sunken); border: 1px solid var(--hairline); }
 .segmented button {
@@ -275,43 +322,93 @@ svg { flex: none; }
 .node .card { fill: var(--raised); stroke: var(--node-border); stroke-width: 1; transition: stroke 0.15s, stroke-width 0.15s; }
 .node .code { font: 650 12.5px var(--font); fill: var(--ink); }
 .node .title { font: 11px var(--font); fill: var(--ink-2); }
-/* Zoomed out: drop the title and enlarge the code so the overview stays legible. */
-.graph.is-far .node .title { display: none; }
-.graph.is-far .node .code { font-size: 19px; transform: translateY(10px); }
-.graph.is-far .edge { stroke-width: 2; }
+.node .term { font: 600 10px var(--font); fill: var(--mine-ink); text-anchor: end; }
+/* Zoomed out: drop the title and enlarge the code, icon and count so the overview stays legible. */
+.graph.is-far .node .title, .graph.is-far .node .term { display: none; }
+.graph.is-far .node .code { font-size: var(--far, 19px); transform: translateY(10px); }
+.graph.is-far .node.has-status .code { transform: translate(8px, 10px); }
+.graph.is-far .node .mark-icon { transform: translate(2px, 8px) scale(1.45); }
+.graph.is-far .node .reach-badge { transform: translateY(7.5px) scale(1.45); }
+.graph.is-far .node .pick { transform: scale(1.45); }
+.graph.is-far .edge { stroke-width: 2.2; }
 .graph.is-far .edge.is-up, .graph.is-far .edge.is-down { stroke-width: 3.2; }
 .node:hover .card { stroke: var(--ink-2); }
 .node:focus { outline: none; }
 .node:focus-visible .card { stroke: var(--accent); stroke-width: 2.5; }
 
 .node.is-ext .card { fill: var(--surface); stroke: var(--line); stroke-dasharray: 4 3; }
+/* No links on this map (special topics, projects...): quieter, so the chains stand out. */
+.node.is-loose .card { fill: var(--surface); stroke: var(--hairline); }
+.node.is-loose .code { fill: var(--ink-2); font-weight: 600; }
+.node.is-loose .title { fill: var(--muted); }
 .node.is-ext .code { fill: var(--ink-2); }
 .node.is-missing .title { font-style: italic; }
+
+/* The viewer's plan: blue for their courses (solid when taken, dashed when
+   planned), green for what they can take now, amber for a planned course
+   that needs a check. Each has its own icon too. */
+.node.is-taken .card { fill: var(--mine-wash); stroke: var(--mine-line); stroke-dasharray: none; }
+.node.is-planned .card { fill: var(--mine-tint); stroke: var(--mine); stroke-width: 1.4; stroke-dasharray: 5 3; }
+.node.is-ready .card { fill: var(--good-wash); stroke: var(--good); stroke-width: 1.6; stroke-dasharray: none; }
+/* Courses with no prerequisites and nothing after them (special topics, projects)
+   are open to everyone: a lighter green, so newly unlocked courses stand out. */
+.node.is-loose.is-ready .card { fill: var(--surface); stroke-width: 1; }
+.node.has-issue .card { stroke: var(--warn); stroke-width: 2; stroke-dasharray: none; }
+.node.has-status .code { fill: var(--ink); }
+.node.has-status .title { fill: var(--ink-2); }
+
+.node .mark { display: none; }
+.node.has-status .mark { display: inline; }
+.mark-icon circle { fill: var(--mine); }
+.mark-icon path { display: none; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.node.is-taken .i-check, .node.is-planned .i-clock, .node.is-ready .i-go { display: inline; }
+.node.is-planned .mark-icon circle { fill: var(--raised); stroke: var(--mine); stroke-width: 1.4; }
+.node.is-planned .mark-icon path { stroke: var(--mine); }
+.node.is-ready .mark-icon circle { fill: var(--good); }
+.node.has-issue .mark-icon circle { fill: var(--warn); stroke: none; }
+.node.has-issue .mark-icon .i-clock { display: none; }
+.node.has-issue .mark-icon .i-warn { display: inline; stroke: #1a1a19; stroke-width: 1.8; }
+
+/* "Leads to" count: grays only (color is kept for the plan), darker the more courses it leads to. */
+.reach.t0 { display: none; }
+.reach rect { fill: none; }
+.reach text { font: 650 10.5px var(--font); fill: var(--muted); text-anchor: end; }
+.reach .fork { fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.reach.t2 rect { fill: var(--sunken); stroke: var(--line); stroke-width: 0.8; }
+.reach.t2 text { fill: var(--ink); }
+.reach.t2 .fork { stroke: var(--ink-2); }
+.reach.t3 rect { fill: var(--ink-2); }
+.reach.t3 text { fill: var(--raised); }
+.reach.t3 .fork { stroke: var(--raised); }
 
 .node.is-up .card { stroke: var(--up); stroke-width: 2; stroke-dasharray: none; }
 .node.is-down .card { stroke: var(--down); stroke-width: 2; stroke-dasharray: none; }
 .node.is-selected .card { stroke: var(--ink); stroke-width: 2.5; stroke-dasharray: none; filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.18)); }
 /* Dimmed cards stay opaque (so links pass cleanly behind them) with faded content. */
 .node.is-dim .card { fill: var(--surface); stroke: var(--hairline); stroke-dasharray: none; filter: none; }
-.node.is-dim text, .node.is-dim .badge { opacity: 0.28; }
+.node.is-dim text, .node.is-dim .mark, .node.is-dim .reach { opacity: 0.28; }
 /* A highlighted list stays half visible behind a selection. */
-.node.is-dim.is-match text, .node.is-dim.is-match .badge { opacity: 0.6; }
-.node.is-taken .card { fill: color-mix(in srgb, var(--good) 9%, var(--raised)); }
+.node.is-dim.is-match text, .node.is-dim.is-match .mark, .node.is-dim.is-match .reach { opacity: 0.6; }
 
-.node .badge { display: none; }
-.node.is-taken .badge, .node.is-available .badge { display: inline; }
-.node .badge circle { fill: var(--good); }
-.node .badge .check { fill: none; stroke: #fff; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-.node.is-available .badge circle { fill: var(--raised); stroke: var(--good); stroke-width: 2.2; }
-.node.is-available .badge .check { display: none; }
+/* Several courses selected at once: an outline and a check on the corner. */
+.node .pick { display: none; }
+.node.is-picked .pick { display: inline; }
+.pick circle { fill: var(--accent); stroke: var(--raised); stroke-width: 2; }
+.pick path { fill: none; stroke: var(--raised); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.node.is-picked .card { stroke: var(--accent); stroke-width: 2.5; stroke-dasharray: none; }
+.node.is-picked text, .node.is-picked .mark, .node.is-picked .reach { opacity: 1; }
+/* While picking, hovering a course previews its check. */
+.graph.is-picking .node:not(.is-picked):hover .pick { display: inline; }
+.graph.is-picking .node:not(.is-picked):hover .pick circle { fill: var(--raised); stroke: var(--accent); stroke-width: 1.6; }
+.graph.is-picking .node:not(.is-picked):hover .pick path { display: none; }
+.select-box { fill: var(--accent-wash); stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 5 3; vector-effect: non-scaling-stroke; pointer-events: none; }
 
-.graph.has-hover .node:not(.is-hovered):not(.is-near) text { opacity: 0.4; }
-.graph.has-hover .edge:not(.is-hover) { opacity: 0.2; }
+.graph.has-hover .node:not(.is-hovered):not(.is-near) :is(text, .mark, .reach) { opacity: 0.32; }
 
 /* ---- edges ---- */
 .edges { transition: opacity 0.2s; }
 .edges.is-moving { opacity: 0; transition: none; }
-.edge { fill: none; stroke: var(--edge); stroke-width: 1.4; marker-end: url(#arrow); transition: opacity 0.18s; }
+.edge { fill: none; stroke: var(--edge); stroke-width: 1.4; stroke-linejoin: round; marker-end: url(#arrow); transition: opacity 0.18s; }
 .edge.k-alt { stroke-dasharray: 6 4; }
 .edge.k-co { stroke-dasharray: 0.5 4; stroke-linecap: round; stroke-width: 2; }
 .edge.k-rec { stroke: var(--line); stroke-dasharray: 0.5 4; stroke-linecap: round; stroke-width: 1.8; marker-end: url(#arrow-faint); }
@@ -328,7 +425,15 @@ svg { flex: none; }
 /* Links show on demand: the selected chain, a hover/focus preview, links inside
    a highlighted list, or all of them when "Show every link" is on. */
 .graph:not(.show-links) .edge:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl) { display: none; }
-.graph.show-links .edge:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl):not(.is-dim) { opacity: 0.45; }
+/* At rest, required links are the backbone; options and other departments' own links recede. */
+.graph.show-links .edge:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl):not(.is-dim) { opacity: 0.8; }
+.graph.show-links .edge.k-alt:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl):not(.is-dim) { opacity: 0.5; }
+.graph.show-links .edge.k-ext:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl):not(.is-dim),
+.graph.show-links .edge.k-rec:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl):not(.is-dim) { opacity: 0.28; }
+/* Links out of courses you've taken are done: blue, like the courses. */
+.graph.show-links .edge.is-met:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl):not(.is-dim) { stroke: var(--mine); opacity: 0.75; marker-end: url(#arrow-mine); }
+.graph.show-links .edge.is-met.k-alt:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl):not(.is-dim) { opacity: 0.4; }
+.arrow-mine { fill: var(--mine); }
 
 /* ---- level bands and column titles ---- */
 .band { fill: transparent; }
@@ -358,11 +463,13 @@ svg { flex: none; }
 .legend summary::before { content: ""; width: 6px; height: 6px; border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: rotate(-135deg) translate(-1px, -1px); transition: transform 0.15s; }
 .legend[open] summary::before { transform: rotate(45deg) translate(-2px, -2px); }
 .legend ul { margin: 0; padding: 0 12px 10px; list-style: none; display: grid; gap: 5px; }
+.legend[open] { max-height: calc(100% - 32px); overflow-y: auto; }
+.legend-head { margin: 2px 12px 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
 .legend-note { margin: 0 12px 8px; max-width: 260px; color: var(--muted); }
 .legend-toggle { display: flex; align-items: center; gap: 8px; margin: 0 12px 10px; color: var(--ink); cursor: pointer; }
 .legend-toggle input { width: 15px; height: 15px; margin: 0; accent-color: var(--accent); }
 .legend li { display: flex; align-items: center; gap: 10px; }
-.legend svg { width: 36px; height: 12px; }
+.legend svg { width: 36px; height: 16px; }
 .legend path { fill: none; stroke-width: 2; }
 .lg-up { stroke: var(--up); stroke-width: 2.4 !important; }
 .lg-down { stroke: var(--down); stroke-width: 2.4 !important; }
@@ -371,9 +478,16 @@ svg { flex: none; }
 .lg-co { stroke: var(--edge); stroke-dasharray: 0.5 4; stroke-linecap: round; stroke-width: 2.4 !important; }
 .lg-rec { stroke: var(--line); stroke-dasharray: 0.5 4; stroke-linecap: round; stroke-width: 2.2 !important; }
 .lg-ext { fill: var(--surface); stroke: var(--line); stroke-dasharray: 3 2; stroke-width: 1.2; }
-.lg-taken { fill: var(--good); }
-.lg-check { stroke: #fff !important; stroke-width: 1.6 !important; stroke-linecap: round; stroke-linejoin: round; }
-.lg-avail { fill: none; stroke: var(--good); stroke-width: 2; }
+.lg-met { stroke: var(--mine); }
+.lg-card { stroke-width: 1.2; }
+.lg-taken { fill: var(--mine-wash); stroke: var(--mine-line); }
+.lg-planned { fill: var(--mine-tint); stroke: var(--mine); stroke-dasharray: 4 2.5; }
+.lg-ready { fill: var(--good-wash); stroke: var(--good); stroke-width: 1.5; }
+.lg-issue { fill: var(--mine-tint); stroke: var(--warn); stroke-width: 1.8; }
+.lg-picked { fill: var(--raised); stroke: var(--accent); stroke-width: 2; }
+.legend .lg-pick circle { fill: var(--accent); stroke: var(--raised); stroke-width: 1.5; }
+.legend .lg-pick path { fill: none; stroke: var(--raised); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.legend .si path { stroke-width: 1.4; }
 
 .stage-status {
   position: absolute; inset: 0; display: grid; place-items: center; padding: 24px;
@@ -385,7 +499,7 @@ svg { flex: none; }
 /* ==========================================================================
    List view
    ========================================================================== */
-.stage.is-list .graph, .stage.is-list .zoom-controls, .stage.is-list .legend { display: none; }
+.stage.is-list .graph, .stage.is-list .zoom-controls, .stage.is-list .legend, .stage.is-list .minimap { display: none; }
 .list { position: absolute; inset: 0; overflow-y: auto; padding: 16px 20px 96px; }
 .list[hidden] { display: none; }
 .list-summary { margin: 0 0 12px; color: var(--muted); font-size: 13px; }
@@ -395,8 +509,11 @@ svg { flex: none; }
 .course-row { display: flex; align-items: center; gap: 4px; border-top: 1px solid var(--hairline); }
 .course-row:first-child { border-top: 0; }
 .course-row.is-selected { background: var(--accent-wash); }
-.row-check { display: grid; place-items: center; width: 44px; align-self: stretch; cursor: pointer; }
-.row-check input { width: 17px; height: 17px; accent-color: var(--good); cursor: pointer; }
+.row-status { display: grid; place-items: center; padding-left: 10px; }
+.row-status select { width: 92px; height: 28px; border: 1px solid var(--line); border-radius: 7px; background: var(--raised); font-size: 12.5px; }
+.row-status select.is-taken { border-color: var(--mine); color: var(--mine-ink); font-weight: 600; }
+.row-status select.is-planned { border-style: dashed; border-color: var(--mine); color: var(--mine-ink); font-weight: 600; }
+.course-row.is-picked { background: var(--accent-wash); box-shadow: inset 3px 0 0 var(--accent); }
 .row-main {
   flex: 1; min-width: 0; display: grid; grid-template-columns: 92px minmax(0, 1fr) auto; gap: 2px 12px; align-items: baseline;
   padding: 10px 12px 10px 0; border: 0; background: none; text-align: left;
@@ -407,11 +524,10 @@ svg { flex: none; }
 .row-req { grid-column: 2 / 4; font-size: 12.5px; color: var(--muted); }
 .row-tags { display: flex; gap: 4px; align-items: center; }
 .tag {
-  display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 5px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-width: 20px; height: 20px; padding: 0 5px;
   border-radius: 5px; background: var(--sunken); color: var(--ink-2); font-size: 11px; font-weight: 650;
 }
-.tag.status-available { background: none; color: var(--good-ink); border: 1.5px solid var(--good); }
-.tag.status-taken { background: var(--good); color: #fff; }
+
 .list-empty { color: var(--muted); }
 
 /* ==========================================================================
@@ -439,9 +555,8 @@ svg { flex: none; }
 .status { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--ink-2); }
 .status-icon { flex: none; width: 16px; height: 16px; margin-top: 1px; }
 .status.available { color: var(--good-ink); font-weight: 600; }
-.status.available .status-icon circle { fill: none; stroke: var(--good); stroke-width: 2.4; }
-.status.taken .status-icon circle { fill: var(--good); }
-.status.taken .status-icon path { stroke: #fff; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.status.fits .status-icon circle { fill: var(--good); }
+.status.fits .status-icon path { stroke: #fff; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .status.blocked .status-icon circle { fill: none; stroke: var(--line); stroke-width: 2; }
 .req-done { margin-left: 6px; font-weight: 600; color: var(--good-ink); }
 
@@ -461,8 +576,7 @@ svg { flex: none; }
 .chip-code { font-weight: 650; white-space: nowrap; }
 .chip-title { flex: 1; min-width: 0; color: var(--ink-2); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .chip-note { font-size: 11.5px; color: var(--muted); white-space: nowrap; }
-.chip.is-taken { border-color: color-mix(in srgb, var(--good) 45%, var(--hairline)); background: color-mix(in srgb, var(--good) 7%, var(--raised)); }
-.chip-check { color: var(--good-ink); font-weight: 700; }
+.chip.is-taken { border-color: var(--mine-line); background: var(--mine-wash); }
 .chip.k-up { box-shadow: inset 3px 0 0 var(--up); }
 .chip.k-down { box-shadow: inset 3px 0 0 var(--down); }
 
@@ -497,6 +611,10 @@ svg { flex: none; }
 .intro .tips svg { width: 22px; height: 22px; }
 .tip-up { stroke: var(--up); }
 .tip-down { stroke: var(--down); }
+.intro .tips .tip-icon.si { width: 20px; height: 20px; margin: 1px; }
+.tip-reach { fill: var(--ink-2); }
+.tip-fork { fill: none; stroke: var(--raised); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.tip-num { font: 700 10px var(--font); fill: var(--raised); text-anchor: middle; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0 4px; }
 .stat { padding: 10px; border-radius: 10px; background: var(--raised); border: 1px solid var(--hairline); }
 .stat b { display: block; font-size: 20px; line-height: 1.1; }
@@ -521,6 +639,19 @@ svg { flex: none; }
 .help p { color: var(--ink-2); }
 
 /* ==========================================================================
+   Toast: what just changed, with Undo
+   ========================================================================== */
+.toast {
+  position: fixed; left: calc((100% - 380px) / 2); bottom: 24px; z-index: 40; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 12px; width: max-content; max-width: calc(100vw - 32px);
+  padding: 7px 7px 7px 14px; border-radius: 10px;
+  background: var(--ink); color: var(--raised); box-shadow: var(--shadow-2); font-size: 13.5px;
+}
+.toast[hidden], .toast-undo[hidden] { display: none; }
+.toast-undo { height: 28px; padding: 0 10px; border: 0; border-radius: 6px; background: color-mix(in srgb, var(--raised) 18%, transparent); color: inherit; font-weight: 650; }
+.toast-undo:hover { background: color-mix(in srgb, var(--raised) 28%, transparent); }
+
+/* ==========================================================================
    Narrow screens: search on its own row, details as a bottom sheet
    ========================================================================== */
 @media (max-width: 760px) {
@@ -543,6 +674,11 @@ svg { flex: none; }
   .narrow-only { display: inline; }
   .planner { order: 4; flex: 1 1 auto; justify-content: flex-end; font-size: 12.5px; }
   .planner .muted { display: none; }
+  .stat-btn { padding: 0 5px; }
+  /* Counts keep their icon and number; the words stay for screen readers. */
+  .stat-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .tool-btn { padding: 0 9px; }
+  .toast { left: 50%; bottom: calc(16px + env(safe-area-inset-bottom)); }
 
   .workspace { grid-template-columns: minmax(0, 1fr); }
   .panel {
@@ -555,11 +691,18 @@ svg { flex: none; }
   }
   .panel.is-open { transform: none; visibility: visible; transition: transform 0.25s ease; }
   .panel.is-open.is-collapsed { transform: translateY(calc(100% - 104px)); overflow: hidden; }
+  /* Marking courses: the peek is the title, Done and one row of buttons (it scrolls if it must). */
+  .panel.is-open.is-collapsed.is-picking { transform: translateY(calc(100% - 116px)); }
+  .panel.is-picking .eyebrow { display: none; }
+  .panel.is-picking h2 { font-size: 17px; }
+  .pick-actions { flex-wrap: nowrap; overflow-x: auto; margin: 10px -16px 4px; padding: 0 16px 2px; scrollbar-width: none; }
+  .pick-actions > * { flex: none; }
   .panel-grip { display: block; width: calc(100% + 32px); height: 26px; margin: -6px -16px 4px; padding: 0; border: 0; background: none; }
   .panel-grip::before { content: ""; display: block; width: 40px; height: 4px; margin: 0 auto; border-radius: 2px; background: var(--line); }
   /* Keep floating controls clear of the bottom sheet. */
   .legend { top: 12px; bottom: auto; left: 12px; max-height: calc(100% - 24px); overflow-y: auto; }
   .zoom-controls { top: 12px; bottom: auto; right: 12px; flex-direction: row; }
+  .minimap { display: none; }
   .row-main { grid-template-columns: 76px minmax(0, 1fr); }
   .row-tags { grid-column: 2; }
 }
@@ -572,3 +715,164 @@ svg { flex: none; }
   .node.is-up .card, .node.is-down .card, .node.is-selected .card { stroke: Highlight; }
   .edge.is-up, .edge.is-down { stroke: Highlight; }
 }
+
+/* ==========================================================================
+   Planning: badges, the status control, warnings
+   ========================================================================== */
+/* Plan status icons in HTML (toolbar, chips, list, panel); see statusIcon(). */
+.si { width: 14px; height: 14px; flex: none; vertical-align: -2px; }
+.si circle { fill: var(--mine); }
+.si path { fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.si-planned circle { fill: var(--raised); stroke: var(--mine); stroke-width: 1.6; }
+.si-planned path { stroke: var(--mine); }
+.si-ready circle { fill: var(--good); }
+.si-issue circle { fill: var(--warn); }
+.si-issue path { stroke: #1a1a19; }
+.status .si { width: 16px; height: 16px; margin-top: 1px; }
+
+.plan-control { display: grid; gap: 8px; margin: 14px 0 8px; }
+.seg-status { width: max-content; max-width: 100%; }
+.seg-status button { height: 30px; padding: 0 12px; }
+.seg-status button[data-status="taken"][aria-checked="true"], .seg-status button[data-status="planned"][aria-checked="true"] { color: var(--mine-ink); }
+.pick-chain { justify-self: start; font-size: 13px; }
+.term-pick { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); }
+.term-pick select { height: 30px; border: 1px solid var(--line); border-radius: 8px; background: var(--raised); padding: 0 8px; }
+.issues { list-style: none; margin: 4px 0 8px; padding: 0; display: grid; gap: 6px; }
+.issues li { display: flex; gap: 8px; align-items: flex-start; padding: 6px 8px; border-radius: 8px; font-size: 13px;
+  background: color-mix(in srgb, var(--warn) 16%, var(--raised)); }
+.issues svg, .overlap svg { flex: none; margin-top: 2px; }
+.mine { margin-left: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); }
+.chip.is-planned { border-style: dashed; border-color: var(--mine); background: var(--mine-tint); }
+.chip.is-ready { border-color: var(--good); background: var(--good-wash); }
+.chip-status { display: inline-flex; align-self: center; }
+.chip.is-unlisted { color: var(--muted); border-style: dotted; }
+.tag .si { width: 12px; height: 12px; }
+.tag.status-taken { background: var(--mine-wash); color: var(--mine-ink); }
+.tag.status-planned { background: var(--mine-tint); box-shadow: inset 0 0 0 1.5px var(--mine); color: var(--mine-ink); }
+.tag.status-ready { background: var(--good-wash); color: var(--good-ink); }
+.search input.is-adding { border-color: var(--accent); background: var(--accent-wash); }
+
+/* ==========================================================================
+   Plan view
+   ========================================================================== */
+.stage.is-plan .graph, .stage.is-plan .zoom-controls, .stage.is-plan .legend, .stage.is-plan .minimap { display: none; }
+.plan-view { position: absolute; inset: 0; overflow-y: auto; padding: 16px 20px 96px; }
+.plan-view[hidden] { display: none; }
+.plan { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; max-width: 1180px; }
+.add-program select { max-width: 100%; }
+.plan-section { padding: 16px; border: 1px solid var(--hairline); border-radius: 12px; background: var(--raised); }
+.plan-section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 10px; }
+.plan-section-head h2 { margin: 0; font-size: 15px; }
+.plan-section-head p { flex-basis: 100%; margin: 0; }
+.plan-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font-size: 13px; color: var(--ink-2); }
+.plan-tools b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.field-inline { display: inline-flex; align-items: center; gap: 6px; }
+.field-inline select { height: 30px; border: 1px solid var(--line); border-radius: 8px; background: var(--raised); padding: 0 8px; }
+.warn-count { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--ink); }
+.plan-hint { margin: 0 0 12px; font-size: 12.5px; }
+.muted { color: var(--muted); }
+
+.program-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.program-chip { display: inline-flex; align-items: center; gap: 8px; padding: 3px 3px 3px 12px; border-radius: 999px;
+  background: var(--accent-wash); font-weight: 600; }
+.program-chip .icon-btn { width: 28px; height: 28px; border-radius: 999px; }
+.ptype { font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.add-program select { height: 34px; padding: 0 12px; border: 1px dashed var(--line); border-radius: 999px; background: var(--raised); color: var(--accent); font-weight: 600; }
+
+.plan-years { display: grid; gap: 14px; }
+.plan-year h3 { margin: 0 0 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.quarters { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.quarter { display: flex; flex-direction: column; gap: 6px; min-width: 0; min-height: 92px; padding: 8px; border: 1px solid var(--hairline); border-radius: 10px; background: var(--surface); }
+.quarter.is-past { background: var(--sunken); }
+.quarter.is-now { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.quarter.drag-over { border-color: var(--accent); background: var(--accent-wash); }
+.q-head { display: flex; align-items: baseline; gap: 6px; font-size: 12.5px; font-weight: 650; }
+.q-units { margin-left: auto; font-size: 11.5px; font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums; }
+.now { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); }
+.q-courses { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; margin: 0; padding: 0; list-style: none; }
+.pchip { display: flex; align-items: baseline; gap: 6px; width: 100%; padding: 5px 7px; border: 1px solid var(--hairline); border-radius: 7px;
+  background: var(--raised); font-size: 12.5px; text-align: left; cursor: grab; }
+.pchip:hover { border-color: var(--ink-2); }
+.pchip.is-taken { border-color: var(--mine-line); background: var(--mine-wash); }
+.pchip.is-planned { border-style: dashed; border-color: var(--mine); background: var(--mine-tint); }
+.pchip.has-issue { border-color: var(--warn); border-style: solid; }
+.pchip.is-selected { outline: 2px solid var(--accent); outline-offset: 1px; }
+.pchip.is-dragging { opacity: 0.45; }
+.pchip-code { font-weight: 650; white-space: nowrap; }
+.pchip-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink-2); }
+.pchip-note { font-size: 11px; color: var(--muted); }
+.pchip-check { font-weight: 700; color: var(--mine-ink); }
+.pchip svg { align-self: center; }
+.q-add { align-self: flex-start; margin-top: auto; padding: 2px 6px; border: 0; border-radius: 6px; background: none; color: var(--accent); font-size: 12.5px; font-weight: 600; }
+.q-add:hover { background: var(--accent-wash); }
+.quarter.unscheduled { min-height: 0; margin-top: 14px; }
+.quarter.unscheduled .q-courses { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.quarter.unscheduled p { margin: 0; font-size: 12.5px; }
+
+.overlap { display: flex; gap: 8px; align-items: flex-start; margin: 0 0 12px; padding: 8px 10px; border-radius: 8px; font-size: 13px;
+  background: color-mix(in srgb, var(--warn) 16%, var(--raised)); }
+.req-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; }
+.req-card { padding: 12px 14px; border: 1px solid var(--hairline); border-radius: 10px; background: var(--surface); }
+.req-card header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.req-card h3 { margin: 2px 0 0; font-size: 14.5px; }
+.req-card header a { display: inline-flex; align-items: center; gap: 4px; font-size: 12.5px; white-space: nowrap; }
+.req-list { padding: 9px 0; border-top: 1px solid var(--hairline); }
+.rl-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; font-size: 13px; }
+.rl-label { font-weight: 600; }
+.rl-kind { font-size: 11px; font-weight: 600; color: var(--muted); }
+.rl-summary { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.req-list.is-complete .rl-summary { font-weight: 600; color: var(--good-ink); }
+.bar { display: flex; height: 6px; margin: 6px 0; overflow: hidden; border-radius: 3px; background: var(--sunken); }
+.bar-taken { background: var(--mine); }
+/* Planned shows as a hatched segment so it doesn't rely on color alone. */
+.bar-planned { background: repeating-linear-gradient(135deg, var(--mine) 0 2px, transparent 2px 5px); opacity: 0.8; }
+.req-items { display: grid; gap: 4px; margin: 4px 0 0; padding: 0; list-style: none; }
+.req-item { display: flex; align-items: baseline; gap: 6px; font-size: 12.5px; }
+.ri-mark { flex: none; width: 14px; text-align: center; color: var(--muted); }
+.req-item.is-taken .ri-mark { font-weight: 700; color: var(--mine-ink); }
+.req-item.is-planned .ri-mark { color: var(--mine); }
+.ri-alts { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px; }
+.or, .amp { font-size: 11.5px; color: var(--muted); }
+.mini-chip { padding: 1px 6px; border: 1px solid var(--hairline); border-radius: 6px; background: var(--raised); font-size: 12px; font-weight: 600; }
+button.mini-chip:hover { border-color: var(--ink-2); }
+.mini-chip.is-taken { border-color: var(--mine-line); background: var(--mine-wash); }
+.mini-chip.is-planned { border-style: dashed; border-color: var(--mine); background: var(--mine-tint); }
+.mini-chip.is-unlisted { border-style: dotted; font-weight: 500; color: var(--muted); }
+.mini-chip sup { margin-left: 2px; font-size: 9.5px; color: var(--accent); }
+.req-list details summary { margin-top: 4px; font-size: 12.5px; color: var(--accent); cursor: pointer; }
+.req-notes { margin-top: 8px; font-size: 12.5px; color: var(--ink-2); }
+.req-notes summary { font-weight: 600; color: var(--muted); cursor: pointer; }
+.req-notes ul { display: grid; gap: 4px; margin: 6px 0 0; padding-left: 18px; }
+
+@media (max-width: 760px) {
+  .plan-view { padding: 12px 12px 120px; }
+  .plan-section { padding: 12px; }
+  .quarters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .req-cards { grid-template-columns: minmax(0, 1fr); }
+  .row-status { padding-left: 6px; }
+  .row-status select { width: 80px; }
+}
+
+/* ==========================================================================
+   Minimap
+   ========================================================================== */
+.minimap {
+  position: absolute; top: 12px; right: 12px; padding: 4px;
+  background: var(--raised); border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow-1);
+  cursor: pointer; touch-action: none;
+}
+.minimap-svg { display: block; width: 168px; height: auto; max-height: 150px; }
+.mm-band { fill: transparent; }
+.mm-band.is-alt { fill: var(--band); }
+.mm-node { fill: var(--line); }
+.mm-node.is-taken { fill: var(--mine-line); }
+.mm-node.is-planned { fill: color-mix(in srgb, var(--mine) 45%, var(--raised)); }
+.mm-node.is-ready { fill: var(--good); }
+.mm-node.is-picked { fill: var(--accent); }
+.mm-node.is-match { fill: var(--accent); }
+.mm-node.is-up { fill: var(--up); }
+.mm-node.is-down { fill: var(--down); }
+.mm-node.is-selected { fill: var(--ink); }
+.mm-node.is-dim { opacity: 0.3; }
+.mm-view { fill: var(--accent-wash); stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.minimap.is-hidden { display: none; }

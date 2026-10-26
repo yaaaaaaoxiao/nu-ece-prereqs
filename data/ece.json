@@ -24,9 +24,39 @@
    "abbr": "BME",
    "main": false
   },
+  "CHEM_ENG": {
+   "name": "Chemical Engineering",
+   "abbr": "CHEM_ENG",
+   "main": false
+  },
+  "CIV_ENV": {
+   "name": "Civil and Environmental Engineering",
+   "abbr": "CIV_ENV",
+   "main": false
+  },
+  "COG_SCI": {
+   "name": "Cognitive Science",
+   "abbr": "COG_SCI",
+   "main": false
+  },
+  "COMM_ST": {
+   "name": "Communication Studies",
+   "abbr": "COMM_ST",
+   "main": false
+  },
   "COMP_SCI": {
    "name": "Computer Science",
    "abbr": "CS",
+   "main": false
+  },
+  "DATA_ENG": {
+   "name": "Data Science & Engineering",
+   "abbr": "DATA_ENG",
+   "main": false
+  },
+  "ES_APPM": {
+   "name": "Engineering Science & Applied Math",
+   "abbr": "ES_APPM",
    "main": false
   },
   "GEN_ENG": {
@@ -34,9 +64,19 @@
    "abbr": "GEN ENG",
    "main": false
   },
+  "IEMS": {
+   "name": "Industrial Engineering & Management Sciences",
+   "abbr": "IEMS",
+   "main": false
+  },
   "MATH": {
    "name": "Mathematics",
    "abbr": "MATH",
+   "main": false
+  },
+  "MAT_SCI": {
+   "name": "Materials Science & Engineering",
+   "abbr": "MAT_SCI",
    "main": false
   },
   "MECH_ENG": {
@@ -48,269 +88,2015 @@
    "name": "Physics",
    "abbr": "PHYS",
    "main": false
+  },
+  "STAT": {
+   "name": "Statistics",
+   "abbr": "STAT",
+   "main": false
   }
  },
- "degrees": [
+ "programs": [
   {
-   "id": "EE",
+   "id": "ee-bs",
    "name": "Electrical Engineering BS",
+   "type": "major",
    "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/electrical-computer-engineering/electrical-engineering-degree/",
-   "groups": [
+   "default": true,
+   "lists": [
     {
      "label": "Required courses",
      "kind": "required",
-     "courses": [
-      "COMP_ENG 203-0",
-      "GEN_ENG 251-0",
-      "ELEC_ENG 202-0",
-      "ELEC_ENG 221-0",
-      "ELEC_ENG 222-0",
-      "ELEC_ENG 223-0",
-      "ELEC_ENG 224-0",
-      "ELEC_ENG 225-0",
-      "ELEC_ENG 302-0"
-     ],
-     "unlisted": []
+     "need": 9,
+     "items": [
+      [
+       [
+        "COMP_ENG 203-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 251-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 202-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 221-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 222-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 223-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 224-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 225-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 302-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Design project",
      "kind": "design",
-     "courses": [
-      "COMP_ENG 347-1",
-      "COMP_ENG 392-0",
-      "ELEC_ENG 327-0",
-      "ELEC_ENG 398-0",
-      "ELEC_ENG 399-0"
-     ],
-     "unlisted": []
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMP_ENG 347-1"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 392-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 327-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 398-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 399-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Biomedical Engineering Track",
      "kind": "track",
-     "courses": [
-      "BMD_ENG 325-0",
-      "BMD_ENG 327-0",
-      "BMD_ENG 333-0"
-     ],
-     "unlisted": []
+     "need": null,
+     "items": [
+      [
+       [
+        "BMD_ENG 325-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 327-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 333-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Circuits and Electronics Track",
      "kind": "track",
-     "courses": [
-      "COMP_ENG 303-0",
-      "COMP_ENG 346-0",
-      "COMP_ENG 347-2",
-      "COMP_ENG 355-0",
-      "COMP_ENG 391-0",
-      "COMP_ENG 393-0",
-      "ELEC_ENG 326-0",
-      "ELEC_ENG 327-0",
-      "ELEC_ENG 353-0"
-     ],
-     "unlisted": []
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_ENG 303-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 346-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 347-2"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 355-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 391-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 393-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 326-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 327-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 353-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Communications Systems Track",
      "kind": "track",
-     "courses": [
-      "ELEC_ENG 307-0",
-      "ELEC_ENG 328-0",
-      "ELEC_ENG 333-0",
-      "ELEC_ENG 334-0",
-      "ELEC_ENG 378-0",
-      "ELEC_ENG 380-0"
-     ],
-     "unlisted": []
+     "need": null,
+     "items": [
+      [
+       [
+        "ELEC_ENG 307-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 328-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 333-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 334-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 378-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 380-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Control Systems Track",
      "kind": "track",
-     "courses": [
-      "ELEC_ENG 360-0",
-      "ELEC_ENG 374-0",
-      "ELEC_ENG 390-0",
-      "MECH_ENG 333-0"
-     ],
-     "unlisted": []
+     "need": null,
+     "items": [
+      [
+       [
+        "ELEC_ENG 360-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 374-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 390-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 333-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Signal Processing and Machine Learning Track",
      "kind": "track",
-     "courses": [
-      "ELEC_ENG 332-0",
-      "ELEC_ENG 335-0",
-      "ELEC_ENG 359-0",
-      "ELEC_ENG 363-0",
-      "ELEC_ENG 373-0",
-      "ELEC_ENG 375-0"
-     ],
-     "unlisted": []
+     "need": null,
+     "items": [
+      [
+       [
+        "ELEC_ENG 332-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 335-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 359-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 363-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 373-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 375-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Electromagnetics Engineering Track",
      "kind": "track",
-     "courses": [
-      "ELEC_ENG 308-0",
-      "ELEC_ENG 379-0",
-      "ELEC_ENG 382-0",
-      "ELEC_ENG 383-0"
-     ],
-     "unlisted": []
+     "need": null,
+     "items": [
+      [
+       [
+        "ELEC_ENG 308-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 379-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 382-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 383-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Solid-State Engineering Track",
      "kind": "track",
-     "courses": [
-      "ELEC_ENG 250-0",
-      "ELEC_ENG 381-0",
-      "ELEC_ENG 384-0",
-      "ELEC_ENG 385-0",
-      "ELEC_ENG 388-0",
-      "MECH_ENG 381-0"
-     ],
-     "unlisted": []
+     "need": null,
+     "items": [
+      [
+       [
+        "ELEC_ENG 250-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 381-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 384-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 385-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 388-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 381-0"
+       ]
+      ]
+     ]
     }
+   ],
+   "notes": [
+    "2 additional McCormick course at 200-level or higher with any mixture of Math/Science and Engineering contents.",
+    "Major Program (22 units)",
+    "10 technical elective courses",
+    "6 courses chosen from the technical elective tracks below",
+    "2 courses at the 300- or 400-level in COMP_SCI, ELEC_ENG, or COMP_ENG technical electives (which may include COMP_ENG 205-0 and the courses above)"
    ]
   },
   {
-   "id": "CE",
+   "id": "ce-bs",
    "name": "Computer Engineering BS",
+   "type": "major",
    "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/electrical-computer-engineering/computer-engineering-degree/",
-   "groups": [
+   "default": true,
+   "lists": [
     {
      "label": "Required courses",
      "kind": "required",
-     "courses": [
-      "COMP_ENG 203-0",
-      "COMP_ENG 205-0",
-      "COMP_ENG 303-0",
-      "COMP_ENG 361-0",
-      "COMP_SCI 211-0",
-      "ELEC_ENG 202-0",
-      "ELEC_ENG 302-0"
-     ],
-     "unlisted": []
+     "need": 7,
+     "items": [
+      [
+       [
+        "COMP_ENG 203-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 205-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 303-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 361-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 211-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 202-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 302-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Breadth electives (choose 4)",
      "kind": "elective",
-     "courses": [
-      "COMP_SCI 180-0",
-      "COMP_SCI 208-0",
-      "COMP_SCI 213-0",
-      "ELEC_ENG 221-0",
-      "ELEC_ENG 222-0",
-      "ELEC_ENG 223-0",
-      "ELEC_ENG 224-0",
-      "ELEC_ENG 225-0"
-     ],
-     "unlisted": []
+     "need": 4,
+     "items": [
+      [
+       [
+        "COMP_SCI 180-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 208-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 213-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 221-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 222-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 223-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 224-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 225-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Math foundation (choose 1)",
      "kind": "elective",
-     "courses": [
-      "COMP_SCI 212-0",
-      "GEN_ENG 251-0"
-     ],
-     "unlisted": []
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMP_SCI 212-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 251-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Design project",
      "kind": "design",
-     "courses": [
-      "COMP_ENG 347-1",
-      "COMP_ENG 362-0",
-      "COMP_ENG 392-0"
-     ],
-     "unlisted": []
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMP_ENG 347-1"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 362-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 392-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Architecture and High-Performance Computing",
      "kind": "track",
-     "courses": [
-      "COMP_ENG 329-0",
-      "COMP_ENG 358-0",
-      "COMP_ENG 362-0",
-      "COMP_ENG 368-0"
-     ],
-     "unlisted": [
-      "COMP_ENG 452-0",
-      "COMP_ENG 453-0",
-      "COMP_ENG 468-0"
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_ENG 329-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 358-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 362-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 368-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 452-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 453-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 468-0"
+       ]
+      ]
      ]
     },
     {
      "label": "VLSI and CAD",
      "kind": "track",
-     "courses": [
-      "COMP_ENG 355-0",
-      "COMP_ENG 357-0",
-      "COMP_ENG 387-0",
-      "COMP_ENG 391-0",
-      "COMP_ENG 392-0",
-      "COMP_ENG 393-0",
-      "ELEC_ENG 353-0"
-     ],
-     "unlisted": [
-      "COMP_ENG 459-0",
-      "COMP_ENG 493-0"
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_ENG 355-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 357-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 387-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 391-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 392-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 393-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 459-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 493-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 353-0"
+       ]
+      ]
      ]
     },
     {
      "label": "Embedded Systems",
      "kind": "track",
-     "courses": [
-      "COMP_ENG 346-0",
-      "COMP_ENG 347-1",
-      "COMP_ENG 347-2",
-      "COMP_ENG 364-0",
-      "COMP_ENG 365-0",
-      "COMP_ENG 366-0",
-      "COMP_ENG 369-0",
-      "COMP_SCI 301-0",
-      "ELEC_ENG 326-0",
-      "ELEC_ENG 327-0",
-      "ELEC_ENG 332-0",
-      "ELEC_ENG 360-0",
-      "ELEC_ENG 390-0",
-      "MECH_ENG 333-0"
-     ],
-     "unlisted": [
-      "COMP_ENG 464-0",
-      "COMP_ENG 465-0",
-      "COMP_ENG 466-0",
-      "ELEC_ENG 432-0",
-      "MECH_ENG 433-0"
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_ENG 346-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 347-1"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 347-2"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 364-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 365-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 366-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 369-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 464-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 465-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 466-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 301-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 326-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 327-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 332-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 360-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 390-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 432-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 333-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 433-0"
+       ]
+      ]
      ]
     },
     {
      "label": "Software Systems",
      "kind": "track",
-     "courses": [
-      "COMP_SCI 212-0",
-      "COMP_SCI 321-0",
-      "COMP_SCI 322-0",
-      "COMP_SCI 336-0",
-      "COMP_SCI 339-0",
-      "COMP_SCI 343-0",
-      "COMP_SCI 394-0"
-     ],
-     "unlisted": []
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 212-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 321-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 322-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 336-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 339-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 343-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 394-0"
+       ]
+      ]
+     ]
     },
     {
      "label": "Networks and Security",
      "kind": "track",
-     "courses": [
-      "COMP_ENG 334-0",
-      "COMP_SCI 340-0",
-      "COMP_SCI 350-0",
-      "COMP_SCI 354-0",
-      "ELEC_ENG 333-0"
-     ],
-     "unlisted": []
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_ENG 334-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 340-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 350-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 354-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 333-0"
+       ]
+      ]
+     ]
     }
+   ],
+   "notes": [
+    "1 additional course from a McCormick department at 200-level or higher comprised of 100% Engineering Topics based on ABET Course Partitioning Table",
+    "Major Program (22 units)",
+    "14 technical elective courses",
+    "5 courses from the areas below"
+   ]
+  },
+  {
+   "id": "cs-minor",
+   "name": "Computer Science minor (McCormick)",
+   "type": "minor",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/computer-science/computer-science-minor/",
+   "default": false,
+   "lists": [
+    {
+     "label": "Prerequisites (6 units)",
+     "kind": "prereq",
+     "need": 3,
+     "items": [
+      [
+       [
+        "MATH 220-1"
+       ]
+      ],
+      [
+       [
+        "MATH 220-2"
+       ]
+      ],
+      [
+       [
+        "MATH 228-1"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Prerequisites: engineering foundations",
+     "kind": "prereq",
+     "need": 3,
+     "items": [
+      [
+       [
+        "GEN_ENG 150-0"
+       ],
+       [
+        "GEN_ENG 151-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 231-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 241-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Core Courses (6 units of computer science)",
+     "kind": "required",
+     "need": 6,
+     "items": [
+      [
+       [
+        "COMP_SCI 150-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 180-0"
+       ],
+       [
+        "COMP_SCI 111-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 208-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 211-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 212-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 213-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Theory",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 335-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 336-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Systems",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 322-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 339-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 340-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 343-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 345-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 346-0"
+       ],
+       [
+        "COMP_ENG 346-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 350-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 354-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 358-0"
+       ],
+       [
+        "COMP_ENG 358-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 368-0"
+       ],
+       [
+        "COMP_SCI 468-0"
+       ],
+       [
+        "COMP_ENG 368-0"
+       ],
+       [
+        "COMP_ENG 468-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 440-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 441-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 443-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 446-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 450-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 303-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 361-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Artificial Intelligence",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 325-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 337-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 344-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 348-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 349-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 371-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 372-0"
+       ],
+       [
+        "COMP_SCI 472-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Interfaces",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 313-0"
+       ],
+       [
+        "COMP_SCI 413-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 315-0"
+       ],
+       [
+        "COMP_SCI 415-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 329-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 330-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 331-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 333-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 351-1"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 352-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 353-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 370-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 372-0"
+       ],
+       [
+        "COMP_SCI 472-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 376-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 377-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 332-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Software Development and Programming Languages",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 310-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 321-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 338-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 377-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 380-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 392-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 393-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 394-0"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "Majors must take one course from each area. Minors must take one course from each of any three areas.",
+    "Minor Requirements (9 units)",
+    "Breadth Courses (3 units from three different areas, see below)"
+   ]
+  },
+  {
+   "id": "ai-minor",
+   "name": "Artificial Intelligence minor",
+   "type": "minor",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/artificial-intelligence/artificial-intelligence-minor/",
+   "default": false,
+   "lists": [
+    {
+     "label": "Prerequisites (5 units)",
+     "kind": "prereq",
+     "need": 5,
+     "items": [
+      [
+       [
+        "MATH 220-1"
+       ]
+      ],
+      [
+       [
+        "MATH 220-2"
+       ]
+      ],
+      [
+       [
+        "MATH 228-1"
+       ],
+       [
+        "MATH 230-1"
+       ]
+      ],
+      [
+       [
+        "MATH 240-0"
+       ],
+       [
+        "GEN_ENG 241-0"
+       ],
+       [
+        "GEN_ENG 205-1"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 231-0"
+       ],
+       [
+        "IEMS 201-0"
+       ],
+       [
+        "IEMS 303-0"
+       ],
+       [
+        "ELEC_ENG 302-0"
+       ],
+       [
+        "STAT 210-0"
+       ],
+       [
+        "MATH 310-1"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Minor Requirements (8 units)",
+     "kind": "required",
+     "need": 5,
+     "items": [
+      [
+       [
+        "COMP_SCI 150-0"
+       ],
+       [
+        "GEN_ENG 150-0"
+       ],
+       [
+        "GEN_ENG 151-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 180-0"
+       ],
+       [
+        "COMP_SCI 111-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 208-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 348-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 349-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Upper Level Electives (3 units)",
+     "kind": "track",
+     "need": 3,
+     "items": [
+      [
+       [
+        "COMP_SCI 265-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 301-0"
+       ],
+       [
+        "MECH_ENG 301-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 302-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 320-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 325-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 334-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 337-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 338-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 344-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 347-0"
+       ],
+       [
+        "COMP_SCI 447-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 353-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 371-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 372-0"
+       ],
+       [
+        "COMP_SCI 472-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 374-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 396-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 396-0"
+       ],
+       [
+        "COMP_SCI 496-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 396-0"
+       ],
+       [
+        "COMP_SCI 496-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 397-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 409-0"
+       ],
+       [
+        "MECH_ENG 409-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 449-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 454-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 461-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 463-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 469-0"
+       ],
+       [
+        "MECH_ENG 469-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 474-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 496-0"
+       ]
+      ],
+      [
+       [
+        "COG_SCI 207-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 332-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 431-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 432-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 433-0"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "3 upper level electives approved for the Artificial Intelligence minor."
+   ]
+  },
+  {
+   "id": "mlds-minor",
+   "name": "Machine Learning and Data Science minor",
+   "type": "minor",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/machine-learning-data-science/machine-learning-data-science-minor/",
+   "default": false,
+   "lists": [
+    {
+     "label": "Programming Foundations",
+     "kind": "elective",
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMP_SCI 150-0"
+       ],
+       [
+        "GEN_ENG 150-0"
+       ],
+       [
+        "GEN_ENG 151-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Statistics Foundations (choose one)",
+     "kind": "elective",
+     "need": 1,
+     "items": [
+      [
+       [
+        "CHEM_ENG 312-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 306-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 231-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 201-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 303-0"
+       ]
+      ],
+      [
+       [
+        "MATH 314-0"
+       ]
+      ],
+      [
+       [
+        "STAT 320-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Data Science Track",
+     "kind": "elective",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 208-0"
+       ],
+       [
+        "COMP_SCI 217-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 304-0"
+       ],
+       [
+        "IEMS 301-0"
+       ]
+      ],
+      [
+       [
+        "DATA_ENG 200-0"
+       ]
+      ],
+      [
+       [
+        "DATA_ENG 300-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Machine Learning Track (not open to computer science majors/minors)",
+     "kind": "elective",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 180-0"
+       ],
+       [
+        "COMP_SCI 111-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 208-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 348-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 349-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Hybrid Track",
+     "kind": "elective",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 208-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 349-0"
+       ]
+      ],
+      [
+       [
+        "DATA_ENG 200-0"
+       ]
+      ],
+      [
+       [
+        "DATA_ENG 300-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Elective Courses (2 units)",
+     "kind": "track",
+     "need": 2,
+     "items": [
+      [
+       [
+        "BMD_ENG 311-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 312-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 313-0"
+       ]
+      ],
+      [
+       [
+        "CHEM_ENG 379-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 304-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 374-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 377-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 395-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 474-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 480-1"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 480-2"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 495-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 301-0"
+       ],
+       [
+        "MECH_ENG 301-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 312-0"
+       ],
+       [
+        "COMP_SCI 412-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 332-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 333-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 353-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 374-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 392-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 394-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 396-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 397-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 449-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 469-0"
+       ],
+       [
+        "MECH_ENG 469-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 496-0"
+       ]
+      ],
+      [
+       [
+        "DATA_ENG 300-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 328-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 335-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 373-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 395-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 424-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 433-0"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 345-0"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 375-1"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 375-2"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 472-0"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 479-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 305-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 307-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 313-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 340-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 341-0"
+       ],
+       [
+        "COMP_SCI 341-0"
+       ],
+       [
+        "COMM_ST 352-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 351-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 358-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 390-1"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 329-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 341-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 441-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 455-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 495-0"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "Core courses (2 units)",
+    "Specialization (4 units)"
+   ]
+  },
+  {
+   "id": "math-minor",
+   "name": "Mathematics minor",
+   "type": "minor",
+   "url": "https://catalogs.northwestern.edu/undergraduate/arts-sciences/mathematics/mathematics-minor/",
+   "default": false,
+   "lists": [
+    {
+     "label": "Basic Courses",
+     "kind": "required",
+     "need": 3,
+     "items": [
+      [
+       [
+        "MATH 220-1",
+        "MATH 220-2"
+       ],
+       [
+        "MATH 218-1",
+        "MATH 218-2",
+        "MATH 218-3"
+       ]
+      ],
+      [
+       [
+        "MATH 226-0"
+       ]
+      ],
+      [
+       [
+        "MATH 230-1",
+        "MATH 230-2",
+        "MATH 240-0"
+       ],
+       [
+        "MATH 228-1",
+        "MATH 228-2",
+        "GEN_ENG 205-1"
+       ],
+       [
+        "ES_APPM 252-1",
+        "ES_APPM 252-2",
+        "GEN_ENG 206-1"
+       ],
+       [
+        "MATH 281-1",
+        "MATH 281-2",
+        "MATH 281-3"
+       ],
+       [
+        "MATH 285-1",
+        "MATH 285-2",
+        "MATH 285-3"
+       ],
+       [
+        "MATH 290-1",
+        "MATH 290-2",
+        "MATH 290-3"
+       ],
+       [
+        "MATH 291-1",
+        "MATH 291-2",
+        "MATH 291-3"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Upper-level Courses",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "MATH 310-1",
+        "MATH 310-2"
+       ]
+      ],
+      [
+       [
+        "MATH 311-1",
+        "MATH 311-2"
+       ]
+      ],
+      [
+       [
+        "MATH 320-1",
+        "MATH 320-2"
+       ]
+      ],
+      [
+       [
+        "MATH 321-1",
+        "MATH 321-2"
+       ]
+      ],
+      [
+       [
+        "MATH 330-1",
+        "MATH 330-2"
+       ]
+      ],
+      [
+       [
+        "MATH 331-1",
+        "MATH 331-2"
+       ]
+      ],
+      [
+       [
+        "MATH 344-1",
+        "MATH 344-2"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "Students must complete 6 upper-level mathematics courses. Upper-level courses are courses at the 300 level or above."
    ]
   }
  ],
@@ -319,6 +2105,10 @@
   "https://catalogs.northwestern.edu/undergraduate/courses-az/elec_eng/",
   "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/electrical-computer-engineering/electrical-engineering-degree/",
   "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/electrical-computer-engineering/computer-engineering-degree/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/computer-science/computer-science-minor/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/artificial-intelligence/artificial-intelligence-minor/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/machine-learning-data-science/machine-learning-data-science-minor/",
+  "https://catalogs.northwestern.edu/undergraduate/arts-sciences/mathematics/mathematics-minor/",
   "https://www.mccormick.northwestern.edu/electrical-computer/academics/courses/"
  ],
  "courses": [
@@ -1781,7 +3571,85 @@
    "text": "Prerequisites: BMD_ENG 207-0 ; BMD_ENG 308-0 ; BMD_ENG 220-0; GEN_ENG 205-4 .",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20309-0"
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20309-0",
+   "autoPrereq": {
+    "and": [
+     "BMD_ENG 207-0",
+     "BMD_ENG 308-0",
+     "BMD_ENG 220-0",
+     "GEN_ENG 205-4"
+    ]
+   }
+  },
+  {
+   "id": "BMD_ENG 311-0",
+   "dept": "BMD_ENG",
+   "num": "311-0",
+   "title": "Computational Genomics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: BMD_ENG 220-0; BIOL_SCI 201-0 or BIOL_SCI 202-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20311-0",
+   "autoPrereq": {
+    "and": [
+     "BMD_ENG 220-0",
+     {
+      "or": [
+       "BIOL_SCI 201-0",
+       "BIOL_SCI 202-0"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "BMD_ENG 312-0",
+   "dept": "BMD_ENG",
+   "num": "312-0",
+   "title": "Biomedical Applications in Machine Learning",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: BMD_ENG 220-0, GEN_ENG 205-1 , MATH 220-1 , MATH 220-2 , or is a BME MS or PhD Student.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20312-0",
+   "links": [
+    "GEN_ENG 205-1",
+    "MATH 220-1",
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "BMD_ENG 313-0",
+   "dept": "BMD_ENG",
+   "num": "313-0",
+   "title": "Wearable Devices: From Sensing to Biomedical Inference",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: BMD_ENG 207-0 and BMD_ENG 220-0.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20313-0",
+   "autoPrereq": {
+    "and": [
+     "BMD_ENG 207-0",
+     "BMD_ENG 220-0"
+    ]
+   }
   },
   {
    "id": "BMD_ENG 325-0",
@@ -1819,7 +3687,8 @@
    "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20327-0",
    "links": [
     "PHYSICS 135-3"
-   ]
+   ],
+   "autoPrereq": "PHYSICS 135-3"
   },
   {
    "id": "BMD_ENG 333-0",
@@ -1841,6 +3710,166 @@
    ]
   },
   {
+   "id": "CHEM_ENG 312-0",
+   "dept": "CHEM_ENG",
+   "num": "312-0",
+   "title": "Probability and Statistics for Chemical Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: MATH 220-1 , 220-2 , 228-1 , 228-2 or equivalent; COMP_SCI 150-0 , GEN_ENG 150, or GEN_ENG 151-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM_ENG%20312-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-1"
+   ]
+  },
+  {
+   "id": "CHEM_ENG 379-0",
+   "dept": "CHEM_ENG",
+   "num": "379-0",
+   "title": "Computational Biology: Analysis and Design of Living Systems",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM_ENG%20379-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "CIV_ENV 304-0",
+   "dept": "CIV_ENV",
+   "num": "304-0",
+   "title": "Civil and Environmental Engineering Systems Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 220-2 or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20304-0",
+   "links": [
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "CIV_ENV 306-0",
+   "dept": "CIV_ENV",
+   "num": "306-0",
+   "title": "Uncertainty Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20306-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "CIV_ENV 374-0",
+   "dept": "CIV_ENV",
+   "num": "374-0",
+   "title": "Data Science for Urban Systems",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20374-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "CIV_ENV 377-0",
+   "dept": "CIV_ENV",
+   "num": "377-0",
+   "title": "Choice Modelling in Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20377-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "CIV_ENV 395-0",
+   "dept": "CIV_ENV",
+   "num": "395-0",
+   "title": "Special Topics in Civil and Environmental Engrg",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20395-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COG_SCI 207-0",
+   "dept": "COG_SCI",
+   "num": "207-0",
+   "title": "Introduction to Cognitive Modeling",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COG_SCI%20207-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COMM_ST 352-0",
+   "dept": "COMM_ST",
+   "num": "352-0",
+   "title": "Social Network Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMM_ST%20352-0",
+   "autoPrereq": null
+  },
+  {
    "id": "COMP_SCI 110-0",
    "dept": "COMP_SCI",
    "num": "110-0",
@@ -1854,7 +3883,8 @@
    "text": "",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20110-0"
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20110-0",
+   "autoPrereq": null
   },
   {
    "id": "COMP_SCI 111-0",
@@ -1874,7 +3904,8 @@
     "Winter 2027": "11-11:50 MWF · Sood",
     "Spring 2027": "1-1:50 MWF · Sood"
    },
-   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20111-0"
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20111-0",
+   "autoPrereq": null
   },
   {
    "id": "COMP_SCI 150-0",
@@ -1890,7 +3921,8 @@
    "text": "",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20150-0"
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20150-0",
+   "autoPrereq": null
   },
   {
    "id": "COMP_SCI 180-0",
@@ -1933,7 +3965,19 @@
     "COMP_SCI 180-0",
     "GEN_ENG 150-0",
     "GEN_ENG 151-0"
-   ]
+   ],
+   "autoPrereq": {
+    "or": [
+     "COMP_SCI 150-0",
+     "GEN_ENG 150-0",
+     {
+      "and": [
+       "GEN_ENG 151-0",
+       "COMP_SCI 180-0"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "COMP_SCI 211-0",
@@ -1958,7 +4002,14 @@
     "COMP_SCI 150-0",
     "GEN_ENG 150-0",
     "GEN_ENG 151-0"
-   ]
+   ],
+   "autoPrereq": {
+    "or": [
+     "COMP_SCI 150-0",
+     "GEN_ENG 150-0",
+     "GEN_ENG 151-0"
+    ]
+   }
   },
   {
    "id": "COMP_SCI 212-0",
@@ -1978,7 +4029,13 @@
    "links": [
     "COMP_SCI 110-0",
     "COMP_SCI 111-0"
-   ]
+   ],
+   "autoPrereq": {
+    "or": [
+     "COMP_SCI 110-0",
+     "COMP_SCI 111-0"
+    ]
+   }
   },
   {
    "id": "COMP_SCI 213-0",
@@ -2001,7 +4058,8 @@
    "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20213-0",
    "links": [
     "COMP_SCI 211-0"
-   ]
+   ],
+   "autoPrereq": "COMP_SCI 211-0"
   },
   {
    "id": "COMP_SCI 214-0",
@@ -2025,6 +4083,34 @@
    "missing": true
   },
   {
+   "id": "COMP_SCI 217-0",
+   "dept": "COMP_SCI",
+   "num": "217-0",
+   "title": "Applied Data Management",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 150 or GEN_ENG 150 or GEN_ENG 151.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20217-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0"
+   ],
+   "autoPrereq": {
+    "or": [
+     "COMP_SCI 150-0",
+     "GEN_ENG 150-0",
+     "GEN_ENG 151-0"
+    ]
+   }
+  },
+  {
    "id": "COMP_SCI 230-0",
    "dept": "COMP_SCI",
    "num": "230-0",
@@ -2040,6 +4126,23 @@
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20230-0",
    "missing": true
+  },
+  {
+   "id": "COMP_SCI 265-0",
+   "dept": "COMP_SCI",
+   "num": "265-0",
+   "title": "AI and International Security",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20265-0",
+   "autoPrereq": null
   },
   {
    "id": "COMP_SCI 301-0",
@@ -2063,6 +4166,126 @@
     "GEN_ENG 150-0",
     "GEN_ENG 151-0"
    ]
+  },
+  {
+   "id": "COMP_SCI 302-0",
+   "dept": "COMP_SCI",
+   "num": "302-0",
+   "title": "Artifical Life",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: Comp_sci 349 or MS CS or PhDs CS.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20302-0",
+   "links": [
+    "COMP_SCI 349-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 310-0",
+   "dept": "COMP_SCI",
+   "num": "310-0",
+   "title": "Scalable Software Architectures",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 213 and (COMP_SCI 208 or COMP_SCI 214) or CS MS or CS PhDs or Instructor permission.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20310-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 213-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 312-0",
+   "dept": "COMP_SCI",
+   "num": "312-0",
+   "title": "Data Privacy",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 211-0 ; COMP_SCI 214-0; COMP_SCI 262-0 , GEN_ENG 231-0 , ELEC_ENG 302-0 , IEMS 201-0 , IEMS 303-0 , STAT 210-0 (COMP_SCI grad standing or consent of instructor).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20312-0",
+   "links": [
+    "COMP_SCI 211-0",
+    "COMP_SCI 214-0",
+    "ELEC_ENG 302-0",
+    "GEN_ENG 231-0",
+    "IEMS 201-0",
+    "IEMS 303-0",
+    "STAT 210-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 313-0",
+   "dept": "COMP_SCI",
+   "num": "313-0",
+   "title": "Tangible Interaction Design and Learning",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ((CS 214 or CS 208) and (CS 329 or CS 330)) or CS MS or CS PhDs or Permission of Instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20313-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 214-0",
+    "COMP_SCI 329-0",
+    "COMP_SCI 330-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 315-0",
+   "dept": "COMP_SCI",
+   "num": "315-0",
+   "title": "Design, Technology, and Research",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: consent of instructor (by application only).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20315-0"
+  },
+  {
+   "id": "COMP_SCI 320-0",
+   "dept": "COMP_SCI",
+   "num": "320-0",
+   "title": "Proving Properties of Programs with Mechanized Logic.By the end of this course, expect to have a bet",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20320-0",
+   "autoPrereq": null
   },
   {
    "id": "COMP_SCI 321-0",
@@ -2111,6 +4334,174 @@
    ]
   },
   {
+   "id": "COMP_SCI 325-0",
+   "dept": "COMP_SCI",
+   "num": "325-0",
+   "title": "Artificial Intelligence Programming",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: (COMP_SCI 208 or COMP_SCI 214) or (COG_SCI major required and COMP_SCI 150 or GEN_ENG 150 or GEN_ENG 151) or CS MS or CS PhD or Instructor consent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20325-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "COMP_SCI 208-0",
+    "COMP_SCI 214-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 329-0",
+   "dept": "COMP_SCI",
+   "num": "329-0",
+   "title": "HCI Studio",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: (COMP_SCI 208 or COMP_SCI 214) and has not completed CS 330 or Graduate Standing and has not completed CS 330.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20329-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 214-0",
+    "COMP_SCI 330-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 330-0",
+   "dept": "COMP_SCI",
+   "num": "330-0",
+   "title": "Human Computer Interaction",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: (COMP_SCI 208 or COMP_SCI 214) and has not completed CS329 or Graduate Standing and has not completed CS 329.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20330-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 214-0",
+    "COMP_SCI 329-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 331-0",
+   "dept": "COMP_SCI",
+   "num": "331-0",
+   "title": "Introduction to Computational Photography",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 150-0 , COMP_SCI 211-0 , GEN_ENG 150-0 , or GEN_ENG 151-0 , or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20331-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "COMP_SCI 211-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 332-0",
+   "dept": "COMP_SCI",
+   "num": "332-0",
+   "title": "Online Markets",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: CS 212 (Discrete Math) and(CS 208 or CS 214 (Data Structures)) or CS 336 (Algorithms) or ECON 380-1 (Game Theory).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20332-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 212-0",
+    "COMP_SCI 214-0",
+    "COMP_SCI 336-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 333-0",
+   "dept": "COMP_SCI",
+   "num": "333-0",
+   "title": "Interactive Information Visualization",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ( COMP_SCI 208-0 or COMP_SCI 214-0) or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20333-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 334-0",
+   "dept": "COMP_SCI",
+   "num": "334-0",
+   "title": "Introduction to Computational Linguistics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 110 or COMP_SCI 111 or be a graduate COMP_SCI student or have permission of Instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20334-0",
+   "links": [
+    "COMP_SCI 110-0",
+    "COMP_SCI 111-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 335-0",
+   "dept": "COMP_SCI",
+   "num": "335-0",
+   "title": "Introduction to the Theory of Computation",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: CS 212 or CS PhDs or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20335-0",
+   "links": [
+    "COMP_SCI 212-0"
+   ]
+  },
+  {
    "id": "COMP_SCI 336-0",
    "dept": "COMP_SCI",
    "num": "336-0",
@@ -2129,6 +4520,42 @@
     "COMP_SCI 208-0",
     "COMP_SCI 214-0"
    ]
+  },
+  {
+   "id": "COMP_SCI 337-0",
+   "dept": "COMP_SCI",
+   "num": "337-0",
+   "title": "Natural Language Processing: Classical Approaches",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 348-0 or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20337-0",
+   "links": [
+    "COMP_SCI 348-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 338-0",
+   "dept": "COMP_SCI",
+   "num": "338-0",
+   "title": "Practicum in Intelligent Information Systems",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20338-0",
+   "autoPrereq": null
   },
   {
    "id": "COMP_SCI 339-0",
@@ -2178,6 +4605,23 @@
    ]
   },
   {
+   "id": "COMP_SCI 341-0",
+   "dept": "COMP_SCI",
+   "num": "341-0",
+   "title": "Social Networks Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20341-0",
+   "autoPrereq": null
+  },
+  {
    "id": "COMP_SCI 343-0",
    "dept": "COMP_SCI",
    "num": "343-0",
@@ -2203,6 +4647,183 @@
    ]
   },
   {
+   "id": "COMP_SCI 344-0",
+   "dept": "COMP_SCI",
+   "num": "344-0",
+   "title": "Design of Computer Problem Solvers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 348-0 and COMP_SCI 325-1 or equivalent LISP experience.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20344-0",
+   "links": [
+    "COMP_SCI 348-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 345-0",
+   "dept": "COMP_SCI",
+   "num": "345-0",
+   "title": "Distributed and Networked Systems",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 213-0 and ( COMP_SCI 208-0 or COMP_SCI 214-0) or CS MS.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20345-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 213-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 346-0",
+   "dept": "COMP_SCI",
+   "num": "346-0",
+   "title": "Microcontroller System Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 211 and (COMP_SCI 213 or COMP_ENG 205).",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TuTh 3:30-4:50 · Ghena · (Lab: TBD)",
+    "Winter 2027": "MW 12:30-1:50 · Xia · (Lab: F 3:00-4:50)",
+    "Spring 2027": "TuTh 2:00-3:20 · Ghena · (Lab: (Lab: F 1-2:50 OR F 3-4:50pm))"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20346-0",
+   "links": [
+    "COMP_ENG 205-0",
+    "COMP_SCI 211-0",
+    "COMP_SCI 213-0"
+   ],
+   "autoPrereq": {
+    "and": [
+     "COMP_SCI 211-0",
+     {
+      "or": [
+       "COMP_SCI 213-0",
+       "COMP_ENG 205-0"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "COMP_SCI 347-0",
+   "dept": "COMP_SCI",
+   "num": "347-0",
+   "title": "Conversational AI",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 371 or permission of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20347-0",
+   "links": [
+    "COMP_SCI 371-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 348-0",
+   "dept": "COMP_SCI",
+   "num": "348-0",
+   "title": "Introduction to Artificial Intelligence",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ( COMP_SCI 150-0 or GEN_ENG 150-0 or GEN_ENG 151-0 or COMP_SCI 111-0 ) and ( GEN_ENG 231-0 or STAT 210-0 or STAT 202-0 or PSYCH 201-0 or COMP_SCI 262-0 or IEMS 201-0 or IEMS 303-0 or ELEC_ENG 302-0 ).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20348-0",
+   "links": [
+    "COMP_SCI 111-0",
+    "COMP_SCI 150-0",
+    "ELEC_ENG 302-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 231-0",
+    "IEMS 201-0",
+    "IEMS 303-0",
+    "STAT 210-0"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "COMP_SCI 150-0",
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 111-0"
+      ]
+     },
+     {
+      "or": [
+       "GEN_ENG 231-0",
+       "STAT 210-0",
+       "STAT 202-0",
+       "PSYCH 201-0",
+       "COMP_SCI 262-0",
+       "IEMS 201-0",
+       "IEMS 303-0",
+       "ELEC_ENG 302-0"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "COMP_SCI 349-0",
+   "dept": "COMP_SCI",
+   "num": "349-0",
+   "title": "Machine Learning",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 214; GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 205-1 , GEN_ENG 206-1 , GEN_ENG 241-0 , or MATH 240-0 ; GEN_ENG 231-0 , IEMS 201-0 , IEMS 303-0 , ELEC_ENG 302-0 , STAT 210-0 , MATH 310-1 (or COMP_SCI grad standing).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20349-0",
+   "links": [
+    "COMP_SCI 214-0",
+    "ELEC_ENG 302-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 205-1",
+    "GEN_ENG 206-1",
+    "GEN_ENG 231-0",
+    "GEN_ENG 241-0",
+    "IEMS 201-0",
+    "IEMS 303-0",
+    "MATH 240-0",
+    "MATH 310-1",
+    "STAT 210-0"
+   ]
+  },
+  {
    "id": "COMP_SCI 350-0",
    "dept": "COMP_SCI",
    "num": "350-0",
@@ -2219,6 +4840,81 @@
    "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20350-0",
    "links": [
     "COMP_SCI 213-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 351-1",
+   "dept": "COMP_SCI",
+   "num": "351-1",
+   "title": "Introduction to Computer Graphics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: (COMP_SCI 208 or COMP_SCI 214-0) or (MS CS or PhDs CS or PhD CS+LS or PhD TSB) or instructor permission.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20351-1",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 352-0",
+   "dept": "COMP_SCI",
+   "num": "352-0",
+   "title": "Machine Perception of Music & Audio",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 211-0 and (COMP_SCI 208 or COMP_SCI 214-0).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20352-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 211-0",
+    "COMP_SCI 214-0"
+   ],
+   "autoPrereq": {
+    "and": [
+     "COMP_SCI 211-0",
+     {
+      "or": [
+       "COMP_SCI 208-0",
+       "COMP_SCI 214-0"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "COMP_SCI 353-0",
+   "dept": "COMP_SCI",
+   "num": "353-0",
+   "title": "Natural & Artificial Vision",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: ( MATH 228-1 or MATH 230-1 ) and ( GEN_ENG 205-1 or GEN_ENG 206-1 or GEN_ENG 241 or Math 240) or CS MS or CS PhD or Instructor Permission.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20353-0",
+   "links": [
+    "GEN_ENG 205-1",
+    "GEN_ENG 206-1",
+    "GEN_ENG 241-0",
+    "MATH 228-1",
+    "MATH 230-1"
    ]
   },
   {
@@ -2240,7 +4936,260 @@
     "COMP_ENG 205-0",
     "COMP_SCI 211-0",
     "COMP_SCI 213-0"
+   ],
+   "autoPrereq": {
+    "or": [
+     {
+      "and": [
+       "COMP_SCI 211-0",
+       "COMP_SCI 213-0"
+      ]
+     },
+     {
+      "and": [
+       "COMP_SCI 211-0",
+       "COMP_ENG 205-0"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "COMP_SCI 358-0",
+   "dept": "COMP_SCI",
+   "num": "358-0",
+   "title": "Introduction to Parallel Computing",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: (CS 213 or (CE 205 & 211)) or MS CS/CE or PhDs CS/CE or permission of Instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20358-0",
+   "links": [
+    "COMP_ENG 205-0",
+    "COMP_SCI 213-0"
    ]
+  },
+  {
+   "id": "COMP_SCI 368-0",
+   "dept": "COMP_SCI",
+   "num": "368-0",
+   "title": "Programming Massively Parallel Processors with CUDA",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 213 and COMP_SCI 211 or consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TuTh 2:00 – 3:20 · Hardavellas"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20368-0",
+   "links": [
+    "COMP_SCI 211-0",
+    "COMP_SCI 213-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 370-0",
+   "dept": "COMP_SCI",
+   "num": "370-0",
+   "title": "Computer Game Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 214-0; 1 unit of COMP_SCI 322-0 , COMP_SCI 343-0 , COMP_SCI 348-0 , or COMP_SCI 351-1 , COMP_SCI 351-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20370-0",
+   "links": [
+    "COMP_SCI 214-0",
+    "COMP_SCI 322-0",
+    "COMP_SCI 343-0",
+    "COMP_SCI 348-0",
+    "COMP_SCI 351-1"
+   ]
+  },
+  {
+   "id": "COMP_SCI 371-0",
+   "dept": "COMP_SCI",
+   "num": "371-0",
+   "title": "Knowledge Representation and Reasoning",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 348-0 or COMP_SCI 325, or equivalent experience with artificial intelligence.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20371-0",
+   "links": [
+    "COMP_SCI 325-0",
+    "COMP_SCI 348-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 372-0",
+   "dept": "COMP_SCI",
+   "num": "372-0",
+   "title": "Designing and Constructing Models with Multi-Agent Languages",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: Senior Comp_sci or Senior Comp_Eng or Consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20372-0"
+  },
+  {
+   "id": "COMP_SCI 374-0",
+   "dept": "COMP_SCI",
+   "num": "374-0",
+   "title": "Causal Graphical Models",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: Permission of Instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20374-0"
+  },
+  {
+   "id": "COMP_SCI 376-0",
+   "dept": "COMP_SCI",
+   "num": "376-0",
+   "title": "Computer Game Design and Development",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: COMP_SCI 208 or COMP_SCI 214-0.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20376-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 214-0"
+   ],
+   "autoPrereq": {
+    "or": [
+     "COMP_SCI 208-0",
+     "COMP_SCI 214-0"
+    ]
+   }
+  },
+  {
+   "id": "COMP_SCI 377-0",
+   "dept": "COMP_SCI",
+   "num": "377-0",
+   "title": "Game Design Studio",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: (COMP_SCI 208 or COMP_SCI 214) and COMP_SCI 376-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20377-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 214-0",
+    "COMP_SCI 376-0"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "COMP_SCI 208-0",
+       "COMP_SCI 214-0"
+      ]
+     },
+     "COMP_SCI 376-0"
+    ]
+   }
+  },
+  {
+   "id": "COMP_SCI 380-0",
+   "dept": "COMP_SCI",
+   "num": "380-0",
+   "title": "Software Quality Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: CS 211-and (CS 208 or CS 214) or MS CS or PhDs CS or PhD CS+LS or PhD TSB or permission of Instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20380-0",
+   "links": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  {
+   "id": "COMP_SCI 392-0",
+   "dept": "COMP_SCI",
+   "num": "392-0",
+   "title": "Rapid Prototyping for Software Innovation",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: CS junior, senior, or graduate OR permission of the instructor. Familiarity with JavaScript and HTML is presumed.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20392-0"
+  },
+  {
+   "id": "COMP_SCI 393-0",
+   "dept": "COMP_SCI",
+   "num": "393-0",
+   "title": "Software Construction",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 211-0 and COMP_SCI 214-0.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20393-0",
+   "links": [
+    "COMP_SCI 211-0",
+    "COMP_SCI 214-0"
+   ],
+   "autoPrereq": {
+    "and": [
+     "COMP_SCI 211-0",
+     "COMP_SCI 214-0"
+    ]
+   }
   },
   {
    "id": "COMP_SCI 394-0",
@@ -2259,6 +5208,160 @@
    "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20394-0"
   },
   {
+   "id": "COMP_SCI 396-0",
+   "dept": "COMP_SCI",
+   "num": "396-0",
+   "title": "Special Topics in Computer Science",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20396-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COMP_SCI 397-0",
+   "dept": "COMP_SCI",
+   "num": "397-0",
+   "title": "Special Projects in Computer Science",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20397-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "DATA_ENG 200-0",
+   "dept": "DATA_ENG",
+   "num": "200-0",
+   "title": "Foundations of Data Science",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DATA_ENG%20200-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "DATA_ENG 300-0",
+   "dept": "DATA_ENG",
+   "num": "300-0",
+   "title": "Data Engineering Studio",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: DATA_ENG 200-0 and 1 unit from each of the following core areas; Statistics Foundations, Intermediate Programming/Algorithmic Skills, and Applied Machine Learning.Prereq for DATA_ENG 300.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DATA_ENG%20300-0",
+   "links": [
+    "DATA_ENG 200-0"
+   ]
+  },
+  {
+   "id": "ES_APPM 252-1",
+   "dept": "ES_APPM",
+   "num": "252-1",
+   "title": "Honors Calculus for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20252-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "ES_APPM 252-2",
+   "dept": "ES_APPM",
+   "num": "252-2",
+   "title": "Honors Calculus for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20252-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "ES_APPM 345-0",
+   "dept": "ES_APPM",
+   "num": "345-0",
+   "title": "Applied Linear Algebra",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: GEN_ENG 205-4 , GEN_ENG 206-4 , ES_APPM 245-0 , or MATH240-0.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20345-0"
+  },
+  {
+   "id": "ES_APPM 375-1",
+   "dept": "ES_APPM",
+   "num": "375-1",
+   "title": "Quantitative Biology I: Experiments, Data, Models, and Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20375-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "ES_APPM 375-2",
+   "dept": "ES_APPM",
+   "num": "375-2",
+   "title": "Quantitative Biology II: Experiments, Data, Models, and Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20375-2",
+   "autoPrereq": null
+  },
+  {
    "id": "GEN_ENG 150-0",
    "dept": "GEN_ENG",
    "num": "150-0",
@@ -2272,7 +5375,8 @@
    "text": "",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20150-0"
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20150-0",
+   "autoPrereq": null
   },
   {
    "id": "GEN_ENG 151-0",
@@ -2304,7 +5408,24 @@
    "text": "",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-1"
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 206-1",
+   "dept": "GEN_ENG",
+   "num": "206-1",
+   "title": "Honor Engineering Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-1"
   },
   {
    "id": "GEN_ENG 231-0",
@@ -2323,7 +5444,28 @@
    "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20231-0",
    "links": [
     "GEN_ENG 150-0",
-    "GEN_ENG 151-0"
+    "GEN_ENG 151-0",
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "GEN_ENG 241-0",
+   "dept": "GEN_ENG",
+   "num": "241-0",
+   "title": "Linear Algebra for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: GEN_ENG 150 or 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20241-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "MATH 220-2"
    ]
   },
   {
@@ -2344,8 +5486,368 @@
    "links": [
     "COMP_SCI 150-0",
     "GEN_ENG 150-0",
-    "GEN_ENG 151-0"
+    "GEN_ENG 151-0",
+    "GEN_ENG 241-0",
+    "MATH 220-2"
    ]
+  },
+  {
+   "id": "IEMS 201-0",
+   "dept": "IEMS",
+   "num": "201-0",
+   "title": "Introduction to Statistics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 218-2 or MATH 220-2 or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20201-0",
+   "links": [
+    "MATH 218-2",
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "IEMS 301-0",
+   "dept": "IEMS",
+   "num": "301-0",
+   "title": "Introduction to Statistical Learning",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: IEMS 201-0 , IEMS 303-0 ,BMD_ENG 220-0, CHEM_ENG 312-0 , GEN_ENG 231-0 , or MATH 314-0 ; COMP_SCI 110-0 , COMP_SCI 150-0 , GEN_ENG 150-0 , GEN_ENG 151-0 , GEN_ENG 205-1 , or GEN_ENG 206-1 ; GEN_ENG 241-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20301-0",
+   "links": [
+    "CHEM_ENG 312-0",
+    "COMP_SCI 110-0",
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 205-1",
+    "GEN_ENG 206-1",
+    "GEN_ENG 231-0",
+    "GEN_ENG 241-0",
+    "IEMS 201-0",
+    "IEMS 303-0",
+    "MATH 314-0"
+   ]
+  },
+  {
+   "id": "IEMS 303-0",
+   "dept": "IEMS",
+   "num": "303-0",
+   "title": "Engineering Statistics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: IEMS 302-0 or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20303-0"
+  },
+  {
+   "id": "IEMS 304-0",
+   "dept": "IEMS",
+   "num": "304-0",
+   "title": "Statistical Learning for Data Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: IEMS 303-0 or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20304-0",
+   "links": [
+    "IEMS 303-0"
+   ]
+  },
+  {
+   "id": "IEMS 305-0",
+   "dept": "IEMS",
+   "num": "305-0",
+   "title": "Foundations of Modern Machine Learning",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: IEMS 301-0 or IEMS 304-0 or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20305-0",
+   "links": [
+    "IEMS 301-0",
+    "IEMS 304-0"
+   ]
+  },
+  {
+   "id": "IEMS 307-0",
+   "dept": "IEMS",
+   "num": "307-0",
+   "title": "Quality Improvement by Experimental Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: IEMS 201-0 , IEMS 303-0 , or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20307-0",
+   "links": [
+    "IEMS 201-0",
+    "IEMS 303-0"
+   ]
+  },
+  {
+   "id": "IEMS 313-0",
+   "dept": "IEMS",
+   "num": "313-0",
+   "title": "Linear Optimization for Decision Making",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: COMP_SCI 110-0 , COMP_SCI 111-0 , or COMP_SCI 150-0 ; GEN_ENG 205-1 , GEN_ENG 206-1 , GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 241-0 ; MATH 228-1 ; sophomore standing .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20313-0",
+   "links": [
+    "COMP_SCI 110-0",
+    "COMP_SCI 111-0",
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 205-1",
+    "GEN_ENG 206-1",
+    "GEN_ENG 241-0",
+    "MATH 228-1"
+   ]
+  },
+  {
+   "id": "IEMS 340-0",
+   "dept": "IEMS",
+   "num": "340-0",
+   "title": "Qualitative Methods in Engineering Systems",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: DSGN 106-1 and DSGN 106-2 , or consent of instructor for non-McCormick students.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20340-0"
+  },
+  {
+   "id": "IEMS 341-0",
+   "dept": "IEMS",
+   "num": "341-0",
+   "title": "Social Networks Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20341-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "IEMS 351-0",
+   "dept": "IEMS",
+   "num": "351-0",
+   "title": "AI-Enabled Sequential Decision Making",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: IEMS 303-0 , IEMS 313-0 , IEMS 314-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20351-0",
+   "links": [
+    "IEMS 303-0",
+    "IEMS 313-0"
+   ]
+  },
+  {
+   "id": "MATH 218-1",
+   "dept": "MATH",
+   "num": "218-1",
+   "title": "Single-Variable Calculus with Precalculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20218-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 218-2",
+   "dept": "MATH",
+   "num": "218-2",
+   "title": "Single-Variable Calculus with Precalculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 218-1 or consent of the department.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20218-2",
+   "links": [
+    "MATH 218-1"
+   ]
+  },
+  {
+   "id": "MATH 218-3",
+   "dept": "MATH",
+   "num": "218-3",
+   "title": "Single-Variable Calculus with Precalculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 218-2 or consent of the department.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20218-3",
+   "links": [
+    "MATH 218-2"
+   ]
+  },
+  {
+   "id": "MATH 220-1",
+   "dept": "MATH",
+   "num": "220-1",
+   "title": "Single-Variable Differential Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 220-2",
+   "dept": "MATH",
+   "num": "220-2",
+   "title": "Single-Variable Integral Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 218-2 or MATH 220-0 (former) or MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-2",
+   "links": [
+    "MATH 218-2",
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-2",
+     "MATH 220-0",
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 226-0",
+   "dept": "MATH",
+   "num": "226-0",
+   "title": "Sequences and Series",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 218-3 or MATH 220-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20226-0",
+   "links": [
+    "MATH 218-3",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-3",
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-1",
+   "dept": "MATH",
+   "num": "228-1",
+   "title": "Multivariable Differential Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 218-3 or MATH 214-0 (former) or MATH 220-2 or MATH 224-0 (former).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-1",
+   "links": [
+    "MATH 218-3",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-3",
+     "MATH 214-0",
+     "MATH 220-2",
+     "MATH 224-0"
+    ]
+   }
   },
   {
    "id": "MATH 228-2",
@@ -2361,7 +5863,768 @@
    "text": "Prerequisite: MATH 228-1 or MATH 230-0 (former) or MATH 230-1 or MATH 281-1 or MATH 285-2 or MATH 290-2 or MATH 291-2 or ES_APPM 252-1 .",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-2"
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-2",
+   "links": [
+    "ES_APPM 252-1",
+    "MATH 228-1",
+    "MATH 230-1",
+    "MATH 281-1",
+    "MATH 285-2",
+    "MATH 290-2",
+    "MATH 291-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 228-1",
+     "MATH 230-0",
+     "MATH 230-1",
+     "MATH 281-1",
+     "MATH 285-2",
+     "MATH 290-2",
+     "MATH 291-2",
+     "ES_APPM 252-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 230-1",
+   "dept": "MATH",
+   "num": "230-1",
+   "title": "Multivariable Differential Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 218-3 or MATH 214-0 (former) or MATH 220-2 or MATH 224-0 (former).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20230-1",
+   "links": [
+    "MATH 218-3",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-3",
+     "MATH 214-0",
+     "MATH 220-2",
+     "MATH 224-0"
+    ]
+   }
+  },
+  {
+   "id": "MATH 230-2",
+   "dept": "MATH",
+   "num": "230-2",
+   "title": "Multivariable Integral Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 228-1 or MATH 230-0 (former) or MATH 230-1 or MATH 281-1 or MATH 285-2 or MATH 290-2 or MATH 291-2 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20230-2",
+   "links": [
+    "ES_APPM 252-1",
+    "MATH 228-1",
+    "MATH 230-1",
+    "MATH 281-1",
+    "MATH 285-2",
+    "MATH 290-2",
+    "MATH 291-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 228-1",
+     "MATH 230-0",
+     "MATH 230-1",
+     "MATH 281-1",
+     "MATH 285-2",
+     "MATH 290-2",
+     "MATH 291-2",
+     "ES_APPM 252-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 240-0",
+   "dept": "MATH",
+   "num": "240-0",
+   "title": "Linear Algebra",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 230-1 or MATH 230-0 (former) or MATH 281-1 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20240-0",
+   "links": [
+    "ES_APPM 252-1",
+    "MATH 230-1",
+    "MATH 281-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 230-1",
+     "MATH 230-0",
+     "MATH 281-1",
+     "ES_APPM 252-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 281-1",
+   "dept": "MATH",
+   "num": "281-1",
+   "title": "Accelerated Mathematics for ISP: First Year",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: first-year standing in ISP.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20281-1"
+  },
+  {
+   "id": "MATH 281-2",
+   "dept": "MATH",
+   "num": "281-2",
+   "title": "Accelerated Mathematics for ISP: First Year",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 281-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20281-2",
+   "links": [
+    "MATH 281-1"
+   ],
+   "autoPrereq": "MATH 281-1"
+  },
+  {
+   "id": "MATH 281-3",
+   "dept": "MATH",
+   "num": "281-3",
+   "title": "Accelerated Mathematics for ISP: First Year",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 281-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20281-3",
+   "links": [
+    "MATH 281-2"
+   ],
+   "autoPrereq": "MATH 281-2"
+  },
+  {
+   "id": "MATH 285-1",
+   "dept": "MATH",
+   "num": "285-1",
+   "title": "Accelerated Mathematics for MMSS",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MMSS students only.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20285-1"
+  },
+  {
+   "id": "MATH 285-2",
+   "dept": "MATH",
+   "num": "285-2",
+   "title": "Accelerated Mathematics for MMSS",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 285-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20285-2",
+   "links": [
+    "MATH 285-1"
+   ],
+   "autoPrereq": "MATH 285-1"
+  },
+  {
+   "id": "MATH 285-3",
+   "dept": "MATH",
+   "num": "285-3",
+   "title": "Accelerated Mathematics for MMSS",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 285-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20285-3",
+   "links": [
+    "MATH 285-2"
+   ],
+   "autoPrereq": "MATH 285-2"
+  },
+  {
+   "id": "MATH 290-1",
+   "dept": "MATH",
+   "num": "290-1",
+   "title": "MENU: Linear Algebra and Multivariable Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20290-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 290-2",
+   "dept": "MATH",
+   "num": "290-2",
+   "title": "MENU: Linear Algebra and Multivariable Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 290-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20290-2",
+   "links": [
+    "MATH 290-1"
+   ],
+   "autoPrereq": "MATH 290-1"
+  },
+  {
+   "id": "MATH 290-3",
+   "dept": "MATH",
+   "num": "290-3",
+   "title": "MENU: Linear Algebra and Multivariable Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 290-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20290-3",
+   "links": [
+    "MATH 290-2"
+   ],
+   "autoPrereq": "MATH 290-2"
+  },
+  {
+   "id": "MATH 291-1",
+   "dept": "MATH",
+   "num": "291-1",
+   "title": "MENU: Intensive Linear Algebra and Multivariable Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: consent of the department.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20291-1"
+  },
+  {
+   "id": "MATH 291-2",
+   "dept": "MATH",
+   "num": "291-2",
+   "title": "MENU: Intensive Linear Algebra and Multivariable Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 291-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20291-2",
+   "links": [
+    "MATH 291-1"
+   ],
+   "autoPrereq": "MATH 291-1"
+  },
+  {
+   "id": "MATH 291-3",
+   "dept": "MATH",
+   "num": "291-3",
+   "title": "MENU: Intensive Linear Algebra and Multivariable Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 291-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20291-3",
+   "links": [
+    "MATH 291-2"
+   ],
+   "autoPrereq": "MATH 291-2"
+  },
+  {
+   "id": "MATH 310-1",
+   "dept": "MATH",
+   "num": "310-1",
+   "title": "Probability and Stochastic Processes",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20310-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 310-2",
+   "dept": "MATH",
+   "num": "310-2",
+   "title": "Probability and Stochastic Processes",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: MATH 240-0 or MATH 281-3 or MATH 285-1 or MATH 290-1 or MATH 291-1 or GEN_ENG 205-1 or GEN_ENG 206-1 ; and MATH 310-1 or MATH 311-1 or MATH 314-0 or MATH 385-0 or STAT 320-1 or STAT 383-0 or IEMS 302-0 or ELEC_ENG 302-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20310-2",
+   "links": [
+    "ELEC_ENG 302-0",
+    "GEN_ENG 205-1",
+    "GEN_ENG 206-1",
+    "MATH 240-0",
+    "MATH 281-3",
+    "MATH 285-1",
+    "MATH 290-1",
+    "MATH 291-1",
+    "MATH 310-1",
+    "MATH 311-1",
+    "MATH 314-0"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "MATH 240-0",
+       "MATH 281-3",
+       "MATH 285-1",
+       "MATH 290-1",
+       "MATH 291-1",
+       "GEN_ENG 205-1",
+       "GEN_ENG 206-1"
+      ]
+     },
+     {
+      "or": [
+       "MATH 310-1",
+       "MATH 311-1",
+       "MATH 314-0",
+       "MATH 385-0",
+       "STAT 320-1",
+       "STAT 383-0",
+       "IEMS 302-0",
+       "ELEC_ENG 302-0"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "MATH 311-1",
+   "dept": "MATH",
+   "num": "311-1",
+   "title": "MENU: Probability and Stochastic Processes",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 226-0 or MATH 281-2 ; and MATH 291-3 , or MATH 300-0 and any one of MATH 290-3 , MATH 281-2 , MATH 285-3or ES_APPM 252-2 ; or consent of the department.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20311-1",
+   "links": [
+    "MATH 226-0",
+    "MATH 281-2",
+    "MATH 285-3",
+    "MATH 290-3",
+    "MATH 291-3"
+   ]
+  },
+  {
+   "id": "MATH 311-2",
+   "dept": "MATH",
+   "num": "311-2",
+   "title": "MENU: Probability and Stochastic Processes",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 311-1 or consent of the department.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20311-2",
+   "links": [
+    "MATH 311-1"
+   ]
+  },
+  {
+   "id": "MATH 314-0",
+   "dept": "MATH",
+   "num": "314-0",
+   "title": "Probability and Statistics for Econometrics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20314-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 320-1",
+   "dept": "MATH",
+   "num": "320-1",
+   "title": "Real Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 226-0 or MATH 281-2 ; and MATH 300-0 or MATH 291-3 ; or consent of the department.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20320-1",
+   "links": [
+    "MATH 226-0",
+    "MATH 281-2",
+    "MATH 291-3"
+   ]
+  },
+  {
+   "id": "MATH 320-2",
+   "dept": "MATH",
+   "num": "320-2",
+   "title": "Real Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 320-1 or MATH 321-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20320-2",
+   "links": [
+    "MATH 320-1",
+    "MATH 321-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 320-1",
+     "MATH 321-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 321-1",
+   "dept": "MATH",
+   "num": "321-1",
+   "title": "MENU: Real Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: consent of the department.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20321-1"
+  },
+  {
+   "id": "MATH 321-2",
+   "dept": "MATH",
+   "num": "321-2",
+   "title": "MENU: Real Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 321-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20321-2",
+   "links": [
+    "MATH 321-1"
+   ],
+   "autoPrereq": "MATH 321-1"
+  },
+  {
+   "id": "MATH 330-1",
+   "dept": "MATH",
+   "num": "330-1",
+   "title": "Abstract Algebra",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 291-1 or MATH 300-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20330-1",
+   "links": [
+    "MATH 291-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 291-1",
+     "MATH 300-0"
+    ]
+   }
+  },
+  {
+   "id": "MATH 330-2",
+   "dept": "MATH",
+   "num": "330-2",
+   "title": "Abstract Algebra",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 330-1 or MATH 331-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20330-2",
+   "links": [
+    "MATH 330-1",
+    "MATH 331-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 330-1",
+     "MATH 331-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 331-1",
+   "dept": "MATH",
+   "num": "331-1",
+   "title": "MENU: Abstract Algebra",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: consent of the department.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20331-1"
+  },
+  {
+   "id": "MATH 331-2",
+   "dept": "MATH",
+   "num": "331-2",
+   "title": "MENU: Abstract Algebra",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 331-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20331-2",
+   "links": [
+    "MATH 331-1"
+   ],
+   "autoPrereq": "MATH 331-1"
+  },
+  {
+   "id": "MATH 344-1",
+   "dept": "MATH",
+   "num": "344-1",
+   "title": "Introduction to Topology",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MATH 320-1 or MATH 321-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20344-1",
+   "links": [
+    "MATH 320-1",
+    "MATH 321-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 320-1",
+     "MATH 321-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 344-2",
+   "dept": "MATH",
+   "num": "344-2",
+   "title": "Introduction to Topology",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: MATH 344-1 , and either MATH 330-1 or MATH 331-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20344-2",
+   "links": [
+    "MATH 330-1",
+    "MATH 331-1",
+    "MATH 344-1"
+   ]
+  },
+  {
+   "id": "MAT_SCI 358-0",
+   "dept": "MAT_SCI",
+   "num": "358-0",
+   "title": "Modeling and Simulation in Materials Science and Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MAT_SCI 314-0 , MAT_SCI 315-0 , MAT_SCI 316-1 , and MAT_SCI 351-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20358-0"
+  },
+  {
+   "id": "MAT_SCI 390-1",
+   "dept": "MAT_SCI",
+   "num": "390-1",
+   "title": "Process and Experimental Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: MatSci 316-2 and MatSci 351-2 or consent of instructor. MatSci 331 is recommended. MatSci 390-1 is a prerequisite for MatSci 390-2.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20390-1"
+  },
+  {
+   "id": "MECH_ENG 301-0",
+   "dept": "MECH_ENG",
+   "num": "301-0",
+   "title": "Introduction to Robotics Laboratory",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisites: MECH_ENG 224-0 , COMP_SCI 110-0 , COMP_SCI 111-0 , COMP_SCI 150-0 , GEN_ENG 150-0 , GEN_ENG 151-0 , or some programming experience and consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20301-0",
+   "links": [
+    "COMP_SCI 110-0",
+    "COMP_SCI 111-0",
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0"
+   ]
+  },
+  {
+   "id": "MECH_ENG 329-0",
+   "dept": "MECH_ENG",
+   "num": "329-0",
+   "title": "Mechanistic Data Science for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20329-0",
+   "autoPrereq": null
   },
   {
    "id": "MECH_ENG 333-0",
@@ -2381,6 +6644,22 @@
    "links": [
     "ELEC_ENG 221-0"
    ]
+  },
+  {
+   "id": "MECH_ENG 341-0",
+   "dept": "MECH_ENG",
+   "num": "341-0",
+   "title": "Computational Methods for Engineering Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: senior standing or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20341-0"
   },
   {
    "id": "MECH_ENG 381-0",
@@ -2412,7 +6691,14 @@
    "text": "Prerequisites: MECH_ENG 241-0 ; CIV_ENV 216-0 ; GEN_ENG 205-4 .",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20390-0"
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20390-0",
+   "autoPrereq": {
+    "and": [
+     "MECH_ENG 241-0",
+     "CIV_ENV 216-0",
+     "GEN_ENG 205-4"
+    ]
+   }
   },
   {
    "id": "PHYSICS 135-2",
@@ -2428,7 +6714,17 @@
    "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-1 ; MATH 230-2 OR MATH 290-2 OR MATH 291-2 (may be taken concurrently).\".",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-2"
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-2",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2",
+    "MATH 230-1",
+    "MATH 230-2",
+    "MATH 290-1",
+    "MATH 290-2",
+    "MATH 291-1",
+    "MATH 291-2"
+   ]
   },
   {
    "id": "PHYSICS 135-3",
@@ -2446,8 +6742,63 @@
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-3",
    "links": [
+    "MATH 220-1",
+    "MATH 220-2",
+    "MATH 230-1",
+    "MATH 290-1",
+    "MATH 291-1",
     "PHYSICS 135-2"
    ]
+  },
+  {
+   "id": "STAT 210-0",
+   "dept": "STAT",
+   "num": "210-0",
+   "title": "Introduction to Probability and Statistics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: strong background in high school algebra (calculus is not required).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=STAT%20210-0"
+  },
+  {
+   "id": "STAT 320-2",
+   "dept": "STAT",
+   "num": "320-2",
+   "title": "Statistical Theory & Methods 2",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "text": "Prerequisite: STAT 320-1 or MATH 310-1 or MATH 310-1 or MATH 311-1 or MATH 314-0 or MATH 385-0 or ELEC_ENG 302-0 or IEMS 302-0 or STAT 383-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=STAT%20320-2",
+   "links": [
+    "ELEC_ENG 302-0",
+    "MATH 310-1",
+    "MATH 311-1",
+    "MATH 314-0"
+   ],
+   "autoPrereq": {
+    "or": [
+     "STAT 320-1",
+     "MATH 310-1",
+     "MATH 311-1",
+     "MATH 314-0",
+     "MATH 385-0",
+     "ELEC_ENG 302-0",
+     "IEMS 302-0",
+     "STAT 383-0"
+    ]
+   }
   }
  ]
 }

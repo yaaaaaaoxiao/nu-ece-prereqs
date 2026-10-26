@@ -29,13 +29,12 @@ import urllib.request
 
 from bs4 import BeautifulSoup
 
-from prereqs import CODE_RE, clean, codes_in, parse_requirements
+from prereqs import clean, codes_in, is_plain, parse_requirements
+from programs import parse_program, program_courses
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 HERE = ROOT / "scraper"
 DATA = ROOT / "data"
-# Degree-page sections that are school-wide (math/science core), not part of the major.
-SKIP_SECTIONS = ("Core Courses",)
 
 
 def load_json(path, default=None):
@@ -132,46 +131,6 @@ def parse_dept(html):
     return {"name": name, "courses": courses}
 
 
-def parse_degree(html, labels):
-    """Return the degree's course lists as [{label, kind, courses}] in page order."""
-    soup = BeautifulSoup(html, "html.parser")
-    groups, section, header = [], "", ""
-    for el in soup.find(id="textcontainer").find_all(["h2", "h3", "tr"]):
-        if el.name != "tr":
-            section, header = clean(el.get_text(" ")), ""
-            continue
-        cls = el.get("class") or []
-        text = clean(el.get_text(" "))
-        if "areaheader" in cls or "areasubheader" in cls:
-            header = re.sub(r"\s*\d+(,\d+)*$", "", text)  # drop footnote markers
-            continue
-        codes = [" ".join(c) for c in CODE_RE.findall(text)]
-        if not codes or section.startswith(SKIP_SECTIONS):
-            continue
-        label, kind = group_label(section, header, labels)
-        if not label:
-            continue
-        group = next((g for g in groups if g["label"] == label), None)
-        if not group:
-            group = {"label": label, "kind": kind, "courses": []}
-            groups.append(group)
-        group["courses"] += [c for c in codes if c not in group["courses"]]
-    return groups
-
-
-def group_label(section, header, labels):
-    if not section.startswith("Major Program"):
-        return section, "track"  # a named track / area list
-    if header in labels:
-        return labels[header], "elective"
-    h = header.lower()
-    if "required" in h:
-        return "Required courses", "required"
-    if "design" in h:
-        return "Design project", "design"
-    return header[:1].upper() + header[1:], "elective"
-
-
 def parse_mccormick_schedule(html):
     soup = BeautifulSoup(html, "html.parser")
     table = soup.find("table", id="course_list")
@@ -229,7 +188,8 @@ def match_schedule(nodes, rows, aliases):
 # ---------------------------------------------------------------------------
 
 def build_map(cfg, config, catalog, fetcher, overrides, verified):
-    issues = {"unreviewed": [], "stale_overrides": [], "placeholders": [], "unmatched": [], "cycles": []}
+    issues = {"unreviewed": [], "stale_overrides": [], "placeholders": [], "unmatched": [], "cycles": [],
+              "empty_programs": []}
     nodes = {}
     # Short department names used in prereq text ("CS 214") -> catalog codes.
     aliases = {abbr: dept for dept, abbr in config["abbreviations"].items() if " " not in abbr}
@@ -248,19 +208,23 @@ def build_map(cfg, config, catalog, fetcher, overrides, verified):
                 issues["unreviewed"].append(cid)
             nodes[cid] = node
 
-    degrees = []
-    for d in cfg.get("degrees", []):
-        groups = parse_degree(fetcher.get(config["catalog"] + d["path"]),
-                              without_comments(cfg.get("groupLabels", {})))
-        degrees.append({"id": d["id"], "name": d["name"], "url": config["catalog"] + d["path"], "groups": groups})
+    # Majors and minors students can pick (alone or combined) on this map.
+    programs = []
+    for pid in cfg.get("programs", []):
+        p = config["programs"][pid]
+        url = config["catalog"] + p["path"]
+        lists, notes = parse_program(fetcher.get(url), without_comments(p.get("labels", {})))
+        programs.append({"id": pid, "name": p["name"], "type": p["type"], "url": url,
+                         "default": pid in cfg.get("defaultPrograms", []), "lists": lists, "notes": notes})
+        if not lists:
+            issues["empty_programs"].append(pid)
 
-    # Pull in every course referenced by a prerequisite or listed in a degree.
+    # Pull in every course referenced by a prerequisite or listed in a program.
     wanted = set()
     for n in list(nodes.values()):
         wanted |= set(codes_in(n["prereq"]) + codes_in(n["coreq"]) + n["recommended"])
-    for d in degrees:
-        for g in d["groups"]:
-            wanted |= {c for c in g["courses"] if catalog.course(c)}
+    for p in programs:
+        wanted |= {c for c in program_courses(p["lists"]) if catalog.course(c)}
     for cid in sorted(wanted - nodes.keys()):
         c = catalog.course(cid)
         if c:
@@ -271,18 +235,18 @@ def build_map(cfg, config, catalog, fetcher, overrides, verified):
                           "role": "external", "missing": True}
             issues["placeholders"].append(cid)
 
-    for d in degrees:
-        for g in d["groups"]:
-            g["unlisted"] = [c for c in g["courses"] if c not in nodes]
-            g["courses"] = [c for c in g["courses"] if c in nodes]
-
     # Courses from other departments: only keep links to courses already on the map.
+    # Their prerequisites aren't checked by hand, so they stay out of `prereq`. When
+    # the sentence is plain enough to parse reliably, the tree is kept as
+    # `auto_prereq` so the site can tell students whether they can take it yet.
     for cid, n in nodes.items():
         if n["role"] == "external":
             reqs = parse_requirements(n["text"], aliases)
             linked = set(codes_in(reqs["prereq"]) + codes_in(reqs["coreq"]))
             n.update(prereq=None, coreq=None, recommended=[], notes=[], reviewed=False,
                      links=sorted(linked & nodes.keys() - {cid}))
+            if is_plain(n["text"], aliases):
+                n["auto_prereq"] = reqs["prereq"]
 
     quarters = []
     sched = cfg.get("schedule")
@@ -306,6 +270,8 @@ def build_map(cfg, config, catalog, fetcher, overrides, verified):
             rec["links"] = n["links"]
         if n.get("missing"):
             rec["missing"] = True
+        elif "auto_prereq" in n:
+            rec["autoPrereq"] = n["auto_prereq"]
         courses.append(rec)
 
     depts = {}
@@ -324,9 +290,9 @@ def build_map(cfg, config, catalog, fetcher, overrides, verified):
         "catalogYear": catalog.year,
         "quarters": quarters,
         "departments": dict(sorted(depts.items(), key=lambda kv: (not kv[1]["main"], kv[0]))),
-        "degrees": degrees,
+        "programs": programs,
         "sources": ([f"{config['catalog']}/undergraduate/courses-az/{d.lower()}/" for d in cfg["departments"]]
-                    + [d["url"] for d in degrees] + ([sched["url"]] if sched else [])),
+                    + [p["url"] for p in programs] + ([sched["url"]] if sched else [])),
         "courses": courses,
     }
     return data, issues
@@ -379,7 +345,8 @@ def write_report(path, results):
                 lines += [f"- **{cid}**: {c['text']}",
                           f"  - parsed: prereq `{fmt(c['prereq'])}`, coreq `{fmt(c['coreq'])}`, notes {c['notes']}"]
             lines.append("")
-        for key, title in [("stale_overrides", "Overrides written against older catalog text"),
+        for key, title in [("empty_programs", "Program pages where no course lists were found"),
+                           ("stale_overrides", "Overrides written against older catalog text"),
                            ("placeholders", "Referenced courses missing from the catalog"),
                            ("cycles", "Prerequisite cycles"),
                            ("unmatched", "Schedule rows not matched to a course")]:

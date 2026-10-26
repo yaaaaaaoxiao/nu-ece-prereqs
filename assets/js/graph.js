@@ -1,18 +1,23 @@
 // Graph view: the level layout, SVG rendering, pan/zoom, keyboard navigation
-// and the visual states (selection chain, highlight, planner badges).
+// and the visual states (selection chain, highlight, plan statuses and the
+// multi-selection).
 //
 // Layout: one horizontal band per course level (100, 200, 300, ...), one
 // column per department (this map's departments, then "Other departments").
 // Inside a band, a course that needs another course of the same level sits
 // in a lower "tier", so progressions such as CE 303 -> 355 -> 387 read
-// top to bottom. Links are drawn on demand (hover, selection, highlight).
+// top to bottom.
+//
+// Each card shows the course code and title, an icon for the viewer's plan
+// (taken, planned, can take now) and how many courses on the map it leads to.
 /* global d3 */
+import { termLabel, termShort } from './plan.js';
 
 const NODE_W = 160;
 const NODE_H = 42;
-const GAP_X = 12;
-const GAP_Y = 10;
-const TIER_GAP = 14; // extra space before the next tier of a cell
+const GAP_X = 18; // gutter between card columns; links run down it
+const GAP_Y = 16; // gap between rows; links run along it
+const PITCH = NODE_H + GAP_Y;
 const GROUP_GAP = 56; // between department columns
 const PAD = 32;
 const HEADER_H = 30; // department titles above the first band
@@ -22,55 +27,115 @@ const MAX_COLS = 8;
 const OTHER = '_other';
 const FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif';
 const TITLE_FONT = `11px ${FONT}`;
+const TERM_FONT = `600 10px ${FONT}`; // matches .node .term
+const REACH_FONT = `650 10.5px ${FONT}`; // matches .reach text
+const FAR_FONT = `650 19px ${FONT}`; // matches .graph.is-far .node .code
 // Below FAR the nodes switch to a large code-only label (semantic zoom);
 // below READABLE even that is too small, so reveal() zooms in.
 const FAR = 0.72;
 const READABLE = 0.42;
+const FAR_SCALE = 1.45; // status icon and count are drawn this much bigger when zoomed out
+// "Leads to" counts from these up get a stronger badge.
+const REACH_MID = 5;
+const REACH_HIGH = 15;
+const LONG_PRESS = 500; // ms; on touch screens a long press selects several courses
 
 const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const translate = p => `translate(${p.x},${p.y})`;
+const isToggle = e => e.shiftKey || e.metaKey || e.ctrlKey;
+const STATUS_TEXT = { taken: 'Taken', planned: 'Planned', ready: 'You can take it now' };
 
 export class GraphView {
-  constructor(svgEl, { onSelect }) {
+  constructor(svgEl, { onSelect, onPick, minimap }) {
     this.el = svgEl;
     this.svg = d3.select(svgEl);
     this.onSelect = onSelect;
+    this.onPick = onPick;
     this.map = null;
     this.visible = new Set();
     this.state = null;
-    this.layout = { nodes: new Map(), edges: [], bands: [], labels: [], width: 0, height: 0, cols: '' };
+    this.layout = { nodes: new Map(), edges: [], bands: [], labels: [], loose: new Set(), width: 0, height: 0, cols: '' };
+    this.reach = new Map(); // course -> how many courses on the map it leads to
     this.focus = { sel: null, up: new Set(), down: new Set() };
     this.transform = d3.zoomIdentity;
     this.insets = { top: 0, bottom: 0 }; // px covered by floating controls / the phone sheet
     this.measure = document.createElement('canvas').getContext('2d');
     this.measure.font = TITLE_FONT;
-    const titles = document.createElement('canvas').getContext('2d');
-    titles.font = `650 22px ${FONT}`; // matches .graph.is-far .group-label
-    this.titleWidth = text => titles.measureText(text).width + text.length * 1.1; // + letter-spacing
+    const ctx = document.createElement('canvas').getContext('2d');
+    this.textWidth = (text, font) => {
+      ctx.font = font;
+      return ctx.measureText(text).width;
+    };
+    // Column titles at their zoomed-out size (matches .graph.is-far .group-label), plus letter-spacing.
+    this.titleWidth = text => this.textWidth(text, `650 22px ${FONT}`) + text.length * 1.1;
 
     this.viewport = this.svg.append('g').attr('class', 'viewport');
     this.bandLayer = this.viewport.append('g').attr('class', 'bands');
     this.edgeLayer = this.viewport.append('g').attr('class', 'edges');
     this.nodeLayer = this.viewport.append('g').attr('class', 'nodes');
+    this.boxRect = this.viewport.append('rect').attr('class', 'select-box').style('display', 'none');
     this.edgeSel = this.edgeLayer.selectAll('path.edge');
     this.nodeSel = this.nodeLayer.selectAll('g.node');
 
     // Drag pans, pinch or Ctrl+scroll zooms; plain scrolling pans (onWheel).
+    // Shift-drag draws a selection box instead (onBoxStart).
     this.zoom = d3.zoom()
       .scaleExtent([0.15, 2.5])
-      .filter(e => (e.type === 'wheel' ? e.ctrlKey : !e.button))
+      .filter(e => (e.type === 'wheel' ? e.ctrlKey : !e.button && !e.shiftKey))
       .on('zoom', e => {
         this.transform = e.transform;
         this.viewport.attr('transform', e.transform);
         this.svg.classed('is-far', e.transform.k < FAR);
+        this.drawMinimapView();
       });
     this.svg.call(this.zoom).on('dblclick.zoom', null);
     svgEl.addEventListener('wheel', e => this.onWheel(e), { passive: false });
     svgEl.addEventListener('keydown', e => this.onKey(e));
     // d3.zoom swallows the click that ends a drag, so this only fires on a real click.
     this.svg.on('click', e => {
-      if (!e.target.closest('.node')) this.onSelect(null, { source: 'graph' });
+      if (this.swallowClick) {
+        this.swallowClick = false;
+        return;
+      }
+      if (!e.target.closest('.node')) this.onSelect(null, { source: 'graph', toggle: isToggle(e) });
     });
+    svgEl.addEventListener('pointerdown', e => this.onBoxStart(e));
+    svgEl.addEventListener('pointermove', e => {
+      this.onBoxMove(e);
+      if (this.press && Math.hypot(e.clientX - this.press.x, e.clientY - this.press.y) > 8) this.cancelPress();
+    });
+    svgEl.addEventListener('pointerup', e => {
+      this.onBoxEnd(e);
+      this.endPress();
+    });
+    svgEl.addEventListener('pointercancel', () => {
+      this.cancelBox();
+      this.cancelPress();
+    });
+    svgEl.addEventListener('contextmenu', e => {
+      if (this.press || this.pressed) e.preventDefault();
+    });
+
+    // Minimap: the whole map in miniature, with the visible area outlined.
+    // Click or drag on it to move there.
+    if (minimap) {
+      this.mm = d3.select(minimap).append('svg').attr('class', 'minimap-svg');
+      this.mmBands = this.mm.append('g');
+      this.mmNodes = this.mm.append('g');
+      this.mmView = this.mm.append('rect').attr('class', 'mm-view');
+      this.mmNodeSel = this.mmNodes.selectAll('rect');
+      const go = e => {
+        const [x, y] = d3.pointer(e, this.mm.node());
+        this.svg.call(this.zoom.translateTo, x, y);
+      };
+      minimap.addEventListener('pointerdown', e => {
+        minimap.setPointerCapture(e.pointerId);
+        go(e);
+      });
+      minimap.addEventListener('pointermove', e => {
+        if (minimap.hasPointerCapture(e.pointerId)) go(e);
+      });
+    }
   }
 
   // ---------------------------------------------------------------- data
@@ -83,6 +148,9 @@ export class GraphView {
       this.nodeLayer.selectAll('*').remove();
       this.edgeLayer.selectAll('*').remove();
     }
+    // The courses each one leads to are what turns orange when it's selected.
+    this.reach = new Map([...visibleIds].map(id =>
+      [id, [...map.descendants(id)].filter(d => visibleIds.has(d)).length]));
     this.layout = computeLayout(map, visibleIds, this.viewportSize(), this.titleWidth);
     this.draw(animate && !fresh && !reducedMotion());
     if (this.state) this.update(this.state);
@@ -134,7 +202,7 @@ export class GraphView {
       .data(edges, e => `${e.source}|${e.target}`)
       .join('path')
       .attr('class', e => `edge k-${e.kind}`)
-      .attr('d', e => edgePath(nodes.get(e.source), nodes.get(e.target)));
+      .attr('d', e => e.d);
     if (animate) setTimeout(() => this.edgeLayer.classed('is-moving', false), duration);
 
     this.nodeSel = this.nodeLayer.selectAll('g.node')
@@ -152,6 +220,46 @@ export class GraphView {
           .attr('transform', id => translate(nodes.get(id)))),
         exit => exit.remove(),
       );
+    // Courses with no links here are drawn quieter so the chains stand out.
+    this.nodeSel.classed('is-loose', id => this.layout.loose.has(id));
+    this.nodeSel.each((id, i, els) => this.drawReach(d3.select(els[i]), this.reach.get(id) || 0));
+    this.drawMinimap();
+  }
+
+  // The "leads to" badge: a branching icon and the count, darker the more it is.
+  drawReach(g, n) {
+    const reach = g.select('.reach').attr('class', `reach t${n >= REACH_HIGH ? 3 : n >= REACH_MID ? 2 : n ? 1 : 0}`);
+    if (!n) return;
+    const w = this.textWidth(String(n), REACH_FONT);
+    const x = -(w + 10.6); // icon center: right padding, number, gap, half the icon
+    reach.select('rect').attr('x', -(w + 18)).attr('width', w + 18);
+    reach.select('.fork').attr('d', `M${x} -3.8v2.4M${x} -1.4l-2.6 3.9M${x} -1.4v3.9M${x} -1.4l2.6 3.9`);
+    reach.select('text').text(n);
+  }
+
+  drawMinimap() {
+    if (!this.mm) return;
+    const { nodes, bands, width, height } = this.layout;
+    this.mm.attr('viewBox', `0 0 ${width} ${height}`);
+    this.mmBands.selectAll('rect').data(bands).join('rect')
+      .attr('class', (b, i) => `mm-band${i % 2 ? ' is-alt' : ''}`)
+      .attr('x', 0).attr('y', b => b.top).attr('width', width).attr('height', b => b.bottom - b.top);
+    this.mmNodeSel = this.mmNodes.selectAll('rect').data([...nodes.keys()], id => id).join('rect')
+      .attr('class', 'mm-node')
+      .attr('x', id => nodes.get(id).x).attr('y', id => nodes.get(id).y)
+      .attr('width', NODE_W).attr('height', NODE_H).attr('rx', 8);
+    this.drawMinimapView();
+  }
+
+  drawMinimapView() {
+    if (!this.mm) return;
+    const t = this.transform;
+    const view = { x: -t.x / t.k, y: -t.y / t.k, w: this.el.clientWidth / t.k, h: this.el.clientHeight / t.k };
+    this.mmView.attr('x', view.x).attr('y', view.y).attr('width', view.w).attr('height', view.h);
+    // Only needed when part of the map is off screen.
+    const { width, height } = this.layout;
+    const all = view.x <= 8 && view.y <= 8 && view.x + view.w >= width - 8 && view.y + view.h >= height - 8;
+    this.mm.node().parentNode.classList.toggle('is-hidden', all || !width);
   }
 
   createNodes(enter) {
@@ -164,23 +272,43 @@ export class GraphView {
       .attr('data-id', id => id)
       .attr('role', 'button')
       .attr('tabindex', -1)
-      .on('click', (e, id) => this.onSelect(id, { source: 'graph' }))
+      .on('click', (e, id) => {
+        if (this.swallowClick) {
+          this.swallowClick = false;
+          return;
+        }
+        this.onSelect(id, { source: 'graph', toggle: isToggle(e) });
+      })
+      .on('pointerdown', (e, id) => this.startPress(e, id))
       .on('pointerenter', (e, id) => { if (e.pointerType === 'mouse') this.setHover(id); })
       .on('pointerleave', () => this.setHover(null))
       .on('focus', (e, id) => this.onNodeFocus(id))
       .on('blur', () => this.setHover(null));
     g.append('rect').attr('class', 'card').attr('width', NODE_W).attr('height', NODE_H).attr('rx', 7);
+    // The viewer's plan: taken, planned, can take now, or planned but needs a check.
+    const mark = g.append('g').attr('class', 'mark').attr('aria-hidden', 'true')
+      .attr('transform', 'translate(16,13)')
+      .append('g').attr('class', 'mark-icon');
+    mark.append('circle').attr('r', 5.5);
+    mark.append('path').attr('class', 'i-check').attr('d', 'M-2.6 0.1-0.8 1.9 2.6-1.6');
+    mark.append('path').attr('class', 'i-clock').attr('d', 'M0-3.1V0l2 1.3');
+    mark.append('path').attr('class', 'i-go').attr('d', 'M-2.6 0H2.2M0.1-2.3 2.4 0 0.1 2.3');
+    mark.append('path').attr('class', 'i-warn').attr('d', 'M0-3V0.4M0 2.5v0.1');
     g.append('text').attr('class', 'code').attr('x', 10).attr('y', 17).text(id => map.label(map.get(id)));
-    g.append('text').attr('class', 'title').attr('x', 10).attr('y', 32)
-      .text(id => this.fitText(map.get(id).title || 'Not in the current catalog', NODE_W - 20));
-    const badge = g.append('g').attr('class', 'badge').attr('aria-hidden', 'true')
-      .attr('transform', `translate(${NODE_W - 13},13)`);
-    badge.append('circle').attr('r', 6);
-    badge.append('path').attr('class', 'check').attr('d', 'M-3 0.2 -0.9 2.3 3 -1.8');
-    g.append('title').text(id => {
-      const c = map.get(id);
-      return c.title ? `${c.id}: ${c.title}` : c.id;
-    });
+    g.append('text').attr('class', 'title').attr('x', 10).attr('y', 32);
+    g.append('text').attr('class', 'term').attr('x', NODE_W - 9).attr('y', 32);
+    // How many courses on the map this one leads to (see drawReach).
+    const reach = g.append('g').attr('class', 'reach').attr('aria-hidden', 'true')
+      .attr('transform', `translate(${NODE_W - 6},13.5)`)
+      .append('g').attr('class', 'reach-badge');
+    reach.append('rect').attr('y', -7.5).attr('height', 15).attr('rx', 7.5);
+    reach.append('path').attr('class', 'fork');
+    reach.append('text').attr('x', -5).attr('y', 3.7);
+    // A check on the top-left corner while the course is in the multi-selection.
+    const pick = g.append('g').attr('class', 'pick').attr('aria-hidden', 'true');
+    pick.append('circle').attr('r', 7.5);
+    pick.append('path').attr('d', 'M-3.2 0.1-1 2.3 3.2-1.9');
+    g.append('title');
     return g;
   }
 
@@ -202,8 +330,7 @@ export class GraphView {
     this.state = state;
     const map = this.map;
     if (!map) return;
-    const { taken } = state;
-    const showStatus = [...taken].some(id => map.get(id));
+    const { taken, planned, ready, picked, plan } = state;
     const hl = state.highlight ? map.highlight(state.highlight) : null;
     const sel = state.selected && this.layout.nodes.has(state.selected) ? state.selected : null;
 
@@ -221,6 +348,9 @@ export class GraphView {
     const isUp = e => !!sel && up.has(e.source) && (e.target === sel || up.has(e.target));
     const isDown = e => !!sel && (e.source === sel || down.has(e.source)) && down.has(e.target);
     const inHighlight = e => !sel && !!hl && hl.ids.has(e.source) && hl.ids.has(e.target);
+    const status = id => (taken.has(id) ? 'taken' : planned.has(id) ? 'planned' : ready.has(id) ? 'ready' : '');
+    const issues = new Map([...planned].filter(id => this.layout.nodes.has(id)).map(id => [id, plan.issues(map, id)]));
+    const hasIssue = id => !!issues.get(id)?.length;
 
     this.nodeSel
       .classed('is-selected', id => id === sel)
@@ -228,54 +358,187 @@ export class GraphView {
       .classed('is-down', id => down.has(id) && !up.has(id))
       .classed('is-match', id => !!hl && hl.ids.has(id))
       .classed('is-dim', id => (sel ? !inFocus(id) : !!hl && !hl.ids.has(id)))
-      .classed('is-taken', id => showStatus && taken.has(id))
-      .classed('is-available', id => showStatus && map.status(map.get(id), taken) === 'available')
-      .attr('aria-pressed', id => String(id === sel))
-      .attr('aria-label', id => this.describe(id, taken, showStatus));
+      .classed('is-taken', id => taken.has(id))
+      .classed('is-planned', id => planned.has(id))
+      .classed('is-ready', id => ready.has(id))
+      .classed('has-issue', hasIssue)
+      .classed('has-status', id => !!status(id))
+      .classed('is-picked', id => picked.has(id))
+      .attr('aria-pressed', id => String(id === sel || picked.has(id)))
+      .attr('aria-label', id => this.describe(id, status(id), hasIssue(id)));
+    this.nodeSel.each((id, i, els) => this.drawCard(els[i], id, status(id)));
+    this.svg.classed('is-picking', state.picking || picked.size > 0);
 
     this.edgeSel
       .classed('is-up', isUp)
       .classed('is-down', e => !isUp(e) && isDown(e))
       .classed('is-hl', inHighlight)
-      .classed('is-dim', e => (sel ? !isUp(e) && !isDown(e) : !!hl && !inHighlight(e)));
+      .classed('is-dim', e => (sel ? !isUp(e) && !isDown(e) : !!hl && !inHighlight(e)))
+      // Done: a link out of a course you've taken.
+      .classed('is-met', e => taken.has(e.source) && !taken.has(e.target));
     this.edgeSel.filter('.is-up, .is-down, .is-hl').raise();
+
+    this.mmNodeSel?.attr('class', id => ['mm-node',
+      status(id) && `is-${status(id)}`, picked.has(id) && 'is-picked',
+      id === sel && 'is-selected', up.has(id) && 'is-up', down.has(id) && !up.has(id) && 'is-down',
+      (sel ? !inFocus(id) : !!hl && !hl.ids.has(id)) && 'is-dim', !sel && hl?.ids.has(id) && 'is-match',
+    ].filter(Boolean).join(' '));
 
     const stop = sel || (this.layout.nodes.has(this.tabStop) ? this.tabStop : this.firstNode());
     this.setTabStop(stop);
   }
 
-  describe(id, taken, showStatus) {
+  // The parts of a card that depend on the plan: the code moves right to make
+  // room for the status icon, planned and taken courses show their quarter
+  // (the title gives way), and the zoomed-out code shrinks to fit.
+  drawCard(el, id, status) {
+    const c = this.map.get(id);
+    const term = (status === 'taken' || status === 'planned') && this.state.plan.term(id);
+    const termText = term ? termShort(term) : '';
+    const reach = this.reach.get(id) || 0;
+    const key = `${status}|${termText}|${reach}`;
+    if (el.dataset.card === key) return;
+    el.dataset.card = key;
+    const g = d3.select(el);
+    const title = c.title || 'Not in the current catalog';
+    const room = NODE_W - 20 - (termText ? this.textWidth(termText, TERM_FONT) + 6 : 0);
+    g.select('.code').attr('x', status ? 25 : 10).style('--far', `${this.farSize(c, status, reach)}px`);
+    g.select('.title').text(this.fitText(title, room));
+    g.select('.term').text(termText);
+    const tip = [c.title ? `${c.id}: ${c.title}` : c.id];
+    if (reach) tip.push(`Leads to ${reach} course${reach === 1 ? '' : 's'} on this map`);
+    if (status) tip.push(term ? `${STATUS_TEXT[status]}, ${termLabel(term)}` : STATUS_TEXT[status]);
+    g.select('title').text(tip.join('\n'));
+  }
+
+  // Zoomed out, the code is drawn at 19px; long ones shrink to fit between
+  // the status icon and the count.
+  farSize(c, status, reach) {
+    const left = status ? 33 : 10;
+    const right = reach ? (this.textWidth(String(reach), REACH_FONT) + 18) * FAR_SCALE + 6 : 0;
+    const room = NODE_W - left - right - 6;
+    const width = this.textWidth(this.map.label(c), FAR_FONT);
+    return Math.max(11, Math.min(19, Math.floor((19 * room) / width)));
+  }
+
+  describe(id, status, hasIssue) {
     const map = this.map;
     const c = map.get(id);
     const before = map.parents.get(id).filter(e => e.kind !== 'rec').length;
-    const after = map.children.get(id).length;
+    const reach = this.reach.get(id) || 0;
     const parts = [`${map.label(c)}, ${c.title || 'not in the current catalog'}`];
     parts.push(before ? `${before} prerequisite${before === 1 ? '' : 's'}` : 'no prerequisites');
-    if (after) parts.push(`unlocks ${after}`);
-    const status = showStatus ? map.status(c, taken) : null;
-    if (status === 'taken') parts.push('taken');
-    if (status === 'available') parts.push('you can take it now');
+    if (reach) parts.push(`leads to ${reach} course${reach === 1 ? '' : 's'}`);
+    const term = this.state.plan.term(id);
+    if (status === 'planned' && term) parts.push(`planned for ${termLabel(term)}`);
+    else if (status) parts.push(STATUS_TEXT[status].toLowerCase());
+    if (hasIssue) parts.push('needs a check');
+    if (this.state.picked.has(id)) parts.push('selected');
     return parts.join('. ');
   }
 
   // Previews a course's direct links (on mouse hover or keyboard focus)
-  // when nothing else is in focus.
+  // when nothing else is in focus. Not while picking courses: tapping one
+  // focuses it, and the rest of the map shouldn't fade.
   setHover(id) {
     const map = this.map;
-    const active = !!id && !this.state?.selected && !this.state?.highlight;
+    const s = this.state;
+    const active = !!id && !s?.selected && !s?.highlight && !s?.picking && !s?.picked.size;
+    const was = this.hovering;
+    this.hovering = active;
     this.svg.classed('has-hover', active);
     if (!active) {
       this.nodeSel.classed('is-hovered', false).classed('is-near', false);
       this.edgeSel.classed('is-hover', false);
+      // Hover only applies when nothing else dims links, so undimming is safe.
+      if (was) this.edgeSel.classed('is-dim', false);
       return;
     }
     const near = new Set([
       ...map.parents.get(id).map(e => e.source),
       ...map.children.get(id).map(e => e.target),
     ]);
+    const touches = e => e.source === id || e.target === id;
     this.nodeSel.classed('is-hovered', d => d === id).classed('is-near', d => near.has(d));
-    this.edgeSel.classed('is-hover', e => e.source === id || e.target === id);
+    this.edgeSel.classed('is-hover', touches).classed('is-dim', e => !touches(e));
     this.edgeSel.filter('.is-hover').raise();
+  }
+
+  // ------------------------------------------------------ multi-selection
+  // Shift-drag draws a box and every course it touches joins the selection.
+  // On touch screens, a long press on a course starts one.
+
+  onBoxStart(e) {
+    if (!e.shiftKey || e.button !== 0 || !this.map) return;
+    const [x, y] = d3.pointer(e, this.el);
+    this.box = { pointer: e.pointerId, sx: x, sy: y, ex: x, ey: y, shown: false };
+  }
+
+  onBoxMove(e) {
+    const b = this.box;
+    if (!b || e.pointerId !== b.pointer) return;
+    [b.ex, b.ey] = d3.pointer(e, this.el);
+    if (!b.shown && Math.hypot(b.ex - b.sx, b.ey - b.sy) < 5) return;
+    // Capture only once it's a drag, so a Shift-click still reaches the course.
+    if (!b.shown) this.el.setPointerCapture(e.pointerId);
+    b.shown = true;
+    const r = this.boxBounds(b);
+    this.boxRect.style('display', null).attr('x', r.x).attr('y', r.y).attr('width', r.w).attr('height', r.h);
+  }
+
+  onBoxEnd(e) {
+    const b = this.box;
+    if (!b || e.pointerId !== b.pointer) return;
+    this.cancelBox();
+    if (!b.shown) return; // a Shift-click: the click handlers take it
+    const r = this.boxBounds(b);
+    const ids = [...this.layout.nodes]
+      .filter(([, p]) => p.x < r.x + r.w && p.x + NODE_W > r.x && p.y < r.y + r.h && p.y + NODE_H > r.y)
+      .map(([id]) => id);
+    this.swallowNextClick();
+    if (ids.length) this.onPick(ids);
+  }
+
+  cancelBox() {
+    this.box = null;
+    this.boxRect.style('display', 'none');
+  }
+
+  // The box in layout coordinates.
+  boxBounds({ sx, sy, ex, ey }) {
+    const [x0, y0] = this.transform.invert([Math.min(sx, ex), Math.min(sy, ey)]);
+    const [x1, y1] = this.transform.invert([Math.max(sx, ex), Math.max(sy, ey)]);
+    return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
+  }
+
+  startPress(e, id) {
+    if (e.pointerType === 'mouse') return;
+    this.cancelPress();
+    this.press = { x: e.clientX, y: e.clientY };
+    this.press.timer = setTimeout(() => {
+      this.press = null;
+      this.pressed = true;
+      this.onPick([id], { toggle: true });
+    }, LONG_PRESS);
+  }
+
+  cancelPress() {
+    if (this.press) clearTimeout(this.press.timer);
+    this.press = null;
+  }
+
+  // Lifting the finger after a long press must not also select the course.
+  endPress() {
+    this.cancelPress();
+    if (!this.pressed) return;
+    this.pressed = false;
+    this.swallowNextClick();
+  }
+
+  swallowNextClick() {
+    this.swallowClick = true;
+    clearTimeout(this.swallowTimer);
+    this.swallowTimer = setTimeout(() => { this.swallowClick = false; }, 400);
   }
 
   // ------------------------------------------------------------- camera
@@ -422,7 +685,7 @@ export class GraphView {
     const id = node.dataset.id;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      this.onSelect(id, { source: 'keyboard' });
+      this.onSelect(id, { source: 'keyboard', toggle: isToggle(e) });
       return;
     }
     const dir = { ArrowRight: [1, 0], ArrowLeft: [-1, 0], ArrowDown: [0, 1], ArrowUp: [0, -1] }[e.key];
@@ -455,18 +718,30 @@ export class GraphView {
 }
 
 // ------------------------------------------------------------------ layout
+//
+// Rows: course levels, each split into tiers (a course that needs another
+// course of the same level sits in a later tier); tiers start on the same row
+// in every department, so prerequisites are always above what they unlock.
+// Columns: departments, each a few card columns wide. Within a tier, courses
+// take the free slot closest to their prerequisites (and the courses they
+// unlock), so chains line up vertically. Courses with no links on the map
+// close each cell.
 
 const levelOf = c => Math.floor(parseInt(c.num, 10) / 100) * 100;
+const byId = (a, b) => a.id.localeCompare(b.id);
+const ROW_COST = 40; // px of sideways distance a course trades for one row higher
+const SWEEPS = 4; // placement passes; later ones also look at where children went
 
 // textWidth measures a column title at its zoomed-out size.
 function computeLayout(map, visible, viewport, textWidth) {
   const courses = [...visible].map(id => map.get(id));
   const depts = map.data.departments;
-  const groupOf = c => (c.role === 'main' ? c.dept : OTHER);
-  const groups = [...Object.keys(depts).filter(d => depts[d].main), OTHER]
-    .filter(g => courses.some(c => groupOf(c) === g));
-  const levels = [...new Set(courses.map(levelOf))].sort((a, b) => a - b);
   const edges = map.edges.filter(e => visible.has(e.source) && visible.has(e.target));
+  const linked = new Set(edges.flatMap(e => [e.source, e.target]));
+  const groupOf = c => (c.role === 'main' ? c.dept : OTHER);
+  const mains = Object.keys(depts).filter(d => depts[d].main && courses.some(c => c.role === 'main' && c.dept === d));
+  const groups = orderGroups(mains, courses.some(c => c.role !== 'main'), edges, id => groupOf(map.get(id)));
+  const levels = [...new Set(courses.map(levelOf))].sort((a, b) => a - b);
 
   // Tier = how many same-level prerequisites must come first.
   const sameLevel = new Map(courses.map(c => [c.id, []]));
@@ -486,100 +761,166 @@ function computeLayout(map, visible, viewport, textWidth) {
     return t;
   };
 
-  // cells: "level|group" -> list of tiers, each a list of courses
+  // cells: "level|group" -> { tiers: [[course]], loose: [course] }
   const cells = new Map();
-  for (const c of courses) {
+  for (const c of [...courses].sort(byId)) {
     const key = `${levelOf(c)}|${groupOf(c)}`;
-    if (!cells.has(key)) cells.set(key, []);
-    const list = cells.get(key);
+    if (!cells.has(key)) cells.set(key, { tiers: [], loose: [] });
+    const cell = cells.get(key);
+    if (!linked.has(c.id)) {
+      cell.loose.push(c);
+      continue;
+    }
     const t = tierOf(c.id);
-    while (list.length <= t) list.push([]);
-    list[t].push(c);
-  }
-  for (const list of cells.values()) {
-    for (let t = list.length - 1; t >= 0; t--) if (!list[t].length) list.splice(t, 1);
+    while (cell.tiers.length <= t) cell.tiers.push([]);
+    cell.tiers[t].push(c);
   }
 
   const cols = pickColumns(cells, groups, levels, viewport);
-
-  // Place cells band by band. Tier 0 is in catalog order; later tiers sit
-  // under their prerequisites as far as the columns allow.
-  const nodes = new Map();
-  const groupX = new Map();
+  const groupX = [];
   let x = PAD;
   groups.forEach((g, i) => {
-    groupX.set(g, x);
+    groupX.push(x);
     x += cols[i] * (NODE_W + GAP_X) - GAP_X + GROUP_GAP;
   });
   const width = x - GROUP_GAP + PAD;
+  const slotX = (gi, c) => groupX[gi] + c * (NODE_W + GAP_X);
+  const center = p => p.x + NODE_W / 2;
+  const mean = xs => xs.reduce((a, b) => a + b, 0) / xs.length;
+
+  const parents = new Map(courses.map(c => [c.id, []]));
+  const children = new Map(courses.map(c => [c.id, []]));
+  for (const e of edges) {
+    parents.get(e.target).push(e.source);
+    children.get(e.source).push(e.target);
+  }
+
+  let nodes = new Map();
+  let bands = [];
+  let height = 0;
+  for (let sweep = 0; sweep < SWEEPS; sweep++) {
+    const before = nodes;
+    nodes = new Map();
+    bands = [];
+    let y = PAD + HEADER_H;
+    for (const level of levels) {
+      const top = y;
+      const rowY = r => top + BAND_TOP + r * PITCH;
+      const used = groups.map(() => 0);
+      const here = groups.map(g => cells.get(`${level}|${g}`) || { tiers: [], loose: [] });
+
+      // Each course takes the free slot nearest the middle of its prerequisites
+      // (and, after the first pass, of the courses it unlocks).
+      const place = (block, gi) => {
+        const C = cols[gi];
+        const rows = Math.ceil(block.length / C);
+        const free = [];
+        for (let r = 0; r < rows; r++) for (let c = 0; c < C; c++) free.push({ r, c });
+        const wants = block.map((course, i) => {
+          const up = parents.get(course.id).filter(id => nodes.has(id)).map(id => center(nodes.get(id)));
+          const down = children.get(course.id).filter(id => before.has(id)).map(id => center(before.get(id)));
+          let target = slotX(gi, i % C) + NODE_W / 2; // catalog order
+          if (up.length && down.length) target = (2 * mean(up) + mean(down)) / 3;
+          else if (up.length) target = mean(up);
+          else if (down.length) target = mean(down);
+          return { course, target, pull: up.length + down.length };
+        });
+        wants.sort((a, b) => b.pull - a.pull || a.target - b.target || byId(a.course, b.course));
+        for (const w of wants) {
+          let best = 0;
+          let bestCost = Infinity;
+          free.forEach((slot, k) => {
+            const cost = Math.abs(slotX(gi, slot.c) + NODE_W / 2 - w.target) + slot.r * ROW_COST;
+            if (cost < bestCost) {
+              bestCost = cost;
+              best = k;
+            }
+          });
+          const slot = free.splice(best, 1)[0];
+          nodes.set(w.course.id, { x: slotX(gi, slot.c), y: rowY(used[gi] + slot.r) });
+        }
+        used[gi] += rows;
+      };
+      // Tier by tier across all departments, so prerequisites are placed first.
+      // Every department starts a tier on the same row, so each prerequisite
+      // sits above the courses it unlocks and every link runs downward.
+      const tierCount = Math.max(0, ...here.map(cell => cell.tiers.length));
+      for (let t = 0; t < tierCount; t++) {
+        const start = Math.max(...used);
+        here.forEach((cell, gi) => {
+          used[gi] = start;
+          if (cell.tiers[t]?.length) place(cell.tiers[t], gi);
+        });
+      }
+      here.forEach((cell, gi) => {
+        cell.loose.forEach((c, i) => nodes.set(c.id, {
+          x: slotX(gi, i % cols[gi]),
+          y: rowY(used[gi] + Math.floor(i / cols[gi])),
+        }));
+        used[gi] += Math.ceil(cell.loose.length / cols[gi]);
+      });
+      const bottom = rowY(Math.max(1, ...used)) - GAP_Y + BAND_BOTTOM;
+      bands.push({ level, top, bottom });
+      y = bottom;
+    }
+    height = y + PAD;
+  }
+
   // Column titles, plus a short form for zoomed-out views of narrow columns.
   const labels = groups.flatMap((g, i) => {
     const full = g === OTHER ? 'Other departments' : depts[g].name;
     const short = g === OTHER ? 'Other' : depts[g].abbr || g;
     const fits = textWidth(full.toUpperCase()) <= cols[i] * (NODE_W + GAP_X) + GROUP_GAP / 2;
     return fits
-      ? [{ cls: 'group-label', x: groupX.get(g), y: PAD + 12, text: full }]
-      : [{ cls: 'group-label full', x: groupX.get(g), y: PAD + 12, text: full },
-        { cls: 'group-label short', x: groupX.get(g), y: PAD + 12, text: short }];
+      ? [{ cls: 'group-label', x: groupX[i], y: PAD + 12, text: full }]
+      : [{ cls: 'group-label full', x: groupX[i], y: PAD + 12, text: full },
+        { cls: 'group-label short', x: groupX[i], y: PAD + 12, text: short }];
   });
-  const bands = [];
-  let y = PAD + HEADER_H;
-  const parentCenters = c => edges.filter(e => e.target === c.id && nodes.has(e.source))
-    .map(e => nodes.get(e.source).x + NODE_W / 2);
-  for (const level of levels) {
-    let bottom = y + BAND_TOP;
-    groups.forEach((g, gi) => {
-      let rowY = y + BAND_TOP;
-      for (const [t, list] of (cells.get(`${level}|${g}`) || []).entries()) {
-        const ordered = t === 0 ? sortByCode(list) : sortUnderParents(list, parentCenters);
-        ordered.forEach((c, i) => nodes.set(c.id, {
-          x: groupX.get(g) + (i % cols[gi]) * (NODE_W + GAP_X),
-          y: rowY + Math.floor(i / cols[gi]) * (NODE_H + GAP_Y),
-        }));
-        const lastRowBottom = rowY + Math.ceil(list.length / cols[gi]) * (NODE_H + GAP_Y) - GAP_Y;
-        bottom = Math.max(bottom, lastRowBottom);
-        rowY = lastRowBottom + GAP_Y + TIER_GAP;
-      }
-    });
-    bands.push({ level, top: y, bottom: bottom + BAND_BOTTOM });
-    labels.push({ cls: 'band-label', x: PAD, y: y + 27, text: `${level}-level` });
-    y = bottom + BAND_BOTTOM;
-  }
+  for (const b of bands) labels.push({ cls: 'band-label', x: PAD, y: b.top + 27, text: `${b.level}-level` });
 
-  return { nodes, edges, bands, labels, width, height: y + PAD, cols: cols.join(',') };
+  const loose = new Set(courses.filter(c => !linked.has(c.id)).map(c => c.id));
+  const routed = edges.map(e => ({ ...e, d: '' }));
+  routeEdges(routed, nodes);
+  return { nodes, edges: routed, bands, labels, loose, width, height, cols: cols.join(',') };
 }
 
-const sortByCode = list => [...list].sort((a, b) => a.id.localeCompare(b.id));
-
-// Order by the mean x of each course's already-placed prerequisites.
-function sortUnderParents(list, parentXs) {
-  const mean = c => {
-    const xs = parentXs(c);
-    return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : Infinity;
-  };
-  return [...list].map(c => [mean(c), c])
-    .sort(([ma, a], [mb, b]) => ma - mb || a.id.localeCompare(b.id))
-    .map(([, c]) => c);
+// Put "Other departments" where its links to this map's departments are
+// shortest (usually between them); the map's own departments keep their order.
+function orderGroups(mains, hasOther, edges, groupOfId) {
+  if (!hasOther) return mains;
+  let best = null;
+  for (let i = mains.length; i >= 0; i--) {
+    const order = [...mains.slice(0, i), OTHER, ...mains.slice(i)];
+    const at = new Map(order.map((g, j) => [g, j]));
+    const cost = edges.reduce((sum, e) => sum + Math.abs(at.get(groupOfId(e.source)) - at.get(groupOfId(e.target))), 0);
+    if (!best || cost < best.cost) best = { cost, order };
+  }
+  return best.order;
 }
 
 // Choose how many card columns each department gets so the whole map best
 // fits the stage (tries every combination; there are only a few groups).
 function pickColumns(cells, groups, levels, viewport) {
-  const tierSizes = (level, g) => (cells.get(`${level}|${g}`) || []).map(list => list.length);
+  const blocks = (level, g) => {
+    const cell = cells.get(`${level}|${g}`);
+    return cell ? [...cell.tiers.map(t => t.length), cell.loose.length] : [];
+  };
   const options = groups.map(g => {
-    const widest = Math.max(1, ...levels.flatMap(l => tierSizes(l, g)));
+    const widest = Math.max(1, ...levels.flatMap(l => blocks(l, g)));
     return Array.from({ length: Math.min(MAX_COLS, widest) }, (_, i) => i + 1);
   });
+  // Tiers line up across departments (see computeLayout), so a band is as tall
+  // as its tallest block in each tier plus its tallest block of unlinked courses.
   const measure = cols => {
     const width = 2 * PAD + cols.reduce((s, c) => s + c * (NODE_W + GAP_X) - GAP_X, 0) + GROUP_GAP * (cols.length - 1);
     let height = 2 * PAD + HEADER_H;
     for (const level of levels) {
-      const cellHeights = groups.map((g, i) => {
-        const sizes = tierSizes(level, g);
-        const rows = sizes.reduce((s, n) => s + Math.ceil(n / cols[i]), 0);
-        return rows * (NODE_H + GAP_Y) - GAP_Y + Math.max(0, sizes.length - 1) * TIER_GAP;
-      });
-      height += BAND_TOP + Math.max(0, ...cellHeights) + BAND_BOTTOM;
+      const per = groups.map((g, i) => blocks(level, g).map(n => Math.ceil(n / cols[i])));
+      const tierCount = Math.max(0, ...per.map(b => b.length - 1));
+      let rows = 0;
+      for (let t = 0; t < tierCount; t++) rows += Math.max(0, ...per.map(b => (t < b.length - 1 ? b[t] : 0)));
+      rows += Math.max(0, ...per.map(b => (b.length ? b[b.length - 1] : 0)));
+      height += BAND_TOP + Math.max(1, rows) * PITCH - GAP_Y + BAND_BOTTOM;
     }
     return { width, height };
   };
@@ -602,35 +943,68 @@ function pickColumns(cells, groups, levels, viewport) {
   return best.cols;
 }
 
-// Links run from the bottom of a prerequisite to the top of the course it
-// unlocks. Within one column, a link that would cross other cards runs down
-// the gap to the column's left instead; in the same row, side to side.
-function edgePath(s, t) {
-  const sx = s.x + NODE_W / 2;
-  const tx = t.x + NODE_W / 2;
-  if (Math.abs(s.x - t.x) < 1 && Math.abs(t.y - s.y) > NODE_H + GAP_Y + 1) {
-    const x = s.x;
-    const y1 = s.y + NODE_H / 2;
-    const y2 = t.y + NODE_H / 2;
-    const out = x - GAP_X - 2;
-    return `M${x},${y1}C${out},${y1} ${out},${y2} ${x},${y2}`;
+// ----------------------------------------------------------------- routing
+//
+// Every link runs downward (tiers line up across a band). A course directly
+// below its prerequisite gets a short drop; one further down the same column
+// is reached along the gutter to the column's left, so the link never runs
+// behind the cards in between; anything else gets an S-curve from the bottom
+// of the prerequisite to the top of the course. Links sharing a gutter get
+// lanes a few pixels apart so they read as parallel lines.
+
+function routeEdges(edges, nodes) {
+  const sameColumn = (s, t) => Math.abs(s.x - t.x) < 1;
+  const below = (s, t) => sameColumn(s, t) && Math.abs(t.y - s.y - PITCH) < 1;
+  const gutters = new Map(); // card column x -> sources running down its gutter
+  for (const e of edges) {
+    const s = nodes.get(e.source);
+    const t = nodes.get(e.target);
+    if (!sameColumn(s, t) || below(s, t)) continue;
+    if (!gutters.has(t.x)) gutters.set(t.x, []);
+    if (!gutters.get(t.x).includes(e.source)) gutters.get(t.x).push(e.source);
   }
-  if (t.y >= s.y + NODE_H) {
+  gutters.forEach(list => list.sort((a, b) => nodes.get(a).y - nodes.get(b).y));
+  const lane = (list, id) => {
+    const room = GAP_X / 2 - 2;
+    const step = list.length > 1 ? Math.min(3, (2 * room) / (list.length - 1)) : 0;
+    return (list.indexOf(id) - (list.length - 1) / 2) * step;
+  };
+
+  for (const e of edges) {
+    const s = nodes.get(e.source);
+    const t = nodes.get(e.target);
+    const x1 = s.x + NODE_W / 2;
     const y1 = s.y + NODE_H;
-    const y2 = t.y;
-    const d = Math.max(18, (y2 - y1) / 2);
-    return `M${sx},${y1}C${sx},${y1 + d} ${tx},${y2 - d} ${tx},${y2}`;
+    if (below(s, t)) {
+      e.d = `M${x1},${y1}V${t.y}`;
+    } else if (sameColumn(s, t)) {
+      const gx = t.x - GAP_X / 2 + lane(gutters.get(t.x), e.source);
+      const yc = y1 + GAP_Y / 2;
+      const ty = t.y + NODE_H / 2;
+      e.d = roundedPath([[x1, y1], [x1, yc], [gx, yc], [gx, ty], [t.x, ty]], 6);
+    } else {
+      const x2 = t.x + NODE_W / 2;
+      const d = Math.max(24, (t.y - y1) / 2);
+      e.d = `M${x1},${y1}C${x1},${y1 + d} ${x2},${t.y - d} ${x2},${t.y}`;
+    }
   }
-  if (t.y + NODE_H <= s.y) {
-    const y1 = s.y;
-    const y2 = t.y + NODE_H;
-    const d = Math.max(18, (y1 - y2) / 2);
-    return `M${sx},${y1}C${sx},${y1 - d} ${tx},${y2 + d} ${tx},${y2}`;
+}
+
+// An orthogonal polyline with its corners rounded off.
+function roundedPath(points, radius) {
+  const pts = points.filter((p, i) => i === 0 || p[0] !== points[i - 1][0] || p[1] !== points[i - 1][1]);
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 1; i < pts.length - 1; i++) {
+    const [px, py] = pts[i - 1];
+    const [cx, cy] = pts[i];
+    const [nx, ny] = pts[i + 1];
+    const r = Math.min(radius, Math.hypot(cx - px, cy - py) / 2, Math.hypot(nx - cx, ny - cy) / 2);
+    const inX = cx - Math.sign(cx - px) * r;
+    const inY = cy - Math.sign(cy - py) * r;
+    const outX = cx + Math.sign(nx - cx) * r;
+    const outY = cy + Math.sign(ny - cy) * r;
+    d += `L${inX},${inY}Q${cx},${cy} ${outX},${outY}`;
   }
-  const right = t.x > s.x;
-  const x1 = right ? s.x + NODE_W : s.x;
-  const x2 = right ? t.x : t.x + NODE_W;
-  const y = s.y + NODE_H / 2;
-  const d = Math.max(18, Math.abs(x2 - x1) / 2) * (right ? 1 : -1);
-  return `M${x1},${y}C${x1 + d},${y} ${x2 - d},${t.y + NODE_H / 2} ${x2},${t.y + NODE_H / 2}`;
+  const last = pts[pts.length - 1];
+  return `${d}L${last[0]},${last[1]}`;
 }

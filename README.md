@@ -5,20 +5,43 @@ with Electrical & Computer Engineering. Click a course to see everything it
 requires and everything it unlocks, mark what you've taken to see what you can
 take next, and highlight a degree requirement, technical track or quarter.
 
+**Live site:** <https://yaaaaaaoxiao.github.io/nu-ece-prereqs/>
+
 > Unofficial student project, not affiliated with Northwestern University.
 > Always confirm prerequisites with the [official catalog](https://catalogs.northwestern.edu/)
 > and your adviser.
 
 ## Features
 
-- **Level rows:** courses sit in rows by level (100, 200, 300) and columns by department.
+- **The whole picture:** courses sit in rows by level (100, 200, 300) and columns by
+  department, placed under their prerequisites with every link drawn, so chains are
+  visible at a glance. Each course shows how many courses on the map it leads to
+  (the badge gets darker the more it opens up), the panel lists the map's gateway
+  courses, and a minimap helps when zoomed in.
 - **Prerequisite chains:** selecting a course lights up its full chain of prerequisites
   (violet) and every course it leads to (orange). Dashed links mean "one of several options".
-- **Planner:** mark courses as taken (saved in your browser only) and courses whose
-  prerequisites you've met get a green ring.
+- **Your plan on the map:** courses you've taken are solid blue, planned ones dashed
+  blue (with their quarter), courses you can take now are green, and a planned course
+  that needs a check is amber. Each status has its own icon too. Links out of courses
+  you've taken turn blue, so you can see what they opened up.
+- **Mark several at once:** Shift-click (or Cmd/Ctrl-click) courses, Shift-drag a box
+  around them, long-press on a touch screen, or press **Mark courses**; then mark them
+  taken or planned, or put them in a quarter, from the panel. A course's panel can
+  also select it together with everything it requires. <kbd>T</kbd> <kbd>P</kbd>
+  <kbd>N</kbd> mark the selection (or the focused course), and every change can be
+  undone (Undo, or Cmd/Ctrl+Z).
+- **Planner:** lay out future quarters in the **Plan** tab (add with "+ Add", drag
+  between quarters). It warns when a prerequisite isn't done before the quarter you
+  planned, a corequisite is missing, or the course wasn't offered in that quarter on
+  the current schedule. Everything is saved in your browser only.
+- **Majors and minors together:** pick any combination of the programs a map offers
+  (e.g. Electrical Engineering BS + Computer Science minor). The Plan tab shows each
+  program's requirement lists checked against your plan, and flags courses that count
+  toward more than one. It's a checklist from the catalog, not an official degree audit.
 - **Highlights:** degree requirements, technical tracks/areas, and what's offered each quarter.
 - **Search** by number or title (`EE 221`, `ce303`, `signals`).
-- **List view:** an accessible, phone-friendly alternative to the graph, with checkboxes.
+- **List view:** an accessible, phone-friendly alternative to the graph, with a plan
+  status on every row (Shift-click rows to select several here too).
 - **Shareable links:** the URL keeps the selected course, highlight and view
   (e.g. `?course=ELEC_ENG+222-0`). Back/forward work.
 - Keyboard support, dark mode, phone layout.
@@ -41,10 +64,12 @@ index.html              page shell
 assets/css/style.css    all styles (light/dark tokens at the top)
 assets/js/
   main.js               state, URL sync, wiring
-  model.js              data model: edges, chains, search, planner logic
+  model.js              data model: edges, chains, search, programs, progress
+  plan.js               the viewer's plan: statuses, quarters, prerequisite checks
   graph.js              level layout + SVG rendering, pan/zoom, keyboard nav
   panel.js              details panel
   list.js               list view
+  planview.js           Plan tab: programs, quarter grid, requirements checklist
   search.js             search combobox
   store.js              localStorage preferences
 data/
@@ -54,7 +79,8 @@ scraper/
   config.json           which maps to build: departments, degree pages, schedule
   scrape.py             builds data/*.json from the catalog
   prereqs.py            prerequisite-sentence parser
-  test_prereqs.py       parser tests
+  programs.py           major/minor requirement-list parser
+  test_*.py             parser tests
   overrides.json        hand corrections for prerequisites the parser gets wrong
   verified.json         catalog text of prerequisites that were checked by hand
 ```
@@ -63,12 +89,19 @@ The graph uses [d3](https://d3js.org/) for rendering and pan/zoom, loaded from
 jsDelivr with a pinned version and integrity hash. No build step.
 
 **How the graph is laid out.** Each row is a course level (100, 200, 300, …)
-and each column a department (the map's own, then "Other departments"). Within
-a level, a course that needs another course of the same level is placed in a
-lower tier, so progressions like CE 303 → 355 → 387 read top to bottom. The
-number of card columns per department is chosen to fit the screen. Links are
-drawn on demand (hover, keyboard focus, selection, highlighted lists), or all at
-once with "Show every link" in the legend.
+and each column a department; "Other departments" goes wherever it makes links
+shortest (for ECE, between CE and EE). Within a level, a course that needs
+another course of the same level sits in a lower tier, and tiers line up across
+departments, so every link runs downward. Inside a tier, each course takes the
+free slot closest to its prerequisites and to what it unlocks, so chains stack
+vertically; courses with no links on the map are drawn quieter at the bottom of
+their cell. Links: a short drop to a course directly below, a "comb" down the
+gutter beside a column, or an S-curve between columns. At rest, required links
+are strongest, "one of several" options lighter and other departments' own
+links faint; hovering or selecting a course brings its links forward. The
+number of card columns per department is chosen to fit the screen, and a
+minimap appears when part of the map is off screen. Zoomed out, cards drop
+their titles and show the course code, status icon and "leads to" count large.
 
 ## Updating the data
 
@@ -95,34 +128,59 @@ as needing a check. For each one:
 
 The site shows each course's catalog text and whether it was checked by hand.
 
+Courses from other departments (MATH, PHYSICS, COMP_SCI, ...) aren't reviewed.
+Their prerequisites become faint "other department" links, and when the sentence
+is plain (only course codes joined by and/or, no commas, notes or other words)
+the parsed tree is kept as `autoPrereq` so the site can show whether a student
+can take the course yet. Other sentences are too ambiguous to read reliably
+("MATH 220-1, MATH 220-2, MATH 230-1 or MATH 290-1, PHYSICS 135-1"), so those
+courses never show "can take now".
+
 Parser tests: `python -m unittest discover scraper`
 
-## Adding another major
+## Adding majors, minors and maps
 
-Add an entry to `maps` in `scraper/config.json`:
+**A major or minor** is an entry in `programs` in `scraper/config.json`:
+
+```json
+"cs-minor": {
+  "name": "Computer Science minor (McCormick)",
+  "type": "minor",
+  "path": "/undergraduate/engineering-applied-science/computer-science/computer-science-minor/",
+  "labels": { "3 engineering foundations courses": { "label": "Prerequisites: engineering foundations", "kind": "prereq" } }
+}
+```
+
+List its id in a map's `programs` so students on that map can pick it (alone or
+combined with others); `defaultPrograms` are shown when a student hasn't picked
+any. The scraper reads the program page's course tables into requirement lists,
+keeping "or" alternatives, "&" sequences and counts such as "(choose one)" or
+"4 courses chosen from…". Rules the catalog only states in prose ("one course
+from each of any three areas") are kept as notes for students to read. Use
+`labels` to rename a list, hide it (`null`), or correct how it's read
+(`{"label", "kind", "need"}`). Check the result in the Plan tab.
+
+**A map** (another department's graph) is an entry in `maps`:
 
 ```json
 {
   "id": "cs",
   "name": "Computer Science",
   "departments": ["COMP_SCI"],
-  "degrees": [
-    { "id": "CS", "name": "Computer Science BS",
-      "path": "/undergraduate/engineering-applied-science/computer-science/computer-science-degree/" }
-  ]
+  "programs": ["cs-bs", "cs-minor"],
+  "defaultPrograms": ["cs-bs"]
 }
 ```
 
 - `departments` are catalog codes; their courses are the map's main nodes.
-  Courses from other departments that they require are pulled in automatically.
-- `degrees` (optional) are catalog degree pages; their course lists become
-  highlights. If a list heading reads oddly, rename or hide it with `groupLabels`.
+  Courses from other departments that they require are pulled in automatically,
+  and so are the courses listed by its programs.
 - `schedule` (optional) is a department schedule page. Only the McCormick
   format is supported so far (`"format": "mccormick"`).
 - Add short names for new departments to `abbreviations` so nodes read "CS 214".
 
 Run the scraper, review the flagged prerequisites as above, and the new map
-appears in the site's program menu. The site needs no changes.
+appears in the site's map menu. The site needs no changes.
 
 ## Deploying to GitHub Pages
 

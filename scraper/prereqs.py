@@ -70,7 +70,25 @@ def tokenize(text):
             tokens.append(("and", t))
         else:
             tokens.append(("or", t))
-    return resolve_commas(tokens)
+    return resolve_commas(drop_remarks(tokens))
+
+
+def drop_remarks(tokens):
+    """Remove parentheses that hold no course, such as '(former)' or '(C- or better)'."""
+    out, opens = [], []
+    for tok in tokens:
+        if tok[0] == "(":
+            opens.append(len(out))
+            out.append(tok)
+        elif tok[0] == ")" and opens:
+            start = opens.pop()
+            if any(kind == "CODE" for kind, _ in out[start + 1:]):
+                out.append(tok)
+            else:
+                del out[start:]
+        else:
+            out.append(tok)
+    return out
 
 
 def resolve_commas(tokens):
@@ -81,7 +99,8 @@ def resolve_commas(tokens):
         if tok[0] == "," and i + 1 < len(tokens) and tokens[i + 1][0] == "or":
             continue
         out.append(tok)
-    # Decide separately for each parenthesis level.
+    # Decide separately for each parenthesis level, and within it for each
+    # part between semicolons ("A, B, or C; D" is "(A or B or C) and D").
     stack, levels = [[]], []
     for idx, (kind, _) in enumerate(out):
         if kind == "(":
@@ -92,11 +111,17 @@ def resolve_commas(tokens):
             stack[-1].append(idx)
     levels.extend(stack)
     for level in levels:
-        kinds = {out[i][0] for i in level}
-        as_or = "or" in kinds and not ({"and", ";"} & kinds)
-        for i in level:
-            if out[i][0] == ",":
-                out[i] = ("or" if as_or else "and", ",")
+        part = []
+        for i in level + [None]:
+            if i is not None and out[i][0] != ";":
+                part.append(i)
+                continue
+            kinds = {out[j][0] for j in part}
+            as_or = "or" in kinds and "and" not in kinds
+            for j in part:
+                if out[j][0] == ",":
+                    out[j] = ("or" if as_or else "and", ",")
+            part = []
     return out
 
 
@@ -189,6 +214,25 @@ def parse_requirements(raw, aliases=None):
                 body = re.sub(pattern, " ", body, flags=re.I)
         result[key] = parse_expression(body)
     return result
+
+
+def is_plain(raw, aliases=None):
+    """True when the prerequisite part of a catalog line is only course codes
+    joined by and/or, semicolons and parentheses (or there is none). Those parse
+    reliably without a hand check; commas, notes and other words don't."""
+    text = normalize_codes(strip_exclusions(raw), aliases or {})
+    if not text.strip():
+        return True
+    parts = re.split(r"(Prerequisites?|Corequisites?)\s*:", text)
+    bodies = [body for label, body in zip(parts[1::2], parts[2::2]) if label.lower().startswith("pre")]
+    if len(parts) < 3 or any(re.search(p, text, re.I) for p, _ in NOTE_PATTERNS):
+        return False
+    for body in bodies:
+        body = ";".join(s for s in body.split(";") if "recommended" not in s.lower())
+        rest = re.sub(r"\(former\)|\b(?:and|or)\b|[&();.\s]", "", CODE_RE.sub("", body), flags=re.I)
+        if rest:
+            return False
+    return True
 
 
 def codes_in(tree):

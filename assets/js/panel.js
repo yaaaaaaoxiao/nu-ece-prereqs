@@ -1,46 +1,104 @@
-// Details panel: the selected course, or an introduction when nothing is selected.
+// Details panel: the selected course, or a highlighted list, or an
+// introduction when nothing is selected.
 import { satisfied, unmet } from './model.js';
+import { currentTerm, termLabel, termOrder } from './plan.js';
 
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => (
   { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
 
-const ICON = {
+export const ICON = {
   close: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg>',
-  check: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4.5 10.5 3.5 3.5 7.5-8"/></svg>',
   external: '<svg viewBox="0 0 20 20" width="12" height="12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4H4v12h12v-4M11 3h6v6M17 3l-8 8"/></svg>',
+  warn: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.8 15 14H1L8 1.8Z" fill="var(--warn)"/><path d="M8 6v3.6M8 11.4v.1" stroke="#1a1a19" stroke-width="1.6" stroke-linecap="round"/></svg>',
 };
+// "Prerequisites fit" (a green check) and "not yet" (an empty ring) in the panel.
 const STATUS_ICON = {
-  taken: '<svg class="status-icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/><path d="m4.8 8.2 2.2 2.2 4.2-4.4"/></svg>',
-  available: '<svg class="status-icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.6"/></svg>',
+  fits: '<svg class="status-icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/><path d="m4.8 8.2 2.2 2.2 4.2-4.4"/></svg>',
   blocked: '<svg class="status-icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.6"/></svg>',
 };
+// The viewer's plan, drawn like the graph's status icons: taken (check),
+// planned (clock), can take now (arrow), planned but needs a check (!).
+export function statusIcon(kind) {
+  const glyph = {
+    taken: 'm5 8.2 2.1 2.1L11 6.3',
+    planned: 'M8 4.6V8l2.4 1.6',
+    ready: 'M4.7 8h6M8.5 5.5 11 8l-2.5 2.5',
+    issue: 'M8 4.4v4.3M8 11.2v.1',
+  }[kind];
+  return `<svg class="si si-${kind}" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="${glyph}"/></svg>`;
+}
+const STATUS_LABEL = { taken: 'taken', planned: 'planned', ready: 'can take now' };
 const LINK_NOTE = { alt: 'one option', co: 'corequisite', rec: 'recommended' };
 
-// The panel follows the current focus: a course, else a highlighted list, else the intro.
+// The panel follows the current focus: courses being marked, else a course,
+// else a highlighted list, else the intro.
 export function renderPanel(el, { map, state, repo }) {
   const course = state.selected && map.get(state.selected);
   const hl = !course && state.highlight && map.highlight(state.highlight);
   let body;
-  if (course) body = courseHTML(map, course, state, repo);
+  if (state.picking || state.picked.size) body = pickedHTML(map, state);
+  else if (course) body = courseHTML(map, course, state, repo);
   else if (hl) body = highlightHTML(map, hl, state);
-  else body = introHTML(map);
+  else body = introHTML(map, state);
   // The grip only shows on phones, where the panel is a collapsible bottom sheet.
   el.innerHTML = `<button type="button" class="panel-grip" data-action="toggle-sheet"
     aria-label="Show or hide course details"></button>${body}`;
 }
 
+// ------------------------------------------------------- several courses
+
+// What to do with the selected courses, then the list of them. On phones the
+// header and buttons are what shows of the collapsed sheet.
+function pickedHTML(map, state) {
+  const ids = [...state.picked].filter(id => map.get(id))
+    .sort((a, b) => map.label(map.get(a)).localeCompare(map.label(map.get(b)), undefined, { numeric: true }));
+  const n = ids.length;
+  const off = n ? '' : ' disabled';
+  const now = termOrder(currentTerm());
+  const terms = state.plan.terms();
+  const option = t => `<option value="${t}">${termLabel(t)}</option>`;
+  const items = ids.map(id => {
+    const c = map.get(id);
+    const label = map.label(c);
+    return `<li class="pick-item"><span class="pick-code">${esc(label)}</span>
+      <span class="pick-title">${esc(c.title || 'Not in the current catalog')}</span>
+      <button type="button" class="icon-btn" data-action="unpick" data-id="${esc(id)}" aria-label="Unselect ${esc(label)}">${ICON.close}</button></li>`;
+  }).join('');
+  return `
+    <div class="panel-head">
+      <div>
+        <p class="eyebrow">Mark courses</p>
+        <h2>${n ? `${n} course${n === 1 ? '' : 's'} selected` : 'Select courses'}</h2>
+      </div>
+      <button type="button" class="pick-done" data-action="stop-picking">Done</button>
+    </div>
+    <div class="pick-actions" role="group" aria-label="Mark the selected courses">
+      <button type="button" class="pick-btn" data-action="pick-status" data-status="taken" title="Mark taken (T)"${off}>${statusIcon('taken')}Taken</button>
+      <button type="button" class="pick-btn" data-action="pick-status" data-status="planned" title="Mark planned (P)"${off}>${statusIcon('planned')}Planned</button>
+      <label class="pick-term"><span class="sr-only">Put the selected courses in a quarter</span>
+        <select data-action="pick-term"${off}>
+          <option value="">Quarter…</option>
+          <optgroup label="Plan for">${terms.filter(t => termOrder(t) >= now).map(option).join('')}</optgroup>
+          <optgroup label="Taken in">${terms.filter(t => termOrder(t) < now).reverse().map(option).join('')}</optgroup>
+        </select></label>
+      <button type="button" class="pick-btn" data-action="pick-status" data-status="" title="Remove from your plan (N)"${off}>Not taken</button>
+    </div>
+    <section>
+      ${n ? `<ul class="pick-list">${items}</ul>` : `<p class="muted">Click courses on the map or in the list to select them.</p>`}
+      <p class="muted pick-tips">Shift-drag on the map to select every course in a box. Keys: <kbd>T</kbd> taken,
+        <kbd>P</kbd> planned, <kbd>N</kbd> not taken, <kbd>Esc</kbd> done.</p>
+    </section>`;
+}
+
 // ---------------------------------------------------------------- highlight
 
 function highlightHTML(map, hl, state) {
-  const { taken } = state;
-  const planning = [...taken].some(id => map.get(id));
-  const courses = [...hl.ids].map(id => map.get(id))
+  const planning = [...state.taken].some(id => map.get(id));
+  const courses = [...hl.ids].map(id => map.get(id)).filter(Boolean)
     .sort((a, b) => (a.role === b.role ? a.id.localeCompare(b.id) : a.role === 'main' ? -1 : 1));
-  const done = courses.filter(c => taken.has(c.id)).length;
-  const items = courses.map(c => {
-    const note = planning && map.status(c, taken) === 'available' ? 'can take now' : '';
-    return `<li>${chip(map, c.id, taken, 'none', note)}</li>`;
-  }).join('');
+  const done = courses.filter(c => state.taken.has(c.id)).length;
+  const items = courses.map(c => `<li>${chip(map, c.id, state, 'none')}</li>`).join('');
+  const unlisted = hl.unlisted || [];
   return `
     <div class="panel-head">
       <div>
@@ -53,16 +111,15 @@ function highlightHTML(map, hl, state) {
       <p class="muted">${courses.length} course${courses.length === 1 ? '' : 's'}${planning ? `, ${done} taken` : ''}.
         Select one to see what it requires.</p>
       <ul class="chip-list">${items}</ul>
-      ${hl.unlisted.length ? `<p class="muted" style="margin-top:10px">The degree page also lists ${
-        esc(hl.unlisted.join(', '))}, which ${hl.unlisted.length === 1 ? "isn't" : "aren't"} in the undergraduate catalog.</p>` : ''}
-      ${hl.url ? `<div class="links" style="margin-top:12px"><a href="${esc(hl.url)}" target="_blank" rel="noopener">Degree requirements ${ICON.external}</a></div>` : ''}
+      ${unlisted.length ? `<p class="muted" style="margin-top:10px">The program page also lists ${
+        esc(unlisted.join(', '))}, which ${unlisted.length === 1 ? "isn't" : "aren't"} in the undergraduate catalog.</p>` : ''}
+      ${hl.url ? `<div class="links" style="margin-top:12px"><a href="${esc(hl.url)}" target="_blank" rel="noopener">Program requirements ${ICON.external}</a></div>` : ''}
     </section>`;
 }
 
 // ------------------------------------------------------------------ course
 
 function courseHTML(map, c, state, repo) {
-  const isTaken = state.taken.has(c.id);
   const units = c.units ? ` · ${c.units} unit${c.units === 1 ? '' : 's'}` : '';
   return `
     <div class="panel-head">
@@ -72,27 +129,66 @@ function courseHTML(map, c, state, repo) {
       </div>
       <button type="button" class="icon-btn" data-action="close" aria-label="Close details">${ICON.close}</button>
     </div>
-    <div class="panel-actions">
-      <button type="button" class="btn" data-action="toggle-taken" data-id="${esc(c.id)}" aria-pressed="${isTaken}">
-        ${ICON.check}${isTaken ? 'Taken' : 'Mark as taken'}
-      </button>
-    </div>
-    ${statusHTML(map, c, state.taken)}
-    ${requirementsHTML(map, c, state.taken)}
-    ${unlocksHTML(map, c, state.taken)}
-    ${degreesHTML(map, c, state.highlight)}
+    ${planControlHTML(map, c, state)}
+    ${statusHTML(map, c, state)}
+    ${requirementsHTML(map, c, state)}
+    ${unlocksHTML(map, c, state)}
+    ${programsHTML(map, c, state)}
     ${scheduleHTML(map, c)}
     ${sourceHTML(map, c, repo)}`;
 }
 
-function statusHTML(map, c, taken) {
-  const planning = [...taken].some(id => map.get(id));
-  const status = map.status(c, taken);
-  if (status === 'taken') return `<p class="status taken">${STATUS_ICON.taken}<span>You've marked this as taken.</span></p>`;
-  if (!planning || !status) return '';
-  if (status === 'available') {
+// Not taken / Planned / Taken, plus the quarter.
+function planControlHTML(map, c, state) {
+  const { plan } = state;
+  const status = plan.status(c.id);
+  const id = esc(c.id);
+  const option = (value, label) => `<button type="button" role="radio" data-action="set-status" data-id="${id}"
+    data-status="${value}" aria-checked="${status === (value || null)}">${label}</button>`;
+  let when = '';
+  if (status) {
+    const terms = plan.terms();
+    const term = plan.term(c.id);
+    if (term && !terms.includes(term)) terms.push(term);
+    const now = termOrder(currentTerm());
+    // Taken courses can only be in past quarters, plans in the current one or later.
+    const options = terms.filter(t => (status === 'taken' ? termOrder(t) <= now : termOrder(t) >= now) || t === term);
+    when = `<label class="term-pick"><span>${status === 'taken' ? 'Taken in' : 'Planned for'}</span>
+      <select data-action="set-term" data-id="${id}">
+        <option value="">${status === 'taken' ? 'Quarter not set' : 'No quarter yet'}</option>
+        ${options.map(t => `<option value="${t}"${t === term ? ' selected' : ''}>${termLabel(t)}</option>`).join('')}
+      </select></label>`;
+  }
+  // Handy for marking a whole chain taken at once.
+  const chain = [...map.requiredAncestors(c.id)].filter(x => state.visible.has(x)).length;
+  const pick = chain ? `<button type="button" class="link-btn pick-chain" data-action="pick-chain" data-id="${id}">Select it and the ${
+    chain} course${chain === 1 ? '' : 's'} it requires</button>` : '';
+  return `<div class="plan-control">
+      <div class="segmented seg-status" role="radiogroup" aria-label="Your plan for this course">
+        ${option('', 'Not taken')}${option('planned', 'Planned')}${option('taken', 'Taken')}
+      </div>
+      ${when}${pick}
+    </div>`;
+}
+
+function statusHTML(map, c, state) {
+  const { plan, taken } = state;
+  const status = plan.status(c.id);
+  if (status === 'planned') return issuesHTML(map, plan.issues(map, c.id), plan.term(c.id));
+  if (status || ![...taken].some(id => map.get(id))) return '';
+  const can = map.status(c, taken);
+  if (c.role !== 'main') {
+    // Other departments: known only when their catalog sentence was plain enough to read.
+    if (can === 'available') {
+      return `<p class="status available">${statusIcon('ready')}<span>You can probably take this now
+        <span class="muted">(read automatically from the catalog text below)</span></span></p>`;
+    }
+    return can === 'blocked' ? `<p class="status blocked">${STATUS_ICON.blocked}<span>Not yet, going by the catalog text
+      below <span class="muted">(read automatically)</span>.</span></p>` : '';
+  }
+  if (can === 'available') {
     const extra = c.notes.filter(n => !n.startsWith('or '));
-    return `<p class="status available">${STATUS_ICON.available}<span>You can take this now${
+    return `<p class="status available">${statusIcon('ready')}<span>You can take this now${
       extra.length ? ` <span class="muted">(also: ${esc(extra.join(', '))})</span>` : ''}</span></p>`;
   }
   const parts = c.prereq.and || [c.prereq];
@@ -101,41 +197,58 @@ function statusHTML(map, c, taken) {
     parts.length === 1 ? 'the prerequisite below is' : `${missing} of ${parts.length} requirements below are`} still needed.</span></p>`;
 }
 
-function requirementsHTML(map, c, taken) {
+export function issueText(map, issue, term) {
+  const list = trees => trees.map(t => map.treeText(t)).join('; ');
+  if (issue.type === 'prereq') return `Needs ${list(issue.missing)} before ${termLabel(term)}.`;
+  if (issue.type === 'coreq') return `Needs ${list(issue.missing)} by ${termLabel(term)} (corequisite).`;
+  return `Offered only in ${issue.quarters.join(' and ')} on the ${map.scheduleLabel()} schedule.`;
+}
+
+function issuesHTML(map, issues, term) {
+  if (!issues.length) {
+    return term ? `<p class="status fits">${STATUS_ICON.fits}<span>Prerequisites fit this plan.</span></p>` : '';
+  }
+  return `<ul class="issues">${issues.map(i => `<li>${ICON.warn}<span>${esc(issueText(map, i, term))}</span></li>`).join('')}</ul>`;
+}
+
+function requirementsHTML(map, c, state) {
   if (c.role !== 'main') {
     const linked = map.parents.get(c.id).map(e => e.source);
     return `<section><h3>Prerequisites</h3>
       <p class="muted">Courses from other departments are here for context. Their prerequisites are read
       automatically and not checked, so rely on the catalog text below.</p>
-      ${linked.length ? `<p>Linked on this map:</p>${chipList(map, linked, taken, 'up')}` : ''}
+      ${linked.length ? `<p>Linked on this map:</p>${chipList(map, linked, state, 'up')}` : ''}
     </section>`;
   }
   const notes = c.notes.length
     ? `<ul class="notes">${c.notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul>` : '';
   let html = `<section><h3>Prerequisites</h3>${
-    c.prereq ? treeHTML(map, c.prereq, taken, 'up') : '<p class="muted">No course prerequisites listed.</p>'}${notes}</section>`;
-  if (c.coreq) html += `<section><h3>Take at the same time</h3>${treeHTML(map, c.coreq, taken, 'up')}</section>`;
-  if (c.recommended.length) html += `<section><h3>Recommended first</h3>${chipList(map, c.recommended, taken, 'up')}</section>`;
+    c.prereq ? treeHTML(map, c.prereq, state, 'up') : '<p class="muted">No course prerequisites listed.</p>'}${notes}</section>`;
+  if (c.coreq) html += `<section><h3>Take at the same time</h3>${treeHTML(map, c.coreq, state, 'up')}</section>`;
+  if (c.recommended.length) html += `<section><h3>Recommended first</h3>${chipList(map, c.recommended, state, 'up')}</section>`;
   return html;
 }
 
-function unlocksHTML(map, c, taken) {
+function unlocksHTML(map, c, state) {
   const links = [...map.children.get(c.id)].sort((a, b) => a.target.localeCompare(b.target));
   if (!links.length) {
     return '<section><h3>Unlocks</h3><p class="muted">No course on this map lists it as a prerequisite.</p></section>';
   }
-  const total = map.descendants(c.id).size;
-  const items = links.map(e => `<li>${chip(map, e.target, taken, 'down', LINK_NOTE[e.kind])}</li>`).join('');
+  const total = [...map.descendants(c.id)].filter(id => state.visible.has(id)).length;
+  const items = links.map(e => `<li>${chip(map, e.target, state, 'down', LINK_NOTE[e.kind])}</li>`).join('');
   return `<section><h3>Unlocks</h3><ul class="chip-list">${items}</ul>${
-    total > links.length ? `<p class="muted" style="margin-top:8px">Leads to ${total} courses in all, counting later steps.</p>` : ''}</section>`;
+    total > links.length ? `<p class="muted" style="margin-top:8px">Leads to ${total} courses on the map in all, counting later steps.</p>` : ''}</section>`;
 }
 
-function degreesHTML(map, c, activeKey) {
-  const groups = map.membership.get(c.id) || [];
-  if (!groups.length) return '';
-  const items = groups.map(m => `<li><button type="button" data-highlight="${esc(m.key)}" aria-pressed="${m.key === activeKey}"
-      title="Highlight every course in this list"><span class="d-name">${esc(m.degree.name)}</span>
-      <span class="d-group">${esc(m.group.label)}</span></button></li>`).join('');
+// Requirement lists this course appears in, yours first.
+function programsHTML(map, c, state) {
+  const entries = [...(map.membership.get(c.id) || [])]
+    .sort((a, b) => Number(state.myPrograms.has(b.program.id)) - Number(state.myPrograms.has(a.program.id)));
+  if (!entries.length) return '';
+  const items = entries.map(m => `<li><button type="button" data-highlight="${esc(m.key)}" aria-pressed="${m.key === state.highlight}"
+      title="Highlight every course in this list"><span class="d-name">${esc(m.program.name)}${
+      state.myPrograms.has(m.program.id) ? ' <span class="mine">yours</span>' : ''}</span>
+      <span class="d-group">${esc(m.list.label)}</span></button></li>`).join('');
   return `<section><h3>Counts toward</h3><ul class="degree-list">${items}</ul></section>`;
 }
 
@@ -176,61 +289,74 @@ function issueURL(repo, map, c) {
 
 // --------------------------------------------------------------- pieces
 
-function treeHTML(map, tree, taken, kind) {
-  if (typeof tree === 'string') return `<ul class="chip-list"><li>${chip(map, tree, taken, kind)}</li></ul>`;
-  return groupHTML(map, tree, taken, kind);
+function treeHTML(map, tree, state, kind) {
+  if (typeof tree === 'string') return `<ul class="chip-list"><li>${chip(map, tree, state, kind)}</li></ul>`;
+  return groupHTML(map, tree, state, kind);
 }
 
-function groupHTML(map, tree, taken, kind) {
-  if (typeof tree === 'string') return chip(map, tree, taken, kind);
+function groupHTML(map, tree, state, kind) {
+  if (typeof tree === 'string') return chip(map, tree, state, kind);
   const [op, items] = Object.entries(tree)[0];
-  const done = satisfied(tree, taken) ? ' <span class="req-done">✓ done</span>' : '';
+  const done = satisfied(tree, state.taken) ? ' <span class="req-done">✓ done</span>' : '';
   return `<div class="req req-${op}"><span class="req-label">${op === 'and' ? 'All of' : 'One of'}${done}</span>
-    <ul>${items.map(t => `<li>${groupHTML(map, t, taken, kind)}</li>`).join('')}</ul></div>`;
+    <ul>${items.map(t => `<li>${groupHTML(map, t, state, kind)}</li>`).join('')}</ul></div>`;
 }
 
-function chipList(map, ids, taken, kind) {
-  return `<ul class="chip-list">${ids.map(id => `<li>${chip(map, id, taken, kind)}</li>`).join('')}</ul>`;
+function chipList(map, ids, state, kind) {
+  return `<ul class="chip-list">${ids.map(id => `<li>${chip(map, id, state, kind)}</li>`).join('')}</ul>`;
 }
 
-function chip(map, id, taken, kind, note) {
+// A course button showing the viewer's status for it (taken, planned, can take now).
+export function chip(map, id, { taken, planned, ready }, kind, note) {
   const c = map.get(id);
-  if (!c) return `<span class="chip"><span class="chip-code">${esc(id)}</span></span>`;
-  const done = taken.has(id);
-  return `<button type="button" class="chip k-${kind}${done ? ' is-taken' : ''}" data-select="${esc(id)}">
+  if (!c) return `<span class="chip is-unlisted"><span class="chip-code">${esc(id)}</span><span class="chip-title">Not in the undergraduate catalog</span></span>`;
+  const status = taken.has(id) ? 'taken' : planned.has(id) ? 'planned' : ready?.has(id) ? 'ready' : '';
+  return `<button type="button" class="chip k-${kind}${status ? ` is-${status}` : ''}" data-select="${esc(id)}">
     <span class="chip-code">${esc(map.label(c))}</span>
     <span class="chip-title">${esc(c.title || 'Not in the current catalog')}</span>
     ${note ? `<span class="chip-note">${esc(note)}</span>` : ''}
-    ${done ? '<span class="chip-check" title="Taken">✓<span class="sr-only"> taken</span></span>' : ''}
+    ${status ? `<span class="chip-status" title="${STATUS_LABEL[status]}">${statusIcon(status)}<span class="sr-only"> ${STATUS_LABEL[status]}</span></span>` : ''}
   </button>`;
 }
 
 // ------------------------------------------------------------------ intro
 
-function introHTML(map) {
+function introHTML(map, state) {
   const main = map.courses.filter(c => c.role === 'main');
   const links = map.edges.filter(e => map.get(e.target).role === 'main' && e.kind !== 'rec').length;
-  const lists = map.highlights.filter(h => h.group !== 'Schedule').length;
+  // This map's courses that open up the most later courses on the graph.
+  const gateways = main
+    .map(c => [c, [...map.descendants(c.id)].filter(id => state.visible.has(id)).length])
+    .filter(([, n]) => n > 0)
+    .sort(([a, n], [b, m]) => m - n || a.id.localeCompare(b.id))
+    .slice(0, 5);
   return `<div class="intro">
     <p class="eyebrow">${esc(map.data.catalogYear ? `${map.data.catalogYear} catalog` : 'Course map')}</p>
     <h2>${esc(map.name)}</h2>
     <div class="stats">
       <div class="stat"><b>${main.length}</b><span>courses</span></div>
       <div class="stat"><b>${links}</b><span>prerequisite links</span></div>
-      <div class="stat"><b>${lists}</b><span>degree lists</span></div>
+      <div class="stat"><b>${map.programs.length}</b><span>majors &amp; minors</span></div>
     </div>
     <section>
       <ul class="tips">
         <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke-width="2.4" stroke-linecap="round"><path class="tip-up" d="M2 7h12"/><path class="tip-down" d="M8 15h12"/></svg>
           <span><b>Click a course</b> to light up what it requires (violet) and what it unlocks (orange).</span></li>
-        <li><svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="8" fill="var(--good)"/><path d="m7.5 11.3 2.4 2.4 4.6-4.8" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span><b>Mark courses you've taken</b> and the ones you can take next get a green ring.</span></li>
+        <li>${statusIcon('ready').replace('class="si', 'class="tip-icon si')}
+          <span><b>Mark your courses:</b> Shift-click several (or press <b>Mark courses</b>) and set them taken or planned.
+          Courses you can take next turn green. The <b>Plan</b> tab lays out your quarters and checks prerequisites.</span></li>
+        <li><svg class="tip-icon" viewBox="0 0 22 22" aria-hidden="true"><rect class="tip-reach" x="0.5" y="4.5" width="21" height="13" rx="6.5"/><path class="tip-fork" d="M6.5 8v2.2M6.5 10.2l-2.3 3.4M6.5 10.2v3.4M6.5 10.2l2.3 3.4"/><text class="tip-num" x="16.3" y="14.6">9</text></svg>
+          <span><b>The number on a course</b> is how many courses on the map it leads to. Darker means more.</span></li>
         <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="var(--ink-2)" stroke-width="1.8"><rect x="3" y="4" width="16" height="5" rx="1.5"/><rect x="3" y="13" width="16" height="5" rx="1.5" fill="var(--sunken)"/></svg>
-          <span><b>Highlight</b> a degree requirement, a technical track or a quarter's offerings.</span></li>
+          <span><b>Combine majors and minors</b> in the Plan tab to track their requirements together.</span></li>
         <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="var(--ink-2)" stroke-width="1.8" stroke-linecap="round"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 5 5"/></svg>
           <span><b>Search</b> by number or title. Press <kbd>/</kbd> to jump to the search box.</span></li>
       </ul>
     </section>
+    ${gateways.length ? `<section><h3>Gateway courses</h3>
+      <p class="muted">These lead to the most later courses on the map.</p>
+      <ul class="chip-list">${gateways.map(([c, n]) => `<li>${chip(map, c.id, state, 'down', `leads to ${n}`)}</li>`).join('')}</ul>
+    </section>` : ''}
     <section><h3>About the data</h3>${aboutHTML(map, { sources: false })}</section>
     <p class="disclaimer">Unofficial and not affiliated with Northwestern University. Prerequisites change, so confirm
     with the official catalog and your adviser before you register.</p>

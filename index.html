@@ -78,6 +78,10 @@
         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5h11M7 10h11M7 15h11" fill="none"/><circle cx="3" cy="5" r="1"/><circle cx="3" cy="10" r="1"/><circle cx="3" cy="15" r="1"/></svg>
         <span class="seg-text">List</span>
       </button>
+      <button type="button" role="radio" id="view-plan" data-view="plan" aria-checked="false">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="3.5" width="15" height="14" rx="2" fill="none"/><path d="M2.5 8h15M7 2v3M13 2v3" fill="none"/><rect x="5" y="10.5" width="3" height="2.5" rx=".5"/><rect x="11" y="10.5" width="3" height="2.5" rx=".5"/></svg>
+        <span class="seg-text">Plan</span>
+      </button>
     </div>
   </div>
 
@@ -88,6 +92,9 @@
         <defs>
           <marker id="arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
             <path class="arrow-default" d="M0 1 10 5 0 9z"/>
+          </marker>
+          <marker id="arrow-mine" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+            <path class="arrow-mine" d="M0 1 10 5 0 9z"/>
           </marker>
           <marker id="arrow-faint" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
             <path class="arrow-faint" d="M0 1 10 5 0 9z"/>
@@ -100,7 +107,9 @@
           </marker>
         </defs>
       </svg>
+      <div id="minimap" class="minimap" aria-hidden="true" title="Overview: click or drag to move around"></div>
       <div id="list" class="list" hidden></div>
+      <div id="plan" class="plan-view" hidden></div>
 
       <div class="zoom-controls" id="zoom-controls" role="group" aria-label="Zoom">
         <button type="button" class="icon-btn" data-zoom="in" aria-label="Zoom in" title="Zoom in (+)">
@@ -116,8 +125,22 @@
 
       <details class="legend" id="legend">
         <summary>Legend</summary>
-        <p class="legend-note">Rows are course levels, columns are departments. Links appear when you hover over or select a course.</p>
-        <label class="legend-toggle"><input type="checkbox" id="show-links"> Show every link</label>
+        <p class="legend-note">Rows are course levels, columns are departments. Links run downward from a course into what it unlocks. Hover or select a course to trace its links.</p>
+        <label class="legend-toggle"><input type="checkbox" id="show-links"> Show all links</label>
+        <h4 class="legend-head">Your plan</h4>
+        <ul>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-taken" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-taken" transform="translate(8.5 8)"><circle r="4.6"/><path d="M-2 0.1-0.6 1.5 2-1.2"/></g></svg>Taken</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-planned" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-planned" transform="translate(8.5 8)"><circle r="4.6"/><path d="M0-2.3V0l1.7 1.1"/></g></svg>Planned</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-ready" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-ready" transform="translate(8.5 8)"><circle r="4.6"/><path d="M-1.9 0H1.6M0.1-1.6 1.7 0 0.1 1.6"/></g></svg>You can take it now</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-issue" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-issue" transform="translate(8.5 8)"><circle r="4.6"/><path d="M0-2.2V0.3M0 1.9v0.1"/></g></svg>Planned, but needs a check</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-picked" x="4" y="3" width="31" height="12" rx="4"/><g class="lg-pick" transform="translate(5 4)"><circle r="4"/><path d="M-1.8 0.1-0.6 1.3 1.8-1.1"/></g></svg>Selected (Shift-click)</li>
+        </ul>
+        <h4 class="legend-head">Courses</h4>
+        <ul>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><g class="reach t3" transform="translate(35 8)"><rect x="-29" y="-7" width="29" height="14" rx="7"/><path class="fork" d="M-21.4 -3.6v2.2M-21.4 -1.4l-2.4 3.6M-21.4 -1.4v3.6M-21.4 -1.4l2.4 3.6"/><text x="-5" y="3.6">12</text></g></svg>Leads to 12 courses on the map (darker = more)</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-ext" x="1" y="2" width="34" height="12" rx="3"/></svg>Other department (auto-read)</li>
+        </ul>
+        <h4 class="legend-head">Links</h4>
         <ul>
           <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-up" d="M2 6h32"/></svg>Prerequisite chain of the selected course</li>
           <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-down" d="M2 6h32"/></svg>Courses it unlocks</li>
@@ -125,9 +148,7 @@
           <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-alt" d="M2 6h32"/></svg>One of several options</li>
           <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-co" d="M2 6h32"/></svg>Take at the same time (corequisite)</li>
           <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-rec" d="M2 6h32"/></svg>Recommended</li>
-          <li><svg viewBox="0 0 36 12" aria-hidden="true"><rect class="lg-ext" x="3" y="1.5" width="30" height="9" rx="2.5"/></svg>Other department (auto-parsed)</li>
-          <li><svg viewBox="0 0 36 12" aria-hidden="true"><circle class="lg-taken" cx="18" cy="6" r="5"/><path class="lg-check" d="m15.6 6.2 1.6 1.6 3.2-3.2"/></svg>You've taken it</li>
-          <li><svg viewBox="0 0 36 12" aria-hidden="true"><circle class="lg-avail" cx="18" cy="6" r="4.2"/></svg>You can take it now</li>
+          <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-met" d="M2 6h32"/></svg>From a course you've taken</li>
         </ul>
       </details>
 
@@ -138,6 +159,7 @@
   </main>
 
   <div id="announcer" class="sr-only" aria-live="polite"></div>
+  <div id="toast" class="toast" hidden><span class="toast-text"></span><button type="button" class="toast-undo" data-action="undo">Undo</button></div>
 
   <dialog id="help" class="help" aria-labelledby="help-title">
     <form method="dialog" class="help-close">
@@ -147,12 +169,14 @@
     </form>
     <h2 id="help-title">How to use this map</h2>
     <ul class="help-list">
-      <li><b>Reading the map:</b> each row is a course level (100, 200, 300) and each column a department. Within a level, a course that needs another course of the same level sits lower down.</li>
+      <li><b>Reading the map:</b> each row is a course level (100, 200, 300) and each column a department. Courses sit under their prerequisites, and every link runs downward: from the bottom of a course into the course it unlocks. Solid links are required, dashed ones are one of several options, and faint ones connect other departments' courses.</li>
       <li><b>Select a course</b> by clicking it, searching, or picking it from the list. Its prerequisite chain turns violet and the courses it unlocks turn orange.</li>
-      <li><b>Plan ahead:</b> mark the courses you've taken (in the details panel or the list). Courses you can take next get a green ring. This is saved only in this browser.</li>
+      <li><b>Mark your courses:</b> Shift-click (or <kbd>⌘</kbd>/<kbd>Ctrl</kbd>-click) several courses, Shift-drag a box around them, long-press on a touch screen, or press <b>Mark courses</b>; then mark them taken or planned, or put them in a quarter, all at once. A course's details panel can also select it together with everything it requires. Every change can be undone.</li>
+      <li><b>Colors:</b> blue is your plan (solid for taken, dashed for planned), green means you can take it now, and amber means a planned course needs a check. The number on a course is how many courses on the map it leads to; darker means more.</li>
+      <li><b>Plan ahead:</b> the <b>Plan</b> tab lays out your quarters, warns when a prerequisite comes too late, and tracks the requirements of your majors and minors together. Your plan is saved only in this browser.</li>
       <li><b>Highlight</b> the courses in a degree requirement, a technical track, or a quarter's schedule from the toolbar.</li>
       <li><b>Move around:</b> drag to pan, scroll to move, pinch or <kbd>Ctrl</kbd> + scroll to zoom.</li>
-      <li><b>Keyboard:</b> <kbd>/</kbd> search, arrow keys move between courses, <kbd>Enter</kbd> selects, <kbd>Esc</kbd> clears, <kbd>+</kbd> <kbd>−</kbd> <kbd>0</kbd> zoom.</li>
+      <li><b>Keyboard:</b> <kbd>/</kbd> search, arrow keys move between courses, <kbd>Enter</kbd> selects (<kbd>Shift</kbd>+<kbd>Enter</kbd> adds to a multi-selection), <kbd>T</kbd> <kbd>P</kbd> <kbd>N</kbd> mark taken, planned or not taken, <kbd>⌘</kbd>/<kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes, <kbd>Esc</kbd> clears, <kbd>+</kbd> <kbd>−</kbd> <kbd>0</kbd> zoom.</li>
     </ul>
     <h3>About the data</h3>
     <div id="help-data"></div>

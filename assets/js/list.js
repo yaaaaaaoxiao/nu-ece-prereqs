@@ -1,15 +1,18 @@
-// List view: every course grouped by department, filterable, with a
-// "taken" checkbox per row. Doubles as the accessible alternative to the graph.
-import { esc } from './panel.js';
+// List view: every course grouped by department, filterable, with a plan
+// status per row. Doubles as the accessible alternative to the graph.
+// Shift-click rows to select several, as on the graph.
+import { esc, statusIcon } from './panel.js';
+import { termLabel } from './plan.js';
 
 export function renderList(el, { map, state, query }) {
   const hl = state.highlight ? map.highlight(state.highlight) : null;
   const matches = query.trim() ? new Set(map.search(query, Infinity).map(c => c.id)) : null;
-  const shown = map.courses.filter(c => (state.showExternal || c.role === 'main')
-    && (!hl || hl.ids.has(c.id)) && (!matches || matches.has(c.id)));
+  // The same courses as the graph (this map's, what they require, and your programs').
+  const pool = map.courses.filter(c => state.visible.has(c.id));
+  const shown = pool.filter(c => (!hl || hl.ids.has(c.id)) && (!matches || matches.has(c.id)));
 
   const filters = [hl && `in “${esc(hl.label)}”`, matches && `matching “${esc(query.trim())}”`].filter(Boolean);
-  let html = `<p class="list-summary">Showing ${shown.length} of ${map.courses.length} courses${
+  let html = `<p class="list-summary">Showing ${shown.length} of ${pool.length} courses${
     filters.length ? ` ${filters.join(' ')}` : ''}.</p>`;
   if (!shown.length) {
     el.innerHTML = `${html}<p class="list-empty">Nothing matches. Try another search or highlight.</p>`;
@@ -27,11 +30,15 @@ export function renderList(el, { map, state, query }) {
 
 function rowHTML(map, c, state) {
   const label = map.label(c);
-  const status = map.status(c, state.taken);
-  const planning = [...state.taken].some(id => map.get(id));
+  const mine = state.plan.status(c.id);
   const tags = [];
-  if (status === 'taken') tags.push('<span class="tag status-taken">✓ Taken</span>');
-  else if (planning && status === 'available') tags.push('<span class="tag status-available">Can take</span>');
+  if (mine === 'taken') tags.push(`<span class="tag status-taken">${statusIcon('taken')}Taken</span>`);
+  else if (mine === 'planned') {
+    const term = state.plan.term(c.id);
+    tags.push(`<span class="tag status-planned">${statusIcon('planned')}${term ? esc(termLabel(term)) : 'Planned'}</span>`);
+  } else if (state.ready.has(c.id)) {
+    tags.push(`<span class="tag status-ready">${statusIcon('ready')}Can take now</span>`);
+  }
   for (const q of map.quarters) {
     if (c.offered?.[q]) tags.push(`<span class="tag" title="Offered ${esc(q)}">${esc(q[0])}<span class="sr-only">, offered ${esc(q)}</span></span>`);
   }
@@ -40,10 +47,13 @@ function rowHTML(map, c, state) {
   else if (c.prereq) req = `Requires ${map.treeText(c.prereq)}`;
   else if (c.notes.length) req = c.notes.join(', ');
   else req = 'No prerequisites';
-  return `<li class="course-row${state.selected === c.id ? ' is-selected' : ''}">
-    <label class="row-check" title="I've taken this">
-      <input type="checkbox" data-action="toggle-taken" data-id="${esc(c.id)}"${state.taken.has(c.id) ? ' checked' : ''}>
-      <span class="sr-only">Mark ${esc(label)} as taken</span>
+  const option = (value, text) => `<option value="${value}"${(mine || '') === value ? ' selected' : ''}>${text}</option>`;
+  return `<li class="course-row${state.selected === c.id ? ' is-selected' : ''}${state.picked.has(c.id) ? ' is-picked' : ''}">
+    <label class="row-status">
+      <span class="sr-only">Your plan for ${esc(label)}</span>
+      <select data-action="set-status" data-id="${esc(c.id)}" class="${mine ? `is-${mine}` : ''}">
+        ${option('', '—')}${option('planned', 'Planned')}${option('taken', 'Taken')}
+      </select>
     </label>
     <button type="button" class="row-main" data-select="${esc(c.id)}">
       <span class="row-code">${esc(label)}</span>

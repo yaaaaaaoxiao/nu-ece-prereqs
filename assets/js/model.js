@@ -7,6 +7,7 @@
 const EDGE_RANK = { req: 0, alt: 1, co: 2, ext: 3, rec: 4 };
 // Recommended courses are not part of a prerequisite chain.
 const CHAIN_KINDS = new Set(['req', 'alt', 'co', 'ext']);
+const REQUIRED_KINDS = new Set(['req', 'co']);
 
 export async function fetchJSON(url) {
   const res = await fetch(url, { cache: 'no-cache' });
@@ -57,21 +58,32 @@ export class CourseMap {
       this.children.get(e.source).push(e);
     }
 
+    // Courses from other departments that a course here requires; they're
+    // always worth showing. Others appear only through a chosen program.
+    this.required = new Set();
+    for (const c of this.courses) {
+      if (c.role !== 'main') continue;
+      eachCode(c.prereq, id => this.required.add(id));
+      eachCode(c.coreq, id => this.required.add(id));
+      (c.recommended || []).forEach(id => this.required.add(id));
+    }
+
+    // Majors/minors. Each requirement list has items; an item is a list of
+    // alternatives, each a list of courses taken together.
+    this.programs = data.programs || [];
     this.highlights = [];
     this.membership = new Map();
-    for (const degree of data.degrees || []) {
-      for (const group of degree.groups) {
-        this.highlights.push({
-          key: `${slug(degree.id)}:${slug(group.label)}`,
-          group: degree.name,
-          label: group.label,
-          ids: new Set(group.courses),
-          unlisted: group.unlisted || [],
-          url: degree.url,
-        });
-        for (const id of group.courses) {
+    for (const program of this.programs) {
+      program.courses = new Set();
+      for (const list of program.lists) {
+        list.key = `${program.id}:${slug(list.label)}`;
+        list.ids = new Set(list.items.flat(2).filter(id => this.byId.has(id)));
+        list.ids.forEach(id => program.courses.add(id));
+        const unlisted = [...new Set(list.items.flat(2))].filter(id => !this.byId.has(id));
+        this.highlights.push({ key: list.key, group: program.name, program: program.id, label: list.label, ids: list.ids, unlisted, url: program.url });
+        for (const id of list.ids) {
           if (!this.membership.has(id)) this.membership.set(id, []);
-          this.membership.get(id).push({ degree, group, key: `${slug(degree.id)}:${slug(group.label)}` });
+          this.membership.get(id).push({ program, list, key: list.key });
         }
       }
     }
@@ -81,9 +93,25 @@ export class CourseMap {
         group: 'Schedule',
         label: `Offered ${q}`,
         ids: new Set(this.courses.filter(c => c.offered?.[q]).map(c => c.id)),
-        unlisted: [],
       });
     }
+  }
+
+  program(id) {
+    return this.programs.find(p => p.id === id) || null;
+  }
+
+  // How far a requirement list is: per item 'taken' | 'planned' | null.
+  progress(list, taken, planned) {
+    const all = new Set([...taken, ...planned]);
+    const covered = (alts, set) => alts.some(alt => alt.every(id => set.has(id)));
+    const items = list.items.map(alts => (covered(alts, taken) ? 'taken' : covered(alts, all) ? 'planned' : null));
+    return {
+      items,
+      taken: items.filter(s => s === 'taken').length,
+      planned: items.filter(s => s === 'planned').length,
+      need: list.need,
+    };
   }
 
   get(id) {
@@ -100,7 +128,12 @@ export class CourseMap {
   }
 
   highlight(key) {
-    return this.highlights.find(h => h.key === key) || null;
+    return this.highlights.find(h => h.key === key) || this.extraHighlights?.find(h => h.key === key) || null;
+  }
+
+  // Highlights that depend on the viewer (their plan), set by the app.
+  setExtraHighlights(list) {
+    this.extraHighlights = list;
   }
 
   scheduleLabel() {
@@ -116,12 +149,20 @@ export class CourseMap {
     return walk(id, this.children, 'target');
   }
 
-  // 'taken' | 'available' | 'blocked' for courses in this map's departments;
-  // other departments only report 'taken' (their prerequisites aren't modeled).
+  // What a course needs whichever options a student picks: required courses
+  // and corequisites, followed back, but not "one of several" alternatives.
+  requiredAncestors(id) {
+    return walk(id, this.parents, 'source', REQUIRED_KINDS);
+  }
+
+  // 'taken' | 'available' | 'blocked', or null when unknown. Other departments'
+  // prerequisites aren't checked by hand; the scraper keeps them (autoPrereq)
+  // only when the catalog sentence is plain enough to read reliably.
   status(c, taken) {
     if (taken.has(c.id)) return 'taken';
-    if (c.role !== 'main') return null;
-    return satisfied(c.prereq, taken) ? 'available' : 'blocked';
+    if (c.role === 'main') return satisfied(c.prereq, taken) ? 'available' : 'blocked';
+    if (!('autoPrereq' in c)) return null;
+    return satisfied(c.autoPrereq, taken) ? 'available' : 'blocked';
   }
 
   treeText(tree, top = true) {
@@ -182,13 +223,13 @@ function buildEdges(courses, byId) {
   return [...best.values()];
 }
 
-function walk(start, adjacency, key) {
+function walk(start, adjacency, key, kinds = CHAIN_KINDS) {
   const seen = new Set();
   const stack = [start];
   while (stack.length) {
     for (const e of adjacency.get(stack.pop()) || []) {
       const next = e[key];
-      if (CHAIN_KINDS.has(e.kind) && next !== start && !seen.has(next)) {
+      if (kinds.has(e.kind) && next !== start && !seen.has(next)) {
         seen.add(next);
         stack.push(next);
       }

@@ -3,15 +3,18 @@
 import { esc } from './panel.js';
 
 export class Search {
-  constructor(input, listbox, { find, describe, onPick, onQuery }) {
-    Object.assign(this, { input, listbox, find, describe, onPick, onQuery });
+  constructor(input, listbox, { find, describe, onPick, onQuery, onBlur }) {
+    Object.assign(this, { input, listbox, find, describe, onPick, onQuery, onBlur });
     this.items = [];
     this.active = -1;
     this.dropdown = true;
 
     input.addEventListener('input', () => this.update());
     input.addEventListener('focus', () => this.update());
-    input.addEventListener('blur', () => this.close());
+    input.addEventListener('blur', () => {
+      this.close();
+      this.onBlur?.();
+    });
     input.addEventListener('keydown', e => this.onKey(e));
     // Keep focus in the input while clicking an option.
     listbox.addEventListener('pointerdown', e => e.preventDefault());
@@ -65,13 +68,15 @@ export class Search {
   }
 
   pick(id) {
-    if (this.dropdown) {
+    const reset = this.dropdown;
+    if (reset) {
       this.input.value = '';
       this.onQuery('');
       this.close();
-      this.input.blur();
     }
+    // Report the pick before blurring: blur ends modes such as "add to a quarter".
     this.onPick(id);
+    if (reset) this.input.blur();
   }
 
   onKey(e) {
