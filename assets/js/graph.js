@@ -9,7 +9,8 @@
 // top to bottom.
 //
 // Each card shows the course code and title, an icon for the viewer's plan
-// (taken, planned, can take now) and how many courses on the map it leads to.
+// (taken, planned, can take now), how many courses on the map it leads to,
+// and the quarters it's offered this year (or the quarter it's planned for).
 /* global d3 */
 import { termLabel, termShort } from './plan.js';
 
@@ -28,6 +29,8 @@ const OTHER = '_other';
 const FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif';
 const TITLE_FONT = `11px ${FONT}`;
 const TERM_FONT = `600 10px ${FONT}`; // matches .node .term
+const OFFERED_FONT = `650 9.5px ${FONT}`; // matches .node .offered
+const OFFERED_GAP = 2; // px between the quarter letters
 const REACH_FONT = `650 10.5px ${FONT}`; // matches .reach text
 const FAR_FONT = `650 19px ${FONT}`; // matches .graph.is-far .node .code
 // Below FAR the nodes switch to a large code-only label (semantic zoom);
@@ -44,6 +47,7 @@ const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)'
 const translate = p => `translate(${p.x},${p.y})`;
 const isToggle = e => e.shiftKey || e.metaKey || e.ctrlKey;
 const STATUS_TEXT = { taken: 'Taken', planned: 'Planned', ready: 'You can take it now' };
+const listText = items => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`);
 
 export class GraphView {
   constructor(svgEl, { onSelect, onPick, minimap }) {
@@ -151,6 +155,7 @@ export class GraphView {
     // The courses each one leads to are what turns orange when it's selected.
     this.reach = new Map([...visibleIds].map(id =>
       [id, [...map.descendants(id)].filter(d => visibleIds.has(d)).length]));
+    this.offeredWidth = map.quarters.reduce((w, q, i) => w + this.textWidth(q[0], OFFERED_FONT) + (i ? OFFERED_GAP : 0), 0);
     this.layout = computeLayout(map, visibleIds, this.viewportSize(), this.titleWidth);
     this.draw(animate && !fresh && !reducedMotion());
     if (this.state) this.update(this.state);
@@ -297,6 +302,11 @@ export class GraphView {
     g.append('text').attr('class', 'code').attr('x', 10).attr('y', 17).text(id => map.label(map.get(id)));
     g.append('text').attr('class', 'title').attr('x', 10).attr('y', 32);
     g.append('text').attr('class', 'term').attr('x', NODE_W - 9).attr('y', 32);
+    // The quarters it's offered this year (F W S); a quarter in the plan takes its place.
+    g.append('text').attr('class', 'offered').attr('x', NODE_W - 9).attr('y', 32).attr('aria-hidden', 'true')
+      .selectAll('tspan').data(map.quarters).join('tspan')
+      .attr('dx', (q, i) => (i ? OFFERED_GAP : null))
+      .text(q => q[0]);
     // How many courses on the map this one leads to (see drawReach).
     const reach = g.append('g').attr('class', 'reach').attr('aria-hidden', 'true')
       .attr('transform', `translate(${NODE_W - 6},13.5)`)
@@ -333,6 +343,8 @@ export class GraphView {
     const { taken, planned, ready, picked, plan } = state;
     const hl = state.highlight ? map.highlight(state.highlight) : null;
     const sel = state.selected && this.layout.nodes.has(state.selected) ? state.selected : null;
+    // A path to a course (path.js) shows its quarters while nothing is selected.
+    const path = !sel && hl?.path && !hl.path.done ? hl.path : null;
 
     const up = new Set();
     const down = new Set();
@@ -347,7 +359,7 @@ export class GraphView {
     const inFocus = id => id === sel || up.has(id) || down.has(id);
     const isUp = e => !!sel && up.has(e.source) && (e.target === sel || up.has(e.target));
     const isDown = e => !!sel && (e.source === sel || down.has(e.source)) && down.has(e.target);
-    const inHighlight = e => !sel && !!hl && hl.ids.has(e.source) && hl.ids.has(e.target);
+    const inHighlight = e => !sel && !!hl && hl.ids.has(e.source) && hl.ids.has(e.target) && !(path && e.kind === 'rec');
     const status = id => (taken.has(id) ? 'taken' : planned.has(id) ? 'planned' : ready.has(id) ? 'ready' : '');
     const issues = new Map([...planned].filter(id => this.layout.nodes.has(id)).map(id => [id, plan.issues(map, id)]));
     const hasIssue = id => !!issues.get(id)?.length;
@@ -364,10 +376,11 @@ export class GraphView {
       .classed('has-issue', hasIssue)
       .classed('has-status', id => !!status(id))
       .classed('is-picked', id => picked.has(id))
+      .classed('is-goal', id => !!path && id === path.target)
       .attr('aria-pressed', id => String(id === sel || picked.has(id)))
-      .attr('aria-label', id => this.describe(id, status(id), hasIssue(id)));
-    this.nodeSel.each((id, i, els) => this.drawCard(els[i], id, status(id)));
-    this.svg.classed('is-picking', state.picking || picked.size > 0);
+      .attr('aria-label', id => this.describe(id, status(id), hasIssue(id), path));
+    this.nodeSel.each((id, i, els) => this.drawCard(els[i], id, status(id), path));
+    this.svg.classed('is-picking', state.picking || picked.size > 0).classed('has-path', !!path);
 
     this.edgeSel
       .classed('is-up', isUp)
@@ -390,25 +403,44 @@ export class GraphView {
 
   // The parts of a card that depend on the plan: the code moves right to make
   // room for the status icon, planned and taken courses show their quarter
-  // (the title gives way), and the zoomed-out code shrinks to fit.
-  drawCard(el, id, status) {
+  // (so does a course on the path being shown), others the quarters they're
+  // offered; the title gives way, and the zoomed-out code shrinks to fit.
+  drawCard(el, id, status, path) {
     const c = this.map.get(id);
-    const term = (status === 'taken' || status === 'planned') && this.state.plan.term(id);
+    const own = (status === 'taken' || status === 'planned') && this.state.plan.term(id);
+    const next = !own && path?.when.get(id);
+    const term = own || next;
     const termText = term ? termShort(term) : '';
+    const offered = !termText && this.hasSchedule(c);
     const reach = this.reach.get(id) || 0;
-    const key = `${status}|${termText}|${reach}`;
+    const key = `${status}|${termText}|${next ? 'path' : ''}|${reach}`;
     if (el.dataset.card === key) return;
     el.dataset.card = key;
     const g = d3.select(el);
     const title = c.title || 'Not in the current catalog';
-    const room = NODE_W - 20 - (termText ? this.textWidth(termText, TERM_FONT) + 6 : 0);
+    const right = termText ? this.textWidth(termText, TERM_FONT) + 6 : offered ? this.offeredWidth + 6 : 0;
     g.select('.code').attr('x', status ? 25 : 10).style('--far', `${this.farSize(c, status, reach)}px`);
-    g.select('.title').text(this.fitText(title, room));
-    g.select('.term').text(termText);
+    g.select('.title').text(this.fitText(title, NODE_W - 20 - right));
+    g.select('.term').text(termText).classed('is-next', !!next);
+    g.select('.offered').style('display', offered ? null : 'none')
+      .selectAll('tspan').classed('on', q => !!c.offered?.[q]);
     const tip = [c.title ? `${c.id}: ${c.title}` : c.id];
     if (reach) tip.push(`Leads to ${reach} course${reach === 1 ? '' : 's'} on this map`);
-    if (status) tip.push(term ? `${STATUS_TEXT[status]}, ${termLabel(term)}` : STATUS_TEXT[status]);
+    if (status) tip.push(own ? `${STATUS_TEXT[status]}, ${termLabel(own)}` : STATUS_TEXT[status]);
+    if (next) tip.push(`On the path: ${termLabel(next)}`);
+    if (this.hasSchedule(c)) tip.push(this.scheduleText(c));
     g.select('title').text(tip.join('\n'));
+  }
+
+  // This year's schedule covers this map's courses (listed or not) and the
+  // other departments' courses it lists.
+  hasSchedule(c) {
+    return this.map.quarters.length > 0 && (c.role === 'main' || Object.keys(c.offered || {}).length > 0);
+  }
+
+  scheduleText(c) {
+    const on = this.map.quarters.filter(q => c.offered?.[q]);
+    return on.length ? `Offered ${listText(on)}` : `Not on the ${this.map.scheduleLabel()} schedule`;
   }
 
   // Zoomed out, the code is drawn at 19px; long ones shrink to fit between
@@ -421,7 +453,7 @@ export class GraphView {
     return Math.max(11, Math.min(19, Math.floor((19 * room) / width)));
   }
 
-  describe(id, status, hasIssue) {
+  describe(id, status, hasIssue, path) {
     const map = this.map;
     const c = map.get(id);
     const before = map.parents.get(id).filter(e => e.kind !== 'rec').length;
@@ -433,6 +465,8 @@ export class GraphView {
     if (status === 'planned' && term) parts.push(`planned for ${termLabel(term)}`);
     else if (status) parts.push(STATUS_TEXT[status].toLowerCase());
     if (hasIssue) parts.push('needs a check');
+    if (path?.when.has(id)) parts.push(`${id === path.target ? 'goal of the path' : 'on the path'}, ${termLabel(path.when.get(id))}`);
+    if (this.hasSchedule(c)) parts.push(this.scheduleText(c));
     if (this.state.picked.has(id)) parts.push('selected');
     return parts.join('. ');
   }
@@ -627,13 +661,21 @@ export class GraphView {
       .filter(n => this.layout.nodes.has(n));
   }
 
-  showIds(ids) {
+  // Frame a set of courses. If they don't fit at a readable zoom, show the
+  // part around `keep` (the goal of a path), else the top.
+  showIds(ids, { keep = null } = {}) {
     const box = this.bbox(ids);
     if (!box) return;
     const { w, h } = this.size();
     const fit = Math.min((w - 96) / box.w, (h - 96) / box.h, 1);
-    if (fit >= 0.4) this.moveTo(box, fit);
-    else this.moveTo({ ...box, h: Math.min(box.h, (h - 96) / 0.4) }, 0.4);
+    if (fit >= 0.4) {
+      this.moveTo(box, fit);
+      return;
+    }
+    const tall = Math.min(box.h, (h - 96) / 0.4);
+    const goal = keep && this.bbox([keep]);
+    const y = goal ? Math.min(Math.max(goal.y + goal.h - tall, box.y), box.y + box.h - tall) : box.y;
+    this.moveTo({ ...box, y, h: tall }, 0.4);
   }
 
   zoomBy(factor) {

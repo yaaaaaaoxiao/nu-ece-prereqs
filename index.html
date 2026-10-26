@@ -133,11 +133,13 @@
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-planned" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-planned" transform="translate(8.5 8)"><circle r="4.6"/><path d="M0-2.3V0l1.7 1.1"/></g></svg>Planned</li>
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-ready" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-ready" transform="translate(8.5 8)"><circle r="4.6"/><path d="M-1.9 0H1.6M0.1-1.6 1.7 0 0.1 1.6"/></g></svg>You can take it now</li>
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-issue" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-issue" transform="translate(8.5 8)"><circle r="4.6"/><path d="M0-2.2V0.3M0 1.9v0.1"/></g></svg>Planned, but needs a check</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-path" x="0.9" y="0.9" width="34.2" height="14.2" rx="4"/><text class="lg-term" x="31.5" y="11">Win</text></svg>On the path to a course, with its quarter</li>
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-picked" x="4" y="3" width="31" height="12" rx="4"/><g class="lg-pick" transform="translate(5 4)"><circle r="4"/><path d="M-1.8 0.1-0.6 1.3 1.8-1.1"/></g></svg>Selected (Shift-click)</li>
         </ul>
         <h4 class="legend-head">Courses</h4>
         <ul>
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><g class="reach t3" transform="translate(35 8)"><rect x="-29" y="-7" width="29" height="14" rx="7"/><path class="fork" d="M-21.4 -3.6v2.2M-21.4 -1.4l-2.4 3.6M-21.4 -1.4v3.6M-21.4 -1.4l2.4 3.6"/><text x="-5" y="3.6">12</text></g></svg>Leads to 12 courses on the map (darker = more)</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><text class="lg-offered" x="18" y="12"><tspan class="on">F</tspan><tspan dx="2">W</tspan><tspan dx="2" class="on">S</tspan></text></svg>Offered this year in fall and spring (dark letters)</li>
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-ext" x="1" y="2" width="34" height="12" rx="3"/></svg>Other department (auto-read)</li>
         </ul>
         <h4 class="legend-head">Links</h4>
@@ -172,7 +174,8 @@
       <li><b>Reading the map:</b> each row is a course level (100, 200, 300) and each column a department. Courses sit under their prerequisites, and every link runs downward: from the bottom of a course into the course it unlocks. Solid links are required, dashed ones are one of several options, and faint ones connect other departments' courses.</li>
       <li><b>Select a course</b> by clicking it, searching, or picking it from the list. Its prerequisite chain turns violet and the courses it unlocks turn orange.</li>
       <li><b>Mark your courses:</b> Shift-click (or <kbd>⌘</kbd>/<kbd>Ctrl</kbd>-click) several courses, Shift-drag a box around them, long-press on a touch screen, or press <b>Mark courses</b>; then mark them taken or planned, or put them in a quarter, all at once. A course's details panel can also select it together with everything it requires. Every change can be undone.</li>
-      <li><b>Colors:</b> blue is your plan (solid for taken, dashed for planned), green means you can take it now, and amber means a planned course needs a check. The number on a course is how many courses on the map it leads to; darker means more.</li>
+      <li><b>Colors:</b> blue is your plan (solid for taken, dashed for planned), green means you can take it now, and amber means a planned course needs a check. The number on a course is how many courses on the map it leads to; darker means more. The letters F W S are the quarters it's offered this year (the dark ones).</li>
+      <li><b>Path to a course:</b> in a course's panel, press <b>Show the path</b>. The map outlines the fewest courses you still need in violet, each with the soonest quarter you could take it on this year's schedule, and <b>Add to my plan</b> puts them all in your plan. You choose how many courses a quarter it plans.</li>
       <li><b>Plan ahead:</b> the <b>Plan</b> tab lays out your quarters, warns when a prerequisite comes too late, and tracks the requirements of your majors and minors together. Your plan is saved only in this browser.</li>
       <li><b>Highlight</b> the courses in a degree requirement, a technical track, or a quarter's schedule from the toolbar.</li>
       <li><b>Move around:</b> drag to pan, scroll to move, pinch or <kbd>Ctrl</kbd> + scroll to zoom.</li>

@@ -1,7 +1,8 @@
 // Details panel: the selected course, or a highlighted list, or an
 // introduction when nothing is selected.
 import { satisfied, unmet } from './model.js';
-import { currentTerm, termLabel, termOrder } from './plan.js';
+import { currentTerm, termLabel, termOrder, termShort } from './plan.js';
+import { pathFor } from './path.js';
 
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => (
   { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
@@ -10,7 +11,9 @@ export const ICON = {
   close: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg>',
   external: '<svg viewBox="0 0 20 20" width="12" height="12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4H4v12h12v-4M11 3h6v6M17 3l-8 8"/></svg>',
   warn: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.8 15 14H1L8 1.8Z" fill="var(--warn)"/><path d="M8 6v3.6M8 11.4v.1" stroke="#1a1a19" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  path: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="5" cy="4.5" r="2"/><circle cx="15" cy="15.5" r="2"/><path d="M5 6.5V8a2.5 2.5 0 0 0 2.5 2.5h5A2.5 2.5 0 0 1 15 13v.5"/></svg>',
 };
+const courses = n => `${n} course${n === 1 ? '' : 's'}`;
 // "Prerequisites fit" (a green check) and "not yet" (an empty ring) in the panel.
 const STATUS_ICON = {
   fits: '<svg class="status-icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/><path d="m4.8 8.2 2.2 2.2 4.2-4.4"/></svg>',
@@ -28,6 +31,9 @@ export function statusIcon(kind) {
   return `<svg class="si si-${kind}" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="${glyph}"/></svg>`;
 }
 const STATUS_LABEL = { taken: 'taken', planned: 'planned', ready: 'can take now' };
+// Notes that ask for more than courses ("senior standing"), not alternatives
+// ("or equivalent") or remarks about where a prerequisite came from.
+const extraNeeds = c => (c.notes || []).filter(n => !n.startsWith('or ') && !/[A-Z_]+ \d{3}/.test(n));
 const LINK_NOTE = { alt: 'one option', co: 'corequisite', rec: 'recommended' };
 
 // The panel follows the current focus: courses being marked, else a course,
@@ -38,6 +44,7 @@ export function renderPanel(el, { map, state, repo }) {
   let body;
   if (state.picking || state.picked.size) body = pickedHTML(map, state);
   else if (course) body = courseHTML(map, course, state, repo);
+  else if (hl?.path) body = pathHTML(map, hl.path, state);
   else if (hl) body = highlightHTML(map, hl, state);
   else body = introHTML(map, state);
   // The grip only shows on phones, where the panel is a collapsible bottom sheet.
@@ -117,6 +124,120 @@ function highlightHTML(map, hl, state) {
     </section>`;
 }
 
+// ---------------------------------------------------------- path to a course
+
+const labelOf = (map, id) => (map.get(id) ? map.label(map.get(id)) : id);
+
+// In a course's panel: how far it is from the viewer's plan, and the button
+// that shows the whole path on the map.
+function pathSummaryHTML(map, c, state) {
+  if (state.plan.status(c.id) === 'taken') return '';
+  const path = pathFor(state, c.id);
+  if (path.done) return ''; // planned for the quarter under way
+  const first = path.courses.length - 1;
+  const term = path.when.get(c.id);
+  let when;
+  if (!term) when = "They don't all fit in the next five years.";
+  else if (path.fixed.has(c.id)) when = `You've planned it for <b>${termLabel(term)}</b>.`;
+  else {
+    when = `Soonest: <b>${termLabel(term)}</b>${path.guess.has(c.id) && map.quarters.length
+      ? ' <span class="muted">(a guess: it isn\'t on this year\'s schedule)</span>' : ''}.`;
+  }
+  return `<section class="path-summary"><h3>Path to this course</h3>
+    <p>${first ? `${courses(first)} to take first.` : 'Nothing else to take first.'} ${when}</p>
+    ${first ? `<button type="button" class="btn path-btn" data-action="show-path" data-id="${esc(c.id)}">${ICON.path}Show the path</button>` : ''}
+  </section>`;
+}
+
+// The path panel: what's still needed before a course, quarter by quarter,
+// and a button that puts it all in the plan.
+function pathHTML(map, path, state) {
+  const c = map.get(path.target);
+  const label = esc(map.label(c));
+  const head = `<div class="panel-head">
+      <div>
+        <p class="eyebrow">Path to</p>
+        <h2><span class="code">${esc(c.id)}</span>${esc(c.title || 'Not in the current catalog')}</h2>
+      </div>
+      <button type="button" class="icon-btn" data-action="clear-highlight" aria-label="Stop showing the path">${ICON.close}</button>
+    </div>`;
+  if (path.done) {
+    return `${head}<p class="status fits path-lead">${STATUS_ICON.fits}<span>${
+      state.taken.has(c.id) ? "You've taken it" : "You're taking it this quarter"}, so there's nothing left to plan.</span></p>`;
+  }
+  const first = path.courses.length - 1;
+  const end = path.when.get(path.target);
+  let lead = first ? `${courses(first)} to take first` : 'Nothing else to take first';
+  if (!end) lead += `, and they don't all fit in the next five years at ${state.pathPace} a quarter.`;
+  else if (path.fixed.has(path.target)) lead += `, and you've planned ${label} for <b>${termLabel(end)}</b>.`;
+  else lead += `, so the soonest you could take ${label} is <b>${termLabel(end)}</b>.`;
+  const steps = path.steps.map(({ term, ids }) => `<li class="path-step">
+      <p class="path-term">${esc(termLabel(term))}</p>
+      <ul class="chip-list">${ids.map(id => `<li>${chip(map, id, state, 'up', stepNote(path, id))}</li>`).join('')}</ul>
+    </li>`).join('');
+  const toAdd = [...path.when].filter(([id, term]) => map.get(id)
+    && !(state.plan.status(id) === 'planned' && state.plan.term(id) === term)).length;
+  const pace = [2, 3, 4, 5].map(n => `<option value="${n}"${n === state.pathPace ? ' selected' : ''}>${n}</option>`).join('');
+  return `${head}
+    <p class="path-lead">${lead}</p>
+    <div class="path-actions">
+      <button type="button" class="btn primary" data-action="plan-path" data-id="${esc(path.target)}"${toAdd ? '' : ' aria-disabled="true"'}>${
+        toAdd ? `Add ${courses(toAdd)} to my plan` : 'All in your plan'}</button>
+      <label class="pace">Up to <select data-action="set-pace">${pace}</select> a quarter</label>
+    </div>
+    <section>
+      ${steps ? `<ol class="path-steps">${steps}</ol>` : ''}
+      ${path.unplaced.length ? `<p class="muted">Doesn't fit in the next five years: ${esc(path.unplaced.map(id => labelOf(map, id)).join(', '))}.</p>` : ''}
+    </section>
+    <section><h3>How it's worked out</h3>${pathNotesHTML(map, path, state)}</section>`;
+}
+
+// One short note per course on the path; the notes below say more.
+function stepNote(path, id) {
+  if (id === path.target) return 'goal';
+  if (path.moved.has(id)) return `moved from ${termShort(path.moved.get(id))}`;
+  if (path.unknownReqs.has(id)) return 'check prerequisites';
+  if (path.options.has(id)) return 'one of several';
+  if (path.guess.has(id)) return 'not on the schedule';
+  return '';
+}
+
+function pathNotesHTML(map, path, state) {
+  const names = ids => esc(ids.map(id => labelOf(map, id)).join(', '));
+  const notes = [map.quarters.length
+    ? `Quarters follow the ${esc(map.scheduleLabel())} schedule, assuming each course runs in the same quarters every year. Summers are left out.`
+    : "This map has no schedule, so any quarter is assumed. Summers are left out."];
+  notes.push(`Up to ${state.pathPace} courses a quarter, counting courses already in your plan.`);
+  const options = [...path.options].map(([id, others]) => {
+    const alts = others.filter(o => map.get(o) && !map.get(o).missing);
+    return alts.length ? `${labelOf(map, id)} (or ${alts.slice(0, 2).map(o => labelOf(map, o)).join(', ')}${
+      alts.length > 2 ? ` and ${alts.length - 2} more` : ''})` : '';
+  }).filter(Boolean);
+  if (options.length) {
+    notes.push(`Where one of several courses will do, it takes the usual one: ${esc(options.join('; '))}.
+      Plan a different one and the path follows it.`);
+  }
+  for (const [id, old] of path.moved) {
+    const now = path.when.get(id);
+    notes.push(`${esc(labelOf(map, id))} is planned for ${termLabel(old)}, before its prerequisites${now ? `, so the path moves it to ${termLabel(now)}` : ''}.`);
+  }
+  // Quarters taken from the plan aren't guesses.
+  const guess = [...path.guess].filter(id => !path.fixed.has(id));
+  if (guess.length && map.quarters.length) {
+    notes.push(`${names(guess)} ${guess.length === 1 ? "isn't" : "aren't"} on this year's schedule, so any quarter is assumed.`);
+  }
+  const unknown = [...path.noSchedule].filter(id => !path.fixed.has(id));
+  if (unknown.length) notes.push(`Other departments' schedules aren't included, so any quarter is assumed for ${names(unknown)}.`);
+  if (path.unknownReqs.size) {
+    notes.push(`Check the prerequisites of ${names([...path.unknownReqs])} in the catalog. They couldn't be read automatically, so the path may be missing some.`);
+  }
+  const hidden = path.courses.filter(id => map.get(id) && !state.visible.has(id));
+  if (hidden.length) notes.push(`${names(hidden)} ${hidden.length === 1 ? "isn't" : "aren't"} on the map while Other departments is off.`);
+  const extra = extraNeeds(map.get(path.target));
+  if (extra.length) notes.push(`${esc(labelOf(map, path.target))} also asks for: ${esc(extra.join('; '))}.`);
+  return `<ul class="path-notes">${notes.map(n => `<li>${n}</li>`).join('')}</ul>`;
+}
+
 // ------------------------------------------------------------------ course
 
 function courseHTML(map, c, state, repo) {
@@ -131,6 +252,7 @@ function courseHTML(map, c, state, repo) {
     </div>
     ${planControlHTML(map, c, state)}
     ${statusHTML(map, c, state)}
+    ${pathSummaryHTML(map, c, state)}
     ${requirementsHTML(map, c, state)}
     ${unlocksHTML(map, c, state)}
     ${programsHTML(map, c, state)}
@@ -187,7 +309,7 @@ function statusHTML(map, c, state) {
       below <span class="muted">(read automatically)</span>.</span></p>` : '';
   }
   if (can === 'available') {
-    const extra = c.notes.filter(n => !n.startsWith('or '));
+    const extra = extraNeeds(c);
     return `<p class="status available">${statusIcon('ready')}<span>You can take this now${
       extra.length ? ` <span class="muted">(also: ${esc(extra.join(', '))})</span>` : ''}</span></p>`;
   }
@@ -345,8 +467,12 @@ function introHTML(map, state) {
         <li>${statusIcon('ready').replace('class="si', 'class="tip-icon si')}
           <span><b>Mark your courses:</b> Shift-click several (or press <b>Mark courses</b>) and set them taken or planned.
           Courses you can take next turn green. The <b>Plan</b> tab lays out your quarters and checks prerequisites.</span></li>
+        <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round"><circle class="tip-up" cx="5" cy="4.5" r="2.2"/><path class="tip-up" d="M5 6.7v2.3a2.5 2.5 0 0 0 2.5 2.5h7A2.5 2.5 0 0 1 17 14v1"/><circle cx="17" cy="17.5" r="2.4" fill="var(--ink-2)"/></svg>
+          <span><b>Path to a course:</b> open a course and press <b>Show the path</b> to see the fewest courses you still
+          need for it, quarter by quarter, then add them all to your plan.</span></li>
         <li><svg class="tip-icon" viewBox="0 0 22 22" aria-hidden="true"><rect class="tip-reach" x="0.5" y="4.5" width="21" height="13" rx="6.5"/><path class="tip-fork" d="M6.5 8v2.2M6.5 10.2l-2.3 3.4M6.5 10.2v3.4M6.5 10.2l2.3 3.4"/><text class="tip-num" x="16.3" y="14.6">9</text></svg>
-          <span><b>The number on a course</b> is how many courses on the map it leads to. Darker means more.</span></li>
+          <span><b>The number on a course</b> is how many courses on the map it leads to; darker means more.
+          The letters <b class="tip-quarters">F<span class="off">W</span>S</b> are the quarters it's offered this year.</span></li>
         <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="var(--ink-2)" stroke-width="1.8"><rect x="3" y="4" width="16" height="5" rx="1.5"/><rect x="3" y="13" width="16" height="5" rx="1.5" fill="var(--sunken)"/></svg>
           <span><b>Combine majors and minors</b> in the Plan tab to track their requirements together.</span></li>
         <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="var(--ink-2)" stroke-width="1.8" stroke-linecap="round"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 5 5"/></svg>

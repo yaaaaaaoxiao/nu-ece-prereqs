@@ -6,6 +6,7 @@ import { renderPanel, aboutHTML, esc, statusIcon } from './panel.js';
 import { renderList } from './list.js';
 import { renderPlanView } from './planview.js';
 import { Plan, currentTerm, termLabel, termOrder } from './plan.js';
+import { pathFor } from './path.js';
 import { Search } from './search.js';
 import { prefs } from './store.js';
 
@@ -59,6 +60,7 @@ const state = {
   picking: false, // "Mark courses" mode: plain clicks pick too, until Done
   showExternal: prefs.get('showExternal', true),
   showLinks: prefs.get('showLinks', true),
+  pathPace: prefs.get('pathPace', 3), // at most this many courses a quarter on a path
   plan: new Plan(),
   // Derived from the plan and map by derive():
   taken: new Set(),
@@ -67,9 +69,11 @@ const state = {
   myPrograms: new Set(),
   activePrograms: [],
   visible: new Set(),
+  paths: new Map(), // paths to courses worked out so far (see path.js)
 };
 let maps = [];
 const undoStack = []; // plan snapshots, newest last
+let panelSubject = null; // what the panel showed last render (see render())
 
 // The graph needs d3 from the CDN; without it the list still works.
 const graph = window.d3
@@ -130,10 +134,12 @@ async function openMap(params) {
     els.mapName.textContent = state.map.name;
     els.helpData.innerHTML = aboutHTML(state.map);
   }
+  const before = state.visible;
   derive();
   const map = state.map;
   state.selected = params.course && map.get(params.course) ? params.course : null;
   state.highlight = params.hl && map.highlight(params.hl) ? params.hl : '';
+  if (showingPath()) derive(); // the path's courses join the graph
   state.view = VIEWS.includes(params.view) ? params.view : 'graph';
   if (!graph && state.view === 'graph') state.view = 'list';
   setStageStatus('');
@@ -141,6 +147,8 @@ async function openMap(params) {
     graph.setData(map, state.visible);
     syncInsets();
     graph.fitAll({ animate: false, minScale: 0.45 });
+  } else if (!fresh) {
+    relayout(before);
   }
   render({ history: 'replace' });
   if (state.selected) revealSelected({ animate: !fresh });
@@ -157,11 +165,14 @@ function derive() {
   // With no programs chosen, the map's own majors stand in.
   state.activePrograms = chosen ? chosen.map(id => map.program(id)).filter(Boolean) : map.programs.filter(p => p.default);
 
+  state.paths = new Map();
   const visible = new Set(map.courses.filter(c => c.role === 'main').map(c => c.id));
   if (state.showExternal) {
     map.required.forEach(id => visible.add(id));
     state.activePrograms.forEach(p => p.courses.forEach(id => visible.add(id)));
     [...state.taken, ...state.planned].forEach(id => map.get(id) && visible.add(id));
+    // So does a path being shown, so all of it is drawn.
+    if (showingPath()) pathHighlight(state.highlight)?.ids.forEach(id => map.get(id) && visible.add(id));
   }
   state.visible = visible;
   // "Can take now" only means something once some courses are marked taken.
@@ -175,19 +186,35 @@ function derive() {
     { key: 'plan:taken', group: 'Your plan', label: "Courses you've taken", ids: state.taken },
     { key: 'plan:planned', group: 'Your plan', label: "Courses you've planned", ids: state.planned },
     { key: 'plan:ready', group: 'Your plan', label: 'Courses you can take now', ids: state.ready },
-  ]);
+  ], pathHighlight);
   fillHighlightSelect();
   if (state.highlight && !highlightOptions().some(h => h.key === state.highlight)) state.highlight = '';
 }
+
+// "path:<course>" highlights what's still needed for a course, with the
+// quarters to take it in (path.js).
+function pathHighlight(key) {
+  const id = key.startsWith('path:') && key.slice(5);
+  const c = id && state.map.get(id);
+  if (!c) return null;
+  const path = pathFor(state, id);
+  return { key, group: 'Your plan', label: `Path to ${state.map.label(c)}`, ids: new Set(path.done ? [id] : path.courses), path };
+}
+
+const showingPath = () => state.highlight.startsWith('path:');
 
 // After any change to the plan: recompute, re-lay out the graph if the set of
 // courses on it changed, and redraw.
 function planChanged() {
   const before = state.visible;
   derive();
+  relayout(before);
+  render();
+}
+
+function relayout(before) {
   const same = before.size === state.visible.size && [...before].every(id => state.visible.has(id));
   if (!same && graph) graph.setData(state.map, state.visible, { animate: state.view === 'graph' });
-  render();
 }
 
 // Frame the selected course in the part of the graph that nothing covers
@@ -238,9 +265,13 @@ function render({ history: mode = 'replace' } = {}) {
     if (state.view === 'plan') renderPlanView(els.planView, { map, state });
     renderPlanner();
   });
-  // On phones the panel is a bottom sheet; open it only for a course (or the
-  // courses being marked) so a highlight stays visible on the graph.
-  els.panel.classList.toggle('is-open', !!state.selected || isPicking());
+  // Something new in the panel (another course, a path, courses to mark) starts at its top.
+  const subject = isPicking() ? 'picking' : state.selected || state.highlight;
+  if (subject !== panelSubject) els.panel.scrollTop = 0;
+  panelSubject = subject;
+  // On phones the panel is a bottom sheet; open it only for a course, the
+  // courses being marked or a path, so a highlight stays visible on the graph.
+  els.panel.classList.toggle('is-open', !!state.selected || isPicking() || showingPath());
   els.panel.classList.toggle('is-picking', isPicking());
   syncControls();
   writeURL(mode);
@@ -259,6 +290,7 @@ function keepFocus(fn) {
 
 function syncControls() {
   const { view } = state;
+  fillHighlightSelect(); // a path is on offer only while it's shown
   els.highlight.value = state.highlight;
   els.highlight.classList.toggle('is-active', !!state.highlight);
   els.showExternal.checked = state.showExternal;
@@ -275,13 +307,16 @@ function syncControls() {
   els.search.classList.toggle('is-adding', !!state.addTerm);
 }
 
-// The highlights on offer: lists from the programs in play, your plan, and the schedule.
+// The highlights on offer: lists from the programs in play, your plan (and
+// the path being shown), and the schedule.
 function highlightOptions() {
   const active = new Set(state.activePrograms.map(p => p.id));
   const plan = state.map.extraHighlights.filter(h => h.ids.size && [...h.ids].some(id => state.map.get(id)));
+  const path = showingPath() && state.map.highlight(state.highlight);
   return [
     ...state.map.highlights.filter(h => h.program && active.has(h.program)),
     ...plan,
+    ...(path ? [path] : []),
     ...state.map.highlights.filter(h => !h.program),
   ];
 }
@@ -546,15 +581,52 @@ function clearPlan() {
 }
 
 function setHighlight(key) {
+  const before = state.visible;
+  const paths = showingPath() || key.startsWith('path:');
   state.highlight = key;
+  if (paths) {
+    derive(); // a path brings its courses onto the graph
+    relayout(before);
+  }
   render({ history: 'push' });
   const hl = state.map.highlight(key);
   if (!hl) return;
-  announce(`Highlighting ${hl.ids.size} courses: ${hl.label}.`);
+  announce(hl.path ? `${hl.label}: ${countText(hl.ids.size - 1)} to take first. Details are in the side panel.`
+    : `Highlighting ${hl.ids.size} courses: ${hl.label}.`);
   if (state.view === 'graph' && !state.selected) {
     syncInsets();
-    graph.showIds(hl.ids);
+    graph.showIds(hl.ids, { keep: hl.path?.target });
   }
+}
+
+// ------------------------------------------------------- path to a course
+
+// The courses still needed for a course, quarter by quarter, on the map and
+// in the panel (on phones, the sheet peeks so the path stays in view).
+function showPath(id) {
+  state.selected = null;
+  els.panel.classList.add('is-collapsed');
+  setHighlight(`path:${id}`);
+  els.panel.focus({ preventScroll: true });
+}
+
+// Every course on the path goes in the plan, in the quarter the path gives it.
+function planPath(id) {
+  const { map, plan } = state;
+  const path = pathFor(state, id);
+  const add = [...path.when].filter(([c, term]) => map.get(c) && plan.status(c) !== 'taken'
+    && !(plan.status(c) === 'planned' && plan.term(c) === term));
+  if (!add.length) return;
+  changePlan(`Planned ${countText(add.length)} for the path to ${map.label(map.get(id))}.`, p => {
+    for (const [c, term] of add) p.set(c, 'planned', term);
+  });
+}
+
+function setPace(n) {
+  state.pathPace = n;
+  prefs.set('pathPace', n);
+  state.paths.clear();
+  render();
 }
 
 function setView(view) {
@@ -626,6 +698,8 @@ document.addEventListener('click', e => {
   else if (action === 'stop-picking') stopPicking();
   else if (action === 'unpick') togglePick(id);
   else if (action === 'pick-chain') pickCourses([id, ...[...state.map.requiredAncestors(id)].filter(c => state.visible.has(c))]);
+  else if (action === 'show-path') showPath(id);
+  else if (action === 'plan-path') planPath(id);
   else if (action === 'undo') undo();
   else if (action === 'add-to-term') startAdding(t.dataset.term);
   else if (action === 'remove-program') setPrograms([...state.myPrograms].filter(p => p !== t.dataset.program));
@@ -643,6 +717,7 @@ document.addEventListener('change', e => {
   else if (action === 'set-term') setCourseTerm(id, t.value);
   else if (action === 'pick-term' && t.value) moveToTerm(takePicked(), t.value);
   else if (action === 'add-program' && t.value) setPrograms([...state.myPrograms, t.value]);
+  else if (action === 'set-pace') setPace(Number(t.value));
   else if (action === 'set-start') {
     state.plan.setStart(Number(t.value));
     render();

@@ -16,8 +16,9 @@ take next, and highlight a degree requirement, technical track or quarter.
 - **The whole picture:** courses sit in rows by level (100, 200, 300) and columns by
   department, placed under their prerequisites with every link drawn, so chains are
   visible at a glance. Each course shows how many courses on the map it leads to
-  (the badge gets darker the more it opens up), the panel lists the map's gateway
-  courses, and a minimap helps when zoomed in.
+  (the badge gets darker the more it opens up) and the quarters it's offered this
+  year (**F W S**, dark where it runs), the panel lists the map's gateway courses,
+  and a minimap helps when zoomed in.
 - **Prerequisite chains:** selecting a course lights up its full chain of prerequisites
   (violet) and every course it leads to (orange). Dashed links mean "one of several options".
 - **Your plan on the map:** courses you've taken are solid blue, planned ones dashed
@@ -30,6 +31,13 @@ take next, and highlight a degree requirement, technical track or quarter.
   also select it together with everything it requires. <kbd>T</kbd> <kbd>P</kbd>
   <kbd>N</kbd> mark the selection (or the focused course), and every change can be
   undone (Undo, or Cmd/Ctrl+Z).
+- **Path to a course:** a course's panel shows how many courses you still need
+  for it and the soonest quarter you could take it. **Show the path** outlines them
+  on the map in violet, each with its quarter, and lists them quarter by quarter;
+  **Add to my plan** plans them all. It starts from what you've taken, picks the
+  usual option where one of several will do (or the one you've planned), and fills
+  quarters from the next one using the current schedule, at most 2 to 5 courses a
+  quarter (your choice) counting what's already planned.
 - **Planner:** lay out future quarters in the **Plan** tab (add with "+ Add", drag
   between quarters). It warns when a prerequisite isn't done before the quarter you
   planned, a corequisite is missing, or the course wasn't offered in that quarter on
@@ -66,6 +74,7 @@ assets/js/
   main.js               state, URL sync, wiring
   model.js              data model: edges, chains, search, programs, progress
   plan.js               the viewer's plan: statuses, quarters, prerequisite checks
+  path.js               path to a course: fewest courses still needed, by quarter
   graph.js              level layout + SVG rendering, pan/zoom, keyboard nav
   panel.js              details panel
   list.js               list view

@@ -324,7 +324,10 @@ svg { flex: none; }
 .node .title { font: 11px var(--font); fill: var(--ink-2); }
 .node .term { font: 600 10px var(--font); fill: var(--mine-ink); text-anchor: end; }
 /* Zoomed out: drop the title and enlarge the code, icon and count so the overview stays legible. */
-.graph.is-far .node .title, .graph.is-far .node .term { display: none; }
+/* The quarters it's offered this year (F W S): dark where it runs, faint where it doesn't. */
+.node .offered { font: 650 9.5px var(--font); text-anchor: end; fill: var(--line); }
+.node .offered .on { fill: var(--ink-2); }
+.graph.is-far .node .title, .graph.is-far .node .term, .graph.is-far .node .offered { display: none; }
 .graph.is-far .node .code { font-size: var(--far, 19px); transform: translateY(10px); }
 .graph.is-far .node.has-status .code { transform: translate(8px, 10px); }
 .graph.is-far .node .mark-icon { transform: translate(2px, 8px) scale(1.45); }
@@ -390,6 +393,14 @@ svg { flex: none; }
 /* A highlighted list stays half visible behind a selection. */
 .node.is-dim.is-match text, .node.is-dim.is-match .mark, .node.is-dim.is-match .reach { opacity: 0.6; }
 
+/* Path to a course: what's still needed is outlined in violet (the
+   prerequisite color) with the quarter to take it in; the course it leads to
+   is the goal. Planned courses keep their dashes. */
+.graph.has-path .node.is-match .card { stroke: var(--up); stroke-width: 2; stroke-dasharray: none; }
+.graph.has-path .node.is-match.is-planned .card { stroke-dasharray: 5 3; }
+.graph.has-path .node.is-goal .card { stroke: var(--ink); stroke-width: 2.5; filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.18)); }
+.node .term.is-next { fill: var(--up); }
+
 /* Several courses selected at once: an outline and a check on the corner. */
 .node .pick { display: none; }
 .node.is-picked .pick { display: inline; }
@@ -416,6 +427,7 @@ svg { flex: none; }
 .edge.is-hover { stroke: var(--ink-2); stroke-width: 2; marker-end: url(#arrow); }
 .edge.is-up { stroke: var(--up); stroke-width: 2.2; marker-end: url(#arrow-up); }
 .edge.is-down { stroke: var(--down); stroke-width: 2.2; marker-end: url(#arrow-down); }
+.graph.has-path .edge.is-hl { stroke: var(--up); stroke-width: 2.2; marker-end: url(#arrow-up); }
 .edge.is-dim { opacity: 0.1; }
 .arrow-default { fill: var(--edge); }
 .arrow-faint { fill: var(--line); }
@@ -485,6 +497,10 @@ svg { flex: none; }
 .lg-ready { fill: var(--good-wash); stroke: var(--good); stroke-width: 1.5; }
 .lg-issue { fill: var(--mine-tint); stroke: var(--warn); stroke-width: 1.8; }
 .lg-picked { fill: var(--raised); stroke: var(--accent); stroke-width: 2; }
+.lg-path { fill: var(--raised); stroke: var(--up); stroke-width: 1.8; }
+.legend .lg-term { font: 650 7.5px var(--font); fill: var(--up); text-anchor: end; }
+.legend .lg-offered { font: 650 10.5px var(--font); text-anchor: middle; fill: var(--line); }
+.legend .lg-offered .on { fill: var(--ink-2); }
 .legend .lg-pick circle { fill: var(--accent); stroke: var(--raised); stroke-width: 1.5; }
 .legend .lg-pick path { fill: none; stroke: var(--raised); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 .legend .si path { stroke-width: 1.4; }
@@ -712,8 +728,8 @@ svg { flex: none; }
 }
 
 @media (forced-colors: active) {
-  .node.is-up .card, .node.is-down .card, .node.is-selected .card { stroke: Highlight; }
-  .edge.is-up, .edge.is-down { stroke: Highlight; }
+  .node.is-up .card, .node.is-down .card, .node.is-selected .card, .graph.has-path .node.is-match .card { stroke: Highlight; }
+  .edge.is-up, .edge.is-down, .graph.has-path .edge.is-hl { stroke: Highlight; }
 }
 
 /* ==========================================================================
@@ -751,6 +767,30 @@ svg { flex: none; }
 .tag.status-planned { background: var(--mine-tint); box-shadow: inset 0 0 0 1.5px var(--mine); color: var(--mine-ink); }
 .tag.status-ready { background: var(--good-wash); color: var(--good-ink); }
 .search input.is-adding { border-color: var(--accent); background: var(--accent-wash); }
+
+/* Path to a course: a summary in the course's panel, and the path itself as
+   a timeline of quarters on a violet rail. */
+.path-summary p { margin-bottom: 10px; }
+.path-btn svg { stroke: var(--up); }
+.btn.primary { border-color: var(--ink); background: var(--ink); color: var(--raised); }
+.btn.primary:hover { border-color: var(--ink); background: color-mix(in srgb, var(--ink) 85%, var(--raised)); }
+.btn[aria-disabled="true"] { border-color: var(--line); background: var(--sunken); color: var(--muted); cursor: default; }
+.path-lead { margin: 10px 0 12px !important; color: var(--ink-2); }
+.path-lead b { color: var(--ink); }
+.path-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 6px; }
+.pace { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink-2); }
+.pace select { height: 30px; padding: 0 6px; border: 1px solid var(--line); border-radius: 8px; background: var(--raised); font-weight: 600; }
+.path-steps { margin: 0; padding: 0; list-style: none; }
+.path-step { position: relative; padding: 0 0 14px 24px; }
+.path-step::before { content: ""; position: absolute; left: 1px; top: 2px; width: 12px; height: 12px; border: 2px solid var(--up); border-radius: 50%; background: var(--surface); }
+.path-step::after { content: ""; position: absolute; left: 6px; top: 16px; bottom: 0; width: 2px; background: color-mix(in srgb, var(--up) 40%, transparent); }
+.path-step:last-child { padding-bottom: 0; }
+.path-step:last-child::before { background: var(--up); }
+.path-step:last-child::after { display: none; }
+.path-term { margin: 0 0 6px !important; font-size: 12.5px; font-weight: 650; color: var(--ink); }
+.path-notes { display: grid; gap: 6px; margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--muted); }
+.tip-quarters { font-size: 12px; letter-spacing: 0.12em; }
+.tip-quarters .off { color: var(--line); }
 
 /* ==========================================================================
    Plan view

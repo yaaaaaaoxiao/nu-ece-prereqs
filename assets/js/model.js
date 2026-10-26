@@ -128,12 +128,15 @@ export class CourseMap {
   }
 
   highlight(key) {
-    return this.highlights.find(h => h.key === key) || this.extraHighlights?.find(h => h.key === key) || null;
+    return this.highlights.find(h => h.key === key) || this.extraHighlights?.find(h => h.key === key)
+      || this.resolveHighlight?.(key) || null;
   }
 
   // Highlights that depend on the viewer (their plan), set by the app.
-  setExtraHighlights(list) {
+  // `resolve` makes the rest from their key on demand (a path to a course).
+  setExtraHighlights(list, resolve = null) {
     this.extraHighlights = list;
+    this.resolveHighlight = resolve;
   }
 
   scheduleLabel() {
