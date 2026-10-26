@@ -24,7 +24,7 @@
      "name": "Computer Engineering BS",
      "short": "CE BS",
      "type": "major",
-     "default": true
+     "default": false
     },
     {
      "id": "cs-minor",

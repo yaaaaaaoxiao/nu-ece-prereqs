@@ -605,7 +605,7 @@
    "short": "CE BS",
    "type": "major",
    "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/electrical-computer-engineering/computer-engineering-degree/",
-   "default": true,
+   "default": false,
    "lists": [
     {
      "label": "Mathematics",

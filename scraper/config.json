@@ -268,8 +268,7 @@
     "math-minor"
    ],
    "defaultPrograms": [
-    "ee-bs",
-    "ce-bs"
+    "ee-bs"
    ],
    "schedule": {
     "format": "mccormick",
