@@ -76,6 +76,7 @@ const state = {
   visible: new Set(),
   paths: new Map(), // paths to courses worked out so far (see path.js)
   openDescs: new Set(), // courses whose long description is shown in full
+  preview: null, // a course shown in the panel while the mouse is over it
 };
 let maps = []; // data/maps.json: each map's file, departments and programs
 const loaded = new Map(); // map id -> its data, once fetched
@@ -87,6 +88,7 @@ const graph = window.d3
   ? new GraphView(els.graph, {
     onSelect: (id, opts) => select(id, opts),
     onPick: (ids, opts) => pickCourses(ids, opts),
+    onPreview: id => preview(id),
     minimap: $('#minimap'),
   })
   : null;
@@ -323,7 +325,7 @@ function render({ history: mode = 'replace' } = {}) {
     renderPlanner();
   });
   // Something new in the panel (another course, a path, courses to mark) starts at its top.
-  const subject = isPicking() ? 'picking' : state.selected || state.highlight;
+  const subject = isPicking() ? 'picking' : state.selected || state.preview || state.highlight;
   if (subject !== panelSubject) els.panel.scrollTop = 0;
   panelSubject = subject;
   // On phones the panel is a bottom sheet; open it only for a course, the
@@ -443,7 +445,27 @@ function repoSlug() {
 
 // ----------------------------------------------------------------- actions
 
+// Hovering over a course (or focusing it with the keyboard) shows its details
+// in the panel until the pointer moves off, unless a course is selected or
+// courses are being marked. A short delay keeps the panel still while the
+// pointer crosses the map; moving into the panel keeps the preview there.
+let previewTimer;
+function preview(id) {
+  clearTimeout(previewTimer);
+  previewTimer = setTimeout(() => {
+    if (id && (state.selected || isPicking() || narrow.matches)) return;
+    if (!id && els.panel.matches(':hover')) return;
+    if ((id || null) === state.preview) return;
+    state.preview = id || null;
+    renderPanel(els.panel, { map: state.map, state, repo: repoSlug() });
+    els.panel.scrollTop = 0;
+    panelSubject = state.preview || state.highlight;
+  }, id ? 200 : 300);
+}
+
 function select(id, { source = 'panel', toggle = false } = {}) {
+  clearTimeout(previewTimer);
+  state.preview = null;
   const map = state.map;
   if (!map || (id && !map.get(id))) return;
   // Shift, Cmd or Ctrl-click picks several courses; while picking, any click does.
@@ -476,6 +498,7 @@ const countText = n => `${n} course${n === 1 ? '' : 's'}`;
 // The panel lists what's selected, with what to do with it. On phones it
 // starts as a peek (its header holds the buttons) so the map stays in view.
 function beginPicking() {
+  state.preview = null;
   if (!isPicking()) els.panel.classList.add('is-collapsed');
 }
 
@@ -939,6 +962,9 @@ document.addEventListener('keydown', e => {
     else if (e.key === '0') zoom('fit');
   }
 });
+
+// Leaving the panel ends a preview it was showing.
+els.panel.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && state.preview) preview(null); });
 
 // The toast stays while the pointer is on it.
 els.toast.addEventListener('pointerenter', () => clearTimeout(toastTimer));

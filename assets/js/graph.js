@@ -52,11 +52,12 @@ const STATUS_TEXT = { taken: 'Taken', planned: 'Planned', ready: 'You can take i
 const listText = items => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`);
 
 export class GraphView {
-  constructor(svgEl, { onSelect, onPick, minimap }) {
+  constructor(svgEl, { onSelect, onPick, onPreview, minimap }) {
     this.el = svgEl;
     this.svg = d3.select(svgEl);
     this.onSelect = onSelect;
     this.onPick = onPick;
+    this.onPreview = onPreview; // a course under the mouse (or keyboard focus), or null
     this.map = null;
     this.visible = new Set();
     this.state = null;
@@ -295,10 +296,23 @@ export class GraphView {
         this.onSelect(id, { source: 'graph', toggle: isToggle(e) });
       })
       .on('pointerdown', (e, id) => this.startPress(e, id))
-      .on('pointerenter', (e, id) => { if (e.pointerType === 'mouse') this.setHover(id); })
-      .on('pointerleave', () => this.setHover(null))
-      .on('focus', (e, id) => this.onNodeFocus(id))
-      .on('blur', () => this.setHover(null));
+      .on('pointerenter', (e, id) => {
+        if (e.pointerType !== 'mouse') return;
+        this.setHover(id);
+        this.onPreview?.(id);
+      })
+      .on('pointerleave', () => {
+        this.setHover(null);
+        this.onPreview?.(null);
+      })
+      .on('focus', (e, id) => {
+        this.onNodeFocus(id);
+        this.onPreview?.(id);
+      })
+      .on('blur', () => {
+        this.setHover(null);
+        this.onPreview?.(null);
+      });
     g.append('rect').attr('class', 'card').attr('width', NODE_W).attr('height', NODE_H).attr('rx', 7);
     // The viewer's plan: taken, planned, can take now, or planned but needs a check.
     const mark = g.append('g').attr('class', 'mark').attr('aria-hidden', 'true')

@@ -20,6 +20,8 @@ take next, and highlight a degree requirement, technical track or quarter.
   (the badge gets darker the more it opens up) and the quarters it's offered this
   year (**F W S**, dark where it runs), the panel lists the map's gateway courses,
   and a minimap helps when zoomed in.
+- **Details on hover:** pointing at a course shows its details in the side panel; clicking
+  keeps them there.
 - **Prerequisite chains:** selecting a course lights up its full chain of prerequisites
   (violet) and every course it leads to (orange). Dashed links mean "one of several options".
 - **Your plan on the map:** courses you've taken are solid blue, planned ones dashed

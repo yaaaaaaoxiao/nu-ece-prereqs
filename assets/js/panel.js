@@ -39,7 +39,9 @@ const LINK_NOTE = { alt: 'one option', co: 'corequisite', rec: 'recommended' };
 // The panel follows the current focus: courses being marked, else a course,
 // else a highlighted list, else the intro.
 export function renderPanel(el, { map, state, repo }) {
-  const course = state.selected && map.get(state.selected);
+  // The selected course, else one previewed by hovering over it on the map.
+  const shown = state.selected || state.preview;
+  const course = shown && map.get(shown);
   const hl = !course && state.highlight && map.highlight(state.highlight);
   let body;
   if (state.picking || state.picked.size) body = pickedHTML(map, state);
@@ -484,7 +486,8 @@ function introHTML(map, state) {
     <section>
       <ul class="tips">
         <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke-width="2.4" stroke-linecap="round"><path class="tip-up" d="M2 7h12"/><path class="tip-down" d="M8 15h12"/></svg>
-          <span><b>Click a course</b> to see its prerequisites (violet) and the courses it unlocks (orange).</span></li>
+          <span><b>Point at a course</b> to see its details here. <b>Click it</b> to keep them, and to see its
+          prerequisites (violet) and the courses it unlocks (orange).</span></li>
         <li>${statusIcon('ready').replace('class="si', 'class="tip-icon si')}
           <span><b>Mark your courses.</b> Shift-click them, or press <b>Mark courses</b>. Courses you can take next turn green.</span></li>
         <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round"><circle class="tip-up" cx="5" cy="4.5" r="2.2"/><path class="tip-up" d="M5 6.7v2.3a2.5 2.5 0 0 0 2.5 2.5h7A2.5 2.5 0 0 1 17 14v1"/><circle cx="17" cy="17.5" r="2.4" fill="var(--ink-2)"/></svg>
