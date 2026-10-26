@@ -231,6 +231,24 @@
    "labels": {
     "16 required courses": "Required courses"
    }
+  },
+  "mse-minor": {
+   "name": "Materials Science minor (Weinberg)",
+   "short": "MSE minor",
+   "type": "minor",
+   "path": "/undergraduate/arts-sciences/materials-science/materials-science-minor/",
+   "labels": {
+    "Program Courses (6 units)": {
+     "label": "Program courses",
+     "kind": "required",
+     "need": 4
+    },
+    "Foundations in Mathematics and Science (units depend on chemistry and mathematics sequences taken)": {
+     "label": "Foundations in math and science",
+     "kind": "prereq",
+     "need": 4
+    }
+   }
   }
  },
  "maps": [
@@ -287,7 +305,8 @@
     "MAT_SCI"
    ],
    "programs": [
-    "mse-bs"
+    "mse-bs",
+    "mse-minor"
    ],
    "defaultPrograms": [
     "mse-bs"

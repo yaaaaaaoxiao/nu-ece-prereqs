@@ -115,7 +115,7 @@
    "id": "mse",
    "name": "Materials Science & Engineering",
    "file": "mse.json",
-   "courses": 73,
+   "courses": 79,
    "catalogYear": "2026-2027",
    "generated": "2026-10-26",
    "departments": [
@@ -128,6 +128,13 @@
      "short": "MSE BS",
      "type": "major",
      "default": true
+    },
+    {
+     "id": "mse-minor",
+     "name": "Materials Science minor (Weinberg)",
+     "short": "MSE minor",
+     "type": "minor",
+     "default": false
     }
    ]
   }

@@ -239,7 +239,8 @@ Actions → General → Allow GitHub Actions to create and approve pull requests
   and [MAT_SCI courses](https://catalogs.northwestern.edu/undergraduate/courses-az/mat_sci/)
 - [Computer Science BS](https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/computer-science/computer-science-degree/),
   [Computer Science BA](https://catalogs.northwestern.edu/undergraduate/arts-sciences/computer-science/computer-science-major/)
-  and [Materials Science and Engineering BS](https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/materials-science-engineering/materials-science-engineering-degree/)
+  , [Materials Science and Engineering BS](https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/materials-science-engineering/materials-science-engineering-degree/)
+  and [Materials Science minor](https://catalogs.northwestern.edu/undergraduate/arts-sciences/materials-science/materials-science-minor/)
 - [McCormick degree requirements](https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/#requirementstext) (the school core)
 - Course schedules for [ECE](https://www.mccormick.northwestern.edu/electrical-computer/academics/courses/),
   [CS](https://www.mccormick.northwestern.edu/computer-science/academics/courses/)

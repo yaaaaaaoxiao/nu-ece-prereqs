@@ -299,11 +299,106 @@
     "Major Program (22 units)",
     "6 technical elective courses in engineering, natural sciences (usually chemistry or physics), and mathematics chosen to fulfill an area of concentration"
    ]
+  },
+  {
+   "id": "mse-minor",
+   "name": "Materials Science minor (Weinberg)",
+   "short": "MSE minor",
+   "type": "minor",
+   "url": "https://catalogs.northwestern.edu/undergraduate/arts-sciences/materials-science/materials-science-minor/",
+   "default": false,
+   "lists": [
+    {
+     "label": "Program courses",
+     "kind": "required",
+     "need": 4,
+     "items": [
+      [
+       [
+        "MAT_SCI 201-0"
+       ],
+       [
+        "MAT_SCI 301-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 315-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 316-1"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 316-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Foundations in math and science",
+     "kind": "prereq",
+     "need": 4,
+     "items": [
+      [
+       [
+        "MATH 220-1",
+        "MATH 220-2"
+       ],
+       [
+        "MATH 218-1",
+        "MATH 218-2",
+        "MATH 218-3"
+       ]
+      ],
+      [
+       [
+        "MATH 230-1",
+        "MATH 230-2"
+       ]
+      ],
+      [
+       [
+        "CHEM 110-0",
+        "CHEM 131-0",
+        "CHEM 132-0"
+       ],
+       [
+        "CHEM 151-0",
+        "CHEM 152-0"
+       ],
+       [
+        "CHEM 171-0",
+        "CHEM 172-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 314-0"
+       ],
+       [
+        "CHEM 342-1"
+       ],
+       [
+        "PHYSICS 332-0"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "2 other 300-level materials science courses",
+    "1 course in thermodynamics"
+   ]
   }
  ],
  "sources": [
   "https://catalogs.northwestern.edu/undergraduate/courses-az/mat_sci/",
   "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/materials-science-engineering/materials-science-engineering-degree/",
+  "https://catalogs.northwestern.edu/undergraduate/arts-sciences/materials-science/materials-science-minor/",
   "https://www.mccormick.northwestern.edu/materials-science/academics/courses/"
  ],
  "courses": [
@@ -1266,6 +1361,23 @@
    "autoPrereq": "BMD_ENG 390-1"
   },
   {
+   "id": "CHEM 110-0",
+   "dept": "CHEM",
+   "num": "110-0",
+   "title": "Quantitative Problem Solving in Chemistry",
+   "units": 1.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solution strategies for traditional word problems and their application to basic chemistry quantitative problems: dimensional analysis, chemical equations, stoichiometry, limiting reagents.",
+   "text": "Prerequisite: permission of department. Students cannot recieve credit for CHEM 110-0 , CHEM 101-0, and CHEM 1X0.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20110-0"
+  },
+  {
    "id": "CHEM 131-0",
    "dept": "CHEM",
    "num": "131-0",
@@ -1280,7 +1392,10 @@
    "text": "Prerequisite: CHEM 110-0 (C- or better).",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20131-0"
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20131-0",
+   "links": [
+    "CHEM 110-0"
+   ]
   },
   {
    "id": "CHEM 132-0",
@@ -1668,6 +1783,64 @@
    ]
   },
   {
+   "id": "MATH 218-1",
+   "dept": "MATH",
+   "num": "218-1",
+   "title": "Single-Variable Calculus with Precalculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Real numbers and sets. Equalities and inequalities. Functions and graphs. Limits. Continuity. Differentiation. Linearization. Students may not receive credit for both MATH 218-1 and any of MATH 211-0, MATH 212-0 (former), MATH 220-0 (former), or MATH 220-1.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20218-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 218-2",
+   "dept": "MATH",
+   "num": "218-2",
+   "title": "Single-Variable Calculus with Precalculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Extreme value theorem, mean value theorem, and curve-sketching. Related rates. Optimization. Transcendental and inverse functions. Students may not receive credit for both MATH 218-2 and any of MATH 211-0, MATH 212-0 (former), MATH 220-0 (former), or MATH 220-1.",
+   "text": "Prerequisite: MATH 218-1 or consent of the department.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20218-2",
+   "links": [
+    "MATH 218-1"
+   ]
+  },
+  {
+   "id": "MATH 218-3",
+   "dept": "MATH",
+   "num": "218-3",
+   "title": "Single-Variable Calculus with Precalculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Definite integrals, antiderivatives, and the fundamental theorem of calculus. Areas and volumes. Techniques of integration, numerical integration, and improper integrals. First-order linear and separable ordinary differential equations. Students may not receive credit for both MATH 218-3 and any of MATH 213-0 (former), MATH 220-2, or MATH 224-0 (former).",
+   "text": "Prerequisite: MATH 218-2 or consent of the department.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20218-3",
+   "links": [
+    "MATH 218-2"
+   ]
+  },
+  {
    "id": "MATH 220-1",
    "dept": "MATH",
    "num": "220-1",
@@ -1702,6 +1875,7 @@
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-2",
    "links": [
+    "MATH 218-2",
     "MATH 220-1"
    ],
    "autoPrereq": {
@@ -1729,6 +1903,7 @@
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-1",
    "links": [
+    "MATH 218-3",
     "MATH 220-2"
    ],
    "autoPrereq": {
@@ -1790,6 +1965,7 @@
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=MATH%20230-1",
    "links": [
+    "MATH 218-3",
     "MATH 220-2"
    ],
    "autoPrereq": {
@@ -1798,6 +1974,39 @@
      "MATH 214-0",
      "MATH 220-2",
      "MATH 224-0"
+    ]
+   }
+  },
+  {
+   "id": "MATH 230-2",
+   "dept": "MATH",
+   "num": "230-2",
+   "title": "Multivariable Integral Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Multiple integration: double integrals, triple integrals, and the change of variables theorem. Vector calculus: vector fields, line integrals, surface integrals, curl and divergence, Green's theorem, Stokes' theorem, and the divergence theorem. Not open to students in the McCormick School of Engineering. Students may not receive credit for both MATH 230-2 and any of MATH 228-2, MATH 234-0 (former), MATH 281-2, MATH 285-3, MATH 290-3, MATH 291-3, or ES_APPM 252-2.",
+   "text": "Prerequisite: MATH 228-1 or MATH 230-0 (former) or MATH 230-1 or MATH 281-1 or MATH 285-2 or MATH 290-2 or MATH 291-2 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20230-2",
+   "links": [
+    "MATH 228-1",
+    "MATH 230-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 228-1",
+     "MATH 230-0",
+     "MATH 230-1",
+     "MATH 281-1",
+     "MATH 285-2",
+     "MATH 290-2",
+     "MATH 291-2",
+     "ES_APPM 252-1"
     ]
    }
   },
@@ -1879,6 +2088,7 @@
     "MATH 220-1",
     "MATH 220-2",
     "MATH 230-1",
+    "MATH 230-2",
     "PHYSICS 135-1"
    ]
   },
@@ -1903,6 +2113,28 @@
     "MATH 220-2",
     "MATH 230-1",
     "PHYSICS 135-2"
+   ]
+  },
+  {
+   "id": "PHYSICS 332-0",
+   "dept": "PHYSICS",
+   "num": "332-0",
+   "title": "Statistical Mechanics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Ideal gas, Boltzmann distribution, transport phenomena, fluctuation theory, Bose-Einstein and Fermi-Dirac statistics.",
+   "text": "Prerequisites: PHYSICS 135-1 , PHYSICS 135-2 , and PHYSICS 135-3 ; PHYSICS 125-3 or PHYSICS 239-0 (concurrent registration allowed).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20332-0",
+   "links": [
+    "PHYSICS 135-1",
+    "PHYSICS 135-2",
+    "PHYSICS 135-3"
    ]
   },
   {
