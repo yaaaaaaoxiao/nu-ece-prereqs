@@ -1,0 +1,142 @@
+{
+ "maps": [
+  {
+   "id": "ece",
+   "name": "Electrical & Computer Engineering",
+   "file": "ece.json",
+   "courses": 237,
+   "catalogYear": "2026-2027",
+   "generated": "2026-10-26",
+   "departments": [
+    "COMP_ENG",
+    "ELEC_ENG"
+   ],
+   "programs": [
+    {
+     "id": "ee-bs",
+     "name": "Electrical Engineering BS",
+     "short": "EE BS",
+     "type": "major",
+     "default": true
+    },
+    {
+     "id": "ce-bs",
+     "name": "Computer Engineering BS",
+     "short": "CE BS",
+     "type": "major",
+     "default": false
+    },
+    {
+     "id": "cs-minor",
+     "name": "Computer Science minor (McCormick)",
+     "short": "CS minor",
+     "type": "minor",
+     "default": false
+    },
+    {
+     "id": "ai-minor",
+     "name": "Artificial Intelligence minor",
+     "short": "AI minor",
+     "type": "minor",
+     "default": false
+    },
+    {
+     "id": "mlds-minor",
+     "name": "Machine Learning and Data Science minor",
+     "short": "ML & data science minor",
+     "type": "minor",
+     "default": false
+    },
+    {
+     "id": "math-minor",
+     "name": "Mathematics minor",
+     "short": "Math minor",
+     "type": "minor",
+     "default": false
+    }
+   ]
+  },
+  {
+   "id": "cs",
+   "name": "Computer Science",
+   "file": "cs.json",
+   "courses": 236,
+   "catalogYear": "2026-2027",
+   "generated": "2026-10-26",
+   "departments": [
+    "COMP_SCI"
+   ],
+   "programs": [
+    {
+     "id": "cs-bs",
+     "name": "Computer Science BS (McCormick)",
+     "short": "CS BS",
+     "type": "major",
+     "default": true
+    },
+    {
+     "id": "cs-ba",
+     "name": "Computer Science BA (Weinberg)",
+     "short": "CS BA",
+     "type": "major",
+     "default": false
+    },
+    {
+     "id": "cs-minor",
+     "name": "Computer Science minor (McCormick)",
+     "short": "CS minor",
+     "type": "minor",
+     "default": false
+    },
+    {
+     "id": "ai-minor",
+     "name": "Artificial Intelligence minor",
+     "short": "AI minor",
+     "type": "minor",
+     "default": false
+    },
+    {
+     "id": "mlds-minor",
+     "name": "Machine Learning and Data Science minor",
+     "short": "ML & data science minor",
+     "type": "minor",
+     "default": false
+    },
+    {
+     "id": "math-minor",
+     "name": "Mathematics minor",
+     "short": "Math minor",
+     "type": "minor",
+     "default": false
+    }
+   ]
+  },
+  {
+   "id": "mse",
+   "name": "Materials Science & Engineering",
+   "file": "mse.json",
+   "courses": 79,
+   "catalogYear": "2026-2027",
+   "generated": "2026-10-26",
+   "departments": [
+    "MAT_SCI"
+   ],
+   "programs": [
+    {
+     "id": "mse-bs",
+     "name": "Materials Science and Engineering BS",
+     "short": "MSE BS",
+     "type": "major",
+     "default": true
+    },
+    {
+     "id": "mse-minor",
+     "name": "Materials Science minor (Weinberg)",
+     "short": "MSE minor",
+     "type": "minor",
+     "default": false
+    }
+   ]
+  }
+ ]
+}

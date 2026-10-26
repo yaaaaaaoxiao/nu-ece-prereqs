@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Course Prerequisite Map (graph-only version, October 2026)</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Unofficial interactive map of course prerequisites for Northwestern majors: see what each course requires, what it unlocks, and what you can take next.">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    // Apply a saved theme before first paint (storage may be unavailable).
+    try {
+      var t = JSON.parse(localStorage.getItem('prereq-map:v1') || '{}').theme;
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#panel">Skip to course details</a>
+
+  <header class="topbar">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="2" y="4" width="11" height="8" rx="2.5"/>
+        <rect x="19" y="4" width="11" height="8" rx="2.5"/>
+        <rect x="10.5" y="20" width="11" height="8" rx="2.5"/>
+        <path d="M7.5 12v3.5q0 2 2 2H16v2.5M24.5 12v3.5q0 2-2 2H16" fill="none"/>
+      </svg>
+      <div class="brand-text">
+        <h1>Prerequisite Map</h1>
+        <p id="map-name" class="brand-sub">Loading…</p>
+      </div>
+      <button type="button" class="programs-btn" id="programs-btn" aria-haspopup="dialog">
+        <span class="sr-only">Your majors and minors: </span><span class="programs-label">Choose programs</span>
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>
+      </button>
+    </div>
+
+    <div class="segmented views" role="radiogroup" aria-label="View">
+      <button type="button" role="radio" id="view-graph" data-view="graph" aria-checked="true" title="Graph">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="3" width="6" height="4" rx="1"/><rect x="12" y="8" width="6" height="4" rx="1"/><rect x="2" y="13" width="6" height="4" rx="1"/><path d="M8 5h2v10H8M10 10h2" fill="none"/></svg>
+        <span class="seg-text">Graph</span>
+      </button>
+      <button type="button" role="radio" id="view-list" data-view="list" aria-checked="false" title="List">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5h11M7 10h11M7 15h11" fill="none"/><circle cx="3" cy="5" r="1"/><circle cx="3" cy="10" r="1"/><circle cx="3" cy="15" r="1"/></svg>
+        <span class="seg-text">List</span>
+      </button>
+      <button type="button" role="radio" id="view-plan" data-view="plan" aria-checked="false" title="Plan">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="3.5" width="15" height="14" rx="2" fill="none"/><path d="M2.5 8h15M7 2v3M13 2v3" fill="none"/><rect x="5" y="10.5" width="3" height="2.5" rx=".5"/><rect x="11" y="10.5" width="3" height="2.5" rx=".5"/></svg>
+        <span class="seg-text">Plan</span>
+      </button>
+    </div>
+
+    <div class="search" role="search">
+      <svg class="search-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg>
+      <input id="search" type="search" placeholder="Search courses, e.g. EE 221 or signals"
+             role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="search-results"
+             autocomplete="off" spellcheck="false">
+      <kbd class="search-kbd" aria-hidden="true">/</kbd>
+      <ul id="search-results" class="search-results" role="listbox" aria-label="Matching courses" hidden></ul>
+    </div>
+
+    <div class="top-actions">
+      <button id="theme-btn" class="icon-btn" type="button" aria-label="Switch to dark theme">
+        <svg class="i-moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16 12.5A6.5 6.5 0 0 1 7.5 4a6.5 6.5 0 1 0 8.5 8.5Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.5"/><path d="M10 1.5v2M10 16.5v2M1.5 10h2M16.5 10h2M4 4l1.4 1.4M14.6 14.6 16 16M4 16l1.4-1.4M14.6 5.4 16 4"/></svg>
+      </button>
+      <button id="help-btn" class="icon-btn" type="button" aria-label="Help and about" aria-haspopup="dialog">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8"/><path d="M7.6 7.6a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.6M10 14.6v.1"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="toolbar" role="toolbar" aria-label="Map options">
+    <label class="field">
+      <span class="field-label">Highlight</span>
+      <select id="highlight"></select>
+    </label>
+    <label class="switch">
+      <input type="checkbox" id="show-external">
+      <span class="switch-track" aria-hidden="true"></span>
+      <span class="wide-only">Other departments</span><span class="narrow-only">Other depts</span>
+    </label>
+    <div id="planner" class="planner"></div>
+  </div>
+
+  <main class="workspace">
+    <section class="stage" id="stage" aria-label="Courses">
+      <svg id="graph" class="graph" role="group"
+           aria-label="Prerequisite graph. Use the arrow keys to move between courses and Enter to select one.">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+            <path class="arrow-default" d="M0 1 10 5 0 9z"/>
+          </marker>
+          <marker id="arrow-mine" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+            <path class="arrow-mine" d="M0 1 10 5 0 9z"/>
+          </marker>
+          <marker id="arrow-faint" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+            <path class="arrow-faint" d="M0 1 10 5 0 9z"/>
+          </marker>
+          <marker id="arrow-up" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+            <path class="arrow-up" d="M0 1 10 5 0 9z"/>
+          </marker>
+          <marker id="arrow-down" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+            <path class="arrow-down" d="M0 1 10 5 0 9z"/>
+          </marker>
+        </defs>
+      </svg>
+      <div id="minimap" class="minimap" aria-hidden="true" title="Overview: click or drag to move around"></div>
+      <div id="list" class="list" hidden></div>
+      <div id="plan" class="plan-view" hidden></div>
+
+      <div class="zoom-controls" id="zoom-controls" role="group" aria-label="Zoom">
+        <button type="button" class="icon-btn" data-zoom="in" aria-label="Zoom in" title="Zoom in (+)">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg>
+        </button>
+        <button type="button" class="icon-btn" data-zoom="out" aria-label="Zoom out" title="Zoom out (−)">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12"/></svg>
+        </button>
+        <button type="button" class="icon-btn" data-zoom="fit" aria-label="Fit everything" title="Fit everything (0)">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4"/></svg>
+        </button>
+      </div>
+
+      <details class="legend" id="legend">
+        <summary>Legend</summary>
+        <p class="legend-note" id="legend-note">Columns are departments. Each row is a prerequisite step.</p>
+        <div class="segmented legend-arrange" role="radiogroup" aria-label="Arrange rows by">
+          <button type="button" role="radio" data-arrange="steps" aria-checked="true">Prerequisite steps</button>
+          <button type="button" role="radio" data-arrange="level" aria-checked="false">Course level</button>
+        </div>
+        <label class="legend-toggle"><input type="checkbox" id="show-links"> Show all links</label>
+        <h4 class="legend-head">Your plan</h4>
+        <ul>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-taken" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-taken" transform="translate(8.5 8)"><circle r="4.6"/><path d="M-2 0.1-0.6 1.5 2-1.2"/></g></svg>Taken</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-planned" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-planned" transform="translate(8.5 8)"><circle r="4.6"/><path d="M0-2.3V0l1.7 1.1"/></g></svg>Planned</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-ready" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-ready" transform="translate(8.5 8)"><circle r="4.6"/><path d="M-1.9 0H1.6M0.1-1.6 1.7 0 0.1 1.6"/></g></svg>You can take it now</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-issue" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-issue" transform="translate(8.5 8)"><circle r="4.6"/><path d="M0-2.2V0.3M0 1.9v0.1"/></g></svg>Planned, but needs a check</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-path" x="0.9" y="0.9" width="34.2" height="14.2" rx="4"/><text class="lg-term" x="31.5" y="11">Win</text></svg>On a path, with its quarter</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-picked" x="4" y="3" width="31" height="12" rx="4"/><g class="lg-pick" transform="translate(5 4)"><circle r="4"/><path d="M-1.8 0.1-0.6 1.3 1.8-1.1"/></g></svg>Selected (Shift-click)</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-skip" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-skip" transform="translate(8.5 8)"><circle r="4.6"/><path d="M-2 0H2"/></g></svg>Not interested (when shown)</li>
+        </ul>
+        <h4 class="legend-head">Courses</h4>
+        <ul>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><g class="reach t3" transform="translate(35 8)"><rect x="-29" y="-7" width="29" height="14" rx="7"/><path class="fork" d="M-21.4 -3.6v2.2M-21.4 -1.4l-2.4 3.6M-21.4 -1.4v3.6M-21.4 -1.4l2.4 3.6"/><text x="-5" y="3.6">12</text></g></svg>Leads to 12 courses (darker: more)</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><text class="lg-offered" x="18" y="12"><tspan class="on">F</tspan><tspan dx="2">W</tspan><tspan dx="2" class="on">S</tspan></text></svg>Runs in fall and spring this year</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-ext" x="1" y="2" width="34" height="12" rx="3"/></svg>Another department</li>
+        </ul>
+        <h4 class="legend-head">Links</h4>
+        <ul>
+          <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-up" d="M2 6h32"/></svg>Prerequisites of the selected course</li>
+          <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-down" d="M2 6h32"/></svg>Courses it unlocks</li>
+          <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-req" d="M2 6h32"/></svg>Required</li>
+          <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-alt" d="M2 6h32"/></svg>One of several options</li>
+          <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-co" d="M2 6h32"/></svg>Take at the same time (corequisite)</li>
+          <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-rec" d="M2 6h32"/></svg>Recommended</li>
+          <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-met" d="M2 6h32"/></svg>From a course you took</li>
+        </ul>
+      </details>
+
+      <div class="stage-status" id="stage-status" role="status"></div>
+    </section>
+
+    <aside class="panel" id="panel" tabindex="-1" aria-label="Course details"></aside>
+  </main>
+
+  <div id="announcer" class="sr-only" aria-live="polite"></div>
+  <div id="toast" class="toast" hidden><span class="toast-text"></span><button type="button" class="toast-undo" data-action="undo">Undo</button></div>
+
+  <dialog id="programs" class="help programs-dialog" aria-labelledby="programs-title">
+    <form method="dialog" class="help-close">
+      <button class="icon-btn" aria-label="Close">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg>
+      </button>
+    </form>
+    <h2 id="programs-title">Your majors and minors</h2>
+    <p class="muted">The map shows all courses in your majors' departments, plus your minors' courses. The Plan tab checks their requirements.</p>
+    <div id="programs-list"></div>
+    <form method="dialog" class="dialog-actions"><button class="btn primary">Done</button></form>
+  </dialog>
+
+  <dialog id="confirm" class="help confirm-dialog" aria-labelledby="confirm-title">
+    <h2 id="confirm-title">Hide this course?</h2>
+    <p class="muted">If you hide it, you can still see it again with the hidden count in the toolbar.</p>
+    <ul class="confirm-reasons"></ul>
+    <form method="dialog" class="dialog-actions">
+      <button class="btn" value="cancel">Keep it</button>
+      <button class="btn primary" value="ok">Hide anyway</button>
+    </form>
+  </dialog>
+
+  <dialog id="help" class="help" aria-labelledby="help-title">
+    <form method="dialog" class="help-close">
+      <button class="icon-btn" aria-label="Close">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg>
+      </button>
+    </form>
+    <h2 id="help-title">How to use this map</h2>
+    <p class="archive-note">This is the archived graph-only version from October 2026, with its data as it was then. It isn't
+      updated. <a href="../">Open the current site</a> to search every McCormick course.</p>
+    <h3>Read the map</h3>
+    <ul class="help-list">
+      <li>Each column is a department. Each row is a prerequisite step: a course sits one row below its last prerequisite. The legend can change the rows to course levels.</li>
+      <li>Links go down, from a course to the courses it unlocks. Solid links are required. Dashed links show one of several options.</li>
+      <li>Blue is your plan: solid for taken, dashed for planned. Green: you can take the course now. Amber: a planned course needs a check.</li>
+      <li>The number on a course counts the courses it leads to. The dark letters in F W S show the quarters it runs this year.</li>
+    </ul>
+    <h3>Use the map</h3>
+    <ul class="help-list">
+      <li><b>See a course:</b> point at it to see its details in the panel. To keep them, click it, search for it, or find it in the list. Its prerequisites turn violet, and the courses it unlocks turn orange.</li>
+      <li><b>Mark your courses:</b> Shift-click them, Shift-drag a box, or press <b>Mark courses</b>. On a touch screen, long-press a course. You can undo each change.</li>
+      <li><b>Plan a route:</b> open a course and press <b>Show the path</b>. The path shows the courses you still need, with the soonest quarter for each. <b>Add to my plan</b> adds all of them.</li>
+      <li><b>Pick your programs</b> with the button next to the title. The map shows all courses in your majors' departments, plus your minors' courses.</li>
+      <li><b>Hide a course</b> you do not want: open it and press <b>Not interested</b>. The site warns you if you need the course. To see hidden courses again, press the hidden count in the toolbar.</li>
+      <li><b>Plan your quarters</b> in the <b>Plan</b> tab. It shows prerequisite problems and checks your program requirements. Your plan stays in this browser.</li>
+      <li><b>Highlight</b> a requirement list, a track, or a quarter's courses with the menu in the toolbar.</li>
+      <li><b>Move around:</b> drag or scroll. To zoom, pinch or use <kbd>Ctrl</kbd> + scroll. Zoom in to see course names.</li>
+    </ul>
+    <h3>Keyboard</h3>
+    <ul class="help-keys">
+      <li><kbd>/</kbd> Search</li>
+      <li><kbd>←</kbd><kbd>↑</kbd><kbd>→</kbd><kbd>↓</kbd> Move between courses</li>
+      <li><kbd>Enter</kbd> Open a course</li>
+      <li><kbd>Shift</kbd>+<kbd>Enter</kbd> Add to the selection</li>
+      <li><kbd>T</kbd> <kbd>P</kbd> <kbd>N</kbd> Taken, planned, not taken</li>
+      <li><kbd>X</kbd> Not interested</li>
+      <li><kbd>⌘</kbd>/<kbd>Ctrl</kbd>+<kbd>Z</kbd> Undo</li>
+      <li><kbd>Esc</kbd> Close or clear</li>
+      <li><kbd>+</kbd> <kbd>−</kbd> <kbd>0</kbd> Zoom in, out, fit</li>
+    </ul>
+    <h3>About the data</h3>
+    <div id="help-data"></div>
+    <p class="disclaimer">Unofficial student project. Not affiliated with or endorsed by Northwestern University. Prerequisites change, and the site reads the catalog automatically. Before you register, check the official catalog and talk to your adviser.</p>
+  </dialog>
+</body>
+</html>
