@@ -1,41 +1,27 @@
-// Plan view: the student's programs (majors/minors), a quarter-by-quarter
-// plan, and a requirements checklist for the programs they picked.
+// Plan view: a quarter-by-quarter plan, and a requirements checklist for the
+// student's programs (majors/minors), which they can add to or remove here.
 import { esc, ICON, issueText } from './panel.js';
 import { QUARTERS, currentTerm, termKey, termLabel, termOrder } from './plan.js';
 
 const MANY = 8; // longer lists show only your courses until expanded
+const touch = window.matchMedia('(pointer: coarse)');
 
 export function renderPlanView(el, { map, state }) {
-  el.innerHTML = `<div class="plan">${programsHTML(map, state)}${gridHTML(map, state)}${requirementsHTML(map, state)}</div>`;
+  el.innerHTML = `<div class="plan">${gridHTML(map, state)}${requirementsHTML(map, state)}</div>`;
 }
-
-// ---------------------------------------------------------------- programs
 
 // Every program the site has, not just this map's: adding a major brings its
 // department onto the map.
-function programsHTML(map, state) {
-  const all = [...state.programIndex.values()];
-  const chosen = state.programIds.map(id => state.programIndex.get(id)).filter(Boolean);
-  const others = all.filter(p => !state.myPrograms.has(p.id));
+function addProgramHTML(state) {
+  const others = [...state.programIndex.values()].filter(p => !state.myPrograms.has(p.id));
   const options = type => others.filter(p => p.type === type)
     .map(p => `<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');
-  return `<section class="plan-section">
-    <div class="plan-section-head">
-      <h2>Your programs</h2>
-      <p class="muted">Add your majors and minors. This page checks all their requirements together.</p>
-    </div>
-    <div class="program-chips">
-      ${chosen.map(p => `<span class="program-chip"><span class="ptype">${esc(p.type)}</span>${esc(p.name)}
-        ${chosen.length > 1 ? `<button type="button" class="icon-btn" data-action="remove-program" data-program="${esc(p.id)}"
-          aria-label="Remove ${esc(p.name)}">${ICON.close}</button>` : ''}</span>`).join('')}
-      ${others.length ? `<label class="add-program"><span class="sr-only">Add a major or minor</span>
-        <select data-action="add-program">
-          <option value="">+ Add a major or minor</option>
-          ${options('major') ? `<optgroup label="Majors">${options('major')}</optgroup>` : ''}
-          ${options('minor') ? `<optgroup label="Minors">${options('minor')}</optgroup>` : ''}
-        </select></label>` : ''}
-    </div>
-  </section>`;
+  return others.length ? `<label class="add-program"><span class="sr-only">Add a major or minor</span>
+    <select data-action="add-program">
+      <option value="">+ Add a major or minor</option>
+      ${options('major') ? `<optgroup label="Majors">${options('major')}</optgroup>` : ''}
+      ${options('minor') ? `<optgroup label="Minors">${options('minor')}</optgroup>` : ''}
+    </select></label>` : '';
 }
 
 // -------------------------------------------------------------------- grid
@@ -82,7 +68,8 @@ function gridHTML(map, state) {
         ${mine.length ? '<button type="button" class="link-btn" data-action="clear-plan">Clear plan</button>' : ''}
       </div>
     </div>
-    <p class="muted plan-hint">Add courses with <b>+ Add</b>. Drag a course to move it to another quarter.
+    <p class="muted plan-hint">Add courses with <b>+ Add</b>. ${touch.matches
+      ? 'Tap a course to change its quarter.' : 'Drag a course to move it to another quarter.'}
       Courses in past quarters count as taken.</p>
     <div class="plan-years">${years.join('')}</div>
     <div class="quarter unscheduled" data-term="" aria-label="Courses without a quarter">
@@ -127,30 +114,34 @@ function pchipHTML(map, state, id) {
 
 function requirementsHTML(map, state) {
   const chosen = [...state.myPrograms].map(id => map.program(id)).filter(Boolean);
-  if (!chosen.length) {
-    return `<section class="plan-section"><div class="plan-section-head"><h2>Requirements</h2></div>
-      <p class="muted">Add a program above to check its requirements against your plan.</p></section>`;
-  }
+  const head = `<div class="plan-section-head">
+      <h2>Requirements</h2>
+      ${addProgramHTML(state)}
+      <p class="muted">${chosen.length ? `This checklist comes from the catalog. It is not an official degree audit.
+        Check your Academic Advisement Report in CAESAR, and talk to your adviser.`
+        : 'Add a major or minor to check its requirements against your plan.'}</p>
+    </div>`;
+  if (!chosen.length) return `<section class="plan-section">${head}</section>`;
   // Courses that appear in more than one of your programs.
   const count = new Map();
   for (const p of chosen) p.courses.forEach(id => count.set(id, (count.get(id) || 0) + 1));
   const shared = [...count].filter(([id, n]) => n > 1 && (state.taken.has(id) || state.planned.has(id))).map(([id]) => id);
   return `<section class="plan-section">
-    <div class="plan-section-head">
-      <h2>Requirements</h2>
-      <p class="muted">This checklist comes from the catalog. It is not an official degree audit. Check your Academic Advisement Report in CAESAR, and talk to your adviser.</p>
-    </div>
+    ${head}
     ${shared.length > 0 && chosen.length > 1 ? `<p class="overlap">${ICON.warn}<span>${shared.map(id => esc(map.label(map.get(id)))).join(', ')}
       ${shared.length === 1 ? 'is' : 'are'} in more than one of your programs. Schools limit how many courses can count
       twice, so check how these count with your adviser.</span></p>` : ''}
-    <div class="req-cards">${chosen.map(p => programCardHTML(map, state, p, count)).join('')}</div>
+    <div class="req-cards">${chosen.map(p => programCardHTML(map, state, p, count, chosen.length > 1)).join('')}</div>
   </section>`;
 }
 
-function programCardHTML(map, state, program, count) {
+// One program's lists. The last program stays: the map needs one.
+function programCardHTML(map, state, program, count, removable) {
   return `<article class="req-card">
     <header><div><span class="ptype">${esc(program.type)}</span><h3>${esc(program.name)}</h3></div>
-      <a href="${esc(program.url)}" target="_blank" rel="noopener">Catalog ${ICON.external}</a></header>
+      <div class="req-card-tools"><a href="${esc(program.url)}" target="_blank" rel="noopener">Catalog ${ICON.external}</a>${
+        removable ? `<button type="button" class="icon-btn" data-action="remove-program" data-program="${esc(program.id)}"
+          aria-label="Remove ${esc(program.name)}" title="Remove from your programs">${ICON.close}</button>` : ''}</div></header>
     ${program.lists.map(list => listHTML(map, state, list, count)).join('')}
     ${program.notes.length ? `<details class="req-notes"><summary>Rules to check yourself (${program.notes.length})</summary>
       <ul>${program.notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul></details>` : ''}

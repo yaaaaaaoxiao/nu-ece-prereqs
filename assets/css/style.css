@@ -194,7 +194,7 @@ svg { flex: none; }
 .brand-sub { margin: 0; font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* The majors and minors on the map; opens the programs dialog. */
 .programs-btn {
-  display: inline-flex; align-items: center; gap: 6px; min-width: 0; max-width: 340px; height: 34px; padding: 0 8px 0 12px;
+  display: inline-flex; align-items: center; gap: 6px; flex: none; min-width: 0; max-width: 340px; height: 34px; padding: 0 8px 0 12px;
   border: 1px solid var(--line); border-radius: 8px; background: var(--raised); color: var(--ink); font-weight: 650;
 }
 .programs-btn:hover { border-color: var(--ink-2); }
@@ -246,6 +246,14 @@ svg { flex: none; }
 .search-results mark { background: none; color: inherit; font-weight: 700; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 2px; }
 
 .top-actions { display: flex; gap: 4px; }
+/* Graph, List or Plan, beside the programs they show. */
+.views { flex: none; }
+@media (max-width: 960px) {
+  /* The programs button already names what's on the map. */
+  .brand-sub { display: none; }
+  .views button { padding: 0 10px; }
+  .views .seg-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
 
 /* ==========================================================================
    Toolbar
@@ -257,12 +265,14 @@ svg { flex: none; }
   border-bottom: 1px solid var(--hairline);
   position: relative; z-index: 10;
 }
+/* The toolbar's controls are for the map and list, so the Plan tab hides it. */
+.toolbar[hidden] { display: none; }
 .field { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .field-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
 .narrow-only { display: none; }
 .field select {
   min-width: 0;
-  max-width: min(340px, 60vw);
+  width: 240px; max-width: 100%;
   height: 32px; padding: 0 28px 0 10px;
   border: 1px solid var(--line); border-radius: 8px; background: var(--raised);
 }
@@ -283,15 +293,14 @@ svg { flex: none; }
 .switch input:focus-visible + .switch-track { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .planner { flex: 1 1 auto; min-width: 0; font-size: 13px; color: var(--ink-2); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
-.planner .muted { color: var(--muted); }
 .planner b { color: var(--ink); font-variant-numeric: tabular-nums; }
-.planner-hint { font-size: 12.5px; }
 .tool-btn, .pick-btn {
   display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 10px;
   border: 1px solid var(--line); border-radius: 8px; background: var(--raised);
   font-size: 13px; font-weight: 600; color: var(--ink); white-space: nowrap;
 }
 .tool-btn:hover, .pick-btn:hover:not(:disabled) { border-color: var(--ink-2); }
+.planner .tool-btn { margin-left: auto; }
 .plan-stats { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 2px; }
 .stat-btn {
   display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 8px;
@@ -325,7 +334,7 @@ svg { flex: none; }
 /* ==========================================================================
    Workspace: stage (graph or list) + details panel
    ========================================================================== */
-.workspace { display: grid; grid-template-columns: minmax(0, 1fr) 380px; min-height: 0; }
+.workspace { grid-row: 3; display: grid; grid-template-columns: minmax(0, 1fr) 380px; min-height: 0; }
 
 .stage { position: relative; min-width: 0; min-height: 0; overflow: hidden; background: var(--page); }
 
@@ -552,15 +561,23 @@ svg { flex: none; }
 .filter-chip:disabled { opacity: 0.5; cursor: default; }
 .list-summary { margin: 0 0 12px; color: var(--muted); font-size: 13px; }
 .list section { max-width: 920px; margin-bottom: 22px; }
-.list h2 { margin: 0 0 6px; font-size: 13px; font-weight: 650; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+/* The department's name stays in view while its courses scroll under it. */
+.list h2 { position: sticky; top: -16px; z-index: 1; margin: 0; padding: 8px 0 6px; background: var(--page);
+  font-size: 13px; font-weight: 650; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 .course-list { margin: 0; padding: 0; list-style: none; border: 1px solid var(--hairline); border-radius: var(--radius); background: var(--raised); overflow: hidden; }
 .course-row { display: flex; align-items: center; gap: 4px; border-top: 1px solid var(--hairline); }
 .course-row:first-child { border-top: 0; }
 .course-row:hover { background: var(--surface); }
 .course-row.is-selected { background: var(--accent-wash); }
 .row-status { display: grid; place-items: center; padding-left: 10px; }
-.row-status select { width: 92px; height: 28px; border: 1px solid var(--line); border-radius: 7px; background: var(--raised); font-size: 12.5px; }
-.row-status select:not(.is-taken):not(.is-planned) { color: var(--muted); }
+.row-status select { width: 92px; height: 28px; border: 1px solid var(--line); border-radius: 7px; background-color: var(--raised); font-size: 12.5px; }
+/* Courses not in your plan: the menu stays quiet until you point at the row. */
+.row-status select.is-none { border-color: transparent; background-color: transparent; color: var(--muted); }
+.course-row:hover .row-status select.is-none, .row-status select.is-none:focus-visible { border-color: var(--line); background-color: var(--raised); }
+/* The menu already says "Taken" or "Not interested" (phones hide it, and keep the tag). */
+@media (min-width: 761px) {
+  .row-tags .status-taken, .row-tags .status-skip { display: none; }
+}
 .row-status select.is-taken { border-color: var(--mine); color: var(--mine-ink); font-weight: 600; }
 .row-status select.is-planned { border-style: dashed; border-color: var(--mine); color: var(--mine-ink); font-weight: 600; }
 .course-row.is-picked { background: var(--accent-wash); box-shadow: inset 3px 0 0 var(--accent); }
@@ -597,8 +614,12 @@ svg { flex: none; }
 .panel-head > div { flex: 1; min-width: 0; }
 .eyebrow { margin: 0 0 2px; font-size: 12px; font-weight: 600; color: var(--muted); }
 .panel h2 { margin: 0; font-size: 19px; line-height: 1.25; letter-spacing: -0.01em; }
-.panel h2 .code { display: block; font-size: 13px; font-weight: 650; color: var(--ink-2); letter-spacing: 0; margin-bottom: 2px; }
+.panel h2 .code { display: block; font-size: 14px; font-weight: 700; color: var(--ink-2); letter-spacing: 0; margin-bottom: 2px; }
+.panel h2 .official { margin-left: 4px; font-size: 12px; font-weight: 500; color: var(--muted); }
 .panel h3 { margin: 0 0 8px; font-size: 12px; font-weight: 650; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.h3-count { margin-left: 2px; font-weight: 600; letter-spacing: 0; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.more-btn { margin-top: 6px; font-size: 13px; }
+.panel .section-note { margin: 8px 0 0; }
 .panel section { padding: 14px 0; border-top: 1px solid var(--hairline); }
 .panel section:first-of-type { border-top: 0; }
 .panel p { margin: 0 0 8px; }
@@ -655,7 +676,7 @@ svg { flex: none; }
 .desc { margin: 10px 0 2px; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
 .panel .desc p { margin: 0; }
 .desc.is-clamped p { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
-.desc-more { margin-top: 4px; font-size: 13px; }
+.desc .more-btn { margin-top: 4px; }
 .code-link { padding: 0; border: 0; background: none; color: var(--accent); font: inherit; font-weight: 600;
   text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
 .catalog-text { margin: 0; padding: 10px 12px; border-radius: 8px; background: var(--sunken); color: var(--ink-2); font-size: 13px; }
@@ -671,14 +692,20 @@ svg { flex: none; }
 .intro .tips svg { width: 22px; height: 22px; }
 .tip-up { stroke: var(--up); }
 .tip-down { stroke: var(--down); }
-.intro .tips .tip-icon.si { width: 20px; height: 20px; margin: 1px; }
 .tip-reach { fill: var(--ink-2); }
 .tip-fork { fill: none; stroke: var(--raised); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 .tip-num { font: 700 10px var(--font); fill: var(--raised); text-anchor: middle; }
-.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0 4px; }
-.stat { padding: 10px; border-radius: 10px; background: var(--raised); border: 1px solid var(--hairline); }
-.stat b { display: block; font-size: 20px; line-height: 1.1; }
-.stat span { font-size: 12px; color: var(--muted); }
+.intro h2 { margin-bottom: 4px; }
+/* First visit: numbered steps, each with the button that does it. */
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: step; display: grid; gap: 12px; }
+.steps li { position: relative; display: grid; justify-items: start; gap: 6px; padding-left: 32px; color: var(--ink-2); counter-increment: step; }
+.steps li::before {
+  content: counter(step); position: absolute; left: 0; top: 0;
+  display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent-wash); color: var(--accent); font-size: 12px; font-weight: 700;
+}
+.steps b { color: var(--ink); }
+.btn .si { width: 14px; height: 14px; stroke: none; }
 .disclaimer { font-size: 12.5px; color: var(--muted); }
 .meta { font-size: 12.5px; color: var(--muted); }
 .sources { margin: 6px 0 0; padding-left: 18px; font-size: 12.5px; display: grid; gap: 3px; overflow-wrap: anywhere; }
@@ -724,22 +751,21 @@ svg { flex: none; }
   /* The programs button stands in for the title. */
   .brand-text { display: none; }
   .programs-btn { flex: 1; max-width: none; }
+  /* Row 1: programs, views and buttons. Row 2: search. */
+  .views { order: 1; }
+  .top-actions { order: 2; }
   .search { order: 3; flex: 1 1 100%; max-width: none; margin-left: 0; }
   .search input { font-size: 16px; } /* 16px stops iOS zooming in on focus */
   .search-kbd { display: none; }
   .toolbar { gap: 8px 12px; padding: 8px 16px; }
-  /* Row 1: highlight + view switch. Row 2: other departments + planner. */
-  .field { order: 1; flex: 1 1 200px; }
+  /* Row 1: highlight + other departments. Row 2: your plan's counts + Mark. */
+  .field { order: 1; flex: 1 1 160px; }
   .field-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .field select { flex: 1; width: 100%; max-width: none; }
-  .segmented { order: 2; }
-  .seg-text { display: none; }
-  .segmented button { padding: 0 10px; }
-  .switch { order: 3; font-size: 13px; }
+  .switch { order: 2; font-size: 13px; }
   .wide-only { display: none; }
   .narrow-only { display: inline; }
-  .planner { order: 4; flex: 1 1 auto; justify-content: flex-end; font-size: 12.5px; }
-  .planner .muted { display: none; }
+  .planner { order: 3; flex: 1 1 100%; font-size: 12.5px; }
   .stat-btn { padding: 0 5px; }
   /* Counts keep their icon and number; the words stay for screen readers. */
   .stat-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -770,7 +796,10 @@ svg { flex: none; }
   .zoom-controls { top: 12px; bottom: auto; right: 12px; flex-direction: row; }
   .minimap { display: none; }
   .row-main { grid-template-columns: 76px minmax(0, 1fr); }
-  .row-tags { grid-column: 2; }
+  .row-tags { grid-column: 2; justify-content: flex-start; }
+  /* The filters scroll sideways instead of wrapping. */
+  .list-filters { flex-wrap: nowrap; overflow-x: auto; margin: 0 -20px 10px; padding: 0 20px; scrollbar-width: none; }
+  .filter-chip { flex: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -880,18 +909,15 @@ svg { flex: none; }
 .plan-hint { margin: 0 0 12px; font-size: 12.5px; }
 .muted { color: var(--muted); }
 
-.program-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.program-chip { display: inline-flex; align-items: center; gap: 8px; padding: 3px 3px 3px 12px; border-radius: 999px;
-  background: var(--accent-wash); font-weight: 600; }
-.program-chip .icon-btn { width: 28px; height: 28px; border-radius: 999px; }
 .ptype { font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
-.add-program select { height: 34px; padding: 0 12px; border: 1px dashed var(--line); border-radius: 999px; background: var(--raised); color: var(--accent); font-weight: 600; }
+.add-program { min-width: 0; max-width: 100%; }
+.add-program select { height: 32px; padding: 0 12px; border: 1px dashed var(--line); border-radius: 999px; background: var(--raised); color: var(--accent); font-weight: 600; }
 
 .plan-years { display: grid; gap: 14px; }
 .plan-year h3 { margin: 0 0 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
 /* Fall, winter, spring; summer is narrower, since few students use it. */
 .quarters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 0.6fr); gap: 8px; }
-.quarter { display: flex; flex-direction: column; gap: 6px; min-width: 0; min-height: 92px; padding: 8px; border: 1px solid var(--hairline); border-radius: 10px; background: var(--surface); }
+.quarter { display: flex; flex-direction: column; gap: 6px; min-width: 0; min-height: 72px; padding: 8px; border: 1px solid var(--hairline); border-radius: 10px; background: var(--surface); }
 .quarter.is-past { background: var(--sunken); }
 .quarter.is-now { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
 .quarter.drag-over { border-color: var(--accent); background: var(--accent-wash); }
@@ -927,6 +953,8 @@ svg { flex: none; }
 .req-card header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
 .req-card h3 { margin: 2px 0 0; font-size: 14.5px; }
 .req-card header a { display: inline-flex; align-items: center; gap: 4px; font-size: 12.5px; white-space: nowrap; }
+.req-card-tools { display: flex; align-items: center; gap: 4px; margin: -4px -6px 0 0; }
+.req-card-tools .icon-btn { width: 30px; height: 30px; }
 .req-list { padding: 9px 0; border-top: 1px solid var(--hairline); }
 .rl-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; font-size: 13px; }
 .rl-label { font-weight: 600; }

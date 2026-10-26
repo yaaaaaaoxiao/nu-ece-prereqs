@@ -71,7 +71,7 @@ function rowHTML(map, c, state) {
   return `<li class="course-row${state.selected === c.id ? ' is-selected' : ''}${state.picked.has(c.id) ? ' is-picked' : ''}">
     <label class="row-status">
       <span class="sr-only">Your plan for ${esc(label)}</span>
-      <select data-action="set-status" data-id="${esc(c.id)}" class="${mine ? `is-${mine}` : ''}">
+      <select data-action="set-status" data-id="${esc(c.id)}" class="is-${mine || 'none'}">
         ${option('', 'Not taken')}${option('planned', 'Planned')}${option('taken', 'Taken')}${option('skip', 'Not interested')}
       </select>
     </label>

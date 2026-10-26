@@ -31,6 +31,7 @@ const els = {
   programsList: $('#programs-list'),
   search: $('#search'),
   results: $('#search-results'),
+  toolbar: $('.toolbar'),
   highlight: $('#highlight'),
   showExternal: $('#show-external'),
   planner: $('#planner'),
@@ -77,7 +78,7 @@ const state = {
   activePrograms: [],
   visible: new Set(),
   paths: new Map(), // paths to courses worked out so far (see path.js)
-  openDescs: new Set(), // courses whose long description is shown in full
+  expanded: new Set(), // panel parts opened in full: "desc:<course>", "unlocks:<course>"
   preview: null, // a course shown in the panel while the mouse is over it
   showSkipped: false, // show the courses marked "not interested" (faded) on the map and list
 };
@@ -343,7 +344,7 @@ function render({ history: mode = 'replace' } = {}) {
 }
 
 // Re-rendering replaces controls; put keyboard focus back on the equivalent one.
-const FOCUS_KEYS = ['action', 'select', 'highlight', 'id', 'status', 'term', 'program', 'view'];
+const FOCUS_KEYS = ['action', 'select', 'highlight', 'id', 'key', 'status', 'term', 'program', 'view'];
 function keepFocus(fn) {
   const active = document.activeElement;
   const container = active?.closest?.('#panel, #list, #planner, #plan');
@@ -360,6 +361,7 @@ function syncControls() {
   els.highlight.value = state.highlight;
   els.highlight.classList.toggle('is-active', !!state.highlight);
   els.showExternal.checked = state.showExternal;
+  els.toolbar.hidden = view === 'plan';
   els.stage.classList.toggle('is-list', view === 'list');
   els.stage.classList.toggle('is-plan', view === 'plan');
   els.list.hidden = view !== 'list';
@@ -394,7 +396,8 @@ function fillHighlightSelect() {
     groups.get(h.group).push(h);
   }
   const count = h => [...h.ids].filter(id => state.map.get(id)).length;
-  const html = '<option value="">None</option>' + [...groups].map(([group, items]) =>
+  // Phones hide the "Highlight" label, so the empty choice names itself.
+  const html = `<option value="">${narrow.matches ? 'Highlight: none' : 'None'}</option>` + [...groups].map(([group, items]) =>
     `<optgroup label="${esc(group)}">${items.map(h =>
       `<option value="${esc(h.key)}">${esc(h.label)} (${count(h)})</option>`).join('')}</optgroup>`).join('');
   if (html !== els.highlight.dataset.html) {
@@ -416,8 +419,7 @@ function renderPlanner() {
   const hidden = nSkipped ? `<button type="button" class="stat-btn" data-action="toggle-skipped" aria-pressed="${state.showSkipped}"
     title="${state.showSkipped ? 'Hide them again' : 'Show them on the map'}">${statusIcon('skip')}<b>${nSkipped}</b> <span class="stat-label">hidden</span></button>` : '';
   if (!nTaken && !nPlanned) {
-    els.planner.innerHTML = nSkipped ? `<span class="plan-stats">${hidden}</span>${start}`
-      : `${start}<span class="muted planner-hint">or Shift-click the courses you took</span>`;
+    els.planner.innerHTML = `${nSkipped ? `<span class="plan-stats">${hidden}</span>` : ''}${start}`;
     return;
   }
   // Each count highlights its courses on the map.
@@ -776,6 +778,11 @@ function renderProgramsDialog() {
   els.programsList.innerHTML = group('major', 'Majors') + group('minor', 'Minors');
 }
 
+function openPrograms() {
+  renderProgramsDialog();
+  els.programsDialog.showModal();
+}
+
 function clearPlan() {
   const mine = Object.keys(state.plan.courses).filter(id => state.map.get(id) && state.plan.status(id) !== 'skip');
   if (!mine.length || !window.confirm(`Remove all ${mine.length} courses from your plan?`)) return;
@@ -925,10 +932,11 @@ document.addEventListener('click', e => {
   else if (action === 'unpick') togglePick(id);
   else if (action === 'pick-chain') pickCourses([id, ...[...state.map.requiredAncestors(id)].filter(c => state.visible.has(c))]);
   else if (action === 'show-path') showPath(id);
-  else if (action === 'toggle-desc') {
-    if (!state.openDescs.delete(id)) state.openDescs.add(id);
+  else if (action === 'toggle-more') {
+    if (!state.expanded.delete(t.dataset.key)) state.expanded.add(t.dataset.key);
     render();
   }
+  else if (action === 'open-programs') openPrograms();
   else if (action === 'plan-path') planPath(id);
   else if (action === 'undo') undo();
   else if (action === 'add-to-term') startAdding(t.dataset.term);
@@ -1002,10 +1010,8 @@ window.addEventListener('resize', () => {
   }, 250);
 });
 els.showExternal.addEventListener('change', () => setShowExternal(els.showExternal.checked));
-els.programsBtn.addEventListener('click', () => {
-  renderProgramsDialog();
-  els.programsDialog.showModal();
-});
+narrow.addEventListener('change', () => state.map && syncControls());
+els.programsBtn.addEventListener('click', openPrograms);
 els.programsDialog.addEventListener('click', e => { if (e.target === els.programsDialog) els.programsDialog.close(); });
 $('#help-btn').addEventListener('click', () => els.help.showModal());
 els.help.addEventListener('click', e => { if (e.target === els.help) els.help.close(); });

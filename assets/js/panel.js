@@ -9,6 +9,7 @@ export const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => (
 
 export const ICON = {
   close: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg>',
+  chevron: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>',
   external: '<svg viewBox="0 0 20 20" width="12" height="12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4H4v12h12v-4M11 3h6v6M17 3l-8 8"/></svg>',
   warn: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.8 15 14H1L8 1.8Z" fill="var(--warn)"/><path d="M8 6v3.6M8 11.4v.1" stroke="#1a1a19" stroke-width="1.6" stroke-linecap="round"/></svg>',
   path: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="5" cy="4.5" r="2"/><circle cx="15" cy="15.5" r="2"/><path d="M5 6.5V8a2.5 2.5 0 0 0 2.5 2.5h5A2.5 2.5 0 0 1 15 13v.5"/></svg>',
@@ -97,7 +98,7 @@ function pickedHTML(map, state) {
     <section>
       ${n ? `<ul class="pick-list">${items}</ul>` : `<p class="muted">Click courses on the map or in the list.</p>`}
       <p class="muted pick-tips">Shift-drag on the map to select a group. Keys: <kbd>T</kbd> taken,
-        <kbd>P</kbd> planned, <kbd>N</kbd> not taken, <kbd>Esc</kbd> done.</p>
+        <kbd>P</kbd> planned, <kbd>N</kbd> not taken, <kbd>X</kbd> not interested, <kbd>Esc</kbd> done.</p>
     </section>`;
 }
 
@@ -161,7 +162,7 @@ function pathHTML(map, path, state) {
   const head = `<div class="panel-head">
       <div>
         <p class="eyebrow">Path to</p>
-        <h2><span class="code">${esc(c.id)}</span>${esc(c.title || 'Not in the current catalog')}</h2>
+        <h2>${codeHTML(map, c)}${esc(c.title || 'Not in the current catalog')}</h2>
       </div>
       <button type="button" class="icon-btn" data-action="clear-highlight" aria-label="Stop showing the path">${ICON.close}</button>
     </div>`;
@@ -250,7 +251,7 @@ function courseHTML(map, c, state, repo) {
     <div class="panel-head">
       <div>
         <p class="eyebrow">${esc(map.deptName(c))}${units}</p>
-        <h2><span class="code">${esc(c.id)}</span>${esc(c.title || 'Not in the current catalog')}</h2>
+        <h2>${codeHTML(map, c)}${esc(c.title || 'Not in the current catalog')}</h2>
       </div>
       <button type="button" class="icon-btn" data-action="close" aria-label="Close details">${ICON.close}</button>
     </div>
@@ -260,10 +261,24 @@ function courseHTML(map, c, state, repo) {
     ${statusHTML(map, c, state)}
     ${pathSummaryHTML(map, c, state)}
     ${requirementsHTML(map, c, state)}
+    ${scheduleHTML(map, c)}
     ${unlocksHTML(map, c, state)}
     ${programsHTML(map, c, state)}
-    ${scheduleHTML(map, c)}
     ${sourceHTML(map, c, repo)}`;
+}
+
+// "EE 302" as on the map, with the catalog's own number when it reads
+// differently (ELEC_ENG 302-0 is what registration uses).
+function codeHTML(map, c) {
+  const label = map.label(c);
+  const same = c.id.replace(/-0$/, '').replace(/_/g, ' ') === label;
+  return `<span class="code">${esc(label)}${same ? '' : ` <span class="official">${esc(c.id)}</span>`}</span>`;
+}
+
+// "Show more" for a long part of the panel; `key` names it in state.expanded.
+function moreHTML(key, open, label) {
+  return `<button type="button" class="link-btn more-btn" data-action="toggle-more" data-key="${esc(key)}"
+    aria-expanded="${open}">${open ? 'Show less' : label}</button>`;
 }
 
 // The catalog's description, under the title. Course codes in it link to the
@@ -272,10 +287,9 @@ const LONG_DESC = 260; // characters, about four lines of the panel
 function descHTML(map, c, state) {
   if (!c.desc) return '';
   const long = c.desc.length > LONG_DESC;
-  const open = state.openDescs.has(c.id);
-  return `<div class="desc${long && !open ? ' is-clamped' : ''}"><p>${linkCodes(map, c.desc, c.id)}</p>${long
-    ? `<button type="button" class="link-btn desc-more" data-action="toggle-desc" data-id="${esc(c.id)}"
-        aria-expanded="${open}">${open ? 'Show less' : 'Show more'}</button>` : ''}</div>`;
+  const open = state.expanded.has(`desc:${c.id}`);
+  return `<div class="desc${long && !open ? ' is-clamped' : ''}"><p>${linkCodes(map, c.desc, c.id)}</p>${
+    long ? moreHTML(`desc:${c.id}`, open, 'Show more') : ''}</div>`;
 }
 
 // "Taught with COMP_ENG 346-0": a code becomes a link when the course is on the
@@ -390,15 +404,22 @@ function requirementsHTML(map, c, state) {
   return html;
 }
 
+// A long list shows its first few, so the sections after it stay in reach.
+const FEW_UNLOCKS = 6;
 function unlocksHTML(map, c, state) {
   const links = [...map.children.get(c.id)].sort((a, b) => a.target.localeCompare(b.target));
   if (!links.length) {
     return '<section><h3>Unlocks</h3><p class="muted">No course on this map needs it.</p></section>';
   }
   const total = [...map.descendants(c.id)].filter(id => state.visible.has(id)).length;
-  const items = links.map(e => `<li>${chip(map, e.target, state, 'down', LINK_NOTE[e.kind])}</li>`).join('');
-  return `<section><h3>Unlocks</h3><ul class="chip-list">${items}</ul>${
-    total > links.length ? `<p class="muted" style="margin-top:8px">Leads to ${total} courses in all.</p>` : ''}</section>`;
+  const key = `unlocks:${c.id}`;
+  const long = links.length > FEW_UNLOCKS + 2;
+  const open = state.expanded.has(key);
+  const items = (long && !open ? links.slice(0, FEW_UNLOCKS) : links)
+    .map(e => `<li>${chip(map, e.target, state, 'down', LINK_NOTE[e.kind])}</li>`).join('');
+  return `<section><h3>Unlocks <span class="h3-count">${links.length}</span></h3><ul class="chip-list">${items}</ul>${
+    long ? moreHTML(key, open, `Show all ${links.length}`) : ''}${
+    total > links.length ? `<p class="muted section-note">Leads to ${total} courses in all.</p>` : ''}</section>`;
 }
 
 // Requirement lists this course appears in, yours first.
@@ -484,7 +505,7 @@ export function chip(map, id, { taken, planned, ready, skipped }, kind, note) {
 
 function introHTML(map, state) {
   const main = map.courses.filter(c => c.role === 'main');
-  const links = map.edges.filter(e => map.get(e.target).role === 'main' && e.kind !== 'rec').length;
+  const planning = [...state.taken, ...state.planned].some(id => map.get(id));
   // This map's courses that open up the most later courses on the graph.
   const gateways = main
     .map(c => [c, [...map.descendants(c.id)].filter(id => state.visible.has(id)).length])
@@ -492,27 +513,19 @@ function introHTML(map, state) {
     .sort(([a, n], [b, m]) => m - n || a.id.localeCompare(b.id))
     .slice(0, 5);
   return `<div class="intro">
-    <p class="eyebrow">${esc(map.data.catalogYear ? `${map.data.catalogYear} catalog` : 'Course map')}</p>
+    <p class="eyebrow">${esc(map.data.catalogYear ? `${map.data.catalogYear} catalog` : 'Course map')} · ${main.length} courses</p>
     <h2>${esc(map.name)}</h2>
-    <div class="stats">
-      <div class="stat"><b>${main.length}</b><span>courses</span></div>
-      <div class="stat"><b>${links}</b><span>prerequisite links</span></div>
-      <div class="stat"><b>${map.programs.length}</b><span>majors &amp; minors</span></div>
-    </div>
-    <section>
+    ${planning ? nextHTML(map, state) : startHTML(state)}
+    <section><h3>Tips</h3>
       <ul class="tips">
         <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke-width="2.4" stroke-linecap="round"><path class="tip-up" d="M2 7h12"/><path class="tip-down" d="M8 15h12"/></svg>
           <span><b>Point at a course</b> to see its details here. <b>Click it</b> to keep them, and to see its
           prerequisites (violet) and the courses it unlocks (orange).</span></li>
-        <li>${statusIcon('ready').replace('class="si', 'class="tip-icon si')}
-          <span><b>Mark your courses.</b> Shift-click them, or press <b>Mark courses</b>. Courses you can take next turn green.</span></li>
         <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round"><circle class="tip-up" cx="5" cy="4.5" r="2.2"/><path class="tip-up" d="M5 6.7v2.3a2.5 2.5 0 0 0 2.5 2.5h7A2.5 2.5 0 0 1 17 14v1"/><circle cx="17" cy="17.5" r="2.4" fill="var(--ink-2)"/></svg>
           <span><b>Plan a route.</b> Open a course and press <b>Show the path</b>.</span></li>
         <li><svg class="tip-icon" viewBox="0 0 22 22" aria-hidden="true"><rect class="tip-reach" x="0.5" y="4.5" width="21" height="13" rx="6.5"/><path class="tip-fork" d="M6.5 8v2.2M6.5 10.2l-2.3 3.4M6.5 10.2v3.4M6.5 10.2l2.3 3.4"/><text class="tip-num" x="16.3" y="14.6">9</text></svg>
           <span><b>On each course:</b> the number of courses it leads to, and the quarters it runs this year
           (<b class="tip-quarters">F<span class="off">W</span>S</b>).</span></li>
-        <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="var(--ink-2)" stroke-width="1.8"><rect x="3" y="4" width="16" height="5" rx="1.5"/><rect x="3" y="13" width="16" height="5" rx="1.5" fill="var(--sunken)"/></svg>
-          <span><b>Add your majors and minors</b> with the button at the top.</span></li>
         <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="var(--ink-2)" stroke-width="1.8" stroke-linecap="round"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 5 5"/></svg>
           <span><b>Search</b> by number or title. Press <kbd>/</kbd> to start.</span></li>
       </ul>
@@ -525,6 +538,38 @@ function introHTML(map, state) {
     <p class="disclaimer">Unofficial. Not affiliated with Northwestern University. Prerequisites change:
     before you register, check the official catalog and talk to your adviser.</p>
   </div>`;
+}
+
+// Before any course is marked: three steps, each with the button that does it.
+function startHTML(state) {
+  const programs = state.programIds.map(id => state.programIndex.get(id)?.short || id).join(' + ');
+  return `<section class="start"><h3>Get started</h3>
+    <ol class="steps">
+      <li><span><b>Choose your majors and minors.</b> The map shows their courses.</span>
+        <button type="button" class="btn" data-action="open-programs">${esc(programs)}${ICON.chevron}</button></li>
+      <li><span><b>Mark the courses you took.</b> Shift-click them on the map, or select them here:</span>
+        <button type="button" class="btn" data-action="start-picking">${statusIcon('taken')}Mark courses</button></li>
+      <li><span><b>Open a course</b> to see what it needs, what it unlocks and the soonest you can take it.</span></li>
+    </ol>
+  </section>`;
+}
+
+// Once courses are marked: planned courses that need a check, then what the
+// student can take now, their programs' courses first.
+const FEW_READY = 5;
+function nextHTML(map, state) {
+  const { plan } = state;
+  const checks = [...state.planned].filter(id => map.get(id)).sort()
+    .flatMap(id => plan.issues(map, id).map(issue => `<li>${ICON.warn}<span><button type="button" class="code-link"
+      data-select="${esc(id)}">${esc(map.label(map.get(id)))}</button>: ${esc(issueText(map, issue, plan.term(id)))}</span></li>`));
+  const mine = id => state.activePrograms.some(p => p.courses.has(id));
+  const reach = id => [...map.descendants(id)].filter(x => state.visible.has(x)).length;
+  const ready = [...state.ready].sort((a, b) => mine(b) - mine(a) || reach(b) - reach(a) || a.localeCompare(b));
+  return `${checks.length ? `<section><h3>Check your plan</h3><ul class="issues">${checks.join('')}</ul></section>` : ''}
+    ${ready.length ? `<section><h3>You can take now <span class="h3-count">${ready.length}</span></h3>
+      <ul class="chip-list">${ready.slice(0, FEW_READY).map(id => `<li>${chip(map, id, state, 'none')}</li>`).join('')}</ul>
+      ${ready.length > FEW_READY ? `<button type="button" class="link-btn more-btn" data-highlight="plan:ready">Highlight all ${ready.length}</button>` : ''}
+    </section>` : ''}`;
 }
 
 export function aboutHTML(map, { sources = true } = {}) {

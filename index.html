@@ -38,6 +38,21 @@
       </button>
     </div>
 
+    <div class="segmented views" role="radiogroup" aria-label="View">
+      <button type="button" role="radio" id="view-graph" data-view="graph" aria-checked="true" title="Graph">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="3" width="6" height="4" rx="1"/><rect x="12" y="8" width="6" height="4" rx="1"/><rect x="2" y="13" width="6" height="4" rx="1"/><path d="M8 5h2v10H8M10 10h2" fill="none"/></svg>
+        <span class="seg-text">Graph</span>
+      </button>
+      <button type="button" role="radio" id="view-list" data-view="list" aria-checked="false" title="List">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5h11M7 10h11M7 15h11" fill="none"/><circle cx="3" cy="5" r="1"/><circle cx="3" cy="10" r="1"/><circle cx="3" cy="15" r="1"/></svg>
+        <span class="seg-text">List</span>
+      </button>
+      <button type="button" role="radio" id="view-plan" data-view="plan" aria-checked="false" title="Plan">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="3.5" width="15" height="14" rx="2" fill="none"/><path d="M2.5 8h15M7 2v3M13 2v3" fill="none"/><rect x="5" y="10.5" width="3" height="2.5" rx=".5"/><rect x="11" y="10.5" width="3" height="2.5" rx=".5"/></svg>
+        <span class="seg-text">Plan</span>
+      </button>
+    </div>
+
     <div class="search" role="search">
       <svg class="search-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg>
       <input id="search" type="search" placeholder="Search courses, e.g. EE 221 or signals"
@@ -58,7 +73,7 @@
     </div>
   </header>
 
-  <div class="toolbar" role="toolbar" aria-label="View options">
+  <div class="toolbar" role="toolbar" aria-label="Map options">
     <label class="field">
       <span class="field-label">Highlight</span>
       <select id="highlight"></select>
@@ -69,20 +84,6 @@
       <span class="wide-only">Other departments</span><span class="narrow-only">Other depts</span>
     </label>
     <div id="planner" class="planner"></div>
-    <div class="segmented" role="radiogroup" aria-label="View">
-      <button type="button" role="radio" id="view-graph" data-view="graph" aria-checked="true">
-        <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="3" width="6" height="4" rx="1"/><rect x="12" y="8" width="6" height="4" rx="1"/><rect x="2" y="13" width="6" height="4" rx="1"/><path d="M8 5h2v10H8M10 10h2" fill="none"/></svg>
-        <span class="seg-text">Graph</span>
-      </button>
-      <button type="button" role="radio" id="view-list" data-view="list" aria-checked="false">
-        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5h11M7 10h11M7 15h11" fill="none"/><circle cx="3" cy="5" r="1"/><circle cx="3" cy="10" r="1"/><circle cx="3" cy="15" r="1"/></svg>
-        <span class="seg-text">List</span>
-      </button>
-      <button type="button" role="radio" id="view-plan" data-view="plan" aria-checked="false">
-        <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="3.5" width="15" height="14" rx="2" fill="none"/><path d="M2.5 8h15M7 2v3M13 2v3" fill="none"/><rect x="5" y="10.5" width="3" height="2.5" rx=".5"/><rect x="11" y="10.5" width="3" height="2.5" rx=".5"/></svg>
-        <span class="seg-text">Plan</span>
-      </button>
-    </div>
   </div>
 
   <main class="workspace">
