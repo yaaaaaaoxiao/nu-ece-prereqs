@@ -84,6 +84,38 @@ export function combineData(datas, mainDepts, { id, name }) {
   };
 }
 
+// Why hiding courses ("not interested") can hurt: a requirement of the
+// student's programs can no longer be met, or a course they need (required
+// with no other choice, or planned) requires one of them. Short reasons.
+export function dropWarnings(map, programs, plan, ids) {
+  const drop = new Set([...plan.ids('skip'), ...ids]);
+  const label = id => (map.get(id) ? map.label(map.get(id)) : id.replace(/-0$/, ''));
+  const names = list => list.map(label).join(', ');
+  const reasons = [];
+  const needed = new Map(); // course -> why the student needs it
+  for (const p of programs) {
+    const name = p.short || p.name;
+    for (const list of p.lists) {
+      const hit = ids.filter(id => list.items.some(alts => alts.some(alt => alt.includes(id))));
+      const viable = list.items.filter(alts => alts.some(alt => alt.every(c => !drop.has(c)))).length;
+      if (hit.length && list.need && viable < list.need) reasons.push(`${name} “${list.label}” needs ${names(hit)}.`);
+      if (list.need && list.need === list.items.length) {
+        for (const alts of list.items) {
+          if (alts.length === 1) alts[0].forEach(c => needed.has(c) || needed.set(c, `required for ${name}`));
+        }
+      }
+    }
+  }
+  plan.ids('planned').forEach(c => needed.has(c) || needed.set(c, 'in your plan'));
+  for (const id of ids) {
+    const by = [...needed].filter(([c]) => !drop.has(c) && c !== id && map.requiredAncestors(c).has(id));
+    if (by.length) {
+      reasons.push(`${label(by[0][0])} (${by[0][1]}) needs ${label(id)}${by.length > 1 ? `, and so ${by.length === 2 ? 'does 1 other course' : `do ${by.length - 1} other courses`}` : ''}.`);
+    }
+  }
+  return reasons;
+}
+
 export const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const normText = s => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 

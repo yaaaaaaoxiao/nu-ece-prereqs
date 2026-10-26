@@ -1,8 +1,8 @@
 // App entry: loads a map, owns the state, keeps the URL in sync and wires the
 // graph, list, plan, panel, search and toolbar together.
-import { CourseMap, combineData, fetchJSON } from './model.js';
+import { CourseMap, combineData, dropWarnings, fetchJSON } from './model.js';
 import { GraphView } from './graph.js';
-import { renderPanel, aboutHTML, esc, statusIcon } from './panel.js';
+import { renderPanel, aboutHTML, esc, ICON, statusIcon } from './panel.js';
 import { renderList } from './list.js';
 import { renderPlanView } from './planview.js';
 import { Plan, currentTerm, termLabel, termOrder } from './plan.js';
@@ -47,6 +47,7 @@ const els = {
   themeBtn: $('#theme-btn'),
   legendNote: $('#legend-note'),
   toast: $('#toast'),
+  confirm: $('#confirm'),
 };
 
 const state = {
@@ -70,6 +71,7 @@ const state = {
   // Derived from the plan and map by derive():
   taken: new Set(),
   planned: new Set(),
+  skipped: new Set(), // "not interested": hidden from the map unless showSkipped
   ready: new Set(), // on the map, not taken or planned, prerequisites done
   myPrograms: new Set(),
   activePrograms: [],
@@ -77,6 +79,7 @@ const state = {
   paths: new Map(), // paths to courses worked out so far (see path.js)
   openDescs: new Set(), // courses whose long description is shown in full
   preview: null, // a course shown in the panel while the mouse is over it
+  showSkipped: false, // show the courses marked "not interested" (faded) on the map and list
 };
 let maps = []; // data/maps.json: each map's file, departments and programs
 const loaded = new Map(); // map id -> its data, once fetched
@@ -219,6 +222,7 @@ function derive() {
   const { map, plan } = state;
   state.taken = new Set(plan.ids('taken'));
   state.planned = new Set(plan.ids('planned'));
+  state.skipped = new Set(plan.ids('skip'));
   state.myPrograms = new Set(state.programIds);
   state.activePrograms = state.programIds.map(id => map.program(id)).filter(Boolean);
 
@@ -228,14 +232,16 @@ function derive() {
     map.required.forEach(id => visible.add(id));
     state.activePrograms.forEach(p => p.courses.forEach(id => visible.add(id)));
     [...state.taken, ...state.planned].forEach(id => map.get(id) && visible.add(id));
-    // So does a path being shown, so all of it is drawn.
-    if (showingPath()) pathHighlight(state.highlight)?.ids.forEach(id => map.get(id) && visible.add(id));
   }
+  // Courses marked "not interested" leave the map, unless the student asks to see them.
+  if (!state.showSkipped) state.skipped.forEach(id => visible.delete(id));
+  // A path being shown brings all of its courses, so all of it is drawn.
+  if (state.showExternal && showingPath()) pathHighlight(state.highlight)?.ids.forEach(id => map.get(id) && visible.add(id));
   state.visible = visible;
   // "Can take now" only means something once some courses are marked taken.
   const planning = [...state.taken].some(id => map.get(id));
   state.ready = new Set(planning
-    ? [...visible].filter(id => !state.planned.has(id) && map.status(map.get(id), state.taken) === 'available')
+    ? [...visible].filter(id => !state.planned.has(id) && !state.skipped.has(id) && map.status(map.get(id), state.taken) === 'available')
     : []);
   for (const id of state.picked) if (!visible.has(id)) state.picked.delete(id);
 
@@ -399,28 +405,33 @@ function fillHighlightSelect() {
 }
 
 function renderPlanner() {
-  const { map, taken, planned, ready } = state;
+  const { map, taken, planned, ready, skipped } = state;
   const picking = isPicking();
   const nTaken = [...taken].filter(id => map.get(id)).length;
   const nPlanned = [...planned].filter(id => map.get(id)).length;
   const start = `<button type="button" class="tool-btn" data-action="${picking ? 'stop-picking' : 'start-picking'}" aria-pressed="${picking}"
     title="Select several courses, then mark them taken or planned">${statusIcon('taken')}<span class="wide-only">Mark courses</span><span class="narrow-only">Mark</span></button>`;
+  // Courses marked "not interested": a count that shows them again (faded).
+  const nSkipped = [...skipped].filter(id => map.get(id)).length;
+  const hidden = nSkipped ? `<button type="button" class="stat-btn" data-action="toggle-skipped" aria-pressed="${state.showSkipped}"
+    title="${state.showSkipped ? 'Hide them again' : 'Show them on the map'}">${statusIcon('skip')}<b>${nSkipped}</b> <span class="stat-label">hidden</span></button>` : '';
   if (!nTaken && !nPlanned) {
-    els.planner.innerHTML = `${start}<span class="muted planner-hint">or Shift-click the courses you took</span>`;
+    els.planner.innerHTML = nSkipped ? `<span class="plan-stats">${hidden}</span>${start}`
+      : `${start}<span class="muted planner-hint">or Shift-click the courses you took</span>`;
     return;
   }
   // Each count highlights its courses on the map.
   const stat = (key, kind, n, label) => `<button type="button" class="stat-btn" data-highlight="${key}"
     aria-pressed="${state.highlight === key}"${n ? '' : ' disabled'} title="Highlight them">${statusIcon(kind)}<b>${n}</b> <span class="stat-label">${label}</span></button>`;
   els.planner.innerHTML = `<span class="plan-stats">${stat('plan:taken', 'taken', nTaken, 'taken')}${
-    stat('plan:planned', 'planned', nPlanned, 'planned')}${stat('plan:ready', 'ready', ready.size, 'can take now')}</span>${start}`;
+    stat('plan:planned', 'planned', nPlanned, 'planned')}${stat('plan:ready', 'ready', ready.size, 'can take now')}${hidden}</span>${start}`;
 }
 
 function optionHTML(c) {
   const map = state.map;
   const status = state.plan.status(c.id);
   const term = state.plan.term(c.id);
-  const mine = status ? ` · ${status}${term ? ` ${termLabel(term)}` : ''}` : '';
+  const mine = status ? ` · ${STATUS_NAME[status]}${term ? ` ${termLabel(term)}` : ''}` : '';
   return `<span class="r-code">${esc(map.label(c))}</span>
     <span class="r-title">${esc(c.title || 'Not in the current catalog')}</span>
     <span class="r-meta">${esc(map.deptName(c))}${esc(mine)}</span>`;
@@ -591,7 +602,8 @@ function hideToastLater(ms) {
 }
 
 const isPast = term => termOrder(term) < termOrder(currentTerm());
-const STATUS_DONE = { taken: 'marked taken', planned: 'marked planned', '': 'removed from your plan' };
+const STATUS_DONE = { taken: 'marked taken', planned: 'marked planned', skip: 'marked not interested', '': 'removed from your plan' };
+const STATUS_NAME = { taken: 'taken', planned: 'planned', skip: 'not interested' };
 
 // Taken / planned / not taken for one or more courses. A course keeps its
 // quarter only if it still fits (taken courses sit in past quarters, plans in
@@ -599,10 +611,12 @@ const STATUS_DONE = { taken: 'marked taken', planned: 'marked planned', '': 'rem
 function setStatus(ids, status) {
   const { map } = state;
   const what = ids.length === 1 ? map.label(map.get(ids[0])) : countText(ids.length);
-  changePlan(`${what} ${STATUS_DONE[status || '']}.`, plan => {
+  // Undoing "not interested" puts the courses back on the map.
+  const back = !status && ids.every(id => state.plan.status(id) === 'skip');
+  changePlan(`${what} ${back ? `${ids.length === 1 ? 'is' : 'are'} back on your map` : STATUS_DONE[status || '']}.`, plan => {
     for (const id of ids) {
       const term = plan.term(id);
-      const keep = term && (status === 'taken' ? termOrder(term) <= termOrder(currentTerm()) : !isPast(term));
+      const keep = term && status !== 'skip' && (status === 'taken' ? termOrder(term) <= termOrder(currentTerm()) : !isPast(term));
       plan.set(id, status || null, keep ? term : null);
     }
   });
@@ -626,15 +640,79 @@ function moveToTerm(ids, term, verb = term && isPast(term) ? 'marked taken in' :
   });
 }
 
-// T, P and N: the selected courses, else the focused or open one.
+// T, P, N and X: the selected courses, else the focused or open one.
 function quickMark(status) {
   if (state.picked.size) {
-    setStatus(takePicked(), status);
+    markPicked(status);
     return;
   }
   const el = document.activeElement;
   const id = el?.closest?.('.node')?.dataset.id || el?.closest?.('[data-select]')?.dataset.select || state.selected;
-  if (id && state.map.get(id)) setStatus([id], status);
+  if (id && state.map.get(id)) mark([id], status);
+}
+
+// Every way of setting a status comes here: "not interested" checks first.
+function mark(ids, status) {
+  if (status === 'skip') hideCourses(ids);
+  else setStatus(ids, status);
+}
+
+// The selected courses; they stay selected if the student cancels hiding them.
+function markPicked(status) {
+  if (status === 'skip') hideCourses([...state.picked]);
+  else setStatus(takePicked(), status);
+}
+
+// "Not interested": the courses leave the map. If one is required (by the
+// student's programs, or by a course they need or planned), ask first.
+async function hideCourses(ids) {
+  const { map } = state;
+  const reasons = dropWarnings(map, state.activePrograms, state.plan, ids);
+  if (reasons.length) {
+    const ok = await confirmDialog({
+      title: ids.length === 1 ? `You need ${map.label(map.get(ids[0]))}` : 'You need some of these courses',
+      reasons,
+      action: 'Hide anyway',
+    });
+    if (!ok) {
+      render(); // puts a list row's menu back
+      return;
+    }
+  }
+  ids.forEach(id => state.picked.delete(id));
+  setStatus(ids, 'skip');
+}
+
+// A yes/no question in a dialog; resolves true for the action.
+function confirmDialog({ title, reasons, action }) {
+  const d = els.confirm;
+  d.querySelector('#confirm-title').textContent = title;
+  d.querySelector('.confirm-reasons').innerHTML = reasons.map(r => `<li>${ICON.warn}<span>${esc(r)}</span></li>`).join('');
+  d.querySelector('[value="ok"]').textContent = action;
+  d.showModal();
+  d.querySelector('[value="cancel"]').focus();
+  // Answer from the buttons (and Escape) directly: the dialog's "close" event
+  // can arrive late or not at all.
+  return new Promise(resolve => {
+    const done = ok => {
+      d.removeEventListener('click', onClick);
+      d.removeEventListener('cancel', onCancel);
+      if (d.open) d.close();
+      resolve(ok);
+    };
+    const onClick = e => {
+      const button = e.target.closest('button[value]');
+      if (!button) return;
+      e.preventDefault();
+      done(button.value === 'ok');
+    };
+    const onCancel = e => {
+      e.preventDefault();
+      done(false);
+    };
+    d.addEventListener('click', onClick);
+    d.addEventListener('cancel', onCancel);
+  });
 }
 
 function startAdding(term) {
@@ -699,7 +777,7 @@ function renderProgramsDialog() {
 }
 
 function clearPlan() {
-  const mine = Object.keys(state.plan.courses).filter(id => state.map.get(id));
+  const mine = Object.keys(state.plan.courses).filter(id => state.map.get(id) && state.plan.status(id) !== 'skip');
   if (!mine.length || !window.confirm(`Remove all ${mine.length} courses from your plan?`)) return;
   changePlan(`Removed ${countText(mine.length)} from your plan.`, plan => plan.clear(mine));
 }
@@ -836,8 +914,12 @@ document.addEventListener('click', e => {
   else if (t.dataset.view) setView(t.dataset.view);
   else if (t.dataset.arrange) setArrange(t.dataset.arrange);
   else if (action === 'close') select(null);
-  else if (action === 'set-status') setStatus([id], t.dataset.status);
-  else if (action === 'pick-status') setStatus(takePicked(), t.dataset.status);
+  else if (action === 'set-status') mark([id], t.dataset.status);
+  else if (action === 'pick-status') markPicked(t.dataset.status);
+  else if (action === 'toggle-skipped') {
+    state.showSkipped = !state.showSkipped;
+    planChanged();
+  }
   else if (action === 'start-picking') startPicking();
   else if (action === 'stop-picking') stopPicking();
   else if (action === 'unpick') togglePick(id);
@@ -861,7 +943,7 @@ document.addEventListener('click', e => {
 document.addEventListener('change', e => {
   const t = e.target;
   const { action, id } = t.dataset;
-  if (action === 'set-status') setStatus([id], t.value);
+  if (action === 'set-status') mark([id], t.value);
   else if (action === 'set-term') setCourseTerm(id, t.value);
   else if (action === 'pick-term' && t.value) moveToTerm(takePicked(), t.value);
   else if (action === 'add-program' && t.value) setPrograms([...state.programIds, t.value]);
@@ -955,8 +1037,8 @@ document.addEventListener('keydown', e => {
     else if (state.selected) select(null);
     else setHighlight('');
   } else if (!typing && !e.metaKey && !e.ctrlKey && !e.altKey) {
-    const mark = { t: 'taken', p: 'planned', n: '' }[e.key.toLowerCase()];
-    if (mark !== undefined && state.view !== 'plan') quickMark(mark);
+    const status = { t: 'taken', p: 'planned', n: '', x: 'skip' }[e.key.toLowerCase()];
+    if (status !== undefined && state.view !== 'plan') quickMark(status);
     else if (e.key === '+' || e.key === '=') zoom('in');
     else if (e.key === '-' || e.key === '_') zoom('out');
     else if (e.key === '0') zoom('fit');

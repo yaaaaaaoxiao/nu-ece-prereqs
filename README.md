@@ -41,6 +41,10 @@ take next, and highlight a degree requirement, technical track or quarter.
   usual option where one of several will do (or the one you've planned), and fills
   quarters from the next one using the current schedule, at most 2 to 5 courses a
   quarter (your choice) counting what's already planned.
+- **Not interested:** hide courses you don't want from the map and list (one at a time,
+  or several selected at once). If a hidden course is required by your programs, or a
+  required or planned course needs it, the site asks first. The hidden count in the
+  toolbar shows them again, faded. Paths avoid them where another option will do.
 - **Planner:** lay out future quarters in the **Plan** tab (add with "+ Add", drag
   between quarters). It warns when a prerequisite isn't done before the quarter you
   planned, a corequisite is missing, or the course wasn't offered in that quarter on

@@ -387,6 +387,12 @@ svg { flex: none; }
 .node.has-issue .mark-icon circle { fill: var(--warn); stroke: none; }
 .node.has-issue .mark-icon .i-clock { display: none; }
 .node.has-issue .mark-icon .i-warn { display: inline; stroke: #1a1a19; stroke-width: 1.8; }
+/* Not interested (shown only on request): faded, struck through, with a minus. */
+.node.is-skip .card { fill: var(--surface); stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 3; }
+.node.is-skip :is(.code, .title, .reach, .offered) { opacity: 0.5; }
+.node.is-skip .code { text-decoration: line-through; }
+.node.is-skip .mark-icon circle { fill: var(--muted); }
+.node.is-skip .i-skip { display: inline; }
 
 /* "Leads to" count: grays only (color is kept for the plan), darker the more courses it leads to. */
 .reach.t0 { display: none; }
@@ -515,6 +521,7 @@ svg { flex: none; }
 .lg-ready { fill: var(--good-wash); stroke: var(--good); stroke-width: 1.5; }
 .lg-issue { fill: var(--mine-tint); stroke: var(--warn); stroke-width: 1.8; }
 .lg-picked { fill: var(--raised); stroke: var(--accent); stroke-width: 2; }
+.lg-skip { fill: var(--surface); stroke: var(--line); stroke-dasharray: 3 2; }
 .lg-path { fill: var(--raised); stroke: var(--up); stroke-width: 1.8; }
 .legend .lg-term { font: 650 7.5px var(--font); fill: var(--up); text-anchor: end; }
 .legend .lg-offered { font: 650 10.5px var(--font); text-anchor: middle; fill: var(--line); }
@@ -787,13 +794,31 @@ svg { flex: none; }
 .si-ready circle { fill: var(--good); }
 .si-issue circle { fill: var(--warn); }
 .si-issue path { stroke: #1a1a19; }
+.si-skip circle { fill: var(--muted); }
 .status .si { width: 16px; height: 16px; margin-top: 1px; }
 
 .plan-control { display: grid; gap: 8px; margin: 14px 0 8px; }
 .seg-status { width: max-content; max-width: 100%; }
 .seg-status button { height: 30px; padding: 0 12px; }
 .seg-status button[data-status="taken"][aria-checked="true"], .seg-status button[data-status="planned"][aria-checked="true"] { color: var(--mine-ink); }
-.pick-chain { justify-self: start; font-size: 13px; }
+.plan-links { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.pick-chain, .skip-btn { justify-self: start; font-size: 13px; }
+.skip-btn { color: var(--muted); }
+/* A course marked "not interested". */
+.skipped { margin: 12px 0 4px; padding: 10px 12px; border: 1px dashed var(--line); border-radius: 10px; background: var(--surface); font-size: 13px; }
+.skipped > p { display: flex; gap: 8px; align-items: flex-start; margin: 0 0 8px !important; color: var(--ink-2); }
+.skipped .si { margin-top: 2px; }
+.skipped .issues { margin: 0 0 8px; }
+.chip.is-skip .chip-code, .chip.is-skip .chip-title { text-decoration: line-through; color: var(--muted); }
+.tag.status-skip { color: var(--muted); }
+.row-status select.is-skip { color: var(--muted); border-style: dashed; }
+/* The question asked before hiding a course you need. */
+.confirm-dialog { width: min(440px, calc(100vw - 32px)); }
+.confirm-reasons { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 6px; }
+.confirm-reasons li { display: flex; gap: 8px; align-items: flex-start; padding: 6px 8px; border-radius: 8px; font-size: 13.5px;
+  background: color-mix(in srgb, var(--warn) 16%, var(--raised)); }
+.confirm-reasons svg { flex: none; margin-top: 2px; }
+.dialog-actions { gap: 8px; }
 .term-pick { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); }
 .term-pick select { height: 30px; border: 1px solid var(--line); border-radius: 8px; background: var(--raised); padding: 0 8px; }
 .issues { list-style: none; margin: 4px 0 8px; padding: 0; display: grid; gap: 6px; }
@@ -960,6 +985,6 @@ button.mini-chip:hover { border-color: var(--ink-2); }
 .mm-node.is-up { fill: var(--up); }
 .mm-node.is-down { fill: var(--down); }
 .mm-node.is-selected { fill: var(--ink); }
-.mm-node.is-dim { opacity: 0.3; }
+.mm-node.is-dim, .mm-node.is-skip { opacity: 0.3; }
 .mm-view { fill: var(--accent-wash); stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
 .minimap.is-hidden { display: none; }

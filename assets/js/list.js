@@ -57,6 +57,8 @@ function rowHTML(map, c, state) {
   else if (mine === 'planned') {
     const term = state.plan.term(c.id);
     tag = `<span class="tag status-planned">${statusIcon('planned')}${term ? esc(termLabel(term)) : 'Planned'}</span>`;
+  } else if (mine === 'skip') {
+    tag = `<span class="tag status-skip">${statusIcon('skip')}Not interested</span>`;
   } else if (state.ready.has(c.id)) {
     tag = `<span class="tag status-ready">${statusIcon('ready')}Can take now</span>`;
   }
@@ -70,7 +72,7 @@ function rowHTML(map, c, state) {
     <label class="row-status">
       <span class="sr-only">Your plan for ${esc(label)}</span>
       <select data-action="set-status" data-id="${esc(c.id)}" class="${mine ? `is-${mine}` : ''}">
-        ${option('', 'Not taken')}${option('planned', 'Planned')}${option('taken', 'Taken')}
+        ${option('', 'Not taken')}${option('planned', 'Planned')}${option('taken', 'Taken')}${option('skip', 'Not interested')}
       </select>
     </label>
     <button type="button" class="row-main" data-select="${esc(c.id)}">

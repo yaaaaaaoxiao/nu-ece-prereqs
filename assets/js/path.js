@@ -67,6 +67,7 @@ export function findPath(map, plan, target, { perQuarter = 3, now = currentTerm(
   const start = nextTerm(now);
   const done = plan.doneBefore(start);
   const planned = new Set(plan.ids('planned'));
+  const skipped = new Set(plan.ids('skip'));
   const path = {
     target,
     start,
@@ -93,7 +94,7 @@ export function findPath(map, plan, target, { perQuarter = 3, now = currentTerm(
     for (const id of ids) {
       if (planned.has(id) || chosen.has(id)) continue;
       const c = map.get(id);
-      n += !c || c.missing ? 5 : 1;
+      n += !c || c.missing ? 5 : skipped.has(id) ? 10 : 1;
       if (!requirements(map, id).known) n += Math.max(1, Number(c?.num.split('-')[1]) || 0);
     }
     return n;
@@ -120,9 +121,9 @@ export function findPath(map, plan, target, { perQuarter = 3, now = currentTerm(
     const [op, items] = Object.entries(tree)[0];
     if (op === 'and') return new Set(items.flatMap(t => [...needs(t, owner)]));
     if (satisfied(tree, done)) return new Set();
-    // An option in the plan, then the earlier part of the same sequence, then
-    // the fewest courses. Ties go to the option listed first, usually the
-    // standard one.
+    // An option in the plan, then one without courses marked "not interested",
+    // then the earlier part of the same sequence, then the fewest courses.
+    // Ties go to the option listed first, usually the standard one.
     // Every option is priced against what was picked before this choice, not
     // against what weighing the other options picked along the way.
     const before = new Set(chosen);
@@ -133,7 +134,8 @@ export function findPath(map, plan, target, { perQuarter = 3, now = currentTerm(
     for (const option of options) {
       const { t, set } = option;
       const top = typeof t === 'string' ? [t] : Object.values(t)[0].filter(x => typeof x === 'string');
-      option.rank = [top.some(x => planned.has(x)) ? 0 : 1, typeof t === 'string' && earlierPart(map, t, owner) ? 0 : 1, cost(set)];
+      option.rank = [top.some(x => planned.has(x)) ? 0 : 1, [...set].some(x => skipped.has(x)) ? 1 : 0,
+        typeof t === 'string' && earlierPart(map, t, owner) ? 0 : 1, cost(set)];
       if (!best || isBefore(option.rank, best.rank)) best = option;
     }
     if (typeof best.t === 'string' && !choices.has(best.t)) choices.set(best.t, items.filter(t => typeof t === 'string' && t !== best.t));

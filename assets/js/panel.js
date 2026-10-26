@@ -1,6 +1,6 @@
 // Details panel: the selected course, or a highlighted list, or an
 // introduction when nothing is selected.
-import { satisfied, unmet } from './model.js';
+import { dropWarnings, satisfied, unmet } from './model.js';
 import { currentTerm, termLabel, termOrder, termShort } from './plan.js';
 import { pathFor } from './path.js';
 
@@ -27,10 +27,11 @@ export function statusIcon(kind) {
     planned: 'M8 4.6V8l2.4 1.6',
     ready: 'M4.7 8h6M8.5 5.5 11 8l-2.5 2.5',
     issue: 'M8 4.4v4.3M8 11.2v.1',
+    skip: 'M5 8h6',
   }[kind];
   return `<svg class="si si-${kind}" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="${glyph}"/></svg>`;
 }
-const STATUS_LABEL = { taken: 'taken', planned: 'planned', ready: 'can take now' };
+const STATUS_LABEL = { taken: 'taken', planned: 'planned', ready: 'can take now', skip: 'not interested' };
 // Notes that ask for more than courses ("senior standing"), not alternatives
 // ("or equivalent") or remarks about where a prerequisite came from.
 const extraNeeds = c => (c.notes || []).filter(n => !n.startsWith('or ') && !/[A-Z_]+ \d{3}/.test(n));
@@ -91,6 +92,7 @@ function pickedHTML(map, state) {
           <optgroup label="Taken in">${terms.filter(t => termOrder(t) < now).reverse().map(option).join('')}</optgroup>
         </select></label>
       <button type="button" class="pick-btn" data-action="pick-status" data-status="" title="Remove from your plan (N)"${off}>Not taken</button>
+      <button type="button" class="pick-btn" data-action="pick-status" data-status="skip" title="Hide from your map (X)"${off}>${statusIcon('skip')}Not interested</button>
     </div>
     <section>
       ${n ? `<ul class="pick-list">${items}</ul>` : `<p class="muted">Click courses on the map or in the list.</p>`}
@@ -252,6 +254,7 @@ function courseHTML(map, c, state, repo) {
       </div>
       <button type="button" class="icon-btn" data-action="close" aria-label="Close details">${ICON.close}</button>
     </div>
+    ${skippedHTML(map, c, state)}
     ${descHTML(map, c, state)}
     ${planControlHTML(map, c, state)}
     ${statusHTML(map, c, state)}
@@ -284,6 +287,17 @@ function linkCodes(map, text, self) {
   });
 }
 
+// A course marked "not interested": it's off the map; say why it may matter.
+function skippedHTML(map, c, state) {
+  if (state.plan.status(c.id) !== 'skip') return '';
+  const reasons = dropWarnings(map, state.activePrograms, state.plan, [c.id]);
+  return `<div class="skipped">
+    <p>${statusIcon('skip')}<span><b>Not interested.</b> This course is hidden from your map.</span></p>
+    ${reasons.length ? `<ul class="issues">${reasons.map(r => `<li>${ICON.warn}<span>${esc(r)}</span></li>`).join('')}</ul>` : ''}
+    <button type="button" class="btn" data-action="set-status" data-id="${esc(c.id)}" data-status="">Show it again</button>
+  </div>`;
+}
+
 // Not taken / Planned / Taken, plus the quarter.
 function planControlHTML(map, c, state) {
   const { plan } = state;
@@ -313,7 +327,9 @@ function planControlHTML(map, c, state) {
       <div class="segmented seg-status" role="radiogroup" aria-label="Your plan for this course">
         ${option('', 'Not taken')}${option('planned', 'Planned')}${option('taken', 'Taken')}
       </div>
-      ${when}${pick}
+      ${when}
+      <div class="plan-links">${pick}${status === 'skip' ? '' : `<button type="button" class="link-btn skip-btn"
+        data-action="set-status" data-id="${id}" data-status="skip" title="Hide it from your map (X)">Not interested</button>`}</div>
     </div>`;
 }
 
@@ -452,10 +468,10 @@ function chipList(map, ids, state, kind) {
 }
 
 // A course button showing the viewer's status for it (taken, planned, can take now).
-export function chip(map, id, { taken, planned, ready }, kind, note) {
+export function chip(map, id, { taken, planned, ready, skipped }, kind, note) {
   const c = map.get(id);
   if (!c) return `<span class="chip is-unlisted"><span class="chip-code">${esc(id)}</span><span class="chip-title">Not in the undergraduate catalog</span></span>`;
-  const status = taken.has(id) ? 'taken' : planned.has(id) ? 'planned' : ready?.has(id) ? 'ready' : '';
+  const status = taken.has(id) ? 'taken' : planned.has(id) ? 'planned' : skipped?.has(id) ? 'skip' : ready?.has(id) ? 'ready' : '';
   return `<button type="button" class="chip k-${kind}${status ? ` is-${status}` : ''}" data-select="${esc(id)}">
     <span class="chip-code">${esc(map.label(c))}</span>
     <span class="chip-title">${esc(c.title || 'Not in the current catalog')}</span>

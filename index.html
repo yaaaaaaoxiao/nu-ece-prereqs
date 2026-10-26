@@ -139,6 +139,7 @@
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-issue" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-issue" transform="translate(8.5 8)"><circle r="4.6"/><path d="M0-2.2V0.3M0 1.9v0.1"/></g></svg>Planned, but needs a check</li>
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-path" x="0.9" y="0.9" width="34.2" height="14.2" rx="4"/><text class="lg-term" x="31.5" y="11">Win</text></svg>On a path, with its quarter</li>
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-picked" x="4" y="3" width="31" height="12" rx="4"/><g class="lg-pick" transform="translate(5 4)"><circle r="4"/><path d="M-1.8 0.1-0.6 1.3 1.8-1.1"/></g></svg>Selected (Shift-click)</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-skip" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-skip" transform="translate(8.5 8)"><circle r="4.6"/><path d="M-2 0H2"/></g></svg>Not interested (when shown)</li>
         </ul>
         <h4 class="legend-head">Courses</h4>
         <ul>
@@ -179,6 +180,16 @@
     <form method="dialog" class="dialog-actions"><button class="btn primary">Done</button></form>
   </dialog>
 
+  <dialog id="confirm" class="help confirm-dialog" aria-labelledby="confirm-title">
+    <h2 id="confirm-title">Hide this course?</h2>
+    <p class="muted">If you hide it, you can still see it again with the hidden count in the toolbar.</p>
+    <ul class="confirm-reasons"></ul>
+    <form method="dialog" class="dialog-actions">
+      <button class="btn" value="cancel">Keep it</button>
+      <button class="btn primary" value="ok">Hide anyway</button>
+    </form>
+  </dialog>
+
   <dialog id="help" class="help" aria-labelledby="help-title">
     <form method="dialog" class="help-close">
       <button class="icon-btn" aria-label="Close">
@@ -199,6 +210,7 @@
       <li><b>Mark your courses:</b> Shift-click them, Shift-drag a box, or press <b>Mark courses</b>. On a touch screen, long-press a course. You can undo each change.</li>
       <li><b>Plan a route:</b> open a course and press <b>Show the path</b>. The path shows the courses you still need, with the soonest quarter for each. <b>Add to my plan</b> adds all of them.</li>
       <li><b>Pick your programs</b> with the button next to the title. The map shows all courses in your majors' departments, plus your minors' courses.</li>
+      <li><b>Hide a course</b> you do not want: open it and press <b>Not interested</b>. The site warns you if you need the course. To see hidden courses again, press the hidden count in the toolbar.</li>
       <li><b>Plan your quarters</b> in the <b>Plan</b> tab. It shows prerequisite problems and checks your program requirements. Your plan stays in this browser.</li>
       <li><b>Highlight</b> a requirement list, a track, or a quarter's courses with the menu in the toolbar.</li>
       <li><b>Move around:</b> drag or scroll. To zoom, pinch or use <kbd>Ctrl</kbd> + scroll. Zoom in to see course names.</li>
@@ -210,6 +222,7 @@
       <li><kbd>Enter</kbd> Open a course</li>
       <li><kbd>Shift</kbd>+<kbd>Enter</kbd> Add to the selection</li>
       <li><kbd>T</kbd> <kbd>P</kbd> <kbd>N</kbd> Taken, planned, not taken</li>
+      <li><kbd>X</kbd> Not interested</li>
       <li><kbd>⌘</kbd>/<kbd>Ctrl</kbd>+<kbd>Z</kbd> Undo</li>
       <li><kbd>Esc</kbd> Close or clear</li>
       <li><kbd>+</kbd> <kbd>−</kbd> <kbd>0</kbd> Zoom in, out, fit</li>

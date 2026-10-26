@@ -43,7 +43,7 @@ function programsHTML(map, state) {
 function gridHTML(map, state) {
   const { plan } = state;
   const now = currentTerm();
-  const mine = Object.keys(plan.courses).filter(id => map.get(id));
+  const mine = Object.keys(plan.courses).filter(id => map.get(id) && plan.status(id) !== 'skip');
   const terms = new Set(plan.terms());
   const inTerm = new Map();
   const loose = [];

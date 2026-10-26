@@ -48,7 +48,7 @@ const LONG_PRESS = 500; // ms; on touch screens a long press selects several cou
 const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const translate = p => `translate(${p.x},${p.y})`;
 const isToggle = e => e.shiftKey || e.metaKey || e.ctrlKey;
-const STATUS_TEXT = { taken: 'Taken', planned: 'Planned', ready: 'You can take it now' };
+const STATUS_TEXT = { taken: 'Taken', planned: 'Planned', ready: 'You can take it now', skip: 'Not interested' };
 const listText = items => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`);
 
 export class GraphView {
@@ -323,6 +323,7 @@ export class GraphView {
     mark.append('path').attr('class', 'i-clock').attr('d', 'M0-3.1V0l2 1.3');
     mark.append('path').attr('class', 'i-go').attr('d', 'M-2.6 0H2.2M0.1-2.3 2.4 0 0.1 2.3');
     mark.append('path').attr('class', 'i-warn').attr('d', 'M0-3V0.4M0 2.5v0.1');
+    mark.append('path').attr('class', 'i-skip').attr('d', 'M-2.6 0H2.6');
     g.append('text').attr('class', 'code').attr('x', 10).attr('y', 17).text(id => map.label(map.get(id)));
     g.append('text').attr('class', 'title').attr('y', TITLE_Y);
     // At the end of the title's second line: the quarter in the plan, or else
@@ -385,7 +386,7 @@ export class GraphView {
     this.state = state;
     const map = this.map;
     if (!map) return;
-    const { taken, planned, ready, picked, plan } = state;
+    const { taken, planned, ready, picked, plan, skipped } = state;
     const hl = state.highlight ? map.highlight(state.highlight) : null;
     const sel = state.selected && this.layout.nodes.has(state.selected) ? state.selected : null;
     // A path to a course (path.js) shows its quarters while nothing is selected.
@@ -405,7 +406,7 @@ export class GraphView {
     const isUp = e => !!sel && up.has(e.source) && (e.target === sel || up.has(e.target));
     const isDown = e => !!sel && (e.source === sel || down.has(e.source)) && down.has(e.target);
     const inHighlight = e => !sel && !!hl && hl.ids.has(e.source) && hl.ids.has(e.target) && !(path && e.kind === 'rec');
-    const status = id => (taken.has(id) ? 'taken' : planned.has(id) ? 'planned' : ready.has(id) ? 'ready' : '');
+    const status = id => (taken.has(id) ? 'taken' : planned.has(id) ? 'planned' : skipped.has(id) ? 'skip' : ready.has(id) ? 'ready' : '');
     const issues = new Map([...planned].filter(id => this.layout.nodes.has(id)).map(id => [id, plan.issues(map, id)]));
     const hasIssue = id => !!issues.get(id)?.length;
 
@@ -418,6 +419,7 @@ export class GraphView {
       .classed('is-taken', id => taken.has(id))
       .classed('is-planned', id => planned.has(id))
       .classed('is-ready', id => ready.has(id))
+      .classed('is-skip', id => skipped.has(id))
       .classed('has-issue', hasIssue)
       .classed('has-status', id => !!status(id))
       .classed('is-picked', id => picked.has(id))
