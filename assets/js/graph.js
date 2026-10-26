@@ -797,7 +797,8 @@ export class GraphView {
     target.call(this.zoom.transform, t);
   }
 
-  // Show everything; if that would be unreadably small, start at the top-left.
+  // Show everything; if that would be unreadably small, start at the top
+  // (left, by department; in the middle by connection, which centers its parts).
   fitAll({ animate = true, minScale = 0.15 } = {}) {
     const { width, height } = this.layout;
     if (!width) return;
@@ -805,7 +806,7 @@ export class GraphView {
     const pad = 16;
     const fit = Math.min((w - 2 * pad) / width, (h - 2 * pad) / height, 1);
     const k = Math.max(fit, minScale);
-    const tx = width * k <= w - 2 * pad ? (w - width * k) / 2 : pad;
+    const tx = width * k <= w - 2 * pad || this.columns !== 'department' ? (w - width * k) / 2 : pad;
     const ty = top + (height * k <= h - 2 * pad ? (h - height * k) / 2 : pad);
     const t = d3.zoomIdentity.translate(tx, ty).scale(k);
     const target = animate && !reducedMotion() ? this.svg.transition().duration(450) : this.svg;
@@ -1115,7 +1116,6 @@ function cellsOf(courses, bandOf, groupOf, tierOf, linked) {
 }
 
 const EMPTY_CELL = { tiers: [], loose: [] };
-const widestIn = cells => Math.max(1, ...[...cells.values()].flatMap(cell => [...cell.tiers.map(t => t.length), cell.loose.length]));
 
 // One band across one or more blocks of columns ({ x, cols }; `here` has each
 // block's cell). Tier by tier, every block starting a tier on the same row, so
@@ -1245,7 +1245,10 @@ function byDepartment(g) {
 // the same way inside; then any courses in no list. Column counts are picked
 // so the whole map best fits the stage.
 
-const MAX_COLS_ONE = 16; // one grid may be wider than a department's block
+const MAX_WIDE = 22; // the most columns a map by connection gets
+const MAX_BOX = 5; // and an area's box
+const SPARE = 2; // columns to spare beyond the widest step, so courses can line up under their prerequisites
+const AREAS_WIDE = 14; // columns a line of areas' boxes may take, when the core is narrower
 const AREA_GAP = 40; // between elective areas' boxes
 const AREA_HEAD = 40; // the areas' titles (up to two lines), under the section's label
 const INNER_GAP = 28; // between the steps inside an area
@@ -1270,7 +1273,7 @@ function byConnection(g, areas) {
     }
     const levels = [...new Set(list.map(bandOf))].sort((a, b) => a - b);
     const cells = cellsOf(list, bandOf, () => 0, tiersOf(list, own, bandOf, map), g.linked);
-    return { list, levels, cell: level => cells.get(`${level}|0`) || EMPTY_CELL, widest: widestIn(cells) };
+    return { list, levels, cell: level => cells.get(`${level}|0`) || EMPTY_CELL };
   };
   const coreList = courses.filter(c => !areaOf(c.id));
   const core = coreList.length ? part(coreList, false) : null;
@@ -1280,18 +1283,13 @@ function byConnection(g, areas) {
   const otherList = courses.filter(c => areaOf(c.id) === OTHER_AREA);
   const other = otherList.length ? part(otherList, true) : null;
 
-  // Sizes, for a given number of columns. A band of courses with no links is
-  // rows of chips; any other, rows of cards.
+  // The width of `cols` columns. A band of courses with no links is rows of
+  // chips; any other, rows of cards.
   const span = cols => (cols ? cols * (NODE_W + GAP_X) - GAP_X : 0);
   const chipOnly = cell => !cell.tiers.length && cell.loose.length > 0;
-  const bandHeight = (cell, C) => (chipOnly(cell)
-    ? Math.ceil(cell.loose.length / C) * CHIP_PITCH - CHIP_GAP
-    : Math.max(1, cell.tiers.reduce((n, t) => n + Math.ceil(t.length / C), 0) + Math.ceil(cell.loose.length / C)) * PITCH - GAP_Y);
-  const coreHeight = C => (core ? core.levels.reduce((h, l) => h + BAND_TOP + bandHeight(core.cell(l), C) + BAND_BOTTOM, 0) : 0);
-  const innerHeight = (b, c) => b.levels.reduce((h, l) => h + bandHeight(b.cell(l), c), 0) + (b.levels.length - 1) * INNER_GAP;
 
-  // Areas' boxes fill lines no wider than the core (or the widest box), in
-  // order; returns the lines as lists of block indexes.
+  // Areas' boxes fill lines no wider than `max`, in order; returns the lines
+  // as lists of block indexes.
   const lines = (order, widths, max) => {
     const out = [];
     let line = [];
@@ -1310,39 +1308,29 @@ function byConnection(g, areas) {
   };
   const lineWidth = (line, widths) => line.reduce((w, i) => w + widths[i], 0) + AREA_GAP * (line.length - 1);
 
-  // Columns: the core's, each area's (as few as keep it within H high), and
-  // the other courses'; the combination where everything fits biggest wins,
-  // then the most compact. On a narrow (phone) screen the map may be up to
-  // three screens tall.
-  const tall = g.viewport.w < 600 ? 3 : 1;
-  const heights = blocks.length
-    ? [...new Set(blocks.flatMap(b => Array.from({ length: Math.min(MAX_COLS, b.widest) }, (_, i) => innerHeight(b, i + 1))))].sort((a, b) => a - b)
-    : [0];
-  const coreOptions = core ? Array.from({ length: Math.min(MAX_COLS_ONE, core.widest) }, (_, i) => i + 1) : [0];
-  const otherOptions = other ? Array.from({ length: Math.min(MAX_COLS_ONE, other.widest) }, (_, i) => i + 1) : [0];
-  let best = null;
-  for (const C of coreOptions) {
-    for (const H of heights) {
-      const bc = blocks.map(b => {
-        let c = 1;
-        while (c < Math.min(MAX_COLS, b.widest) && innerHeight(b, c) > H) c++;
-        return c;
-      });
-      const widths = bc.map(span);
-      const max = Math.max(span(C), ...widths);
-      const rows = lines(blocks.map((b, i) => i), widths, max);
-      const areasW = Math.max(0, ...rows.map(line => lineWidth(line, widths)));
-      const areasH = blocks.length ? rows.reduce((h, line) => h + BAND_TOP + AREA_HEAD
-        + Math.max(...line.map(i => innerHeight(blocks[i], bc[i]))), 0) + BAND_BOTTOM : 0;
-      for (const oc of otherOptions) {
-        const width = 2 * PAD + Math.max(span(C), areasW, span(oc));
-        const height = 2 * PAD + coreHeight(C) + areasH + (other ? BAND_TOP + innerHeight(other, oc) + BAND_BOTTOM : 0);
-        const score = Math.min(g.viewport.w / width, (tall * g.viewport.h) / height) - 1e-7 * (width + height);
-        if (!best || score > best.score) best = { score, C, bc, oc, max, areasW };
-      }
-    }
-  }
-  const { C, bc, oc, max, areasW } = best;
+  // Columns: wide rather than deep. Each step gets enough columns to be one
+  // row, plus a little room to spare so courses can sit right under their
+  // prerequisites; links then run between rows instead of weaving through
+  // stacked ones. (Chips, having no links, wrap as they must.) Each area's box
+  // is as wide as its widest step, up to MAX_BOX, narrowed if need be to keep
+  // the boxes on one line about as wide as the core (at least AREAS_WIDE
+  // columns); past that they wrap. A phone gets narrower maps, as the page
+  // scrolls down more easily than across.
+  const phone = g.viewport.w < 600;
+  const maxCols = phone ? 6 : MAX_WIDE;
+  const maxBox = phone ? 3 : MAX_BOX;
+  const widestRow = b => Math.max(1, ...b.levels.flatMap(l => {
+    const cell = b.cell(l);
+    return chipOnly(cell) ? [] : [...cell.tiers.map(t => t.length), cell.loose.length];
+  }));
+  const chipCount = b => b.levels.reduce((n, l) => n + (chipOnly(b.cell(l)) ? b.cell(l).loose.length : 0), 0);
+  const C = core ? Math.min(maxCols, widestRow(core) + SPARE) : 0;
+  const oc = other ? Math.min(maxCols, widestRow(other) + SPARE) : 0;
+  const bc = blocks.map(b => Math.min(maxBox, Math.max(widestRow(b), Math.ceil(Math.sqrt(chipCount(b))))));
+  const max = Math.max(span(C), span(phone ? maxCols : AREAS_WIDE));
+  const oneLine = () => lineWidth(bc.map((c, i) => i), bc.map(span));
+  while (blocks.length && oneLine() > max && Math.max(...bc) > 1) bc[bc.indexOf(Math.max(...bc))]--;
+  const areasW = blocks.length ? Math.max(...lines(bc.map((c, i) => i), bc.map(span), max).map(line => lineWidth(line, bc.map(span)))) : 0;
   const inside = Math.max(span(C), areasW, span(oc));
   const width = 2 * PAD + inside;
   const xIn = w => PAD + (inside - w) / 2; // narrower parts are centered
