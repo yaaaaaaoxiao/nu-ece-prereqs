@@ -327,11 +327,12 @@ svg { flex: none; }
 /* The quarters it's offered this year (F W S): dark where it runs, faint where it doesn't. */
 .node .offered { font: 650 9.5px var(--font); text-anchor: end; fill: var(--line); }
 .node .offered .on { fill: var(--ink-2); }
-.graph.is-far .node .title, .graph.is-far .node .term, .graph.is-far .node .offered { display: none; }
-.graph.is-far .node .code { font-size: var(--far, 19px); transform: translateY(10px); }
-.graph.is-far .node.has-status .code { transform: translate(8px, 10px); }
-.graph.is-far .node .mark-icon { transform: translate(2px, 8px) scale(1.45); }
-.graph.is-far .node .reach-badge { transform: translateY(7.5px) scale(1.45); }
+/* Zoomed out, a card is just its code (large, centered) and status icon, so
+   long codes keep their size; the "leads to" count waits for zooming in. */
+.graph.is-far .node .title, .graph.is-far .node .term, .graph.is-far .node .offered, .graph.is-far .node .reach { display: none; }
+.graph.is-far .node .code { font-size: var(--far, 19px); transform: translateY(15px); }
+.graph.is-far .node.has-status .code { transform: translate(8px, 15px); }
+.graph.is-far .node .mark-icon { transform: translate(2px, 13px) scale(1.45); }
 .graph.is-far .node .pick { transform: scale(1.45); }
 .graph.is-far .edge { stroke-width: 2.2; }
 .graph.is-far .edge.is-up, .graph.is-far .edge.is-down { stroke-width: 3.2; }

@@ -8,14 +8,17 @@
 // in a lower "tier", so progressions such as CE 303 -> 355 -> 387 read
 // top to bottom.
 //
-// Each card shows the course code and title, an icon for the viewer's plan
-// (taken, planned, can take now), how many courses on the map it leads to,
-// and the quarters it's offered this year (or the quarter it's planned for).
+// Each card shows the course code and its title on two lines, an icon for
+// the viewer's plan (taken, planned, can take now), how many courses on the
+// map it leads to, and the quarters it's offered this year (or the quarter
+// it's planned for).
 /* global d3 */
 import { termLabel, termShort } from './plan.js';
 
-const NODE_W = 160;
-const NODE_H = 42;
+const NODE_W = 170;
+const NODE_H = 52;
+const TITLE_Y = 31; // baseline of the title's first line
+const TITLE_LEADING = 13; // and of the second, below it
 const GAP_X = 18; // gutter between card columns; links run down it
 const GAP_Y = 16; // gap between rows; links run along it
 const PITCH = NODE_H + GAP_Y;
@@ -37,7 +40,6 @@ const FAR_FONT = `650 19px ${FONT}`; // matches .graph.is-far .node .code
 // below READABLE even that is too small, so reveal() zooms in.
 const FAR = 0.72;
 const READABLE = 0.42;
-const FAR_SCALE = 1.45; // status icon and count are drawn this much bigger when zoomed out
 // "Leads to" counts from these up get a stronger badge.
 const REACH_MID = 5;
 const REACH_HIGH = 15;
@@ -300,10 +302,12 @@ export class GraphView {
     mark.append('path').attr('class', 'i-go').attr('d', 'M-2.6 0H2.2M0.1-2.3 2.4 0 0.1 2.3');
     mark.append('path').attr('class', 'i-warn').attr('d', 'M0-3V0.4M0 2.5v0.1');
     g.append('text').attr('class', 'code').attr('x', 10).attr('y', 17).text(id => map.label(map.get(id)));
-    g.append('text').attr('class', 'title').attr('x', 10).attr('y', 32);
-    g.append('text').attr('class', 'term').attr('x', NODE_W - 9).attr('y', 32);
-    // The quarters it's offered this year (F W S); a quarter in the plan takes its place.
-    g.append('text').attr('class', 'offered').attr('x', NODE_W - 9).attr('y', 32).attr('aria-hidden', 'true')
+    g.append('text').attr('class', 'title').attr('y', TITLE_Y);
+    // At the end of the title's second line: the quarter in the plan, or else
+    // the quarters it's offered this year (F W S).
+    const slotY = TITLE_Y + TITLE_LEADING;
+    g.append('text').attr('class', 'term').attr('x', NODE_W - 9).attr('y', slotY);
+    g.append('text').attr('class', 'offered').attr('x', NODE_W - 9).attr('y', slotY).attr('aria-hidden', 'true')
       .selectAll('tspan').data(map.quarters).join('tspan')
       .attr('dx', (q, i) => (i ? OFFERED_GAP : null))
       .text(q => q[0]);
@@ -320,6 +324,25 @@ export class GraphView {
     pick.append('path').attr('d', 'M-3.2 0.1-1 2.3 3.2-1.9');
     g.append('title');
     return g;
+  }
+
+  // A title in lines of the given widths, word by word; the last line ends in
+  // "…" if the rest doesn't fit (the full title is in the tooltip and panel).
+  wrapTitle(text, widths) {
+    const words = text.split(' ');
+    const lines = [];
+    let i = 0;
+    while (i < words.length) {
+      const max = widths[lines.length];
+      if (lines.length === widths.length - 1) {
+        lines.push(this.fitText(words.slice(i).join(' '), max));
+        break;
+      }
+      let line = words[i++];
+      while (i < words.length && this.measure.measureText(`${line} ${words[i]}`).width <= max) line += ` ${words[i++]}`;
+      lines.push(this.fitText(line, max));
+    }
+    return lines;
   }
 
   fitText(text, max) {
@@ -404,7 +427,8 @@ export class GraphView {
   // The parts of a card that depend on the plan: the code moves right to make
   // room for the status icon, planned and taken courses show their quarter
   // (so does a course on the path being shown), others the quarters they're
-  // offered; the title gives way, and the zoomed-out code shrinks to fit.
+  // offered; the title's second line gives way, and the zoomed-out code
+  // shrinks to fit if it must.
   drawCard(el, id, status, path) {
     const c = this.map.get(id);
     const own = (status === 'taken' || status === 'planned') && this.state.plan.term(id);
@@ -418,9 +442,10 @@ export class GraphView {
     el.dataset.card = key;
     const g = d3.select(el);
     const title = c.title || 'Not in the current catalog';
-    const right = termText ? this.textWidth(termText, TERM_FONT) + 6 : offered ? this.offeredWidth + 6 : 0;
-    g.select('.code').attr('x', status ? 25 : 10).style('--far', `${this.farSize(c, status, reach)}px`);
-    g.select('.title').text(this.fitText(title, NODE_W - 20 - right));
+    const slot = termText ? this.textWidth(termText, TERM_FONT) + 6 : offered ? this.offeredWidth + 6 : 0;
+    g.select('.code').attr('x', status ? 25 : 10).style('--far', `${this.farSize(c, status)}px`);
+    g.select('.title').selectAll('tspan').data(this.wrapTitle(title, [NODE_W - 20, NODE_W - 20 - slot])).join('tspan')
+      .attr('x', 10).attr('dy', (line, i) => (i ? TITLE_LEADING : null)).text(line => line);
     g.select('.term').text(termText).classed('is-next', !!next);
     g.select('.offered').style('display', offered ? null : 'none')
       .selectAll('tspan').classed('on', q => !!c.offered?.[q]);
@@ -443,12 +468,10 @@ export class GraphView {
     return on.length ? `Offered ${listText(on)}` : `Not on the ${this.map.scheduleLabel()} schedule`;
   }
 
-  // Zoomed out, the code is drawn at 19px; long ones shrink to fit between
-  // the status icon and the count.
-  farSize(c, status, reach) {
-    const left = status ? 33 : 10;
-    const right = reach ? (this.textWidth(String(reach), REACH_FONT) + 18) * FAR_SCALE + 6 : 0;
-    const room = NODE_W - left - right - 6;
+  // Zoomed out, a card shows just the code (and status icon), drawn at 19px;
+  // the longest codes shrink a little to fit.
+  farSize(c, status) {
+    const room = NODE_W - (status ? 33 : 10) - 10;
     const width = this.textWidth(this.map.label(c), FAR_FONT);
     return Math.max(11, Math.min(19, Math.floor((19 * room) / width)));
   }

@@ -109,8 +109,9 @@ gutter beside a column, or an S-curve between columns. At rest, required links
 are strongest, "one of several" options lighter and other departments' own
 links faint; hovering or selecting a course brings its links forward. The
 number of card columns per department is chosen to fit the screen, and a
-minimap appears when part of the map is off screen. Zoomed out, cards drop
-their titles and show the course code, status icon and "leads to" count large.
+minimap appears when part of the map is off screen. Zoomed in, a card's title
+runs over two lines; zoomed out, cards show just the course code (large) and
+status icon, leaving the title, quarters and "leads to" count for zooming in.
 
 ## Updating the data
 
