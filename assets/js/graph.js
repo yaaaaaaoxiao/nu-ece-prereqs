@@ -90,9 +90,10 @@ export class GraphView {
     this.viewport = this.svg.append('g').attr('class', 'viewport');
     this.bandLayer = this.viewport.append('g').attr('class', 'bands');
     this.boxLayer = this.viewport.append('g').attr('class', 'area-boxes');
-    this.labelLayer = this.viewport.append('g').attr('class', 'labels');
     this.edgeLayer = this.viewport.append('g').attr('class', 'edges');
     this.stubLayer = this.viewport.append('g').attr('class', 'stubs');
+    // Titles go over the links (outlined, so a line passing behind doesn't cut through them).
+    this.labelLayer = this.viewport.append('g').attr('class', 'labels');
     this.nodeLayer = this.viewport.append('g').attr('class', 'nodes');
     this.boxRect = this.viewport.append('rect').attr('class', 'select-box').style('display', 'none');
     this.edgeSel = this.edgeLayer.selectAll('path.edge');
@@ -1070,6 +1071,7 @@ function computeLayout(map, visible, viewport, textWidth,
 
   const loose = new Set(courses.filter(c => !linked.has(c.id)).map(c => c.id));
   const routed = edges.map(e => ({ ...e, d: '' }));
+  bundleEdges(routed, result.nodes, result.boxes);
   routeEdges(routed, result.nodes);
   const stubs = focus ? stubsOf(map, visible, focus, result.nodes, folded) : [];
   return { ...result, edges: routed, loose, stubs };
@@ -1387,7 +1389,7 @@ function byConnection(g, areas) {
         let x = xIn(lineWidth(line, widths));
         for (const i of line) {
           const end = stack(blocks[i], x, bc[i], lineTop + BAND_TOP + AREA_HEAD, ctx);
-          boxes.push({ x, w: widths[i], top: lineTop, bottom: end, label: blocks[i].label });
+          boxes.push({ x, w: widths[i], top: lineTop, bottom: end, label: blocks[i].label, ids: blocks[i].list.map(c => c.id) });
           bottom = Math.max(bottom, end);
           x += widths[i] + AREA_GAP;
         }
@@ -1429,7 +1431,7 @@ function byConnection(g, areas) {
     twoLines(box.label, box.w + 12, 16)
       .forEach((text, i) => labels.push({ cls: 'area-label short', x: box.x, y: box.top + 58 + i * 20, text }));
   }
-  const frames = boxes.map(box => ({ x: box.x - 12, y: box.top + 38, w: box.w + 24, h: box.bottom + 14 - (box.top + 38) }));
+  const frames = boxes.map(box => ({ x: box.x - 12, y: box.top + 38, w: box.w + 24, h: box.bottom + 14 - (box.top + 38), ids: box.ids }));
   return { nodes, bands, labels, boxes: frames, compact, width, height, cols: `${C};${bc.join(',')};${oc}` };
 }
 
@@ -1553,6 +1555,7 @@ function routeEdges(edges, nodes) {
   const below = (s, t) => sameColumn(s, t) && Math.abs(t.y - s.y - PITCH) < 1;
   const gutters = new Map(); // card column x -> sources running down its gutter
   for (const e of edges) {
+    if (e.d) continue; // bundled (see bundleEdges)
     const s = nodes.get(e.source);
     const t = nodes.get(e.target);
     if (!sameColumn(s, t) || below(s, t)) continue;
@@ -1567,6 +1570,7 @@ function routeEdges(edges, nodes) {
   };
 
   for (const e of edges) {
+    if (e.d) continue;
     const s = nodes.get(e.source);
     const t = nodes.get(e.target);
     const x1 = s.x + NODE_W / 2;
@@ -1582,6 +1586,61 @@ function routeEdges(edges, nodes) {
       const x2 = t.x + NODE_W / 2;
       const d = Math.max(24, (t.y - y1) / 2);
       e.d = `M${x1},${y1}C${x1},${y1 + d} ${x2},${t.y - d} ${x2},${t.y}`;
+    }
+  }
+}
+
+// By connection, a course that several courses in one elective area need
+// sends them one line, down to the top of the area's box, where it branches
+// to each of them. Each link is still its own path (so highlighting works as
+// for any link); the links of a bundle share the same trunk exactly. Where
+// several bundles reach one box, their junctions spread along its top in the
+// order of the courses they lead to.
+const JUNCTION_GAP = 14; // px between junctions on a box's top
+
+function bundleEdges(edges, nodes, boxes) {
+  const boxOf = new Map();
+  boxes.forEach((box, i) => box.ids.forEach(id => boxOf.set(id, i)));
+  const groups = new Map(); // "course|box" -> its links into that box
+  for (const e of edges) {
+    const box = boxOf.get(e.target);
+    if (box === undefined || boxOf.get(e.source) === box) continue;
+    const key = `${e.source}|${box}`;
+    if (!groups.has(key)) groups.set(key, { source: e.source, box, edges: [] });
+    groups.get(key).edges.push(e);
+  }
+  const center = id => nodes.get(id).x + NODE_W / 2;
+  const byBox = new Map();
+  for (const g of groups.values()) {
+    if (g.edges.length < 2) continue;
+    g.x = g.edges.reduce((sum, e) => sum + center(e.target), 0) / g.edges.length;
+    if (!byBox.has(g.box)) byBox.set(g.box, []);
+    byBox.get(g.box).push(g);
+  }
+  for (const [i, list] of byBox) {
+    const frame = boxes[i];
+    const lo = frame.x + 16;
+    const hi = frame.x + frame.w - 16;
+    list.sort((a, b) => a.x - b.x || center(a.source) - center(b.source));
+    let prev = -Infinity;
+    for (const g of list) {
+      g.x = Math.max(g.x, prev + JUNCTION_GAP, lo);
+      prev = g.x;
+    }
+    if (prev > hi) list.forEach((g, j) => { g.x = list.length > 1 ? lo + (j * (hi - lo)) / (list.length - 1) : (lo + hi) / 2; });
+    const y = frame.y;
+    for (const g of list) {
+      const s = nodes.get(g.source);
+      const x1 = s.x + NODE_W / 2;
+      const y1 = s.y + NODE_H;
+      const d = Math.max(24, (y - y1) / 2);
+      const trunk = `M${x1},${y1}C${x1},${y1 + d} ${g.x},${y - d} ${g.x},${y}`;
+      for (const e of g.edges) {
+        const t = nodes.get(e.target);
+        const x2 = t.x + NODE_W / 2;
+        const d2 = Math.max(12, (t.y - y) / 2);
+        e.d = `${trunk}C${g.x},${y + d2} ${x2},${t.y - d2} ${x2},${t.y}`;
+      }
     }
   }
 }

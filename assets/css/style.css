@@ -555,6 +555,10 @@ body.is-resizing :is(.stage, .panel) { pointer-events: none; }
 .graph.is-far .group-label { font-size: 22px; }
 .graph.is-far .group-label.full { display: none; }
 .graph.is-far .group-label.short { display: inline; }
+/* Titles sit over the links, outlined in the background so a line passing
+   behind doesn't cut through the letters. */
+.labels text { paint-order: stroke; stroke: var(--page); stroke-width: 4px; stroke-linejoin: round; pointer-events: none; }
+.labels .area-label { stroke: var(--surface); }
 /* By connection, a degree map's elective areas: a titled box each, below the core. */
 .area-box { fill: color-mix(in srgb, var(--surface) 70%, transparent); stroke: var(--line); stroke-width: 1; stroke-dasharray: 5 4; }
 .area-label { font: 650 11.5px var(--font); fill: var(--ink); letter-spacing: 0.05em; text-transform: uppercase; }

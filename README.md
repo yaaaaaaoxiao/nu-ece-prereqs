@@ -22,7 +22,9 @@ take next, and highlight a degree requirement, technical track or quarter.
   prerequisite, so MATH 228-2 sits above the courses that need it). On a degree map the
   programs' core is on top and electives are grouped below in a labeled box per track or
   area (CE's VLSI, Embedded Systems, ...; CS's breadth areas), with choices that link to
-  nothing (speaking, societal impact) as one-line chips. A degree map shows its programs'
+  nothing (speaking, societal impact) as one-line chips. A prerequisite that several
+  courses in a box share (CS 213 for every Systems breadth course) comes in as one line
+  that splits inside the box. A degree map shows its programs'
   courses and what they require; **Program courses only** off adds every other course in
   the majors' departments. The legend can switch rows to course levels (100, 200, 300)
   and columns to departments (the earlier layout). Each course shows how many courses on the map it leads to
