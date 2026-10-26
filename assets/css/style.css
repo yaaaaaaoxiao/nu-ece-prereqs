@@ -536,15 +536,24 @@ svg { flex: none; }
 .stage.is-list .graph, .stage.is-list .zoom-controls, .stage.is-list .legend, .stage.is-list .minimap { display: none; }
 .list { position: absolute; inset: 0; overflow-y: auto; padding: 16px 20px 96px; }
 .list[hidden] { display: none; }
+.list-filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+.filter-chip { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border: 1px solid var(--line);
+  border-radius: 999px; background: var(--raised); color: var(--ink-2); font-size: 13px; font-weight: 600; }
+.filter-chip:hover:not(:disabled) { border-color: var(--ink-2); }
+.filter-chip .n { font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums; }
+.filter-chip[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-wash); color: var(--ink); }
+.filter-chip:disabled { opacity: 0.5; cursor: default; }
 .list-summary { margin: 0 0 12px; color: var(--muted); font-size: 13px; }
 .list section { max-width: 920px; margin-bottom: 22px; }
 .list h2 { margin: 0 0 6px; font-size: 13px; font-weight: 650; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 .course-list { margin: 0; padding: 0; list-style: none; border: 1px solid var(--hairline); border-radius: var(--radius); background: var(--raised); overflow: hidden; }
 .course-row { display: flex; align-items: center; gap: 4px; border-top: 1px solid var(--hairline); }
 .course-row:first-child { border-top: 0; }
+.course-row:hover { background: var(--surface); }
 .course-row.is-selected { background: var(--accent-wash); }
 .row-status { display: grid; place-items: center; padding-left: 10px; }
 .row-status select { width: 92px; height: 28px; border: 1px solid var(--line); border-radius: 7px; background: var(--raised); font-size: 12.5px; }
+.row-status select:not(.is-taken):not(.is-planned) { color: var(--muted); }
 .row-status select.is-taken { border-color: var(--mine); color: var(--mine-ink); font-weight: 600; }
 .row-status select.is-planned { border-style: dashed; border-color: var(--mine); color: var(--mine-ink); font-weight: 600; }
 .course-row.is-picked { background: var(--accent-wash); box-shadow: inset 3px 0 0 var(--accent); }
@@ -556,8 +565,11 @@ svg { flex: none; }
 .row-code { font-weight: 650; white-space: nowrap; }
 .row-title { min-width: 0; }
 .row-req { grid-column: 2 / 4; font-size: 12.5px; color: var(--muted); }
-.row-tags { display: flex; gap: 4px; align-items: center; }
-.tag {
+.row-tags { display: flex; gap: 8px; align-items: center; justify-content: flex-end; }
+/* F W S, as on the map's cards. */
+.row-offered { display: inline-flex; gap: 4px; min-width: 36px; justify-content: flex-end; font-size: 11px; font-weight: 700; color: var(--line); }
+.row-offered .on { color: var(--ink-2); }
+.tag { white-space: nowrap;
   display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-width: 20px; height: 20px; padding: 0 5px;
   border-radius: 5px; background: var(--sunken); color: var(--ink-2); font-size: 11px; font-weight: 650;
 }
@@ -675,7 +687,10 @@ svg { flex: none; }
 .help::backdrop { background: rgba(0, 0, 0, 0.4); }
 .help h2 { margin: 0 0 12px; font-size: 18px; }
 .help h3 { margin: 18px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
-.help-list { margin: 0; padding-left: 18px; display: grid; gap: 8px; color: var(--ink-2); }
+.help-list { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--ink-2); }
+.help-keys { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px 16px; color: var(--ink-2); font-size: 13.5px; }
+.help-keys kbd + kbd { margin-left: 2px; }
 .help-close { position: absolute; right: 12px; top: 12px; margin: 0; }
 .help p { color: var(--ink-2); }
 
@@ -849,7 +864,8 @@ svg { flex: none; }
 
 .plan-years { display: grid; gap: 14px; }
 .plan-year h3 { margin: 0 0 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
-.quarters { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+/* Fall, winter, spring; summer is narrower, since few students use it. */
+.quarters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 0.6fr); gap: 8px; }
 .quarter { display: flex; flex-direction: column; gap: 6px; min-width: 0; min-height: 92px; padding: 8px; border: 1px solid var(--hairline); border-radius: 10px; background: var(--surface); }
 .quarter.is-past { background: var(--sunken); }
 .quarter.is-now { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
@@ -858,7 +874,7 @@ svg { flex: none; }
 .q-units { margin-left: auto; font-size: 11.5px; font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums; }
 .now { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); }
 .q-courses { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; margin: 0; padding: 0; list-style: none; }
-.pchip { display: flex; align-items: baseline; gap: 6px; width: 100%; padding: 5px 7px; border: 1px solid var(--hairline); border-radius: 7px;
+.pchip { display: flex; align-items: center; gap: 6px; width: 100%; padding: 5px 7px; border: 1px solid var(--hairline); border-radius: 7px;
   background: var(--raised); font-size: 12.5px; text-align: left; cursor: grab; }
 .pchip:hover { border-color: var(--ink-2); }
 .pchip.is-taken { border-color: var(--mine-line); background: var(--mine-wash); }
@@ -866,8 +882,10 @@ svg { flex: none; }
 .pchip.has-issue { border-color: var(--warn); border-style: solid; }
 .pchip.is-selected { outline: 2px solid var(--accent); outline-offset: 1px; }
 .pchip.is-dragging { opacity: 0.45; }
+/* The code, with the title on a line of its own below it. */
+.pchip-text { flex: 1; min-width: 0; display: grid; }
 .pchip-code { font-weight: 650; white-space: nowrap; }
-.pchip-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink-2); }
+.pchip-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink-2); font-size: 11.5px; }
 .pchip-note { font-size: 11px; color: var(--muted); }
 .pchip-check { font-weight: 700; color: var(--mine-ink); }
 .pchip svg { align-self: center; }
@@ -917,8 +935,9 @@ button.mini-chip:hover { border-color: var(--ink-2); }
   .plan-section { padding: 12px; }
   .quarters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .req-cards { grid-template-columns: minmax(0, 1fr); }
-  .row-status { padding-left: 6px; }
-  .row-status select { width: 80px; }
+  /* Phones: a row is the course; tapping it opens the plan control in the panel. */
+  .row-status { display: none; }
+  .row-main { padding-left: 12px; }
 }
 
 /* ==========================================================================

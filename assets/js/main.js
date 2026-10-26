@@ -404,7 +404,7 @@ function renderPlanner() {
   const start = `<button type="button" class="tool-btn" data-action="${picking ? 'stop-picking' : 'start-picking'}" aria-pressed="${picking}"
     title="Select several courses, then mark them taken or planned">${statusIcon('taken')}<span class="wide-only">Mark courses</span><span class="narrow-only">Mark</span></button>`;
   if (!nTaken && !nPlanned) {
-    els.planner.innerHTML = `${start}<span class="muted planner-hint">or Shift-click courses to mark what you've taken</span>`;
+    els.planner.innerHTML = `${start}<span class="muted planner-hint">or Shift-click the courses you took</span>`;
     return;
   }
   // Each count highlights its courses on the map.
@@ -745,8 +745,8 @@ function setArrange(mode) {
 function syncArrange() {
   document.querySelectorAll('[data-arrange]').forEach(b => b.setAttribute('aria-checked', String(b.dataset.arrange === state.arrange)));
   els.legendNote.textContent = state.arrange === 'level'
-    ? 'Rows are course levels (100, 200, 300), columns are departments. Links run downward from a course into what it unlocks.'
-    : 'Rows are prerequisite steps: each course sits below its last prerequisite on the map. Columns are departments.';
+    ? 'Columns are departments. Each row is a course level (100, 200, 300).'
+    : 'Columns are departments. Each row is a prerequisite step.';
 }
 
 function setView(view) {

@@ -22,8 +22,7 @@ function programsHTML(map, state) {
   return `<section class="plan-section">
     <div class="plan-section-head">
       <h2>Your programs</h2>
-      <p class="muted">Add your major, and any second major or minors, to track their requirements together.
-        A major from another department brings its courses onto the map.</p>
+      <p class="muted">Add your majors and minors. This page checks all their requirements together.</p>
     </div>
     <div class="program-chips">
       ${chosen.map(p => `<span class="program-chip"><span class="ptype">${esc(p.type)}</span>${esc(p.name)}
@@ -83,13 +82,13 @@ function gridHTML(map, state) {
         ${mine.length ? '<button type="button" class="link-btn" data-action="clear-plan">Clear plan</button>' : ''}
       </div>
     </div>
-    <p class="muted plan-hint">Add courses with <b>+ Add</b>, drag them between quarters, or set the quarter in a course's details.
+    <p class="muted plan-hint">Add courses with <b>+ Add</b>. Drag a course to move it to another quarter.
       Courses in past quarters count as taken.</p>
     <div class="plan-years">${years.join('')}</div>
     <div class="quarter unscheduled" data-term="" aria-label="Courses without a quarter">
-      <div class="q-head"><span class="q-name">Not in a quarter yet</span></div>
+      <div class="q-head"><span class="q-name">No quarter</span></div>
       ${loose.length ? `<ul class="q-courses">${loose.sort().map(id => pchipHTML(map, state, id)).join('')}</ul>`
-        : '<p class="muted">Courses you mark as planned or taken without a quarter show up here.</p>'}
+        : '<p class="muted">Planned or taken courses without a quarter show here.</p>'}
     </div>
   </section>`;
 }
@@ -118,7 +117,7 @@ function pchipHTML(map, state, id) {
   return `<li><button type="button" class="pchip is-${status}${issues.length ? ' has-issue' : ''}${
     state.selected === id ? ' is-selected' : ''}" data-select="${esc(id)}" data-id="${esc(id)}" draggable="true"
       title="${esc(`${c.title}${tip ? ` — ${tip}` : ''}`)}">
-    <span class="pchip-code">${esc(map.label(c))}</span><span class="pchip-title">${esc(c.title)}</span>${where}
+    <span class="pchip-text"><span class="pchip-code">${esc(map.label(c))}</span><span class="pchip-title">${esc(c.title)}</span></span>${where}
     ${issues.length ? `${ICON.warn}<span class="sr-only">${esc(tip)}</span>` : ''}
     ${status === 'taken' ? '<span class="pchip-check" aria-label="taken">✓</span>' : ''}
   </button></li>`;
@@ -130,7 +129,7 @@ function requirementsHTML(map, state) {
   const chosen = [...state.myPrograms].map(id => map.program(id)).filter(Boolean);
   if (!chosen.length) {
     return `<section class="plan-section"><div class="plan-section-head"><h2>Requirements</h2></div>
-      <p class="muted">Add a program above to see its requirements checked against your plan.</p></section>`;
+      <p class="muted">Add a program above to check its requirements against your plan.</p></section>`;
   }
   // Courses that appear in more than one of your programs.
   const count = new Map();
@@ -139,8 +138,7 @@ function requirementsHTML(map, state) {
   return `<section class="plan-section">
     <div class="plan-section-head">
       <h2>Requirements</h2>
-      <p class="muted">A checklist built from the catalog, not an official degree audit. Confirm with your
-        Academic Advisement Report in CAESAR and your adviser.</p>
+      <p class="muted">This checklist comes from the catalog. It is not an official degree audit. Check your Academic Advisement Report in CAESAR, and talk to your adviser.</p>
     </div>
     ${shared.length > 0 && chosen.length > 1 ? `<p class="overlap">${ICON.warn}<span>${shared.map(id => esc(map.label(map.get(id)))).join(', ')}
       ${shared.length === 1 ? 'is' : 'are'} in more than one of your programs. Schools limit how many courses can count

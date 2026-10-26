@@ -3210,7 +3210,7 @@
    "recommended": [],
    "notes": [
     "or equivalent (for the MATH 228-2 corequisite)",
-    "GEN_ENG 231-0 prerequisite is from the EE degree page footnote, not the course entry"
+    "GEN ENG 231 is from the EE degree page, not this course's entry"
    ],
    "desc": "Introduction to probability theory and its applications. Axioms of probability, distributions, discrete and continuous random variables, conditional and joint distributions, correlation, limit laws, connection to statistics, and applications in engineering systems. Students may not receive credit for both ELEC_ENG 302-0 and any of the following: IEMS 302-0; MATH 310-1; MATH 311-1; MATH 314-0; MATH 385-0; STAT 320-1; STAT 383-0.",
    "text": "Corequisite: MATH 228-2 or equivalent.",

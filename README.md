@@ -52,8 +52,9 @@ take next, and highlight a degree requirement, technical track or quarter.
   official degree audit.
 - **Highlights:** degree requirements, technical tracks/areas, and what's offered each quarter.
 - **Search** by number or title (`EE 221`, `ce303`, `signals`).
-- **List view:** an accessible, phone-friendly alternative to the graph, with a plan
-  status on every row (Shift-click rows to select several here too).
+- **List view:** an accessible, phone-friendly alternative to the graph, with quick
+  filters (can take now, taken, planned), a plan status on every row and the quarters
+  each course runs (Shift-click rows to select several here too).
 - **Shareable links:** the URL keeps the selected course, highlight and view
   (e.g. `?course=ELEC_ENG+222-0`). Back/forward work.
 - Keyboard support, dark mode, phone layout.
