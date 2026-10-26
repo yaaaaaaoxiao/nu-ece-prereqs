@@ -89,6 +89,11 @@
       <span class="switch-track" aria-hidden="true"></span>
       <span class="wide-only">Other departments</span><span class="narrow-only">Other depts</span>
     </label>
+    <label class="switch" title="Show only the courses the programs list, and the courses those require">
+      <input type="checkbox" id="program-only">
+      <span class="switch-track" aria-hidden="true"></span>
+      <span class="wide-only">Program courses only</span><span class="narrow-only">Program only</span>
+    </label>
     <div id="planner" class="planner"></div>
   </div>
 
@@ -167,10 +172,20 @@
 
       <details class="legend" id="legend">
         <summary>Legend</summary>
-        <p class="legend-note" id="legend-note">Columns are departments. Each row is a prerequisite step.</p>
-        <div class="segmented legend-arrange" role="radiogroup" aria-label="Arrange rows by">
-          <button type="button" role="radio" data-arrange="steps" aria-checked="true">Prerequisite steps</button>
-          <button type="button" role="radio" data-arrange="level" aria-checked="false">Course level</button>
+        <p class="legend-note" id="legend-note">Related courses sit side by side. Each row is a prerequisite step.</p>
+        <div class="legend-choice">
+          <span id="rows-label">Rows</span>
+          <div class="segmented legend-arrange" role="radiogroup" aria-labelledby="rows-label">
+            <button type="button" role="radio" data-arrange="steps" aria-checked="true">Prerequisite steps</button>
+            <button type="button" role="radio" data-arrange="level" aria-checked="false">Course level</button>
+          </div>
+        </div>
+        <div class="legend-choice">
+          <span id="columns-label">Columns</span>
+          <div class="segmented legend-arrange" role="radiogroup" aria-labelledby="columns-label">
+            <button type="button" role="radio" data-columns="connection" aria-checked="true" title="Each course sits near the courses it connects to">By connection</button>
+            <button type="button" role="radio" data-columns="department" aria-checked="false" title="A block of columns per department">By department</button>
+          </div>
         </div>
         <label class="legend-toggle"><input type="checkbox" id="show-links"> Show all links</label>
         <label class="legend-toggle" title="Where a course accepts one of several (MATH 228-1 or MATH 230-1), draw every option, not just the usual one"><input type="checkbox" id="show-options"> Show every option</label>
@@ -222,7 +237,7 @@
       </button>
     </form>
     <h2 id="programs-title">Your majors and minors</h2>
-    <p class="muted">The map shows all courses in your majors' departments, plus your minors' courses. The Plan tab checks their requirements.</p>
+    <p class="muted">The map shows your programs' courses and what they require (or, with <b>Program courses only</b> off, every course in your majors' departments). The Plan tab checks their requirements.</p>
     <div id="programs-list"></div>
     <form method="dialog" class="dialog-actions"><button class="btn primary">Done</button></form>
   </dialog>
@@ -246,7 +261,9 @@
     <h2 id="help-title">How to use this map</h2>
     <h3>Read the map</h3>
     <ul class="help-list">
-      <li>Each column is a department. Each row is a prerequisite step: a course sits one row below its last prerequisite. The legend can change the rows to course levels.</li>
+      <li>Related courses sit side by side: each course is placed under its prerequisites. Each row is a prerequisite step: a course sits one row below its last prerequisite.</li>
+      <li>On a degree map, the courses every student takes are on top. Electives are in labeled boxes below, one per track or area, and choices with no prerequisites are small one-line chips.</li>
+      <li>The legend can change the rows to course levels, or the columns to departments (one block of columns each).</li>
       <li>Links go down, from a course to the courses it unlocks. Solid links are required. Dashed links show one of several options.</li>
       <li>Blue is your plan: solid for taken, dashed for planned. Green: you can take the course now. Amber: a planned course needs a check.</li>
       <li>The number on a course counts the courses it leads to. The dark letters in F W S show the quarters it runs this year.</li>
@@ -264,7 +281,7 @@
       <li><b>See a course:</b> point at it to see its details in the panel. To keep them, click it, search for it, or find it in the list. Its prerequisites turn violet, and the courses it unlocks turn orange.</li>
       <li><b>Mark your courses:</b> Shift-click them, Shift-drag a box, or press <b>Mark courses</b>. On a touch screen, long-press a course. You can undo each change.</li>
       <li><b>Plan a route:</b> open a course and press <b>Show the path</b>. The path shows the courses you still need, with the soonest quarter for each. <b>Add to my plan</b> adds all of them.</li>
-      <li><b>Pick your programs</b> with the button next to the title. The map shows all courses in your majors' departments, plus your minors' courses.</li>
+      <li><b>Pick your programs</b> with the button next to the title. The map shows their courses and what those require. Turn off <b>Program courses only</b> in the toolbar to see every course in your majors' departments (they're added under <b>Other courses</b>).</li>
       <li><b>One of several:</b> where a course accepts any of several (MATH 228-1, MATH 230-1, MATH 290-2 ...), the graph shows the usual one, with
         cards stacked behind it and the others named on it: <i>or MATH 230-1 +5</i>. The usual one is the one you took or planned, else
         the one your programs list. To draw them all, open the <b>Legend</b> and turn on <b>Show every option</b>.</li>

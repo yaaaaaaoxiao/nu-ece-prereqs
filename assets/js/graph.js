@@ -36,6 +36,7 @@ const OFFERED_FONT = `650 9.5px ${FONT}`; // matches .node .offered
 const OFFERED_GAP = 2; // px between the quarter letters
 const REACH_FONT = `650 10.5px ${FONT}`; // matches .reach text
 const MORE_FONT = `700 10px ${FONT}`; // matches .more text
+const CODE_FONT = `650 12.5px ${FONT}`; // matches .node .code
 const FAR_FONT = `650 19px ${FONT}`; // matches .graph.is-far .node .code
 const STUB = 40; // px: the most a "more courses" line fades out over
 // Below FAR the nodes switch to a large code-only label (semantic zoom);
@@ -66,9 +67,11 @@ export class GraphView {
     this.focusId = null; // the course a course page is about (its graph is laid out around it)
     this.moreUp = new Map(); // course -> how many courses before it aren't drawn (course pages)
     this.folded = new Map(); // course -> options folded away from it (see foldOptions in model.js)
-    this.foldKey = '';
+    this.columns = 'connection'; // related courses side by side, or a block of columns per 'department'
+    this.areas = null; // a degree map's elective areas (see areasFor in main.js)
+    this.layoutKey = '';
     this.state = null;
-    this.layout = { nodes: new Map(), edges: [], bands: [], labels: [], loose: new Set(), width: 0, height: 0, cols: '' };
+    this.layout = { nodes: new Map(), edges: [], bands: [], labels: [], boxes: [], stubs: [], loose: new Set(), compact: new Set(), width: 0, height: 0, cols: '' };
     this.arrange = 'steps'; // rows by prerequisite steps, or 'level' (100, 200, 300)
     this.reach = new Map(); // course -> how many courses on the map it leads to
     this.focus = { sel: null, up: new Set(), down: new Set() };
@@ -86,6 +89,8 @@ export class GraphView {
 
     this.viewport = this.svg.append('g').attr('class', 'viewport');
     this.bandLayer = this.viewport.append('g').attr('class', 'bands');
+    this.boxLayer = this.viewport.append('g').attr('class', 'area-boxes');
+    this.labelLayer = this.viewport.append('g').attr('class', 'labels');
     this.edgeLayer = this.viewport.append('g').attr('class', 'edges');
     this.stubLayer = this.viewport.append('g').attr('class', 'stubs');
     this.nodeLayer = this.viewport.append('g').attr('class', 'nodes');
@@ -159,14 +164,18 @@ export class GraphView {
 
   // `focus`: the course of a course page, whose graph is laid out around it.
   // `folded`: course -> options folded away from it (their links aren't
-  // drawn); `foldKey` names that, so the app can tell when it changes.
-  setData(map, visibleIds, { animate = false, focus = null, folded = new Map(), foldKey = '' } = {}) {
+  // drawn). `areas`: a degree map's elective areas. `layoutKey` names what's
+  // folded and grouped, so the app can tell when it changes.
+  setData(map, visibleIds,
+    { animate = false, focus = null, folded = new Map(), areas = null, layoutKey = '', columns = this.columns } = {}) {
     const fresh = map !== this.map;
     this.map = map;
     this.visible = visibleIds;
+    this.columns = columns;
     this.focusId = focus;
     this.folded = folded;
-    this.foldKey = foldKey;
+    this.areas = areas;
+    this.layoutKey = layoutKey;
     if (fresh) {
       this.nodeLayer.selectAll('*').remove();
       this.edgeLayer.selectAll('*').remove();
@@ -177,7 +186,7 @@ export class GraphView {
     this.reach = new Map([...visibleIds].map(id =>
       [id, [...map.descendants(id)].filter(d => focus || visibleIds.has(d)).length]));
     this.offeredWidth = map.quarters.reduce((w, q, i) => w + this.textWidth(q[0], OFFERED_FONT) + (i ? OFFERED_GAP : 0), 0);
-    this.layout = computeLayout(map, visibleIds, this.viewportSize(), this.titleWidth, { arrange: this.arrange, focus, folded });
+    this.layout = computeLayout(map, visibleIds, this.viewportSize(), this.titleWidth, this.layoutOptions());
     this.moreUp = new Map(this.layout.stubs.filter(s => s.dir === 'up').map(s => [s.id, s.n]));
     this.draw(animate && !fresh && !reducedMotion());
     if (this.state) this.update(this.state);
@@ -186,16 +195,20 @@ export class GraphView {
   // Column counts are picked to suit the stage's shape; redo them when it changes a lot.
   refit() {
     if (!this.map) return false;
-    const next = computeLayout(this.map, this.visible, this.viewportSize(), this.titleWidth,
-      { arrange: this.arrange, focus: this.focusId, folded: this.folded });
+    const next = computeLayout(this.map, this.visible, this.viewportSize(), this.titleWidth, this.layoutOptions());
     if (next.cols === this.layout.cols) return false;
     this.redraw();
     return true;
   }
 
+  layoutOptions() {
+    return { arrange: this.arrange, columns: this.columns, focus: this.focusId, folded: this.folded, areas: this.areas };
+  }
+
   // The same courses laid out again (another shape or arrangement); the cards glide.
   redraw() {
-    this.setData(this.map, this.visible, { animate: true, focus: this.focusId, folded: this.folded, foldKey: this.foldKey });
+    this.setData(this.map, this.visible,
+      { animate: true, focus: this.focusId, folded: this.folded, areas: this.areas, layoutKey: this.layoutKey });
   }
 
   // The stage can be hidden (list view) when the layout is computed.
@@ -212,15 +225,16 @@ export class GraphView {
     if (this.map) this.redraw();
   }
 
+
   setShowLinks(on) {
     this.svg.classed('show-links', on);
   }
 
   draw(animate) {
-    const { nodes, edges, bands, labels, stubs, width } = this.layout;
+    const { nodes, edges, bands, labels, boxes, stubs, width } = this.layout;
     const duration = animate ? 450 : 0;
 
-    this.bandLayer.selectAll('rect')
+    this.bandLayer.selectAll('rect.band')
       .data(bands)
       .join('rect')
       .attr('class', (b, i) => `band${i % 2 ? ' is-alt' : ''}`)
@@ -228,7 +242,17 @@ export class GraphView {
       .attr('y', b => b.top)
       .attr('width', width)
       .attr('height', b => b.bottom - b.top);
-    this.bandLayer.selectAll('text')
+    // A degree map's elective areas, each in a box (by connection).
+    this.boxLayer.selectAll('rect.area-box')
+      .data(boxes)
+      .join('rect')
+      .attr('class', 'area-box')
+      .attr('rx', 12)
+      .attr('x', b => b.x)
+      .attr('y', b => b.y)
+      .attr('width', b => b.w)
+      .attr('height', b => b.h);
+    this.labelLayer.selectAll('text')
       .data(labels)
       .join('text')
       .attr('class', l => l.cls)
@@ -275,8 +299,14 @@ export class GraphView {
           .attr('transform', id => translate(nodes.get(id)))),
         exit => exit.remove(),
       );
-    // Courses with no links here are drawn quieter so the chains stand out.
-    this.nodeSel.classed('is-loose', id => this.layout.loose.has(id));
+    // Courses with no links here are drawn quieter so the chains stand out
+    // (by connection, as small chips).
+    const compact = this.layout.compact;
+    this.nodeSel.classed('is-loose', id => this.layout.loose.has(id)).classed('is-compact', id => compact.has(id));
+    this.nodeSel.select('.card')
+      .attr('width', id => (compact.has(id) ? CHIP_W : NODE_W))
+      .attr('height', id => (compact.has(id) ? CHIP_H : NODE_H))
+      .attr('rx', id => (compact.has(id) ? 6 : 7));
     this.nodeSel.each((id, i, els) => {
       this.drawReach(d3.select(els[i]), this.reach.get(id) || 0);
       this.drawMore(d3.select(els[i]), id);
@@ -315,10 +345,11 @@ export class GraphView {
     this.mmBands.selectAll('rect').data(bands).join('rect')
       .attr('class', (b, i) => `mm-band${i % 2 ? ' is-alt' : ''}`)
       .attr('x', 0).attr('y', b => b.top).attr('width', width).attr('height', b => b.bottom - b.top);
+    const compact = this.layout.compact;
     this.mmNodeSel = this.mmNodes.selectAll('rect').data([...nodes.keys()], id => id).join('rect')
       .attr('class', 'mm-node')
       .attr('x', id => nodes.get(id).x).attr('y', id => nodes.get(id).y)
-      .attr('width', NODE_W).attr('height', NODE_H).attr('rx', 8);
+      .attr('width', id => (compact.has(id) ? CHIP_W : NODE_W)).attr('height', id => (compact.has(id) ? CHIP_H : NODE_H)).attr('rx', 8);
     this.drawMinimapView();
   }
 
@@ -542,17 +573,21 @@ export class GraphView {
     const more = this.moreUp.get(id) || 0;
     const alts = this.state.alts?.get(id);
     const altNames = alts ? alts.map(o => o.map(x => this.map.label(this.map.get(x))).join(' + ')) : [];
-    const key = `${status}|${termText}|${next ? 'path' : ''}|${reach}|${more}|${altNames.join()}`;
+    const compact = this.layout.compact.has(id);
+    const key = `${status}|${termText}|${next ? 'path' : ''}|${reach}|${more}|${altNames.join()}|${compact}`;
     if (el.dataset.card === key) return;
     el.dataset.card = key;
     const g = d3.select(el);
     const title = c.title || 'Not in the current catalog';
     const slot = termText ? this.textWidth(termText, TERM_FONT) + 6 : offered ? this.offeredWidth + 6 : 0;
     g.select('.code').attr('x', status ? 25 : 10).style('--far', `${this.farSize(c, status)}px`);
-    // Standing in for other options, the title gets one line and the options the second.
-    const lines = alts ? [NODE_W - 20] : [NODE_W - 20, NODE_W - 20 - slot];
-    g.select('.title').selectAll('tspan').data(this.wrapTitle(title, lines)).join('tspan')
-      .attr('x', 10).attr('dy', (line, i) => (i ? TITLE_LEADING : null)).text(line => line);
+    // A chip has its title after the code, on the same line. Standing in for
+    // other options, a card's title gets one line and the options the second.
+    const titleX = compact ? (status ? 25 : 10) + this.textWidth(this.map.label(c), CODE_FONT) + 6 : 10;
+    const lines = compact ? [this.fitText(title, NODE_W - 10 - titleX)]
+      : this.wrapTitle(title, alts ? [NODE_W - 20] : [NODE_W - 20, NODE_W - 20 - slot]);
+    g.select('.title').attr('y', compact ? 17 : TITLE_Y).selectAll('tspan').data(lines).join('tspan')
+      .attr('x', titleX).attr('dy', (line, i) => (i ? TITLE_LEADING : null)).text(line => line);
     g.select('.alts').text(alts ? this.altsText(altNames, NODE_W - 20 - slot) : '');
     g.select('.term').text(termText).classed('is-next', !!next);
     g.select('.offered').style('display', offered ? null : 'none')
@@ -939,6 +974,11 @@ const levelOf = c => Math.floor(parseInt(c.num, 10) / 100) * 100;
 // (first-year seminars, intro courses) above step 1, the rest after the last step.
 const UNLINKED_INTRO = -1;
 const UNLINKED = Infinity;
+// By connection, a degree map's elective areas and its courses in no list
+// come after the core's bands (see byConnection).
+const AREAS_BAND = 'areas';
+const OTHER_BAND = 'other';
+export const OTHER_AREA = '_other'; // the area key for courses in no list
 
 // How many prerequisites deep each course is on the map: the longest chain of
 // prerequisites leading to it. A corequisite may share its band.
@@ -994,6 +1034,8 @@ function aroundOf(focus, courses, edges) {
 
 const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
 const bandName = (arrange, band, focus) => {
+  if (band === AREAS_BAND) return 'Elective areas';
+  if (band === OTHER_BAND) return 'Other courses';
   if (arrange === 'level') return `${band}-level`;
   if (focus) return band < 0 ? `${plural(-band, 'step')} before` : band > 0 ? `${plural(band, 'step')} after` : 'This course';
   if (band === UNLINKED_INTRO) return 'Not linked \u00b7 introductory (100\u2013200 level)';
@@ -1004,24 +1046,40 @@ const byId = (a, b) => a.id.localeCompare(b.id);
 const ROW_COST = 40; // px of sideways distance a course trades for one row higher
 const SWEEPS = 4; // placement passes; later ones also look at where children went
 
-// textWidth measures a column title at its zoomed-out size. `focus` is the
-// course of a course page: by step, rows count the steps before and after it.
-// Links from options `folded` away aren't drawn.
-function computeLayout(map, visible, viewport, textWidth, { arrange = 'steps', focus = null, folded = new Map() } = {}) {
+// The map's layout: by connection (one grid, related courses side by side;
+// on a degree map, the programs' core on top and elective areas below), or
+// by department (a block of columns per department). `textWidth` measures a
+// title at its zoomed-out size. `focus` is the course of a course page: by
+// step, rows count the steps before and after it. Links from options
+// `folded` away aren't drawn. `areas` (degree maps) says which elective area
+// each course belongs to (see areasFor in main.js).
+function computeLayout(map, visible, viewport, textWidth,
+  { arrange = 'steps', focus = null, folded = new Map(), columns = 'connection', areas = null } = {}) {
   const courses = [...visible].map(id => map.get(id));
-  const depts = map.data.departments;
   const edges = map.edges.filter(e => visible.has(e.source) && visible.has(e.target) && !folded.get(e.target)?.has(e.source));
   const linked = new Set(edges.flatMap(e => [e.source, e.target]));
-  const groupOf = c => (c.role === 'main' ? c.dept : OTHER);
-  const mains = Object.keys(depts).filter(d => depts[d].main && courses.some(c => c.role === 'main' && c.dept === d));
-  const groups = orderGroups(mains, courses.some(c => c.role !== 'main'), edges, id => groupOf(map.get(id)));
-  const bandOf = arrange === 'level' ? levelOf : focus ? aroundOf(focus, courses, edges) : stepsOf(courses, edges, linked);
-  const levels = [...new Set(courses.map(bandOf))].sort((a, b) => a - b);
+  const parents = new Map(courses.map(c => [c.id, []]));
+  const children = new Map(courses.map(c => [c.id, []]));
+  for (const e of edges) {
+    parents.get(e.target).push(e.source);
+    children.get(e.source).push(e.target);
+  }
+  const graph = { map, courses, edges, linked, parents, children, viewport, textWidth, arrange, focus };
+  const result = columns === 'department' ? byDepartment(graph) : byConnection(graph, areas);
 
-  // Tier = how many prerequisites in the same band must come first.
+  const loose = new Set(courses.filter(c => !linked.has(c.id)).map(c => c.id));
+  const routed = edges.map(e => ({ ...e, d: '' }));
+  routeEdges(routed, result.nodes);
+  const stubs = focus ? stubsOf(map, visible, focus, result.nodes, folded) : [];
+  return { ...result, edges: routed, loose, stubs };
+}
+
+// Tier = how many prerequisites in the same band must come first.
+function tiersOf(courses, edges, bandOf, map) {
   const sameLevel = new Map(courses.map(c => [c.id, []]));
   for (const e of edges) {
-    if (e.kind !== 'rec' && bandOf(map.get(e.source)) === bandOf(map.get(e.target))) {
+    if (e.kind !== 'rec' && sameLevel.has(e.target) && sameLevel.has(e.source)
+        && bandOf(map.get(e.source)) === bandOf(map.get(e.target))) {
       sameLevel.get(e.target).push(e.source);
     }
   }
@@ -1035,8 +1093,11 @@ function computeLayout(map, visible, viewport, textWidth, { arrange = 'steps', f
     tiers.set(id, t);
     return t;
   };
+  return tierOf;
+}
 
-  // cells: "level|group" -> { tiers: [[course]], loose: [course] }
+// cells: "band|group" -> { tiers: [[course]], loose: [course] }
+function cellsOf(courses, bandOf, groupOf, tierOf, linked) {
   const cells = new Map();
   for (const c of [...courses].sort(byId)) {
     const key = `${bandOf(c)}|${groupOf(c)}`;
@@ -1050,114 +1111,338 @@ function computeLayout(map, visible, viewport, textWidth, { arrange = 'steps', f
     while (cell.tiers.length <= t) cell.tiers.push([]);
     cell.tiers[t].push(c);
   }
+  return cells;
+}
 
-  const cols = pickColumns(cells, groups, levels, viewport);
-  const groupX = [];
+const EMPTY_CELL = { tiers: [], loose: [] };
+const widestIn = cells => Math.max(1, ...[...cells.values()].flatMap(cell => [...cell.tiers.map(t => t.length), cell.loose.length]));
+
+// One band across one or more blocks of columns ({ x, cols }; `here` has each
+// block's cell). Tier by tier, every block starting a tier on the same row, so
+// each prerequisite sits above the courses it unlocks and every link runs
+// downward; courses with no links come last. Each course takes the free slot
+// nearest the middle of its prerequisites (and, after the first pass, of the
+// courses it unlocks). Returns how many rows the band takes.
+function layBand(blocks, here, rowY, ctx) {
+  const { nodes, before, parents, children } = ctx;
+  const used = blocks.map(() => 0);
+  const slotX = (bi, c) => blocks[bi].x + c * (NODE_W + GAP_X);
+  const center = p => p.x + NODE_W / 2;
+  const mean = xs => xs.reduce((a, b) => a + b, 0) / xs.length;
+  const place = (list, bi) => {
+    const C = blocks[bi].cols;
+    const rows = Math.ceil(list.length / C);
+    const free = [];
+    for (let r = 0; r < rows; r++) for (let c = 0; c < C; c++) free.push({ r, c });
+    const wants = list.map((course, i) => {
+      const up = parents.get(course.id).filter(id => nodes.has(id)).map(id => center(nodes.get(id)));
+      const down = children.get(course.id).filter(id => before.has(id)).map(id => center(before.get(id)));
+      let target = slotX(bi, i % C) + NODE_W / 2; // catalog order
+      if (up.length && down.length) target = (2 * mean(up) + mean(down)) / 3;
+      else if (up.length) target = mean(up);
+      else if (down.length) target = mean(down);
+      return { course, target, pull: up.length + down.length };
+    });
+    wants.sort((a, b) => b.pull - a.pull || a.target - b.target || byId(a.course, b.course));
+    for (const w of wants) {
+      let best = 0;
+      let bestCost = Infinity;
+      free.forEach((slot, k) => {
+        const cost = Math.abs(slotX(bi, slot.c) + NODE_W / 2 - w.target) + slot.r * ROW_COST;
+        if (cost < bestCost) {
+          bestCost = cost;
+          best = k;
+        }
+      });
+      const slot = free.splice(best, 1)[0];
+      nodes.set(w.course.id, { x: slotX(bi, slot.c), y: rowY(used[bi] + slot.r) });
+    }
+    used[bi] += rows;
+  };
+  const tierCount = Math.max(0, ...here.map(cell => cell.tiers.length));
+  for (let t = 0; t < tierCount; t++) {
+    const start = Math.max(...used);
+    here.forEach((cell, bi) => {
+      used[bi] = start;
+      if (cell.tiers[t]?.length) place(cell.tiers[t], bi);
+    });
+  }
+  here.forEach((cell, bi) => {
+    const C = blocks[bi].cols;
+    cell.loose.forEach((c, i) => nodes.set(c.id, { x: slotX(bi, i % C), y: rowY(used[bi] + Math.floor(i / C)) }));
+    used[bi] += Math.ceil(cell.loose.length / C);
+  });
+  return Math.max(1, ...used);
+}
+
+// The rows of a set of courses: steps (or levels, or steps around a course
+// page's course) worked out among themselves.
+function rowsFor(g, list, own) {
+  if (g.arrange === 'level') return levelOf;
+  if (g.focus) return aroundOf(g.focus, list, own);
+  return stepsOf(list, own, g.linked);
+}
+
+// ------------------------------------------------------ by department
+
+function byDepartment(g) {
+  const { map, courses, edges, linked } = g;
+  const depts = map.data.departments;
+  const groupOf = c => (c.role === 'main' ? c.dept : OTHER);
+  const mains = Object.keys(depts).filter(d => depts[d].main && courses.some(c => c.role === 'main' && c.dept === d));
+  const groups = orderGroups(mains, courses.some(c => c.role !== 'main'), edges, id => groupOf(map.get(id)));
+  const bandOf = rowsFor(g, courses, edges);
+  const levels = [...new Set(courses.map(bandOf))].sort((a, b) => a - b);
+  const cells = cellsOf(courses, bandOf, groupOf, tiersOf(courses, edges, bandOf, map), linked);
+
+  const cols = pickColumns(cells, groups, levels, g.viewport);
+  const blocks = [];
   let x = PAD;
-  groups.forEach((g, i) => {
-    groupX.push(x);
+  groups.forEach((group, i) => {
+    blocks.push({ x, cols: cols[i] });
     x += cols[i] * (NODE_W + GAP_X) - GAP_X + GROUP_GAP;
   });
   const width = x - GROUP_GAP + PAD;
-  const slotX = (gi, c) => groupX[gi] + c * (NODE_W + GAP_X);
-  const center = p => p.x + NODE_W / 2;
-  const mean = xs => xs.reduce((a, b) => a + b, 0) / xs.length;
-
-  const parents = new Map(courses.map(c => [c.id, []]));
-  const children = new Map(courses.map(c => [c.id, []]));
-  for (const e of edges) {
-    parents.get(e.target).push(e.source);
-    children.get(e.source).push(e.target);
-  }
 
   let nodes = new Map();
   let bands = [];
   let height = 0;
   for (let sweep = 0; sweep < SWEEPS; sweep++) {
-    const before = nodes;
-    nodes = new Map();
+    const ctx = { ...g, nodes: new Map(), before: nodes };
     bands = [];
     let y = PAD + HEADER_H;
     for (const level of levels) {
       const top = y;
-      const rowY = r => top + BAND_TOP + r * PITCH;
-      const used = groups.map(() => 0);
-      const here = groups.map(g => cells.get(`${level}|${g}`) || { tiers: [], loose: [] });
-
-      // Each course takes the free slot nearest the middle of its prerequisites
-      // (and, after the first pass, of the courses it unlocks).
-      const place = (block, gi) => {
-        const C = cols[gi];
-        const rows = Math.ceil(block.length / C);
-        const free = [];
-        for (let r = 0; r < rows; r++) for (let c = 0; c < C; c++) free.push({ r, c });
-        const wants = block.map((course, i) => {
-          const up = parents.get(course.id).filter(id => nodes.has(id)).map(id => center(nodes.get(id)));
-          const down = children.get(course.id).filter(id => before.has(id)).map(id => center(before.get(id)));
-          let target = slotX(gi, i % C) + NODE_W / 2; // catalog order
-          if (up.length && down.length) target = (2 * mean(up) + mean(down)) / 3;
-          else if (up.length) target = mean(up);
-          else if (down.length) target = mean(down);
-          return { course, target, pull: up.length + down.length };
-        });
-        wants.sort((a, b) => b.pull - a.pull || a.target - b.target || byId(a.course, b.course));
-        for (const w of wants) {
-          let best = 0;
-          let bestCost = Infinity;
-          free.forEach((slot, k) => {
-            const cost = Math.abs(slotX(gi, slot.c) + NODE_W / 2 - w.target) + slot.r * ROW_COST;
-            if (cost < bestCost) {
-              bestCost = cost;
-              best = k;
-            }
-          });
-          const slot = free.splice(best, 1)[0];
-          nodes.set(w.course.id, { x: slotX(gi, slot.c), y: rowY(used[gi] + slot.r) });
-        }
-        used[gi] += rows;
-      };
-      // Tier by tier across all departments, so prerequisites are placed first.
-      // Every department starts a tier on the same row, so each prerequisite
-      // sits above the courses it unlocks and every link runs downward.
-      const tierCount = Math.max(0, ...here.map(cell => cell.tiers.length));
-      for (let t = 0; t < tierCount; t++) {
-        const start = Math.max(...used);
-        here.forEach((cell, gi) => {
-          used[gi] = start;
-          if (cell.tiers[t]?.length) place(cell.tiers[t], gi);
-        });
-      }
-      here.forEach((cell, gi) => {
-        cell.loose.forEach((c, i) => nodes.set(c.id, {
-          x: slotX(gi, i % cols[gi]),
-          y: rowY(used[gi] + Math.floor(i / cols[gi])),
-        }));
-        used[gi] += Math.ceil(cell.loose.length / cols[gi]);
-      });
-      const bottom = rowY(Math.max(1, ...used)) - GAP_Y + BAND_BOTTOM;
-      bands.push({ level, top, bottom });
-      y = bottom;
+      const here = groups.map(group => cells.get(`${level}|${group}`) || EMPTY_CELL);
+      const rows = layBand(blocks, here, r => top + BAND_TOP + r * PITCH, ctx);
+      y = top + BAND_TOP + rows * PITCH - GAP_Y + BAND_BOTTOM;
+      bands.push({ level, top, bottom: y });
     }
+    nodes = ctx.nodes;
     height = y + PAD;
   }
 
   // Column titles, plus a short form for zoomed-out views of narrow columns.
-  const labels = groups.flatMap((g, i) => {
-    const full = g === OTHER ? 'Other departments' : depts[g].name;
-    const short = g === OTHER ? 'Other' : depts[g].abbr || g;
-    const fits = textWidth(full.toUpperCase()) <= cols[i] * (NODE_W + GAP_X) + GROUP_GAP / 2;
+  const labels = groups.flatMap((group, i) => {
+    const full = group === OTHER ? 'Other departments' : depts[group].name;
+    const short = group === OTHER ? 'Other' : depts[group].abbr || group;
+    const fits = g.textWidth(full.toUpperCase()) <= cols[i] * (NODE_W + GAP_X) + GROUP_GAP / 2;
     return fits
-      ? [{ cls: 'group-label', x: groupX[i], y: PAD + 12, text: full }]
-      : [{ cls: 'group-label full', x: groupX[i], y: PAD + 12, text: full },
-        { cls: 'group-label short', x: groupX[i], y: PAD + 12, text: short }];
+      ? [{ cls: 'group-label', x: blocks[i].x, y: PAD + 12, text: full }]
+      : [{ cls: 'group-label full', x: blocks[i].x, y: PAD + 12, text: full },
+        { cls: 'group-label short', x: blocks[i].x, y: PAD + 12, text: short }];
   });
-  for (const b of bands) labels.push({ cls: 'band-label', x: PAD, y: b.top + 27, text: bandName(arrange, b.level, focus) });
+  for (const b of bands) labels.push({ cls: 'band-label', x: PAD, y: b.top + 27, text: bandName(g.arrange, b.level, g.focus) });
+  return { nodes, bands, labels, boxes: [], compact: new Set(), width, height, cols: cols.join(',') };
+}
 
-  const loose = new Set(courses.filter(c => !linked.has(c.id)).map(c => c.id));
-  const routed = edges.map(e => ({ ...e, d: '' }));
-  routeEdges(routed, nodes);
-  const stubs = focus ? stubsOf(map, visible, focus, nodes, folded) : [];
-  return { nodes, edges: routed, bands, labels, loose, stubs, width, height, cols: cols.join(',') };
+// ------------------------------------------------------ by connection
+//
+// One grid: each course sits under its prerequisites, whatever their
+// department. On a degree map the grid is the programs' core (required lists
+// and everything they need); below it, one labeled box per elective area
+// (a track, or a list of advanced electives to choose from), each laid out
+// the same way inside; then any courses in no list. Column counts are picked
+// so the whole map best fits the stage.
+
+const MAX_COLS_ONE = 16; // one grid may be wider than a department's block
+const AREA_GAP = 40; // between elective areas' boxes
+const AREA_HEAD = 40; // the areas' titles (up to two lines), under the section's label
+const INNER_GAP = 28; // between the steps inside an area
+const AREA_LINE_GAP = 24; // between lines of areas' boxes, when they wrap
+// Courses with no links are chips: half a card's height, code and title on one line.
+const CHIP_W = NODE_W;
+const CHIP_H = 26;
+const CHIP_GAP = 8;
+const CHIP_PITCH = CHIP_H + CHIP_GAP;
+
+function byConnection(g, areas) {
+  const { map, courses, edges } = g;
+  const areaOf = id => areas?.of.get(id);
+  const part = (list, inner) => {
+    const ids = new Set(list.map(c => c.id));
+    const own = edges.filter(e => ids.has(e.source) && ids.has(e.target));
+    let bandOf = rowsFor(g, list, own);
+    // Inside an area, courses with no links at all go last.
+    if (inner && g.arrange !== 'level') {
+      const steps = bandOf;
+      bandOf = c => (g.linked.has(c.id) ? steps(c) : UNLINKED);
+    }
+    const levels = [...new Set(list.map(bandOf))].sort((a, b) => a - b);
+    const cells = cellsOf(list, bandOf, () => 0, tiersOf(list, own, bandOf, map), g.linked);
+    return { list, levels, cell: level => cells.get(`${level}|0`) || EMPTY_CELL, widest: widestIn(cells) };
+  };
+  const coreList = courses.filter(c => !areaOf(c.id));
+  const core = coreList.length ? part(coreList, false) : null;
+  const blocks = (areas?.list || []).filter(a => a.key !== OTHER_AREA)
+    .map(a => ({ ...a, ...part(courses.filter(c => areaOf(c.id) === a.key), true) }))
+    .filter(b => b.list.length);
+  const otherList = courses.filter(c => areaOf(c.id) === OTHER_AREA);
+  const other = otherList.length ? part(otherList, true) : null;
+
+  // Sizes, for a given number of columns. A band of courses with no links is
+  // rows of chips; any other, rows of cards.
+  const span = cols => (cols ? cols * (NODE_W + GAP_X) - GAP_X : 0);
+  const chipOnly = cell => !cell.tiers.length && cell.loose.length > 0;
+  const bandHeight = (cell, C) => (chipOnly(cell)
+    ? Math.ceil(cell.loose.length / C) * CHIP_PITCH - CHIP_GAP
+    : Math.max(1, cell.tiers.reduce((n, t) => n + Math.ceil(t.length / C), 0) + Math.ceil(cell.loose.length / C)) * PITCH - GAP_Y);
+  const coreHeight = C => (core ? core.levels.reduce((h, l) => h + BAND_TOP + bandHeight(core.cell(l), C) + BAND_BOTTOM, 0) : 0);
+  const innerHeight = (b, c) => b.levels.reduce((h, l) => h + bandHeight(b.cell(l), c), 0) + (b.levels.length - 1) * INNER_GAP;
+
+  // Areas' boxes fill lines no wider than the core (or the widest box), in
+  // order; returns the lines as lists of block indexes.
+  const lines = (order, widths, max) => {
+    const out = [];
+    let line = [];
+    let w = 0;
+    for (const i of order) {
+      if (line.length && w + AREA_GAP + widths[i] > max) {
+        out.push(line);
+        line = [];
+        w = 0;
+      }
+      w += (line.length ? AREA_GAP : 0) + widths[i];
+      line.push(i);
+    }
+    if (line.length) out.push(line);
+    return out;
+  };
+  const lineWidth = (line, widths) => line.reduce((w, i) => w + widths[i], 0) + AREA_GAP * (line.length - 1);
+
+  // Columns: the core's, each area's (as few as keep it within H high), and
+  // the other courses'; the combination where everything fits biggest wins,
+  // then the most compact. On a narrow (phone) screen the map may be up to
+  // three screens tall.
+  const tall = g.viewport.w < 600 ? 3 : 1;
+  const heights = blocks.length
+    ? [...new Set(blocks.flatMap(b => Array.from({ length: Math.min(MAX_COLS, b.widest) }, (_, i) => innerHeight(b, i + 1))))].sort((a, b) => a - b)
+    : [0];
+  const coreOptions = core ? Array.from({ length: Math.min(MAX_COLS_ONE, core.widest) }, (_, i) => i + 1) : [0];
+  const otherOptions = other ? Array.from({ length: Math.min(MAX_COLS_ONE, other.widest) }, (_, i) => i + 1) : [0];
+  let best = null;
+  for (const C of coreOptions) {
+    for (const H of heights) {
+      const bc = blocks.map(b => {
+        let c = 1;
+        while (c < Math.min(MAX_COLS, b.widest) && innerHeight(b, c) > H) c++;
+        return c;
+      });
+      const widths = bc.map(span);
+      const max = Math.max(span(C), ...widths);
+      const rows = lines(blocks.map((b, i) => i), widths, max);
+      const areasW = Math.max(0, ...rows.map(line => lineWidth(line, widths)));
+      const areasH = blocks.length ? rows.reduce((h, line) => h + BAND_TOP + AREA_HEAD
+        + Math.max(...line.map(i => innerHeight(blocks[i], bc[i]))), 0) + BAND_BOTTOM : 0;
+      for (const oc of otherOptions) {
+        const width = 2 * PAD + Math.max(span(C), areasW, span(oc));
+        const height = 2 * PAD + coreHeight(C) + areasH + (other ? BAND_TOP + innerHeight(other, oc) + BAND_BOTTOM : 0);
+        const score = Math.min(g.viewport.w / width, (tall * g.viewport.h) / height) - 1e-7 * (width + height);
+        if (!best || score > best.score) best = { score, C, bc, oc, max, areasW };
+      }
+    }
+  }
+  const { C, bc, oc, max, areasW } = best;
+  const inside = Math.max(span(C), areasW, span(oc));
+  const width = 2 * PAD + inside;
+  const xIn = w => PAD + (inside - w) / 2; // narrower parts are centered
+
+  // Courses with no links, as chips in catalog order. Returns their height.
+  let compact = new Set();
+  const chips = (list, x, cols, top, ctx) => {
+    list.forEach((c, i) => {
+      ctx.nodes.set(c.id, { x: x + (i % cols) * (NODE_W + GAP_X), y: top + Math.floor(i / cols) * CHIP_PITCH });
+      compact.add(c.id);
+    });
+    return Math.ceil(list.length / cols) * CHIP_PITCH - CHIP_GAP;
+  };
+  // One band of a part, from `top`, in `cols` columns at `x`. Returns its height.
+  const band = (cell, x, cols, top, ctx) => (chipOnly(cell) ? chips(cell.loose, x, cols, top, ctx)
+    : layBand([{ x, cols }], [cell], r => top + r * PITCH, ctx) * PITCH - GAP_Y);
+  // Lays one part's steps one under another; returns the bottom of the last.
+  const stack = (b, x, cols, top, ctx) => {
+    let y = top;
+    for (const level of b.levels) y += band(b.cell(level), x, cols, y, ctx) + INNER_GAP;
+    return y - INNER_GAP;
+  };
+
+  let nodes = new Map();
+  let bands = [];
+  let boxes = [];
+  let height = 0;
+  for (let sweep = 0; sweep < SWEEPS; sweep++) {
+    const ctx = { ...g, nodes: new Map(), before: nodes };
+    bands = [];
+    boxes = [];
+    compact = new Set();
+    let y = PAD;
+    if (core) {
+      for (const level of core.levels) {
+        const top = y;
+        y = top + BAND_TOP + band(core.cell(level), xIn(span(C)), C, top + BAND_TOP, ctx) + BAND_BOTTOM;
+        bands.push({ level, top, bottom: y });
+      }
+    }
+    if (blocks.length) {
+      // Areas go left to right in the order of where their prerequisites are.
+      const center = p => p.x + NODE_W / 2;
+      const order = blocks.map((b, i) => {
+        const xs = b.list.flatMap(c => g.parents.get(c.id)).filter(id => areaOf(id) !== b.key && ctx.nodes.has(id))
+          .map(id => center(ctx.nodes.get(id)));
+        return { b, i, x: xs.length ? xs.reduce((a, v) => a + v, 0) / xs.length : Infinity };
+      }).sort((a, b) => a.x - b.x || a.i - b.i);
+      const top = y;
+      const widths = bc.map(span);
+      let lineTop = top;
+      let bottom = top;
+      for (const line of lines(order.map(o => o.i), widths, max)) {
+        let x = xIn(lineWidth(line, widths));
+        for (const i of line) {
+          const end = stack(blocks[i], x, bc[i], lineTop + BAND_TOP + AREA_HEAD, ctx);
+          boxes.push({ x, w: widths[i], top: lineTop, bottom: end, label: blocks[i].label });
+          bottom = Math.max(bottom, end);
+          x += widths[i] + AREA_GAP;
+        }
+        // The next line's boxes start AREA_LINE_GAP below these (see the frames below).
+        lineTop = bottom + 14 + AREA_LINE_GAP - 38;
+      }
+      y = bottom + BAND_BOTTOM;
+      bands.push({ level: AREAS_BAND, top, bottom: y });
+    }
+    if (other) {
+      const top = y;
+      y = stack(other, xIn(span(oc)), oc, top + BAND_TOP, ctx) + BAND_BOTTOM;
+      bands.push({ level: OTHER_BAND, top, bottom: y });
+    }
+    nodes = ctx.nodes;
+    height = y + PAD;
+  }
+
+  // Band labels; each area's title in its box, on two lines if it must (and
+  // larger, for zoomed-out views).
+  const labels = bands.map(b => ({ cls: 'band-label', x: PAD, y: b.top + 27, text: bandName(g.arrange, b.level, g.focus) }));
+  const wide = (text, size) => (g.textWidth(text.toUpperCase()) * size) / 22; // textWidth measures at 22px
+  const fit = (text, max, size) => {
+    if (wide(text, size) <= max) return text;
+    let n = text.length;
+    while (n > 1 && wide(`${text.slice(0, n).trimEnd()}…`, size) > max) n--;
+    return `${text.slice(0, n).trimEnd()}…`;
+  };
+  const twoLines = (text, max, size) => {
+    const words = text.split(' ');
+    let first = words[0];
+    let i = 1;
+    while (i < words.length && wide(`${first} ${words[i]}`, size) <= max) first += ` ${words[i++]}`;
+    return i < words.length ? [fit(first, max, size), fit(words.slice(i).join(' '), max, size)] : [fit(first, max, size)];
+  };
+  for (const box of boxes) {
+    twoLines(box.label, box.w + 12, 11.5)
+      .forEach((text, i) => labels.push({ cls: 'area-label full', x: box.x, y: box.top + 57 + i * 14, text }));
+    twoLines(box.label, box.w + 12, 16)
+      .forEach((text, i) => labels.push({ cls: 'area-label short', x: box.x, y: box.top + 58 + i * 20, text }));
+  }
+  const frames = boxes.map(box => ({ x: box.x - 12, y: box.top + 38, w: box.w + 24, h: box.bottom + 14 - (box.top + 38) }));
+  return { nodes, bands, labels, boxes: frames, compact, width, height, cols: `${C};${bc.join(',')};${oc}` };
 }
 
 // A course page draws only part of its course's chain. A course before it

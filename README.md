@@ -17,10 +17,15 @@ take next, and highlight a degree requirement, technical track or quarter.
 
 ## Features
 
-- **The whole picture:** courses sit in columns by department and rows by prerequisite
-  step (each course one row below its last prerequisite on the map, so MATH 228-2 sits
-  above the courses that need it), with every link drawn, so chains are visible at a
-  glance. The legend can switch rows to course levels (100, 200, 300) instead. Each course shows how many courses on the map it leads to
+- **Organized by connection:** each course sits under its prerequisites, whatever their
+  department, in rows by prerequisite step (each course one row below its last
+  prerequisite, so MATH 228-2 sits above the courses that need it). On a degree map the
+  programs' core is on top and electives are grouped below in a labeled box per track or
+  area (CE's VLSI, Embedded Systems, ...; CS's breadth areas), with choices that link to
+  nothing (speaking, societal impact) as one-line chips. A degree map shows its programs'
+  courses and what they require; **Program courses only** off adds every other course in
+  the majors' departments. The legend can switch rows to course levels (100, 200, 300)
+  and columns to departments (the earlier layout). Each course shows how many courses on the map it leads to
   (the badge gets darker the more it opens up) and the quarters it's offered this
   year (**F W S**, dark where it runs), the panel lists the map's gateway courses,
   and a minimap helps when zoomed in.

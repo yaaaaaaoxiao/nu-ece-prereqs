@@ -2,7 +2,7 @@
 // degree map), keeps the URL in sync and wires the graph, list, plan, panel,
 // search and toolbar together.
 import { CourseMap, combineData, dropWarnings, eachCode, fetchJSON, foldOptions } from './model.js';
-import { GraphView } from './graph.js';
+import { GraphView, OTHER_AREA } from './graph.js';
 import { renderPanel, aboutHTML, esc, ICON, statusIcon } from './panel.js';
 import { renderHome, courseHref, mapHref } from './home.js';
 import { renderList } from './list.js';
@@ -36,6 +36,7 @@ const els = {
   toolbar: $('.toolbar'),
   highlight: $('#highlight'),
   showExternal: $('#show-external'),
+  programOnly: $('#program-only'),
   planner: $('#planner'),
   viewButtons: document.querySelectorAll('.segmented [data-view]'),
   stage: $('#stage'),
@@ -82,6 +83,10 @@ const state = {
   picked: new Set(),
   picking: false, // "Mark courses" mode: plain clicks pick too, until Done
   showExternal: prefs.get('showExternal', true),
+  // A degree map shows only its programs' courses and what they require, unless the student turns this off.
+  programOnly: prefs.get('programOnly', true),
+  columns: prefs.get('columns', 'connection'), // graph columns: related courses side by side, or by 'department'
+  areas: null, // a degree map's elective areas, by connection (see areasFor)
   showLinks: prefs.get('showLinks', true),
   arrange: prefs.get('arrange', 'steps'), // graph rows: prerequisite steps, or course 'level'
   pathPace: prefs.get('pathPace', 3), // at most this many courses a quarter on a path
@@ -103,7 +108,7 @@ const state = {
   prefer: () => 0, // how usual an option is (usualRank)
   folded: new Map(), // course -> options folded away from it
   alts: new Map(), // course on the graph -> the options folded into it
-  foldKey: '', // what's folded on the graph, to tell when it needs drawing again
+  layoutKey: '', // what's folded and grouped on the graph, to tell when it needs laying out again
 };
 let maps = []; // data/maps.json: each map's file, departments and programs
 const loaded = new Map(); // map id -> its data (a promise), fetched once
@@ -397,12 +402,16 @@ function derive() {
     // A course page draws its chain, hidden courses and all.
     visible = chainOf(map, state.focus);
   } else {
-    visible = new Set(map.courses.filter(c => c.role === 'main').map(c => c.id));
-    if (state.showExternal) {
+    // The programs' courses and what they require, or every course in the map's departments.
+    const shown = id => map.get(id) && (state.showExternal || map.get(id).role === 'main');
+    visible = state.programOnly
+      ? new Set([...withNeeds(map, programCourses())].filter(shown))
+      : new Set(map.courses.filter(c => c.role === 'main').map(c => c.id));
+    if (state.showExternal && !state.programOnly) {
       requiredHere(map).forEach(id => visible.add(id));
       programCourses().forEach(id => map.get(id) && visible.add(id));
-      [...state.taken, ...state.planned].forEach(id => map.get(id) && visible.add(id));
     }
+    [...state.taken, ...state.planned].forEach(id => shown(id) && visible.add(id));
     // Courses marked "not interested" leave the map, unless the student asks to see them.
     if (!state.showSkipped) state.skipped.forEach(id => visible.delete(id));
   }
@@ -410,8 +419,10 @@ function derive() {
   if (pathHl && (state.showExternal || state.page === 'course')) pathHl.ids.forEach(id => map.get(id) && visible.add(id));
   state.visible = visible;
   state.alts = altsOn(map, fold.alts, visible);
-  state.foldKey = [...visible].filter(id => state.folded.has(id)).sort()
-    .map(id => `${id}:${[...state.folded.get(id)].join()}`).join('|');
+  state.areas = state.page === 'map' && state.columns === 'connection' ? areasFor(map, visible) : null;
+  state.layoutKey = [...visible].filter(id => state.folded.has(id)).sort()
+    .map(id => `${id}:${[...state.folded.get(id)].join()}`).join('|')
+    + (state.areas ? `#${[...state.areas.of].map(([id, key]) => `${id}>${key}`).sort().join('|')}` : '');
   // "Can take now" only means something once some courses are marked taken.
   const planning = [...state.taken].some(id => map.get(id));
   state.ready = new Set(planning
@@ -486,6 +497,89 @@ function programCourses() {
   const pick = alts => alts.reduce((best, a) => (state.prefer(a) > state.prefer(best) ? a : best));
   return state.activePrograms.flatMap(p => p.lists.flatMap(list =>
     list.items.flatMap(alts => (state.showOptions ? alts.flat() : pick(alts)))));
+}
+
+// Courses and everything they require (the usual option of each "one of";
+// recommended courses aren't required).
+function withNeeds(map, ids) {
+  const out = new Set();
+  const stack = ids.filter(id => map.get(id));
+  while (stack.length) {
+    const id = stack.pop();
+    if (out.has(id)) continue;
+    out.add(id);
+    for (const e of map.parents.get(id)) if (e.kind !== 'rec' && !state.folded.get(id)?.has(e.source)) stack.push(e.source);
+  }
+  return out;
+}
+
+// ---------------------------------------------------------- elective areas
+// Laid out by connection, a degree map puts its programs' core on top (the
+// lists every student takes from, and everything they require) and each
+// elective area in a box below: a track, a list of advanced electives to
+// choose from, or a choice of courses that link to nothing else (speaking,
+// writing, ethics). A course in several areas goes to the most specific (the
+// smallest list). A course another area (or the core) needs moves up to the
+// core, so links only run downward; one only a single area needs joins that
+// area. Courses in no list come last ("other").
+
+// `linked`: courses with a link on the map.
+const isArea = (list, linked) => list.kind === 'track' || (list.kind === 'elective' && advanced(list))
+  || (list.need !== null && list.need < list.items.length && list.items.flat(2).every(id => !linked.has(id)));
+// Mostly 300-level and up: electives to specialize in, not foundations to choose from.
+function advanced(list) {
+  const ids = [...new Set(list.items.flat(2))];
+  return ids.length >= 3 && ids.filter(id => parseInt(id.split(' ')[1], 10) >= 300).length / ids.length >= 0.5;
+}
+
+function areasFor(map, visible) {
+  const lists = state.activePrograms.flatMap(p => p.lists);
+  const linked = new Set(map.edges.filter(e => visible.has(e.source) && visible.has(e.target)).flatMap(e => [e.source, e.target]));
+  const area = list => isArea(list, linked);
+  const areaLists = lists.filter(area)
+    .map(list => ({ key: list.key, label: list.label.replace(/ track$/i, ''), ids: new Set(list.items.flat(2).filter(id => visible.has(id))) }));
+  const needs = id => map.parents.get(id)
+    .filter(e => e.kind !== 'rec' && visible.has(e.source) && !state.folded.get(id)?.has(e.source)).map(e => e.source);
+  const kids = id => map.children.get(id)
+    .filter(e => e.kind !== 'rec' && visible.has(e.target) && !state.folded.get(e.target)?.has(id)).map(e => e.target);
+  const core = new Set();
+  const of = new Map();
+  const toCore = id => {
+    const stack = [id];
+    while (stack.length) {
+      const x = stack.pop();
+      if (core.has(x)) continue;
+      core.add(x);
+      of.delete(x);
+      stack.push(...needs(x));
+    }
+  };
+  lists.filter(list => !area(list)).forEach(list => list.items.flat(2).filter(id => visible.has(id)).forEach(toCore));
+  for (const id of visible) {
+    if (core.has(id)) continue;
+    const mine = areaLists.filter(a => a.ids.has(id)).sort((a, b) => a.ids.size - b.ids.size);
+    if (mine.length) of.set(id, mine[0].key);
+  }
+  for (let changed = true; changed;) {
+    changed = false;
+    for (const id of visible) {
+      if (core.has(id)) continue;
+      const places = new Set(kids(id).map(k => (core.has(k) ? 'core' : of.get(k))).filter(Boolean));
+      const own = of.get(id);
+      if (own ? [...places].some(p => p !== own) : places.size > 1 || places.has('core')) {
+        toCore(id);
+        changed = true;
+      } else if (!own && places.size === 1) {
+        of.set(id, [...places][0]);
+        changed = true;
+      }
+    }
+  }
+  for (const id of visible) if (!core.has(id) && !of.has(id)) of.set(id, OTHER_AREA);
+  const used = new Set(of.values());
+  const list = areaLists.filter(a => used.has(a.key)).map(({ key, label }) => ({ key, label }));
+  if (used.has(OTHER_AREA)) list.push({ key: OTHER_AREA, label: 'Other courses' });
+  return { of, list };
 }
 
 // What folded into each course on the graph: the other options that the
@@ -599,14 +693,15 @@ function planChanged() {
 
 function relayout(before) {
   const same = before.size === state.visible.size && [...before].every(id => state.visible.has(id))
-    && graph?.foldKey === state.foldKey;
+    && graph?.layoutKey === state.layoutKey;
   if (!same) layoutGraph({ animate: state.view === 'graph' });
 }
 
-// Hands the graph what to draw: the courses, the links folded away, and on a
-// course page, the course it's about.
+// Hands the graph what to draw: the courses, the links folded away, a degree
+// map's elective areas, and on a course page, the course it's about.
 function layoutGraph(opts = {}) {
-  graph?.setData(state.map, state.visible, { ...opts, focus: graphFocus(), folded: state.folded, foldKey: state.foldKey });
+  graph?.setData(state.map, state.visible,
+    { ...opts, focus: graphFocus(), folded: state.folded, areas: state.areas, layoutKey: state.layoutKey, columns: state.columns });
 }
 
 // Frame the selected course in the part of the graph that nothing covers
@@ -724,6 +819,7 @@ function syncControls() {
   els.highlight.value = state.highlight;
   els.highlight.classList.toggle('is-active', !!state.highlight);
   els.showExternal.checked = state.showExternal;
+  els.programOnly.checked = state.programOnly;
   els.stage.classList.toggle('is-list', view === 'list');
   els.stage.classList.toggle('is-plan', view === 'plan');
   els.list.hidden = view !== 'list';
@@ -1214,20 +1310,51 @@ function setArrange(mode) {
   prefs.set('arrange', mode);
   graph?.setArrange(mode);
   syncArrange();
-  if (state.page === 'course') {
-    syncInsets();
-    graph?.frame(state.focus, { animate: true });
-  } else if (state.selected) revealSelected();
-  else graph?.fitAll({ minScale: 0.45 });
+  reframe();
   announce(mode === 'level' ? 'Rows are course levels.' : 'Rows are prerequisite steps.');
 }
 
 function syncArrange() {
   document.querySelectorAll('[data-arrange]').forEach(b => b.setAttribute('aria-checked', String(b.dataset.arrange === state.arrange)));
-  els.legendNote.textContent = state.arrange === 'level'
-    ? 'Columns are departments. Each row is a course level (100, 200, 300).'
-    : state.page === 'course' ? 'Columns are departments. Rows count the steps before and after this course.'
-      : 'Columns are departments. Each row is a prerequisite step.';
+  document.querySelectorAll('[data-columns]').forEach(b => b.setAttribute('aria-checked', String(b.dataset.columns === state.columns)));
+  const columns = state.columns === 'department' ? 'Columns are departments.'
+    : state.areas?.list.length ? 'Related courses sit side by side; electives are grouped by area at the bottom.'
+      : 'Related courses sit side by side.';
+  const rows = state.arrange === 'level' ? 'Each row is a course level (100, 200, 300).'
+    : state.page === 'course' ? 'Rows count the steps before and after this course.' : 'Each row is a prerequisite step.';
+  els.legendNote.textContent = `${columns} ${rows}`;
+}
+
+// Columns: related courses side by side, or a block of columns per department.
+function setColumns(mode) {
+  if (mode === state.columns) return;
+  state.columns = mode;
+  prefs.set('columns', mode);
+  derive(); // elective areas are for the connection layout
+  layoutGraph({ animate: state.view === 'graph' });
+  render();
+  reframe();
+  announce(mode === 'department' ? 'Columns are departments.' : 'Related courses sit side by side.');
+}
+
+// A degree map: only its programs' courses and what they require, or every
+// course in its departments.
+function setProgramOnly(on) {
+  state.programOnly = on;
+  prefs.set('programOnly', on);
+  planChanged();
+  if (!state.selected) graph?.fitAll({ minScale: 0.45 });
+  announce(on ? "Showing the programs' courses and what they require." : "Showing every course in the map's departments.");
+}
+
+// After the layout changes shape: frame the course page's course, else the
+// selected course, else everything.
+function reframe() {
+  if (!graph) return;
+  syncInsets();
+  if (state.page === 'course') graph.frame(state.focus, { animate: true });
+  else if (state.selected) revealSelected();
+  else graph.fitAll({ minScale: 0.45 });
 }
 
 function setView(view) {
@@ -1466,7 +1593,7 @@ document.addEventListener('click', e => {
     toggleSheet();
     return;
   }
-  const t = e.target.closest('[data-select], [data-action], [data-highlight], [data-zoom], [data-view], [data-arrange], [data-depth], [data-mode], [data-query]');
+  const t = e.target.closest('[data-select], [data-action], [data-highlight], [data-zoom], [data-view], [data-arrange], [data-columns], [data-depth], [data-mode], [data-query]');
   if (!t || t.disabled || t.tagName === 'SELECT') return;
   const { action, id } = t.dataset;
   const toggle = state.view !== 'plan' && (e.shiftKey || e.metaKey || e.ctrlKey);
@@ -1482,6 +1609,7 @@ document.addEventListener('click', e => {
   else if (t.dataset.zoom) zoom(t.dataset.zoom);
   else if (t.dataset.view) setView(t.dataset.view);
   else if (t.dataset.arrange) setArrange(t.dataset.arrange);
+  else if (t.dataset.columns) setColumns(t.dataset.columns);
   else if (t.dataset.depth) setDepth(t.dataset.depth === 'all' ? 'all' : Number(t.dataset.depth));
   else if (action === 'close') select(null);
   else if (action === 'set-status') mark([id], t.dataset.status);
@@ -1573,6 +1701,7 @@ window.addEventListener('resize', () => {
   resizeTimer = setTimeout(afterResize, 250);
 });
 els.showExternal.addEventListener('change', () => setShowExternal(els.showExternal.checked));
+els.programOnly.addEventListener('change', () => setProgramOnly(els.programOnly.checked));
 narrow.addEventListener('change', () => state.map && syncControls());
 els.programsBtn.addEventListener('click', openPrograms);
 els.programsDialog.addEventListener('click', e => { if (e.target === els.programsDialog) els.programsDialog.close(); });
