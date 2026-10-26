@@ -1,0 +1,1924 @@
+{
+ "id": "made",
+ "name": "Manufacturing & Design Engineering",
+ "generated": "2026-10-26",
+ "catalogYear": "2026-2027",
+ "quarters": [],
+ "departments": {
+  "DSGN": {
+   "name": "Segal Design Institute",
+   "abbr": "DSGN",
+   "main": true
+  },
+  "BMD_ENG": {
+   "name": "Biomedical Engineering",
+   "abbr": "BME",
+   "main": false
+  },
+  "CHEM": {
+   "name": "Chemistry",
+   "abbr": "CHEM",
+   "main": false
+  },
+  "CIV_ENV": {
+   "name": "Civil and Environmental Engineering",
+   "abbr": "CIV ENV",
+   "main": false
+  },
+  "COMM_ST": {
+   "name": "Communication Studies",
+   "abbr": "COMM ST",
+   "main": false
+  },
+  "ENGLISH": {
+   "name": "English",
+   "abbr": "ENGLISH",
+   "main": false
+  },
+  "ENTREP": {
+   "name": "Entrepreneurship & Innovation",
+   "abbr": "ENTREP",
+   "main": false
+  },
+  "GEN_ENG": {
+   "name": "General Engineering",
+   "abbr": "GEN ENG",
+   "main": false
+  },
+  "IEMS": {
+   "name": "Industrial Engineering & Management Sciences",
+   "abbr": "IEMS",
+   "main": false
+  },
+  "MATH": {
+   "name": "Mathematics",
+   "abbr": "MATH",
+   "main": false
+  },
+  "MAT_SCI": {
+   "name": "Materials Science & Engineering",
+   "abbr": "MAT_SCI",
+   "main": false
+  },
+  "MECH_ENG": {
+   "name": "Mechanical Engineering",
+   "abbr": "ME",
+   "main": false
+  },
+  "PERF_ST": {
+   "name": "Performance Studies",
+   "abbr": "PERF ST",
+   "main": false
+  },
+  "PHYSICS": {
+   "name": "Physics",
+   "abbr": "PHYS",
+   "main": false
+  },
+  "PRDV": {
+   "name": "Personal Development",
+   "abbr": "PRDV",
+   "main": false
+  }
+ },
+ "programs": [
+  {
+   "id": "made-bs",
+   "name": "Manufacturing and Design Engineering BS",
+   "short": "MaDE BS",
+   "type": "major",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/segal-design-institute/manufacturing-design-engineering-degree/",
+   "default": true,
+   "lists": [
+    {
+     "label": "Mathematics",
+     "kind": "core",
+     "need": 4,
+     "items": [
+      [
+       [
+        "MATH 220-1"
+       ]
+      ],
+      [
+       [
+        "MATH 220-2"
+       ]
+      ],
+      [
+       [
+        "MATH 228-1"
+       ]
+      ],
+      [
+       [
+        "MATH 228-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Basic science",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "PHYSICS 135-2",
+        "PHYSICS 136-2"
+       ]
+      ],
+      [
+       [
+        "PHYSICS 135-3",
+        "PHYSICS 136-3"
+       ]
+      ],
+      [
+       [
+        "CHEM 131-0",
+        "CHEM 141-0"
+       ],
+       [
+        "CHEM 151-0",
+        "CHEM 161-0"
+       ],
+       [
+        "CHEM 171-0",
+        "CHEM 181-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Engineering foundations",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "GEN_ENG 211-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 212-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 251-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Design and writing",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "DSGN 106-1",
+        "DSGN 106-2"
+       ]
+      ],
+      [
+       [
+        "ENGLISH 106-1",
+        "ENGLISH 106-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Speaking or innovation",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMM_ST 102-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 225-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 325-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 103-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 203-0"
+       ]
+      ],
+      [
+       [
+        "PRDV 335-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 390-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Required courses",
+     "kind": "required",
+     "need": 11,
+     "items": [
+      [
+       [
+        "CIV_ENV 216-0"
+       ]
+      ],
+      [
+       [
+        "DSGN 308-0"
+       ],
+       [
+        "MECH_ENG 315-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 307-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 310-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 382-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 201-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 318-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 240-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 233-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 340-1"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 340-2"
+       ],
+       [
+        "MECH_ENG 340-3"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Capstone sequence",
+     "kind": "required",
+     "need": 3,
+     "items": [
+      [
+       [
+        "DSGN 388-1"
+       ]
+      ],
+      [
+       [
+        "DSGN 388-2"
+       ]
+      ],
+      [
+       [
+        "DSGN 388-3"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Manufacturing engineering design",
+     "kind": "required",
+     "need": 1,
+     "items": [
+      [
+       [
+        "DSGN 386-0"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "2 engineering courses at the 200- or 300-level",
+    "2 engineering courses at the 300-level",
+    "4 technical elective courses"
+   ]
+  }
+ ],
+ "sources": [
+  "https://catalogs.northwestern.edu/undergraduate/courses-az/dsgn/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/segal-design-institute/manufacturing-design-engineering-degree/"
+ ],
+ "courses": [
+  {
+   "id": "DSGN 106-1",
+   "dept": "DSGN",
+   "num": "106-1",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated introduction to the user-centered design process and technical communication. Students will address challenges proposed by project partners by identifying unmet needs, conducting research, generating and evaluating potential solutions, and finally, presenting a final design concept with supporting documentation. Students also enhance their abilities in equitable teamwork, project management, fabrication skills, and producing written, oral, graphical, and interpersonal communication. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-1 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: Reserved for McCormick students only.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-1"
+  },
+  {
+   "id": "DSGN 106-2",
+   "dept": "DSGN",
+   "num": "106-2",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "main",
+   "prereq": "DSGN 106-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated iteration on the user-centered design process and technical communication. This course will build on the learning objectives from DTC-1 while adding more focus on ethics in design and communication, equitable distribution of teamwork, project management, documenting and communicating progress, and exploring a wider variety of project topics. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-2 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: DSGN 106-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-2"
+  },
+  {
+   "id": "DSGN 208-0",
+   "dept": "DSGN",
+   "num": "208-0",
+   "title": "Design Thinking and Doing",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Project-based introduction to design, structured as a hands-on studio course. Students learn methods of design innovation and work in teams, exploring ideas, prototyping solutions, and interacting with users. This class is intended for first-year students, sophomores, and juniors.",
+   "text": "Prerequisite: Reserved for First-Year Students, Sophomores, and Juniors. Non-McCormick students only.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20208-0"
+  },
+  {
+   "id": "DSGN 220-0",
+   "dept": "DSGN",
+   "num": "220-0",
+   "title": "Introduction to Design Sketching",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Design sketching to increase one's skills as a basic but essential form of communication. It is the medium for preliminary ideation. Basic rules and skills in a design studio setting.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20220-0"
+  },
+  {
+   "id": "DSGN 230-0",
+   "dept": "DSGN",
+   "num": "230-0",
+   "title": "Machining Basics",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The intent of this class is to introduce students to a range of basic manufacturing techniques. Students will learn machine tool technology theory and gain familiarity through hands-on practice with manual machine tools and other shop equipment. All the skills taught will culminate in a final project which each student is expected to manufacture on their own. All students will be expected to complete safety training modules.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20230-0"
+  },
+  {
+   "id": "DSGN 240-0",
+   "dept": "DSGN",
+   "num": "240-0",
+   "title": "Introduction to Solid Modeling: Solidworks",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solid modeling by creating three-dimensional shapes through two-dimensional sketches. Assemblies of individual parts. CAD modeling theory; modeling objects using different approaches for creating identical features. Lecture balanced with hands-on use of SolidWorks.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20240-0"
+  },
+  {
+   "id": "DSGN 241-0",
+   "dept": "DSGN",
+   "num": "241-0",
+   "title": "Wireframing and App Design Basics",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Translate your app ideas into real pixels. Whether you're interested in becoming a product designer, product manager, or just have an app idea? together we'll shape ideas into tangible mockups. This beginner class will take you from sketching on pen and paper to generating interfaces and flows in industry tools like Miro and Figma. You'll see how typography, hierarchy and unity play a role in the product design process, and continue on testing your app before handing it off to product teams or engineers.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20241-0"
+  },
+  {
+   "id": "DSGN 243-0",
+   "dept": "DSGN",
+   "num": "243-0",
+   "title": "Visual Thinking for Design",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Complements the traditional design research and ideation process using visual stimuli. Students will work with visual thinking methods to help expand their understanding of a problem space resulting in a greater generation of ideas and a more tangible organization of our thoughts. DSGN 220-0 and/or some experience with Adobe Photoshop is helpful but not necessary.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20243-0"
+  },
+  {
+   "id": "DSGN 297-0",
+   "dept": "DSGN",
+   "num": "297-0",
+   "title": "Intermediate Topics in Engineering Design",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Topics suggested by students and faculty and approved by the institute.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20297-0"
+  },
+  {
+   "id": "DSGN 300-0",
+   "dept": "DSGN",
+   "num": "300-0",
+   "title": "Designing Your Life",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Considers an approach to life as a series of design projects to help students craft a total life. Includes seminar-style discussions, role-playing, short writing assignments, hands-on making, guest speakers, and individual mentoring and coaching.",
+   "text": "Prerequisite: Reserved for Juniors and Seniors.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20300-0"
+  },
+  {
+   "id": "DSGN 306-0",
+   "dept": "DSGN",
+   "num": "306-0",
+   "title": "User Experience Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "DSGN 106-1",
+     "DSGN 208-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Project-based studio course covering the full range of user experience design, from screen-based experience to interaction with physical products to end-to-end environment design.",
+   "text": "Prerequisite: DSGN 106-1 or DSGN 208-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20306-0"
+  },
+  {
+   "id": "DSGN 308-0",
+   "dept": "DSGN",
+   "num": "308-0",
+   "title": "Human-Centered Product Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "DSGN 106-1",
+     "DSGN 208-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Project-based course focusing on user needs: observational methods, brainstorming, prototyping, business models, and the social and engineering concerns for product design.",
+   "text": "Prerequisite: DSGN 106-1 or DSGN 208-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20308-0"
+  },
+  {
+   "id": "DSGN 315-0",
+   "dept": "DSGN",
+   "num": "315-0",
+   "title": "Design, Technology, and Research",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "A jointly offered CS and Segal learning initiative that empowers students to drive cutting-edge research that shapes new experiences with people and technology. Students work with a mentor to identify a direction of research, explore and iterate over designs, prototype at varying fidelities, build working systems, conduct evaluative studies, and report findings through conference publications. DTR adapts agile development and design-based research practices with scrums, sprints, studio critique, design logs, and pair research. This class may be repeated for credit.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20315-0"
+  },
+  {
+   "id": "DSGN 320-0",
+   "dept": "DSGN",
+   "num": "320-0",
+   "title": "Introduction to Industrial Design Methods",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduces the process of product development from an industrial design perspective, with a focus on exploring form through design sketching.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20320-0"
+  },
+  {
+   "id": "DSGN 321-0",
+   "dept": "DSGN",
+   "num": "321-0",
+   "title": "Advanced Solid Modeling",
+   "units": 0.5,
+   "role": "main",
+   "prereq": "DSGN 240-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Provides advanced instruction on the use of CAD modeling using Solidworks software.",
+   "text": "Prerequisite: DSGN 240-0 or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20321-0"
+  },
+  {
+   "id": "DSGN 322-0",
+   "dept": "DSGN",
+   "num": "322-0",
+   "title": "Rendering",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Provides an introduction to Keyshot software, a photorealistic rendering package.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20322-0"
+  },
+  {
+   "id": "DSGN 340-0",
+   "dept": "DSGN",
+   "num": "340-0",
+   "title": "Performance and Technology: Composition Workshop",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "In this course students will use basic mechatronics to create compelling movement-based performances. The course will involve workshop exploration of technologies embedded in performance: robots, media, computer interface. Students will create performance projects and discuss theoretical and historical implications of technologies in performance. Hands-on making and engineering workshops will be incorporated to develop skills in technological crafts such as circuit design and fabrication, toward technologically enhanced performance.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20340-0"
+  },
+  {
+   "id": "DSGN 345-0",
+   "dept": "DSGN",
+   "num": "345-0",
+   "title": "Computer-Aided Manufacturing",
+   "units": 0.5,
+   "role": "main",
+   "prereq": {
+    "or": [
+     {
+      "and": [
+       "DSGN 106-1",
+       "DSGN 106-2",
+       "DSGN 240-0"
+      ]
+     },
+     "MECH_ENG 240-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Teaches the NX manufacturing environment to program machining operations for CNC milling, as well as the operation of CNC milling machines. Teaches the complete path from part design to manufacture, including operations, tools, and geometry in NX, manufacturing setup and g-code generation, proper machine setup, operation, troubleshooting and optimization for both 2.5D machining and full CNC machining.",
+   "text": "Prerequisites: DSGN 106-1 and DSGN 106-2 and one of the following: DSGN 240-0 or MECH_ENG 240-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20345-0"
+  },
+  {
+   "id": "DSGN 350-0",
+   "dept": "DSGN",
+   "num": "350-0",
+   "title": "Intellectual Property and Innovation",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Explores the critical role of designers, business strategists and engineers in the invention/creative process. All issues relating to patents and patentability of inventions, copyrights and the protection of the expressions of ideas, trademarks and source identifiers are reviewed and analyzed in the context of multiple engineering domains.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20350-0"
+  },
+  {
+   "id": "DSGN 357-0",
+   "dept": "DSGN",
+   "num": "357-0",
+   "title": "Designing with AI",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       {
+        "and": [
+         "DSGN 106-1",
+         "DSGN 106-2"
+        ]
+       },
+       "DSGN 208-0"
+      ]
+     },
+     {
+      "or": [
+       "DSGN 306-0",
+       "DSGN 308-0",
+       {
+        "and": [
+         "DSGN 380-1",
+         "DSGN 380-2"
+        ]
+       },
+       "DSGN 381-0",
+       {
+        "and": [
+         "DSGN 382-1",
+         "DSGN 380-2"
+        ]
+       },
+       {
+        "and": [
+         "DSGN 384-1",
+         "DSGN 384-2"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This class will explore how to use generative AI to make design more accessible, equitable, and inclusive to empower a new and more diverse generation of designers and develop responsible AI practices.",
+   "text": "Prerequisites: DSGN 106-1 and DSGN 106-2 , or DSGN 208-0 . At least one of: DSGN 306-0 , 308-0 , 380-1 and 380-2 , 381-0 , 382-1 and 380-2 , 384-1 and 384-2 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20357-0"
+  },
+  {
+   "id": "DSGN 370-0",
+   "dept": "DSGN",
+   "num": "370-0",
+   "title": "Portfolio Development & Presentation",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Creation of an individual portfolio that showcase design work and further career goals. The portfolio physically presents a story that embodies its creator's goals.",
+   "text": "Prerequisite: Reserved for Juniors and Seniors.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20370-0"
+  },
+  {
+   "id": "DSGN 376-0",
+   "dept": "DSGN",
+   "num": "376-0",
+   "title": "Leonardo, Geometry, and the Art of Manufacturing",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "In Walter Isaacson 2017 biography of Leonardo da Vinci, the topic of geometry is referenced over 80 times. The only drawings by Leonardo that were published during his lifetime were illustrations for a textbook on geometry. The artist final journal entry, written only days before his death, included attempts at a geometric proof. A friend of the artist once lamented in a letter, He devotes much of his time to geometry, and has no fondness at all for the paintbrush. What compelled Leonardo fascination with this subject? In this interdisciplinary class, we will explore Leonardo geometric studies, using them as a vehicle for our own studies of artistic and industrial processes. Students will collaborate with artists, manufacturers, and technologists to produce sculptural objects in a range of materials. The course will culminate in a public iron pour in which we will attempt to translate several of Leonardo sketches into cast-iron 3D pieces using a historical furnace in honor of the artist work.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20376-0"
+  },
+  {
+   "id": "DSGN 380-1",
+   "dept": "DSGN",
+   "num": "380-1",
+   "title": "Industrial Design Projects I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     {
+      "and": [
+       "DSGN 243-0",
+       "DSGN 240-0"
+      ]
+     },
+     {
+      "and": [
+       "MECH_ENG 240-0",
+       "DSGN 220-0"
+      ]
+     },
+     "DSGN 320-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Design thinking, user-centric principles of design and DFM. Development of an industrial design project for your personal portfolio. Concept ideation and sketching; use of discovery research and data visualization; problem framing and prototyping; design for manufacturing, Keyshot rendering, rapid prototyping. Pt 1 in two-course sequence; sequence must be taken in consecutive quarters.",
+   "text": "Prerequisites: DSGN 243-0 and either DSGN 240-0 or MECH_ENG 240-0 and either DSGN 220-0 or DSGN 320-0 ; or consent of the instructor. Reserved for Juniors and Seniors.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20380-1"
+  },
+  {
+   "id": "DSGN 380-2",
+   "dept": "DSGN",
+   "num": "380-2",
+   "title": "Industrial Design Projects II",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "DSGN 380-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Design thinking, user-centric principles of design and DFM. Development of an industrial design project for your personal portfolio. Concept ideation and sketching; use of discovery research and data visualization; problem framing and prototyping; design for manufacturing, Keyshot rendering, rapid prototyping.",
+   "text": "Prerequisite: DSGN 380-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20380-2"
+  },
+  {
+   "id": "DSGN 381-0",
+   "dept": "DSGN",
+   "num": "381-0",
+   "title": "Digital Product Development",
+   "units": 2.0,
+   "role": "main",
+   "prereq": "DSGN 106-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "senior standing"
+   ],
+   "desc": "In this digital product development course, students will experience the full end-to-end product development lifecycle through ideation, build, and continuous improvement. Students will have an opportunity to explore and apply design thinking and agile/scrum methodologies to a client sponsored project. This class is by application only.",
+   "text": "Prerequisite: Students must have taken DSGN 106 or 208 and be in junior or senior standing.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20381-0"
+  },
+  {
+   "id": "DSGN 382-1",
+   "dept": "DSGN",
+   "num": "382-1",
+   "title": "Service Design Studio I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "DSGN 305-0",
+     "DSGN 306-0",
+     "DSGN 308-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Explores the human centered approach to the design of services. Students will apply design thinking to client sponsored projects and synthesize both user and client needs to the design of tangible consumer touch points. This includes experience plans, digital interface designs, communication models, organizational designs, systems and/or brand tonality deliverables. Pt 1 in two-course sequence; sequence must be taken in consecutive quarters.",
+   "text": "Prerequisite: DSGN 305-0 or DSGN 306-0 or DSGN 308-0 ; or consent of instructor. Reserved for Juniors and Seniors.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20382-1"
+  },
+  {
+   "id": "DSGN 382-2",
+   "dept": "DSGN",
+   "num": "382-2",
+   "title": "Service Design Studio II",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "DSGN 382-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Explores the human centered approach to the design of services. Students will apply design thinking to client sponsored projects and synthesize both user and client needs to the design of tangible consumer touch points. This includes experience plans, digital interface designs, communication models, organizational designs, systems and/or brand tonality deliverables.",
+   "text": "Prerequisite: DSGN 382-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20382-2"
+  },
+  {
+   "id": "DSGN 384-1",
+   "dept": "DSGN",
+   "num": "384-1",
+   "title": "Interdisciplinary Product Design Projects I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "DSGN 106-1",
+     "DSGN 208-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Open-ended, team-based product or system design projects in real-world settings. Project research, concept development, professional communication, advanced topics in design. One of DSGN 305-0, DSGN 306-0, or DSGN 308-0 is recommended before taking this course. Pt 1 in two-course sequence; sequence must be taken in consecutive quarters.",
+   "text": "Prerequisite: DSGN 106-1 or DSGN 208-0 . Reserved for Juniors and Seniors.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20384-1"
+  },
+  {
+   "id": "DSGN 384-2",
+   "dept": "DSGN",
+   "num": "384-2",
+   "title": "Interdisciplinary Product Design Projects II",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "DSGN 384-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Open-ended, team-based product or system design projects in real-world settings. Implementation, evaluation, communication, documentation.",
+   "text": "Prerequisite: DSGN 384-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20384-2"
+  },
+  {
+   "id": "DSGN 386-0",
+   "dept": "DSGN",
+   "num": "386-0",
+   "title": "Manufacturing Engineering Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "MECH_ENG 340-1",
+     "DSGN 308-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or any 300-level IEMS course",
+    "or instructor consent",
+    "junior or senior standing"
+   ],
+   "desc": "A hands-on, team-based survey of lean manufacturing concepts such as DFA (design for assembly), DFM (design for manufacturing), automation, quality control, process planning, tooling design, concurrent engineering, and continuous improvement. Students are given the components of an existing product and are challenged to design the manufacturing specifications and process. Design strategy, manufacturing modeling and optimization, engineering documentation, quality control, manufacturing costing and product manufacturing productivity skills are put into practice in a final pilot run of the manufacturing process by each team.",
+   "text": "Prerequisite: Any IEMS 300 level, MECH_ENG 340-1 , DSGN 308, or consent of instructor. Reserved for Juniors and Seniors.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20386-0"
+  },
+  {
+   "id": "DSGN 388-1",
+   "dept": "DSGN",
+   "num": "388-1",
+   "title": "MaDE Capstone Sequence I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The first quarter of a three-quarter, year-long product design and development experience for students in the MaDE program. Senior standing and instructor permission are required.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20388-1"
+  },
+  {
+   "id": "DSGN 388-2",
+   "dept": "DSGN",
+   "num": "388-2",
+   "title": "MaDE Capstone Sequence II",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The second quarterr of a three-quarter, year-long product design and development experience for students in the MaDE program. Senior standing and instructor permission are required.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20388-2"
+  },
+  {
+   "id": "DSGN 388-3",
+   "dept": "DSGN",
+   "num": "388-3",
+   "title": "MaDE Capstone Sequence III",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The third and final quarter of a three-quarter, year-long product design and development experience for students in the MaDE program. Senior standing and instructor permission are required.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20388-3"
+  },
+  {
+   "id": "DSGN 395-0",
+   "dept": "DSGN",
+   "num": "395-0",
+   "title": "Special Topics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "instructor consent"
+   ],
+   "desc": "Topics relevant to design and approved by the institute.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20395-0"
+  },
+  {
+   "id": "DSGN 397-0",
+   "dept": "DSGN",
+   "num": "397-0",
+   "title": "Advanced Topics in Design",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Topics suggested by students and faculty and approved by the institute.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20397-0"
+  },
+  {
+   "id": "DSGN 399-0",
+   "dept": "DSGN",
+   "num": "399-0",
+   "title": "Independent Study Project",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "instructor consent"
+   ],
+   "desc": "Independent study on a design topic supervised by a faculty member.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20399-0"
+  },
+  {
+   "id": "BMD_ENG 390-2",
+   "dept": "BMD_ENG",
+   "num": "390-2",
+   "title": "Biomedical Engineering Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development of a design project initiated during the previous quarter.",
+   "text": "Prerequisite: BMD_ENG 390-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20390-2",
+   "autoPrereq": "BMD_ENG 390-1"
+  },
+  {
+   "id": "CHEM 131-0",
+   "dept": "CHEM",
+   "num": "131-0",
+   "title": "Fundamentals of Chemistry I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Quantum mechanics, electronic structure, periodic properties of elements, chemical bonding, thermodynamics, intermolecular forces, properties of solids and liquids, solutions and colligative properties.",
+   "text": "Prerequisite: CHEM 110-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20131-0"
+  },
+  {
+   "id": "CHEM 141-0",
+   "dept": "CHEM",
+   "num": "141-0",
+   "title": "Fundamentals of Chemistry Laboratory I",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical analysis of real samples using basic laboratory techniques including titration, colorimetric analysis, density measurements, and atomic spectroscopy. Planning, data collection, interpretation, and reporting on experiments. Must be taken concurrently with CHEM 131-0.",
+   "text": "Prerequisite: CHEM 110-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20141-0"
+  },
+  {
+   "id": "CHEM 151-0",
+   "dept": "CHEM",
+   "num": "151-0",
+   "title": "General Chemistry I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Quantum mechanics, electronic structure, periodic properties of elements, chemical bonding, thermodynamics, gas laws, intermolecular forces, properties of solids and liquids, solutions and colligative properties.",
+   "text": "Prerequisite: permission of department by placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20151-0"
+  },
+  {
+   "id": "CHEM 161-0",
+   "dept": "CHEM",
+   "num": "161-0",
+   "title": "General Chemistry Laboratory I",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical analysis of real samples using basic laboratory techniques including titration, colorimetric analysis, density measurements, and atomic spectroscopy. Planning, data collection, interpretation, and reporting on experiments. Must be taken concurrently with CHEM 151-0.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20161-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "CHEM 171-0",
+   "dept": "CHEM",
+   "num": "171-0",
+   "title": "Advanced General Inorganic Chemistry",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Review of mole problems and stoichiometry; descriptive chemistry, elements, compounds, and inorganic reactions; gas laws; phase equilibria and colligative properties; chemical equilibrium; aqueous equilibria; topics in chemical bonding and molecular structure. Must be taken concurrently with CHEM 181-0.",
+   "text": "Prerequisite: department placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20171-0"
+  },
+  {
+   "id": "CHEM 181-0",
+   "dept": "CHEM",
+   "num": "181-0",
+   "title": "Advanced General Inorganic Chemistry Laboratory",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Laboratory techniques for studying chemical analysis and chemical reactions relevant to environmental or materials research. Planning, data collection, interpretation, and reporting on experiments. Must be taken concurrently with CHEM 171-0.",
+   "text": "Prerequisite: department placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20181-0"
+  },
+  {
+   "id": "CIV_ENV 216-0",
+   "dept": "CIV_ENV",
+   "num": "216-0",
+   "title": "Mechanics of Materials I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Analytical and experimental study of stresses and deformations and their application to the design of machine and structural elements subjected to static, dynamic, and repeated loads.",
+   "text": "Prerequisite: GEN_ENG 205-2 or GEN_ENG 206-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20216-0",
+   "autoPrereq": {
+    "or": [
+     "GEN_ENG 205-2",
+     "GEN_ENG 206-2"
+    ]
+   }
+  },
+  {
+   "id": "COMM_ST 102-0",
+   "dept": "COMM_ST",
+   "num": "102-0",
+   "title": "Public Speaking",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Theory, composition, delivery, and criticism of public speeches.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMM_ST%20102-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "DSGN 106-0",
+   "dept": "DSGN",
+   "num": "106-0",
+   "title": "",
+   "units": null,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-0",
+   "missing": true
+  },
+  {
+   "id": "DSGN 305-0",
+   "dept": "DSGN",
+   "num": "305-0",
+   "title": "",
+   "units": null,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20305-0",
+   "missing": true
+  },
+  {
+   "id": "ENGLISH 106-1",
+   "dept": "ENGLISH",
+   "num": "106-1",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENGLISH 106-2",
+   "dept": "ENGLISH",
+   "num": "106-2",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 225-0",
+   "dept": "ENTREP",
+   "num": "225-0",
+   "title": "Principles of Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course serves as the foundational course for the undergraduate minor in entrepreneurship. This survey-style course is a good choice for students who wish to familiarize themselves with the world of entrepreneurship. Students will learn to think like entrepreneurs and will be introduced to key topics relevant to entrepreneurship, including customer discovery, finance, and marketing. They will also learn how to understand and perform analyses of a broad range of entrepreneurial activities related to different applications of entrepreneurship. Taught with IEMS 225-0; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20225-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 325-0",
+   "dept": "ENTREP",
+   "num": "325-0",
+   "title": "Engineering Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The goal of the course is to introduce students to innovation-driven entrepreneurship, a process by which emergent technology serves as the catalyst for new venture formation. This course challenges student teams to develop strategies for commercializing cutting-edge technologies. Each year, the course focuses on a significant innovation space. Taught with IEMS 325-0; may not receive credit for both courses.",
+   "text": "Prerequisite: ENTREP 330-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20325-0",
+   "autoPrereq": "ENTREP 330-1"
+  },
+  {
+   "id": "GEN_ENG 211-0",
+   "dept": "GEN_ENG",
+   "num": "211-0",
+   "title": "Engineering Physics - Statics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to vector methods in engineering analysis. Statics of particles and rigid bodies and matrix analysis of trusses and frames. Engineering design problems.",
+   "text": "Prerequisites: Gen_Eng 150, Gen_Eng 151 or Comp_Sci 150 (Programming), Math 220-1 or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20211-0",
+   "links": [
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 212-0",
+   "dept": "GEN_ENG",
+   "num": "212-0",
+   "title": "Engineering Physics - Dynamics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "A calculus-based physics course which emphasizes dynamic analysis techniques relevant to solving engineering problems in the mechanical domain. This course introduces Newtonian mechanics, descriptions of relative motion in Cartesian and polar coordinate systems, energy conservation methods, mechanical power, momentum, impulse, and numerical and analytical methods for describing oscillatory systems.",
+   "text": "Prerequisites: Math 220-2 or equivalent, GEN_ENG 211, GEN_ENG 241 or equivalent (May be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20212-0",
+   "links": [
+    "GEN_ENG 211-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     "MATH 220-2",
+     "GEN_ENG 211-0"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 251-0",
+   "dept": "GEN_ENG",
+   "num": "251-0",
+   "title": "Applied Ordinary Differential Equations",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Students will learn to identify and solve differential equations derived from scientific and engineered systems. They will also learn to formulate a differential equation for modeling suitable applications, specifically mechanical vibrations and electrical circuits, among others.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151 or CS 150, MATH 220-2 , PHYS 135-1 or GEN_ENG 212 (may be taken concurrently), GEN_ENG 241 (may be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20251-0",
+   "links": [
+    "GEN_ENG 212-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "IEMS 307-0",
+   "dept": "IEMS",
+   "num": "307-0",
+   "title": "Quality Improvement by Experimental Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Methods for designing and analyzing industrial experiments. Blocking; randomization; multiple regression; factorial and fractional factorial experiments; response surface methodology; Taguchi's robust design; split plot experimentation. Homework, labs, and project.",
+   "text": "Prerequisite: IEMS 201-0 , IEMS 303-0 , or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20307-0",
+   "autoPrereq": {
+    "and": [
+     "IEMS 201-0",
+     "IEMS 303-0"
+    ]
+   }
+  },
+  {
+   "id": "IEMS 310-0",
+   "dept": "IEMS",
+   "num": "310-0",
+   "title": "Operations Research",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Survey of operations research techniques. Linear programming, decision theory, stochastic processes, game theory. May not be taken for credit with or after IEMS 313-0.",
+   "text": "Prerequisites: GEN_ENG 205-1 , GEN_ENG 206-1 or MATH 240-0 or GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 241-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20310-0"
+  },
+  {
+   "id": "IEMS 382-0",
+   "dept": "IEMS",
+   "num": "382-0",
+   "title": "Operations Engineering and Management",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Applications of operations research methods in managing and control of operations processes in manufacturing and service systems: including operations strategy; process-flow analysis; forecasting; capacity management; variability analysis; flow time and inventory management; flexible operations; lean operations; and production and workforce scheduling in manufacturing and service systems. Case studies, homework, and exams.",
+   "text": "Prerequisites: IEMS 302-0 ; IEMS 310-0 or IEMS 313-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20382-0",
+   "links": [
+    "IEMS 310-0"
+   ],
+   "autoPrereq": {
+    "and": [
+     "IEMS 302-0",
+     {
+      "or": [
+       "IEMS 310-0",
+       "IEMS 313-0"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "MATH 220-1",
+   "dept": "MATH",
+   "num": "220-1",
+   "title": "Single-Variable Differential Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Limits. Differentiation. Linear approximation and related rates. Extreme value theorem, mean value theorem, and curve-sketching. Optimization. Students may not receive credit for both MATH 220-1 and any of MATH 211-0, MATH 212-0 (former), MATH 213-0 (former), MATH 218-1, MATH 218-2, or MATH 220-0 (former).",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 220-2",
+   "dept": "MATH",
+   "num": "220-2",
+   "title": "Single-Variable Integral Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Definite integrals, antiderivatives, and the fundamental theorem of calculus. Transcendental and inverse functions. Areas and volumes. Techniques of integration, numerical integration, and improper integrals. First-order linear and separable ordinary differential equations. Students may not receive credit for both MATH 220-2 and any of MATH 213-0 (former), MATH 214-0 (former), MATH 218-3, or MATH 224-0 (former).",
+   "text": "Prerequisite: MATH 218-2 or MATH 220-0 (former) or MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-2",
+   "links": [
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-2",
+     "MATH 220-0",
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-1",
+   "dept": "MATH",
+   "num": "228-1",
+   "title": "Multivariable Differential Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Vectors, vector functions, partial derivatives, Taylor polynomials, and optimization. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-1 and any of MATH 230-0 (former), MATH 230-1, MATH 281-1, MATH 285-2, MATH 290-2, MATH 291-2, or ES_APPM 252-1.",
+   "text": "Prerequisite: MATH 218-3 or MATH 214-0 (former) or MATH 220-2 or MATH 224-0 (former).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-1",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-3",
+     "MATH 214-0",
+     "MATH 220-2",
+     "MATH 224-0"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-2",
+   "dept": "MATH",
+   "num": "228-2",
+   "title": "Multivariable Integral Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Multiple integration: double integrals, triple integrals, and change of variables. Vector calculus: vector fields, line integrals, surface integrals, curl and divergence, Green's theorem, Stokes' theorem, and the divergence theorem. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-2 and any of MATH 230-2, MATH 234-0 (former), MATH 281-2, MATH 285-3, MATH 290-3, MATH 291-3, or ES_APPM 252-2.",
+   "text": "Prerequisite: MATH 228-1 or MATH 230-0 (former) or MATH 230-1 or MATH 281-1 or MATH 285-2 or MATH 290-2 or MATH 291-2 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-2",
+   "links": [
+    "MATH 228-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 228-1",
+     "MATH 230-0",
+     "MATH 230-1",
+     "MATH 281-1",
+     "MATH 285-2",
+     "MATH 290-2",
+     "MATH 291-2",
+     "ES_APPM 252-1"
+    ]
+   }
+  },
+  {
+   "id": "MAT_SCI 201-0",
+   "dept": "MAT_SCI",
+   "num": "201-0",
+   "title": "Introduction to Materials Science and Engineering Principles",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Basic concepts of Materials Science and Engineering: bonding, crystal structure, defects in solids, phase diagrams, and development of microstructures. Processing/structure/property/performance relationships underlying the behavior of metals, ceramics, polymers, semiconductors, and composites. Mechanical, electrical, and chemical properties of engineering materials. Broadly, how materials’ performance influences technological development, the economy, the environment, and society. Not to be taken for credit with or after MAT_SCI 301-0.",
+   "text": "Prerequisites: CHEM 131-0 , CHEM 151-0 , or CHEM 171-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20201-0",
+   "links": [
+    "CHEM 131-0",
+    "CHEM 151-0",
+    "CHEM 171-0"
+   ],
+   "autoPrereq": {
+    "or": [
+     "CHEM 131-0",
+     "CHEM 151-0",
+     "CHEM 171-0"
+    ]
+   }
+  },
+  {
+   "id": "MAT_SCI 318-0",
+   "dept": "MAT_SCI",
+   "num": "318-0",
+   "title": "Materials Selection",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Methods of specifying materials and the processes for making them in the context of a given application. Service performance of materials based on their physical and chemical properties. Case studies and use of high-level databases.",
+   "text": "Prerequisite: MAT_SCI 201-0 or MAT_SCI 301 or permission by instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20318-0",
+   "links": [
+    "MAT_SCI 201-0"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MAT_SCI 201-0",
+     "MAT_SCI 301-0"
+    ]
+   }
+  },
+  {
+   "id": "MECH_ENG 233-0",
+   "dept": "MECH_ENG",
+   "num": "233-0",
+   "title": "Electronics Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Design and prototyping of analog and digital electronic circuits using semiconductor devices: diodes, transistors, op amps, logic chips, etc. Optical and other sensors, power electronics, filters, and feedback control. Extensive hands-on construction and debugging. Intended for engineers in all disciplines.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20233-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "MECH_ENG 240-0",
+   "dept": "MECH_ENG",
+   "num": "240-0",
+   "title": "Intro to Mechanical Design and Manufactrng",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to strategy and methods of designing, manufacturing, and testing of mechanical products. Material properties and selection methodology, engineering drawing and CAD, and simple manufacturing processes.",
+   "text": "Prerequisites: MAT_SCI 201-0 ; CIV_ENV 216-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20240-0",
+   "links": [
+    "CIV_ENV 216-0",
+    "MAT_SCI 201-0"
+   ],
+   "autoPrereq": {
+    "and": [
+     "MAT_SCI 201-0",
+     "CIV_ENV 216-0"
+    ]
+   }
+  },
+  {
+   "id": "MECH_ENG 315-0",
+   "dept": "MECH_ENG",
+   "num": "315-0",
+   "title": "Theory of Machines: Design of Elements",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Factors influencing the proportioning of machine elements-stresses, deformations, and failure criteria-as applied to shafts, springs, belts, bearings, gears. Lectures, laboratory.",
+   "text": "Prerequisite: MECH_ENG 240-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20315-0",
+   "links": [
+    "MECH_ENG 240-0"
+   ],
+   "autoPrereq": "MECH_ENG 240-0"
+  },
+  {
+   "id": "MECH_ENG 340-1",
+   "dept": "MECH_ENG",
+   "num": "340-1",
+   "title": "Computer Integrated Manufacturing: Manufacturing Processes",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Use of computers to improve productivity and reduce costs in the manufacture of discrete parts and assemblies. Manufacturing processes: Analysis and evaluation of process usage in the contemporary manufacturing environment.",
+   "text": "Prerequisite: MECH_ENG 240-0 or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20340-1",
+   "links": [
+    "MECH_ENG 240-0"
+   ]
+  },
+  {
+   "id": "MECH_ENG 340-2",
+   "dept": "MECH_ENG",
+   "num": "340-2",
+   "title": "Computer Integrated Manufacturing: CAD/CAM",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Use of computers to improve productivity and reduce costs in the manufacture of discrete parts and assemblies. CAD/ CAM: Geometric modeling, dimensioning systems, tolerances, design for manufacture, programming of machine tools.",
+   "text": "Prerequisite: MECH_ENG 340-1 or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20340-2",
+   "links": [
+    "MECH_ENG 340-1"
+   ]
+  },
+  {
+   "id": "MECH_ENG 340-3",
+   "dept": "MECH_ENG",
+   "num": "340-3",
+   "title": "Computer Integrated Manufacturing: Automation",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Use of computers to improve productivity and reduce costs in the manufacture of discrete parts and assemblies. Manufacturing automation: sensors, actuators, and computers for automation; principles of computer control; programmable logic controllers; robotic devices; assembly automation.",
+   "text": "Prerequisite: MECH_ENG 340-2 or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20340-3",
+   "links": [
+    "MECH_ENG 340-2"
+   ]
+  },
+  {
+   "id": "PERF_ST 103-0",
+   "dept": "PERF_ST",
+   "num": "103-0",
+   "title": "Analysis and Performance of Text",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course studies texts, broadly defined and situated, through performance. Students explore how performance helps the performer and audience interpret a text, as well as express challenging political and personal themes. They examine the ways performance illuminates and draws out deeper understandings of social relations through embodied praxis.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20103-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PERF_ST 203-0",
+   "dept": "PERF_ST",
+   "num": "203-0",
+   "title": "Performance Culture and Communication",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Explores how live performance and dramatic forms of communication are methods used to examine social behavior and cultural expressions.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20203-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHYSICS 135-2",
+   "dept": "PHYSICS",
+   "num": "135-2",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Electricity and magnetism. Must be taken concurrently with PHYSICS 136-2.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-1 ; MATH 230-2 OR MATH 290-2 OR MATH 291-2 (may be taken concurrently).\".",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-2",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "PHYSICS 135-3",
+   "dept": "PHYSICS",
+   "num": "135-3",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Introduction to wave phenomena, optics, and modern physics. Must be taken concurrently with PHYSICS 136-3.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-3",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2",
+    "PHYSICS 135-2"
+   ]
+  },
+  {
+   "id": "PHYSICS 136-2",
+   "dept": "PHYSICS",
+   "num": "136-2",
+   "title": "General Physics Laboratory",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introductory physics laboratory for students taking PHYSICS 130-2 or PHYSICS 135-2, with which it must be taken concurrently.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20136-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHYSICS 136-3",
+   "dept": "PHYSICS",
+   "num": "136-3",
+   "title": "General Physics Laboratory",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introductory physics laboratory for students taking PHYSICS 130-3 or PHYSICS 135-3, with which it must be taken concurrently.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20136-3",
+   "autoPrereq": null
+  },
+  {
+   "id": "PRDV 335-0",
+   "dept": "PRDV",
+   "num": "335-0",
+   "title": "Engineering Improv: From Allowing to Application",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Start anywhere, remember you are not the most important person in the scene, and say yes. Through these and other improv techniques, students learn to tackle unexpected obstacles, building skills that can be leveraged in both academic and non-academic contexts to face challenges with resilience.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PRDV%20335-0",
+   "autoPrereq": null
+  }
+ ]
+}

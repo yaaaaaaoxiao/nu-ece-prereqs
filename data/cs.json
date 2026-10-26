@@ -21,22 +21,22 @@
   },
   "CHEM_ENG": {
    "name": "Chemical Engineering",
-   "abbr": "CHEM_ENG",
+   "abbr": "CHEM ENG",
    "main": false
   },
   "CIV_ENV": {
    "name": "Civil and Environmental Engineering",
-   "abbr": "CIV_ENV",
+   "abbr": "CIV ENV",
    "main": false
   },
   "COG_SCI": {
    "name": "Cognitive Science",
-   "abbr": "COG_SCI",
+   "abbr": "COG SCI",
    "main": false
   },
   "COMM_ST": {
    "name": "Communication Studies",
-   "abbr": "COMM_ST",
+   "abbr": "COMM ST",
    "main": false
   },
   "COMP_ENG": {
@@ -46,7 +46,7 @@
   },
   "DATA_ENG": {
    "name": "Data Science & Engineering",
-   "abbr": "DATA_ENG",
+   "abbr": "DATA ENG",
    "main": false
   },
   "DSGN": {
@@ -81,7 +81,7 @@
   },
   "GBL_HLTH": {
    "name": "Global Health",
-   "abbr": "GBL_HLTH",
+   "abbr": "GBL HLTH",
    "main": false
   },
   "GEN_ENG": {
@@ -116,7 +116,7 @@
   },
   "MAT_SCI": {
    "name": "Materials Science & Engineering",
-   "abbr": "MSE",
+   "abbr": "MAT_SCI",
    "main": false
   },
   "MECH_ENG": {
@@ -126,7 +126,7 @@
   },
   "PERF_ST": {
    "name": "Performance Studies",
-   "abbr": "PERF_ST",
+   "abbr": "PERF ST",
    "main": false
   },
   "PHIL": {
@@ -141,7 +141,7 @@
   },
   "POLI_SCI": {
    "name": "Political Science",
-   "abbr": "POLI_SCI",
+   "abbr": "POLI SCI",
    "main": false
   },
   "PRDV": {
@@ -2021,6 +2021,676 @@
    ]
   },
   {
+   "id": "ai-bs",
+   "name": "Artificial Intelligence BS",
+   "short": "AI BS",
+   "type": "major",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/artificial-intelligence/artificial-intelligence-major/",
+   "default": false,
+   "lists": [
+    {
+     "label": "Mathematics",
+     "kind": "core",
+     "need": 4,
+     "items": [
+      [
+       [
+        "MATH 220-1"
+       ]
+      ],
+      [
+       [
+        "MATH 220-2"
+       ]
+      ],
+      [
+       [
+        "MATH 228-1"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 212-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Basic science",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "PHYSICS 135-1"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Engineering foundations",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "GEN_ENG 150-0"
+       ],
+       [
+        "GEN_ENG 151-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 231-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 241-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Design and writing",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "DSGN 106-1",
+        "DSGN 106-2"
+       ]
+      ],
+      [
+       [
+        "ENGLISH 106-1",
+        "ENGLISH 106-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Speaking or innovation",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMM_ST 102-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 225-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 325-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 103-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 203-0"
+       ]
+      ],
+      [
+       [
+        "PRDV 335-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 390-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Required courses",
+     "kind": "required",
+     "need": 5,
+     "items": [
+      [
+       [
+        "COMP_SCI 180-0"
+       ],
+       [
+        "COMP_SCI 111-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 208-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 211-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 348-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 349-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Advanced ML/NLP",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 337-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 449-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 461-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 351-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Theoretical Foundations",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 332-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 336-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 496-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 496-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Symbolic AI",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 325-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 344-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 371-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 396-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 396-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 496-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 496-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Software and Systems Engineering for AI",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 303-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 310-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 358-0"
+       ],
+       [
+        "COMP_ENG 358-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 368-0"
+       ],
+       [
+        "COMP_SCI 468-0"
+       ],
+       [
+        "COMP_ENG 368-0"
+       ],
+       [
+        "COMP_ENG 468-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 394-0"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 344-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Systems that Interact with Humans",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 317-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 329-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 330-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 333-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 347-0"
+       ],
+       [
+        "COMP_SCI 447-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 396-0"
+       ],
+       [
+        "COMP_SCI 496-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 497-0"
+       ]
+      ],
+      [
+       [
+        "COG_SCI 207-0"
+       ]
+      ],
+      [
+       [
+        "DSGN 395-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Systems that Navigate the World",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 301-0"
+       ],
+       [
+        "MECH_ENG 301-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 353-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 396-0"
+       ],
+       [
+        "COMP_SCI 496-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 469-0"
+       ],
+       [
+        "MECH_ENG 469-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 395-0"
+       ],
+       [
+        "COMP_ENG 495-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 332-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 455-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 495-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Societal impact",
+     "kind": "track",
+     "need": null,
+     "items": [
+      [
+       [
+        "COMP_SCI 260-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 265-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 311-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 314-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 387-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 396-0"
+       ]
+      ],
+      [
+       [
+        "COMM_ST 358-0"
+       ]
+      ],
+      [
+       [
+        "COMM_ST 378-0"
+       ]
+      ],
+      [
+       [
+        "COMM_ST 379-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Technical electives",
+     "kind": "elective",
+     "need": 7,
+     "items": [
+      [
+       [
+        "COMP_SCI 213-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 301-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 304-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 305-0"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 345-0"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 479-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 303-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 329-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 334-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 334-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 346-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 355-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 356-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 357-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 358-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 361-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 362-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 364-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 464-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 365-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 465-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 366-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 466-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 368-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 468-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 452-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 453-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 456-0"
+       ]
+      ],
+      [
+       [
+        "COMP_ENG 459-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 326-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 332-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 375-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 433-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 435-0"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "Domain Area requirements (students must take one course in five of the six categories)",
+    "Majors must take seven technical electives. Any 300- or 400-level COMP_SCI course may be taken as a technical elective. In addition the following courses may also be taken as technical electives:",
+    "Major Program (22 units)",
+    "4 advanced elective courses",
+    "5 breadth courses",
+    "1 societal impact course",
+    "7 technical electives"
+   ]
+  },
+  {
    "id": "cs-minor",
    "name": "Computer Science minor (McCormick)",
    "short": "CS minor",
@@ -3280,6 +3950,7 @@
   "https://catalogs.northwestern.edu/undergraduate/courses-az/comp_sci/",
   "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/computer-science/computer-science-degree/",
   "https://catalogs.northwestern.edu/undergraduate/arts-sciences/computer-science/computer-science-major/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/artificial-intelligence/artificial-intelligence-major/",
   "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/computer-science/computer-science-minor/",
   "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/artificial-intelligence/artificial-intelligence-minor/",
   "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/machine-learning-data-science/machine-learning-data-science-minor/",
@@ -6429,6 +7100,24 @@
    }
   },
   {
+   "id": "COMP_ENG 395-0",
+   "dept": "COMP_ENG",
+   "num": "395-0",
+   "title": "Special Topics in Computer Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Topics suggested by students or faculty and approved by the department.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_ENG%20395-0",
+   "autoPrereq": null
+  },
+  {
    "id": "COMP_SCI 214-0",
    "dept": "COMP_SCI",
    "num": "214-0",
@@ -6485,7 +7174,8 @@
    "url": "https://catalogs.northwestern.edu/search/?P=DATA_ENG%20300-0",
    "links": [
     "DATA_ENG 200-0"
-   ]
+   ],
+   "autoPrereq": "DATA_ENG 200-0"
   },
   {
    "id": "DSGN 106-1",
@@ -6524,6 +7214,23 @@
     "DSGN 106-1"
    ],
    "autoPrereq": "DSGN 106-1"
+  },
+  {
+   "id": "DSGN 395-0",
+   "dept": "DSGN",
+   "num": "395-0",
+   "title": "Special Topics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Topics relevant to design and approved by the institute.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20395-0"
   },
   {
    "id": "ECON 380-1",
@@ -6864,6 +7571,24 @@
    "autoPrereq": null
   },
   {
+   "id": "ES_APPM 344-0",
+   "dept": "ES_APPM",
+   "num": "344-0",
+   "title": "High Performance Scientific Computing",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solving partial differential equations using high performance computing platforms. Basic C programming. Distributed computing using MPI. GPU programming using CUDA. Adaptation of algorithms for solving PDE's to different architectures.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20344-0",
+   "autoPrereq": null
+  },
+  {
    "id": "ES_APPM 345-0",
    "dept": "ES_APPM",
    "num": "345-0",
@@ -7009,7 +7734,8 @@
    "offered": {
     "Fall 2026": "2-2:50 MWF (2 sections) · Bain"
    },
-   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20151-0"
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20151-0",
+   "autoPrereq": null
   },
   {
    "id": "GEN_ENG 205-1",
@@ -7044,7 +7770,8 @@
    "text": "Prerequisite: consent of instructor.",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-1"
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-1",
+   "autoPrereq": null
   },
   {
    "id": "GEN_ENG 231-0",
@@ -7066,7 +7793,18 @@
     "GEN_ENG 150-0",
     "GEN_ENG 151-0",
     "MATH 220-2"
-   ]
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
   },
   {
    "id": "GEN_ENG 241-0",
@@ -7086,8 +7824,20 @@
    "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20241-0",
    "links": [
     "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
     "MATH 220-2"
-   ]
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
   },
   {
    "id": "GERMAN 236-0",
@@ -7255,7 +8005,13 @@
    "links": [
     "IEMS 201-0",
     "IEMS 303-0"
-   ]
+   ],
+   "autoPrereq": {
+    "and": [
+     "IEMS 201-0",
+     "IEMS 303-0"
+    ]
+   }
   },
   {
    "id": "IEMS 313-0",
@@ -7304,7 +8060,13 @@
    "links": [
     "DSGN 106-1",
     "DSGN 106-2"
-   ]
+   ],
+   "autoPrereq": {
+    "and": [
+     "DSGN 106-1",
+     "DSGN 106-2"
+    ]
+   }
   },
   {
    "id": "IEMS 341-0",
@@ -8402,7 +9164,21 @@
     "GEN_ENG 150-0",
     "GEN_ENG 151-0",
     "MECH_ENG 224-0"
-   ]
+   ],
+   "autoPrereq": {
+    "and": [
+     "MECH_ENG 224-0",
+     {
+      "or": [
+       "COMP_SCI 110-0",
+       "COMP_SCI 111-0",
+       "COMP_SCI 150-0",
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "MECH_ENG 329-0",

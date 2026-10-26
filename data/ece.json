@@ -26,22 +26,22 @@
   },
   "CHEM_ENG": {
    "name": "Chemical Engineering",
-   "abbr": "CHEM_ENG",
+   "abbr": "CHEM ENG",
    "main": false
   },
   "CIV_ENV": {
    "name": "Civil and Environmental Engineering",
-   "abbr": "CIV_ENV",
+   "abbr": "CIV ENV",
    "main": false
   },
   "COG_SCI": {
    "name": "Cognitive Science",
-   "abbr": "COG_SCI",
+   "abbr": "COG SCI",
    "main": false
   },
   "COMM_ST": {
    "name": "Communication Studies",
-   "abbr": "COMM_ST",
+   "abbr": "COMM ST",
    "main": false
   },
   "COMP_SCI": {
@@ -51,7 +51,7 @@
   },
   "DATA_ENG": {
    "name": "Data Science & Engineering",
-   "abbr": "DATA_ENG",
+   "abbr": "DATA ENG",
    "main": false
   },
   "DSGN": {
@@ -91,7 +91,7 @@
   },
   "MAT_SCI": {
    "name": "Materials Science & Engineering",
-   "abbr": "MSE",
+   "abbr": "MAT_SCI",
    "main": false
   },
   "MECH_ENG": {
@@ -101,7 +101,7 @@
   },
   "PERF_ST": {
    "name": "Performance Studies",
-   "abbr": "PERF_ST",
+   "abbr": "PERF ST",
    "main": false
   },
   "PHYSICS": {
@@ -6137,7 +6137,8 @@
    "url": "https://catalogs.northwestern.edu/search/?P=DATA_ENG%20300-0",
    "links": [
     "DATA_ENG 200-0"
-   ]
+   ],
+   "autoPrereq": "DATA_ENG 200-0"
   },
   {
    "id": "DSGN 106-1",
@@ -6371,7 +6372,8 @@
    "text": "Prerequisite: COMP_SCI 1CA or instructor permission. Students may not receive credit for both GEN_ENG 151-0 and COMP_SCI 150-0 or GEN_ENG 150-0 .",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20151-0"
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20151-0",
+   "autoPrereq": null
   },
   {
    "id": "GEN_ENG 205-1",
@@ -6406,7 +6408,8 @@
    "text": "Prerequisite: consent of instructor.",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-1"
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-1",
+   "autoPrereq": null
   },
   {
    "id": "GEN_ENG 231-0",
@@ -6428,7 +6431,18 @@
     "GEN_ENG 150-0",
     "GEN_ENG 151-0",
     "MATH 220-2"
-   ]
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
   },
   {
    "id": "GEN_ENG 241-0",
@@ -6448,8 +6462,20 @@
    "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20241-0",
    "links": [
     "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
     "MATH 220-2"
-   ]
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
   },
   {
    "id": "GEN_ENG 251-0",
@@ -6474,7 +6500,19 @@
     "GEN_ENG 241-0",
     "MATH 220-2",
     "PHYSICS 135-1"
-   ]
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
   },
   {
    "id": "IEMS 201-0",
@@ -6605,7 +6643,13 @@
    "links": [
     "IEMS 201-0",
     "IEMS 303-0"
-   ]
+   ],
+   "autoPrereq": {
+    "and": [
+     "IEMS 201-0",
+     "IEMS 303-0"
+    ]
+   }
   },
   {
    "id": "IEMS 313-0",
@@ -6654,7 +6698,13 @@
    "links": [
     "DSGN 106-1",
     "DSGN 106-2"
-   ]
+   ],
+   "autoPrereq": {
+    "and": [
+     "DSGN 106-1",
+     "DSGN 106-2"
+    ]
+   }
   },
   {
    "id": "IEMS 341-0",
@@ -7661,7 +7711,21 @@
     "COMP_SCI 150-0",
     "GEN_ENG 150-0",
     "GEN_ENG 151-0"
-   ]
+   ],
+   "autoPrereq": {
+    "and": [
+     "MECH_ENG 224-0",
+     {
+      "or": [
+       "COMP_SCI 110-0",
+       "COMP_SCI 111-0",
+       "COMP_SCI 150-0",
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "MECH_ENG 329-0",

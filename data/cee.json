@@ -1,0 +1,3241 @@
+{
+ "id": "cee",
+ "name": "Civil & Environmental Engineering",
+ "generated": "2026-10-26",
+ "catalogYear": "2026-2027",
+ "quarters": [
+  "Fall 2026",
+  "Winter 2027",
+  "Spring 2027"
+ ],
+ "departments": {
+  "CIV_ENV": {
+   "name": "Civil and Environmental Engineering",
+   "abbr": "CIV ENV",
+   "main": true
+  },
+  "ART_HIST": {
+   "name": "Art History",
+   "abbr": "ART HIST",
+   "main": false
+  },
+  "BMD_ENG": {
+   "name": "Biomedical Engineering",
+   "abbr": "BME",
+   "main": false
+  },
+  "CHEM": {
+   "name": "Chemistry",
+   "abbr": "CHEM",
+   "main": false
+  },
+  "CHEM_ENG": {
+   "name": "Chemical Engineering",
+   "abbr": "CHEM ENG",
+   "main": false
+  },
+  "COMM_ST": {
+   "name": "Communication Studies",
+   "abbr": "COMM ST",
+   "main": false
+  },
+  "DSGN": {
+   "name": "Segal Design Institute",
+   "abbr": "DSGN",
+   "main": false
+  },
+  "EARTH": {
+   "name": "Earth and Planetary Sciences",
+   "abbr": "EARTH",
+   "main": false
+  },
+  "ENGLISH": {
+   "name": "English",
+   "abbr": "ENGLISH",
+   "main": false
+  },
+  "ENTREP": {
+   "name": "Entrepreneurship & Innovation",
+   "abbr": "ENTREP",
+   "main": false
+  },
+  "GEN_ENG": {
+   "name": "General Engineering",
+   "abbr": "GEN ENG",
+   "main": false
+  },
+  "MATH": {
+   "name": "Mathematics",
+   "abbr": "MATH",
+   "main": false
+  },
+  "MAT_SCI": {
+   "name": "Materials Science & Engineering",
+   "abbr": "MAT_SCI",
+   "main": false
+  },
+  "MECH_ENG": {
+   "name": "Mechanical Engineering",
+   "abbr": "ME",
+   "main": false
+  },
+  "PERF_ST": {
+   "name": "Performance Studies",
+   "abbr": "PERF ST",
+   "main": false
+  },
+  "PHYSICS": {
+   "name": "Physics",
+   "abbr": "PHYS",
+   "main": false
+  },
+  "PRDV": {
+   "name": "Personal Development",
+   "abbr": "PRDV",
+   "main": false
+  }
+ },
+ "programs": [
+  {
+   "id": "civil-bs",
+   "name": "Civil Engineering BS",
+   "short": "Civil BS",
+   "type": "major",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/civil-environmental-engineering/civil-engineering-degree/",
+   "default": true,
+   "lists": [
+    {
+     "label": "Mathematics",
+     "kind": "core",
+     "need": 4,
+     "items": [
+      [
+       [
+        "MATH 220-1"
+       ]
+      ],
+      [
+       [
+        "MATH 220-2"
+       ]
+      ],
+      [
+       [
+        "MATH 228-1"
+       ]
+      ],
+      [
+       [
+        "MATH 228-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Basic science",
+     "kind": "core",
+     "need": 4,
+     "items": [
+      [
+       [
+        "PHYSICS 135-2"
+       ]
+      ],
+      [
+       [
+        "CHEM 131-0"
+       ],
+       [
+        "CHEM 151-0"
+       ],
+       [
+        "CHEM 171-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 203-0"
+       ],
+       [
+        "EARTH 214-0"
+       ],
+       [
+        "EARTH 215-0"
+       ]
+      ],
+      [
+       [
+        "EARTH 214-0"
+       ],
+       [
+        "EARTH 215-0"
+       ],
+       [
+        "CIV_ENV 203-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Engineering foundations",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "GEN_ENG 150-0"
+       ],
+       [
+        "GEN_ENG 151-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 231-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 241-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Design and writing",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "DSGN 106-1",
+        "DSGN 106-2"
+       ]
+      ],
+      [
+       [
+        "ENGLISH 106-1",
+        "ENGLISH 106-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Speaking or innovation",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMM_ST 102-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 225-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 325-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 103-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 203-0"
+       ]
+      ],
+      [
+       [
+        "PRDV 335-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 390-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Civil engineering foundations",
+     "kind": "required",
+     "need": 8,
+     "items": [
+      [
+       [
+        "CIV_ENV 202-0"
+       ],
+       [
+        "CIV_ENV 220-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 216-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 304-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 211-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 212-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 251-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 222-0"
+       ],
+       [
+        "BMD_ENG 250-0"
+       ],
+       [
+        "CHEM_ENG 211-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 241-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Civil engineering breadth",
+     "kind": "required",
+     "need": 4,
+     "items": [
+      [
+       [
+        "CIV_ENV 221-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 250-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 260-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 371-0"
+       ],
+       [
+        "CIV_ENV 376-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Design courses",
+     "kind": "design",
+     "need": 2,
+     "items": [
+      [
+       [
+        "CIV_ENV 201-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 382-1",
+        "CIV_ENV 382-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Professional development",
+     "kind": "required",
+     "need": 1,
+     "items": [
+      [
+       [
+        "CIV_ENV 301-1"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "1 unit in biological sciences, or",
+    "1 additional unit in biological sciences (200-level or higher), chemistry, or physics, or",
+    "1 unit of unrestricted electives is from Chemistry lab, PHYSICS 136-2 , and CIV_ENV 301-",
+    "300 level or higher in mathematics, science, engineering, or another area supporting the area of specialization. Choose from an approved list available in Undergraduate CIV_ENV Handbook.",
+    "Core courses (26 units)",
+    "4 mathematics courses",
+    "3 engineering foundations courses",
+    "3 design, communications, and innovation courses",
+    "7 social sciences/humanities courses",
+    "5 unrestricted electives",
+    "Major Program (22 units)",
+    "4 courses chosen from the focus areas below",
+    "4 technical elective courses"
+   ]
+  },
+  {
+   "id": "env-bs",
+   "name": "Environmental Engineering BS",
+   "short": "Env Eng BS",
+   "type": "major",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/civil-environmental-engineering/environmental-engineering-degree/",
+   "default": false,
+   "lists": [
+    {
+     "label": "Mathematics",
+     "kind": "core",
+     "need": 4,
+     "items": [
+      [
+       [
+        "MATH 220-1"
+       ]
+      ],
+      [
+       [
+        "MATH 220-2"
+       ]
+      ],
+      [
+       [
+        "MATH 228-1"
+       ]
+      ],
+      [
+       [
+        "MATH 228-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Basic science",
+     "kind": "core",
+     "need": 2,
+     "items": [
+      [
+       [
+        "PHYSICS 135-2",
+        "PHYSICS 136-2"
+       ]
+      ],
+      [
+       [
+        "CHEM 131-0",
+        "CHEM 132-0",
+        "CHEM 141-0",
+        "CHEM 142-0"
+       ],
+       [
+        "CHEM 151-0",
+        "CHEM 152-0",
+        "CHEM 161-0",
+        "CHEM 162-0"
+       ],
+       [
+        "CHEM 171-0",
+        "CHEM 172-0",
+        "CHEM 181-0",
+        "CHEM 182-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Engineering foundations",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "GEN_ENG 150-0"
+       ],
+       [
+        "GEN_ENG 151-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 231-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 241-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Design and writing",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "DSGN 106-1",
+        "DSGN 106-2"
+       ]
+      ],
+      [
+       [
+        "ENGLISH 106-1",
+        "ENGLISH 106-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Speaking or innovation",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMM_ST 102-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 225-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 325-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 103-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 203-0"
+       ]
+      ],
+      [
+       [
+        "PRDV 335-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 390-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Gateway courses",
+     "kind": "required",
+     "need": 3,
+     "items": [
+      [
+       [
+        "CIV_ENV 201-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 202-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 203-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Basic engineering",
+     "kind": "required",
+     "need": 7,
+     "items": [
+      [
+       [
+        "BMD_ENG 250-0"
+       ],
+       [
+        "CHEM_ENG 211-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 304-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 211-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 212-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 251-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 201-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 241-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Environmental engineering core",
+     "kind": "required",
+     "need": 8,
+     "items": [
+      [
+       [
+        "CHEM 215-1"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 260-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 361-1"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 346-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 364-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 365-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 366-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 367-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Capstone design",
+     "kind": "design",
+     "need": 1,
+     "items": [
+      [
+       [
+        "CIV_ENV 382-1",
+        "CIV_ENV 382-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Professional development",
+     "kind": "required",
+     "need": 1,
+     "items": [
+      [
+       [
+        "CIV_ENV 301-1"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "Major Program (22 units)",
+    "3 technical elective courses"
+   ]
+  },
+  {
+   "id": "env-minor",
+   "name": "Environmental Engineering minor",
+   "short": "Env Eng minor",
+   "type": "minor",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/civil-environmental-engineering/environmental-engineering-minor/",
+   "default": false,
+   "lists": [
+    {
+     "label": "Core courses",
+     "kind": "required",
+     "need": 6,
+     "items": [
+      [
+       [
+        "CIV_ENV 201-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 202-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 203-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 260-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 346-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 364-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Electives",
+     "kind": "elective",
+     "need": 2,
+     "items": [
+      [
+       [
+        "CIV_ENV 361-1"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 361-2"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 366-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 367-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 368-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 370-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 399-0"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "400-level course by permission"
+   ]
+  },
+  {
+   "id": "arch-minor",
+   "name": "Architectural Engineering and Design minor",
+   "short": "Arch Eng minor",
+   "type": "minor",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/civil-environmental-engineering/architectural-engineering-design-minor/",
+   "default": false,
+   "lists": [
+    {
+     "label": "Architectural seminar",
+     "kind": "required",
+     "need": 3,
+     "items": [
+      [
+       [
+        "CIV_ENV 280-1"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 280-2"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 280-3"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Core courses",
+     "kind": "required",
+     "need": 3,
+     "items": [
+      [
+       [
+        "CIV_ENV 385-1"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 385-2"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 385-3"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Architecture history",
+     "kind": "elective",
+     "need": 2,
+     "items": [
+      [
+       [
+        "CIV_ENV 220-0"
+       ]
+      ],
+      [
+       [
+        "ART_HIST 232-0"
+       ]
+      ],
+      [
+       [
+        "ART_HIST 370-1"
+       ]
+      ],
+      [
+       [
+        "ART_HIST 370-2"
+       ]
+      ],
+      [
+       [
+        "ART_HIST 378-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Design and analysis techniques",
+     "kind": "design",
+     "need": 3,
+     "items": [
+      [
+       [
+        "CIV_ENV 323-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 325-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 352-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 353-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 368-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 386-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 387-0"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 388-1"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 388-2"
+       ]
+      ],
+      [
+       [
+        "CIV_ENV 395-0"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "Minor Requirements (8 units)"
+   ]
+  }
+ ],
+ "sources": [
+  "https://catalogs.northwestern.edu/undergraduate/courses-az/civ_env/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/civil-environmental-engineering/civil-engineering-degree/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/civil-environmental-engineering/environmental-engineering-degree/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/civil-environmental-engineering/environmental-engineering-minor/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/civil-environmental-engineering/architectural-engineering-design-minor/",
+  "https://www.mccormick.northwestern.edu/civil-environmental/academics/courses/"
+ ],
+ "courses": [
+  {
+   "id": "CIV_ENV 101-0",
+   "dept": "CIV_ENV",
+   "num": "101-0",
+   "title": "Introduction to Civil and Environmental Engineering",
+   "units": 0.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "In this seminar course we discuss the grand challenges facing society in the coming decades, and how Civil and Environmental Engineers are meeting these challenges. Seminars will focus on key CE and EE topics, the CE & EE curricula at NU, and the career paths of recent CE & EE graduates.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "W 5:00-5:50 · Garcia"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20101-0"
+  },
+  {
+   "id": "CIV_ENV 201-0",
+   "dept": "CIV_ENV",
+   "num": "201-0",
+   "title": "Cornerstone Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": "CIV_ENV 301-1",
+   "recommended": [],
+   "notes": [],
+   "desc": "Explore how civil and environmental engineers define problems, evaluate alternatives, and develop sustainable, ethical design solutions. Learn key components of engineering infrastructure systems and practice them using industry-standard modeling and analysis tools. Through integrated lab work and a team-based infrastructure project, students develop schematic designs supported by technical, economic, and community considerations.",
+   "text": "Corequisite: CIV_ENV 301-1 Cornerstone Design Lab.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MWF 10:00-10:50 · Garcia"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20201-0"
+  },
+  {
+   "id": "CIV_ENV 202-0",
+   "dept": "CIV_ENV",
+   "num": "202-0",
+   "title": "Biological and Ecological Principles",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MATH 220-2",
+     {
+      "or": [
+       "CHEM 131-0",
+       "CHEM 151-0",
+       "CHEM 171-0"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamentals of biology - including cell biology, genetics, and biochemistry - and ecology - including biological interactions, microbial ecology - and biogeochemical cycling as they apply to natural and engineered systems. Bioinformatics tools necessary for analyzing biological and ecological data.",
+   "text": "Prerequisites: MATH 220-2 ; CHEM 131-0 , CHEM 151-0 , or CHEM 171-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 11:00-11:50 · Hartmann"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20202-0"
+  },
+  {
+   "id": "CIV_ENV 203-0",
+   "dept": "CIV_ENV",
+   "num": "203-0",
+   "title": "Earth in the Anthropocene",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MATH 220-2",
+   "coreq": null,
+   "recommended": [
+    "CHEM 131-0",
+    "CHEM 151-0",
+    "CHEM 171-0"
+   ],
+   "notes": [],
+   "desc": "Fundamentals of Earth system science and their connections to the need for humans to develop food, water, energy and infrastructure systems that has led to transformation of the Earth's surface and of its atmosphere.",
+   "text": "Prerequisite: MATH 220-2 ; CHEM 131-0 , CHEM 151-0 , or CHEM 171-0 is highly recommended.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MWF 10:00-10:50 · Gaillard"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20203-0"
+  },
+  {
+   "id": "CIV_ENV 205-0",
+   "dept": "CIV_ENV",
+   "num": "205-0",
+   "title": "Economics and Finance for Engineers",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MATH 220-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Principles of corporate finance; financial decisions of firms; value; risk and return; investment and capital budgeting decisions under certainty and uncertainty; performance evaluation. May not be taken for credit with or after KELLG_FE 310-0.",
+   "text": "Prerequisite: MATH 220-1 ; basic understanding of probability and economics recommended.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 3:30-4:50 · Pablo Texeira Manion · (Lab: W 4:00-4:50 or 12:00-12:50)",
+    "Spring 2027": "MW 3:00-4:20 · Durango-Cohen, Pablo · (Lab: T 12:00-12:50 or 4:00-4:50)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20205-0"
+  },
+  {
+   "id": "CIV_ENV 216-0",
+   "dept": "CIV_ENV",
+   "num": "216-0",
+   "title": "Mechanics of Materials I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "GEN_ENG 205-2",
+     "GEN_ENG 206-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Analytical and experimental study of stresses and deformations and their application to the design of machine and structural elements subjected to static, dynamic, and repeated loads.",
+   "text": "Prerequisite: GEN_ENG 205-2 or GEN_ENG 206-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20216-0"
+  },
+  {
+   "id": "CIV_ENV 220-0",
+   "dept": "CIV_ENV",
+   "num": "220-0",
+   "title": "Structural Art",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Learn how to interpret and understand the built environment through an examination of the history of structural engineering as a creative art, with particular emphasis on technical, visual, and social analysis and critique of bridges, buildings, and designers.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MW 1:00-2:20 · Alarcon"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20220-0"
+  },
+  {
+   "id": "CIV_ENV 221-0",
+   "dept": "CIV_ENV",
+   "num": "221-0",
+   "title": "Theory of Structures I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 216-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Deflections of structures, energy concepts, idealization of structures, truss analysis, column stability, and influence lines. Introduction to indeterminate truss and frame analyses, slope-deflection analysis, and moment distribution. Portal method.",
+   "text": "Prerequisite: CIV_ENV 216-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 1:00-1:50 · Garcia · (Lab: TH 9:30-10:50)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20221-0"
+  },
+  {
+   "id": "CIV_ENV 250-0",
+   "dept": "CIV_ENV",
+   "num": "250-0",
+   "title": "Earth Surface Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MECH_ENG 241-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamental properties and behavior of soils as engineering materials. Origin of soils through the properties of soil components to the strength, permeability, and deformation of soil masses.",
+   "text": "Prerequisite: MECH_ENG 241-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 10:00-10:50 · Rotta Loria · (Lab: T 9:30-12:20)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20250-0"
+  },
+  {
+   "id": "CIV_ENV 260-0",
+   "dept": "CIV_ENV",
+   "num": "260-0",
+   "title": "Environmental Systems and Processes",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": "MATH 220-2",
+   "recommended": [
+    "CHEM 131-0",
+    "CHEM 151-0",
+    "CHEM 171-0"
+   ],
+   "notes": [],
+   "desc": "Basic engineering principles required for the design, operation, analysis, and modeling of both natural and engineered systems and their application to major issues facing human and environmental health of ecosystems.",
+   "text": "Corequisite: MATH 220-2 ; CHEM 131-0 , CHEM 151-0 , or CHEM 171-0 highly recommended.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MWF 9:00-9:50 · TBD · (Lab: M 2:00-3:50 or M 4:00-5:50)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20260-0"
+  },
+  {
+   "id": "CIV_ENV 280-1",
+   "dept": "CIV_ENV",
+   "num": "280-1",
+   "title": "Architectural Engineering & Design Seminar I",
+   "units": 0.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "First course in the AED seminar series. Students will learn from practicing architects and engineers, and will also conduct independent studies culminating in their own seminars to the class.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "M 11:00-11:50 · Chinazzo",
+    "Winter 2027": "M 11:00-11:50 · Chinazzo",
+    "Spring 2027": "M 11:00-11:50 · Chinazzo"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20280-1"
+  },
+  {
+   "id": "CIV_ENV 280-2",
+   "dept": "CIV_ENV",
+   "num": "280-2",
+   "title": "Architectural Engineering & Design Seminar II",
+   "units": 0.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Second course in the AED seminar series. Students will learn from practicing architects and engineers, and will also conduct independent studies culminating in their own seminars to the class.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "M 11:00-11:50 · Chinazzo",
+    "Winter 2027": "M 11:00-11:50 · Chinazzo",
+    "Spring 2027": "M 11:00-11:50 · Chinazzo"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20280-2"
+  },
+  {
+   "id": "CIV_ENV 280-3",
+   "dept": "CIV_ENV",
+   "num": "280-3",
+   "title": "Architectural Engineering & Design Seminar III",
+   "units": 0.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Third course in the AED seminar series. Students will learn from practicing architects and engineers, and will also conduct independent studies culminating in their own seminars to the class.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "M 11:00-11:50 · Chinazzo",
+    "Winter 2027": "M 11:00-11:50 · Chinazzo",
+    "Spring 2027": "M 11:00-11:50 · Chinazzo"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20280-3"
+  },
+  {
+   "id": "CIV_ENV 295-0",
+   "dept": "CIV_ENV",
+   "num": "295-0",
+   "title": "Introductory topics in Civil and Environmental Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Intermediate-level study of topics suggested by students or faculty members and approved by the department.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20295-0"
+  },
+  {
+   "id": "CIV_ENV 301-1",
+   "dept": "CIV_ENV",
+   "num": "301-1",
+   "title": "Cornerstone Design Lab",
+   "units": 0.34,
+   "role": "main",
+   "prereq": null,
+   "coreq": "CIV_ENV 201-0",
+   "recommended": [],
+   "notes": [],
+   "desc": "CIV_ENV 201-0 Lab component. Students develop familiarity with industry-standard modeling and analysis tools through developing schematic designs supported by technical, economic, and community considerations.",
+   "text": "Corequisite: CIV_ENV 201-0 Cornerstone Design.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "Th 2:00-3:20 · Garcia"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20301-1"
+  },
+  {
+   "id": "CIV_ENV 301-2",
+   "dept": "CIV_ENV",
+   "num": "301-2",
+   "title": "Professional Development Seminar II",
+   "units": 0.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Preparation for the Fundamentals of Engineering (FE) exam.",
+   "text": "Prerequisite: senior engineering standing.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "Th 3:30-4:20 · Wells/Garcia"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20301-2"
+  },
+  {
+   "id": "CIV_ENV 302-0",
+   "dept": "CIV_ENV",
+   "num": "302-0",
+   "title": "Engineering Law",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The American legal system from an engineer's perspective. Socratic-method analysis of statutory and case law. Contract, patent, corporation, antitrust, property, and environmental law. Torts, product liability, and arbitration.",
+   "text": "Prerequisite: junior engineering standing.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20302-0"
+  },
+  {
+   "id": "CIV_ENV 303-0",
+   "dept": "CIV_ENV",
+   "num": "303-0",
+   "title": "Environmental Law and Policy",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "senior standing"
+   ],
+   "desc": "An introduction to important aspects of environmental law and policy. Covers a wide range of environmental topics, with a focus on major federal environmental statutes.",
+   "text": "Prerequisite: junior or senior standing.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TH 3:30-6:20 · Harley"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20303-0"
+  },
+  {
+   "id": "CIV_ENV 304-0",
+   "dept": "CIV_ENV",
+   "num": "304-0",
+   "title": "Civil and Environmental Engineering Systems Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MATH 220-2",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Quantitative techniques to develop descriptive and prescriptive models that support efficient planning and management of civil and environmental engineering systems.",
+   "text": "Prerequisite: MATH 220-2 or equivalent.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTh 9:30-10:50 · Durango-Cohen, Pablo"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20304-0"
+  },
+  {
+   "id": "CIV_ENV 306-0",
+   "dept": "CIV_ENV",
+   "num": "306-0",
+   "title": "Uncertainty Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Probability, statistics, and decision theory. Discrete and continuous random variables, marginal and conditional distributions, moments, statistical model selection and significance tests, hypothesis testing, and elementary Bayesian decision theory. Application to problems in soil mechanics, water resources, transportation, and structures.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 12:00-12:50, T 12:30-1:20 · Chen"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20306-0"
+  },
+  {
+   "id": "CIV_ENV 308-0",
+   "dept": "CIV_ENV",
+   "num": "308-0",
+   "title": "Environmental Justice",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course will examine evidence that there is not equal environmental protection in this country and analyze why this inequality exists. Course participants will review evidence of environmental injustice, with attention to perspectives of grassroots organizations, the U.S. EPA, and businesses. The course will explore why civil and human rights have become important aspects of environmental protection activities worldwide.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "F 4:00-6:50 · Harley"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20308-0"
+  },
+  {
+   "id": "CIV_ENV 309-0",
+   "dept": "CIV_ENV",
+   "num": "309-0",
+   "title": "Climate and Energy - Law and Policy",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course is a survey of the major laws that regulate the acquisition of energy resources, the conversion of energy resources into usable energy, the energy transmission and transportation infrastructure and the climate change implications of these activities.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "F 4:00-6:50 · Harley"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20309-0"
+  },
+  {
+   "id": "CIV_ENV 314-0",
+   "dept": "CIV_ENV",
+   "num": "314-0",
+   "title": "Organic Geochemistry",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The sources and fates of organic matter in the natural environment; global cycling of organic carbon; applications to the study of modern and ancient environments. Taught with EARTH 314-0; may not receive credit for both courses.",
+   "text": "Prerequisites: 1 course in earth and planetary sciences or environmental sciences; 1 course in chemistry.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20314-0"
+  },
+  {
+   "id": "CIV_ENV 317-0",
+   "dept": "CIV_ENV",
+   "num": "317-0",
+   "title": "Biogeochemistry",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Cycling of biogenic elements (C, N, S, Fe, Mn) in surficial environments. Emphasis on microbial processes and isotopic signatures.",
+   "text": "Prerequisites: 1 quarter of chemistry; 1 quarter of geoscience, environmental sciences, or biological sciences.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20317-0"
+  },
+  {
+   "id": "CIV_ENV 320-0",
+   "dept": "CIV_ENV",
+   "num": "320-0",
+   "title": "Structural Analysis--Dynamics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 221-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Single and multiple degree-of-freedom systems subjected to periodic, seismic, and general loadings. Time-history analysis of linear and nonlinear systems. Design methods for earthquakes.",
+   "text": "Prerequisite: CIV_ENV 221-0 .",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MW 12:00-1:20 · Balogun"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20320-0"
+  },
+  {
+   "id": "CIV_ENV 321-0",
+   "dept": "CIV_ENV",
+   "num": "321-0",
+   "title": "Concrete Properties",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Concrete as a composite material; relationship between constitutive laws and microstructure; failure theories; fracture; fatigue; strain rate effects; destructive and nondestructive testing; creep and shrinkage; chemistry of cement hydration; admixtures; aggregates; proportioning; new materials.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20321-0"
+  },
+  {
+   "id": "CIV_ENV 323-0",
+   "dept": "CIV_ENV",
+   "num": "323-0",
+   "title": "Structural Steel Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "CIV_ENV 216-0",
+     "CIV_ENV 221-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Rational basis of structural design. Design approach for structural-steel components of a building system.",
+   "text": "Prerequisites: CIV_ENV 216-0 ; CIV_ENV 221-0 or equivalent.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "TTh 10:00-11:20 · Alacron · (Lab: W 2:00-3:20)",
+    "Spring 2027": "MWF 10:00-10:50 · Garcia · (Lab: T 10:00-11:20)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20323-0"
+  },
+  {
+   "id": "CIV_ENV 325-0",
+   "dept": "CIV_ENV",
+   "num": "325-0",
+   "title": "Reinforced Concrete",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 221-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamentals of reinforced concrete theory and design. Analysis and design of beams, slabs, and columns. Concurrent familiarization with current building codes, specifications, and practices.",
+   "text": "Prerequisite: CIV_ENV 221-0 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MWF 2:00-2:50 · Cusatis · (Lab: Discussion: T 2:30-3:20)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20325-0"
+  },
+  {
+   "id": "CIV_ENV 326-0",
+   "dept": "CIV_ENV",
+   "num": "326-0",
+   "title": "Engineering Forensics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 221-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to failure analysis and forensic engineering to describe how these investigative procedures contribute to regulations, engineering design, safety principles, and the economic aspects of structure engineering.",
+   "text": "Prerequisite: CIV_ENV 221-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20326-0"
+  },
+  {
+   "id": "CIV_ENV 327-0",
+   "dept": "CIV_ENV",
+   "num": "327-0",
+   "title": "Finite Element Methods in Mechanics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development of finite elements from variational principles and application to static stress analysis. Introduction to techniques for transient and generalized field problems. Computer implementation of finite element techniques. Taught with MECH_ENG 327-0; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 12:30-1:50 · Bahmani"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20327-0"
+  },
+  {
+   "id": "CIV_ENV 328-0",
+   "dept": "CIV_ENV",
+   "num": "328-0",
+   "title": "Computational Forensics and Failure Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The course will cover the use of the scientific method for accident investigation, hypothesis development, and the use of the finite element method to analyze the root cause of a failure. Practical application problems for both civil and mechanical structures will be analyzed using commercial finite element codes (Abaqus, Hypermesh, LS-Dyna) Prerequiste: CIV_ENV 327-0 or MECH_ENG 327-0.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTh 3:30-4:50 · Fleming"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20328-0"
+  },
+  {
+   "id": "CIV_ENV 330-0",
+   "dept": "CIV_ENV",
+   "num": "330-0",
+   "title": "Engineering Project Management",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Techniques for coordinating decisions and actions of various parties in the design and construction of civil and environmental engineering projects. Delivery systems; preconstruction services; project planning; cost control and value engineering; bidding.",
+   "text": "Prerequisite: instructor consent.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "F 4:00-6:50 · Hadavi"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20330-0"
+  },
+  {
+   "id": "CIV_ENV 346-0",
+   "dept": "CIV_ENV",
+   "num": "346-0",
+   "title": "Ecohydrology",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 260-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Interactions between water and ecosystems in freshwater, terrestrial, and urban environments. Feedbacks between ecological and hydrological processes. Engineering of ecosystems such as constructed wetlands, green roofs, and other green infrastructure for resilient and sustainable water management.",
+   "text": "Prerequisites:Students must have taken CIV_ENV 260, one course in fluid mechanics, or have graduate standing.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MW 12:30-1:50 · Packman · (Lab: F 12:30-1:50)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20346-0"
+  },
+  {
+   "id": "CIV_ENV 352-0",
+   "dept": "CIV_ENV",
+   "num": "352-0",
+   "title": "Foundation Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 250-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Application of soil mechanics to analysis and design of foundations and embankments. Settlement of structures, bearing capacities of shallow and deep foundations, earth pressures on retaining structures, and slope stability.",
+   "text": "Prerequisite: CIV_ENV 250-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20352-0"
+  },
+  {
+   "id": "CIV_ENV 353-0",
+   "dept": "CIV_ENV",
+   "num": "353-0",
+   "title": "Energy Geostructures & Geosystems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course focuses on energy geostructures and geosystems: novel earth-contact technologies that provide renewable energy supply and structural support to any built environment. The course comprises theoretical and practical sessions. The theoretical sessions expand on the analysis and design of such technologies from energy, geotechnical and structural perspectives. The practical sessions simulate an actual design project of energy geostructures.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MW 12:30-1:50 · Rotta Loria",
+    "Spring 2027": "MW 12:30-1:50 · Rotta Loria"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20353-0"
+  },
+  {
+   "id": "CIV_ENV 361-1",
+   "dept": "CIV_ENV",
+   "num": "361-1",
+   "title": "Environmental Microbiology",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Basic principles and practical applications of microbiology to environmental issues, such as microbial contamination, degradation of organic contaminants, production of alternative fuels, and global climate change.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MW 2:00-3:50 · Marcelino"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20361-1"
+  },
+  {
+   "id": "CIV_ENV 361-2",
+   "dept": "CIV_ENV",
+   "num": "361-2",
+   "title": "Public & Environmental Health",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 361-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Current problems in public and environmental health, such as the worldwide burden of major infectious diseases, emergence of new pathogens, and environmental reservoirs of infectious organisms.",
+   "text": "Prerequisite: CIV_ENV 361-1 or consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTh 9:30-10:50 · Marcelino"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20361-2"
+  },
+  {
+   "id": "CIV_ENV 364-0",
+   "dept": "CIV_ENV",
+   "num": "364-0",
+   "title": "Sustainable Water Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "CIV_ENV 260-0",
+     "MECH_ENG 241-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "An overview of the engineered water cycle focusing the fundamental principles as well as the design and assessment methods for physical, chemical and biological treatment unit processes for drinking water treatment, used water treatment and reuse, and emerging issues such as the energy-food-water nexus.",
+   "text": "Prerequisites: CIV_ENV 260-0 , MECH_ENG 241-0 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MWF 10:00-10:50 · Wells · (Lab: M 2:00-2:50)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20364-0"
+  },
+  {
+   "id": "CIV_ENV 365-0",
+   "dept": "CIV_ENV",
+   "num": "365-0",
+   "title": "Environmental Laboratory",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 367-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical and microbiological aspects of environmental engineering and science are explored through an integrated laboratory course.",
+   "text": "Prerequisite: CIV_ENV 367-0 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "Xiong · (Lab: T 1:00-4:50)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20365-0"
+  },
+  {
+   "id": "CIV_ENV 366-0",
+   "dept": "CIV_ENV",
+   "num": "366-0",
+   "title": "Dynamics in Chemical Transport and Reaction",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 260-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Application of environmental engineering fundamentals to evaluate, model, and develop engineering solutions for different environmental contamination scenarios.",
+   "text": "Prerequisite: CIV_ENV 260 or instructor consent.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MW 11:00-12:20 · Aristilde"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20366-0"
+  },
+  {
+   "id": "CIV_ENV 367-0",
+   "dept": "CIV_ENV",
+   "num": "367-0",
+   "title": "Chemical Processes in Aquatic Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "BMD_ENG 250-0",
+     "CHEM_ENG 211-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical principles for understanding and predicting the chemical composition and evolution of natural waters using an equilibrium approach. Applications to environmental issues such as metal speciation and toxicity, ocean acidification, carbon storage.",
+   "text": "Prerequisite: BMD_ENG 250-0 or CHEM_ENG 211-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 9:00-9:50 · Gaillard · (Lab: Th 12:30-1:50)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20367-0"
+  },
+  {
+   "id": "CIV_ENV 368-0",
+   "dept": "CIV_ENV",
+   "num": "368-0",
+   "title": "Sustainability: The City",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Exploration of the issues that motivate the design and engineering of sustainable resource use and development.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "T 3:30-6:20 · Gray"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20368-0"
+  },
+  {
+   "id": "CIV_ENV 370-0",
+   "dept": "CIV_ENV",
+   "num": "370-0",
+   "title": "Emerging Organic Contaminants",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CHEM 210-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Fundamental molecular processes that govern the fate and transformation of emerging organic contaminants in natural and engineered environmental systems.",
+   "text": "Prerequisite: CHEM 210-1 or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20370-0"
+  },
+  {
+   "id": "CIV_ENV 371-0",
+   "dept": "CIV_ENV",
+   "num": "371-0",
+   "title": "Introduction to Transportation Planning and Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "junior standing"
+   ],
+   "desc": "Analysis and design of solutions to transportation problems; introduction to selected operations research and statistical analysis techniques; use of case studies in urban transportation, intercity passenger transport, and freight movements.",
+   "text": "Prerequisite: junior standing or consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MW 2:00-3:50 · Stathopoulos · (Lab: F 2:00-3:50)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20371-0"
+  },
+  {
+   "id": "CIV_ENV 374-0",
+   "dept": "CIV_ENV",
+   "num": "374-0",
+   "title": "Data Science for Urban Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduces students to modern data science methodologies tailored for solving complex urban challenges, such as transportation systems, sustainable infrastructure, environmental monitoring, and smart cities.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MW 10:00-10:50 · Chen · (Lab: F 11:00-11:50)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20374-0"
+  },
+  {
+   "id": "CIV_ENV 376-0",
+   "dept": "CIV_ENV",
+   "num": "376-0",
+   "title": "Transportation System Operations",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Traffic-flow theory; vehicle and human factors, capacity analysis, intersection performance and control; management and control of arterial streets and networks; neighborhood traffic restraint, urban transit operations. Operations concepts and theories applied to actual problems through laboratory practice.",
+   "text": "Prerequisite: basic understanding of calculus and statistics; knowledge of MATLAB desirable but not required.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 2:00-3:50 · Nie"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20376-0"
+  },
+  {
+   "id": "CIV_ENV 377-0",
+   "dept": "CIV_ENV",
+   "num": "377-0",
+   "title": "Choice Modelling in Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course focuses on the theory and practice of survey design, data and analysis. In this course students will learn the theories and scientific debates around the design, administration and analysis of various types of behavioral data-collection methods.\"",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MW 10:00-11:50 · Stathopoulos"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20377-0"
+  },
+  {
+   "id": "CIV_ENV 382-1",
+   "dept": "CIV_ENV",
+   "num": "382-1",
+   "title": "Capstone Design I",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "senior standing"
+   ],
+   "desc": "Culminating team-based design experience in civil and environmental engineering, with an overview of the function, design, and operations of modern infrastructure systems. Part 1 of 2-course sequence.",
+   "text": "Prerequisite: senior standing in civil or environmental engineering or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20382-1"
+  },
+  {
+   "id": "CIV_ENV 382-2",
+   "dept": "CIV_ENV",
+   "num": "382-2",
+   "title": "Capstone Design II",
+   "units": 0.5,
+   "role": "main",
+   "prereq": "CIV_ENV 382-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Culminating team-based design experience in civil and environmental engineering, with an overview of the function, design, and operations of modern infrastructure systems. Part 2 of 2-course sequence.",
+   "text": "Prerequisite: CIV_ENV 382-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20382-2"
+  },
+  {
+   "id": "CIV_ENV 385-1",
+   "dept": "CIV_ENV",
+   "num": "385-1",
+   "title": "Architectural Engineering and Design 1: Fundamentals",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "junior standing"
+   ],
+   "desc": "Architectural engineering and design studios: architectural history, case studies in design, construction and management of buildings, and drawing and model building. Fundamental studio: basic architectural and structural design of a simple building project.",
+   "text": "Prerequisite: junior standing in engineering or consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTH 4:00-5:50 · Booth/Cyphers"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20385-1"
+  },
+  {
+   "id": "CIV_ENV 385-2",
+   "dept": "CIV_ENV",
+   "num": "385-2",
+   "title": "Architectural Engineering & Design 2: Intermediate",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 385-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "junior standing"
+   ],
+   "desc": "Architectural engineering and design studios: architectural history, case studies in design, construction and management of buildings, and drawing and model building. Intermediate studio: architectural and structural design of a building project with multiple requirements.",
+   "text": "Prerequisites: CIV_ENV 385-1 and junior standing in engineering; or consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTh 4:00-5:50 · Cyphers & Booth"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20385-2"
+  },
+  {
+   "id": "CIV_ENV 385-3",
+   "dept": "CIV_ENV",
+   "num": "385-3",
+   "title": "Architectural Engineering & Design 3: Advanced Studio",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 385-2",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "junior standing"
+   ],
+   "desc": "Architectural engineering and design studios: architectural history, case studies in design, construction and management of buildings, and drawing and model building. Advanced studio: architectural and structural design of a large, complex building project.",
+   "text": "Prerequisites: CIV_ENV 385-2 and junior standing in engineering; or consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTh 4:00-5:50 · Cyphers & Booth"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20385-3"
+  },
+  {
+   "id": "CIV_ENV 386-0",
+   "dept": "CIV_ENV",
+   "num": "386-0",
+   "title": "High Performance Architectural Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Elements of high performance building design and to explore the various matrics used to analyze the relationship between the structure and function of various design alternatives.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MW 4:00-5:50 · Burns"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20386-0"
+  },
+  {
+   "id": "CIV_ENV 387-0",
+   "dept": "CIV_ENV",
+   "num": "387-0",
+   "title": "Design of Sustainable Urban Developments",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "CIV_ENV 386-0",
+     "CIV_ENV 385-1",
+     "CIV_ENV 385-2",
+     "CIV_ENV 385-3"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "instructor consent",
+    "senior standing"
+   ],
+   "desc": "Design high performing neighborhoods, districts and communities that incorporate principles of density, diversity and flexibility around the \"operating system of nature\".",
+   "text": "Prerequisites: CIV_ENV 386-0 , senior standing, consent of instructor; recommend CIV_ENV 385-1 , CIV_ENV 385-2 , and CIV_ENV 385-3 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MW 4:00-5:50 · Reindel"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20387-0"
+  },
+  {
+   "id": "CIV_ENV 388-1",
+   "dept": "CIV_ENV",
+   "num": "388-1",
+   "title": "Building Science I: Fundamentals for Sustainable Buildings",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The course is the first of a two-part series focusing on Building Science. This course aims to provide the fundamental knowledge of the physics related to buildings, focusing on heat and mass transfer, moisture, and the energy consumed in buildings to guarantee the comfort of their occupants.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 2:00-3:20 · Chinazzo"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20388-1"
+  },
+  {
+   "id": "CIV_ENV 388-2",
+   "dept": "CIV_ENV",
+   "num": "388-2",
+   "title": "Building Science II: Application for Sustainable Buildings",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course enriches and applies the concepts learned in CIV_ENV 388-1. The course comprises both theoretical and practical sessions. Theoretical sessions introduce the environmental factors affecting occupants' comfort inside buildings. Practical sessions focus on the design of a virtual project, with calculations related to energy consumption and visual and thermal parameters with the help of computer software.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 2:00-3:20 · Chinazzo"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20388-2"
+  },
+  {
+   "id": "CIV_ENV 395-0",
+   "dept": "CIV_ENV",
+   "num": "395-0",
+   "title": "Special Topics in Civil and Environmental Engrg",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Topics suggested by students or faculty and approved by the department.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20395-0"
+  },
+  {
+   "id": "CIV_ENV 398-1",
+   "dept": "CIV_ENV",
+   "num": "398-1",
+   "title": "Community-based Design 1",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "instructor consent"
+   ],
+   "desc": "Yearlong participation in two-or three-person team projects involving research, analysis, and/or design in the solution of environmental problems affecting primarily lower-income communities. Grade assigned only on completion of both units.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MW 4:00-5:20 · Gray"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20398-1"
+  },
+  {
+   "id": "CIV_ENV 398-2",
+   "dept": "CIV_ENV",
+   "num": "398-2",
+   "title": "Community-based Design 2",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "instructor consent"
+   ],
+   "desc": "Yearlong participation in two-or three-person team projects involving research, analysis, and/or design in the solution of environmental problems affecting primarily lower-income communities. Grade assigned only on completion of both units.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MW 4:00-5:20 · Gray"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20398-2"
+  },
+  {
+   "id": "CIV_ENV 399-0",
+   "dept": "CIV_ENV",
+   "num": "399-0",
+   "title": "Projects",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Special studies under faculty direction. Credit to be arranged.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TBA",
+    "Winter 2027": "TBA",
+    "Spring 2027": "TBA"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20399-0"
+  },
+  {
+   "id": "ART_HIST 232-0",
+   "dept": "ART_HIST",
+   "num": "232-0",
+   "title": "Introduction to the History of Architecture: 1400 to Present",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The theory and history of architecture in relation to cities and landscape; historical periods and regions of focus may vary depending on the instructor.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ART_HIST%20232-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "ART_HIST 370-1",
+   "dept": "ART_HIST",
+   "num": "370-1",
+   "title": "Architecture & Landscapes, 1750?1890",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The history and theory of architecture, especially in relation to cities and landscape, from 1750 to 1890.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ART_HIST%20370-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "ART_HIST 370-2",
+   "dept": "ART_HIST",
+   "num": "370-2",
+   "title": "Architecture & Landscapes, 1890 to Present",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The history and theory of architecture, especially in relation to cities and landscape, after 1890.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ART_HIST%20370-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "ART_HIST 378-0",
+   "dept": "ART_HIST",
+   "num": "378-0",
+   "title": "The Global City",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "An examination of architecture, urbanism, and the city as a socioeconomic system; period and regions of focus vary. Past topics have included Ottoman Istanbul, Babylon, and Tenochtitlan-Mexico City.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ART_HIST%20378-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "BMD_ENG 250-0",
+   "dept": "BMD_ENG",
+   "num": "250-0",
+   "title": "Thermodynamics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Physical and chemical principles as applied to biological systems and medical devices. Topics include material balances, thermodynamics, solution chemistry, electrochemistry, surface chemistry, transport, and kinetics.",
+   "text": "Prerequisites: MATH 228-1 ; CHEM 132-0 , CHEM 152-0 , or CHEM 172-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20250-0",
+   "links": [
+    "CHEM 132-0",
+    "CHEM 152-0",
+    "CHEM 172-0",
+    "MATH 228-1"
+   ]
+  },
+  {
+   "id": "BMD_ENG 390-2",
+   "dept": "BMD_ENG",
+   "num": "390-2",
+   "title": "Biomedical Engineering Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development of a design project initiated during the previous quarter.",
+   "text": "Prerequisite: BMD_ENG 390-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20390-2",
+   "autoPrereq": "BMD_ENG 390-1"
+  },
+  {
+   "id": "CHEM 131-0",
+   "dept": "CHEM",
+   "num": "131-0",
+   "title": "Fundamentals of Chemistry I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Quantum mechanics, electronic structure, periodic properties of elements, chemical bonding, thermodynamics, intermolecular forces, properties of solids and liquids, solutions and colligative properties.",
+   "text": "Prerequisite: CHEM 110-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20131-0"
+  },
+  {
+   "id": "CHEM 132-0",
+   "dept": "CHEM",
+   "num": "132-0",
+   "title": "Fundamentals of Chemistry II",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical equilibrium, aqueous solution equilibria, chemical kinetics, metals in chemistry and biology, oxidation-reduction reactions and electrochemistry.",
+   "text": "Prerequisites: CHEM 131-0 , CHEM 141-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20132-0",
+   "links": [
+    "CHEM 131-0",
+    "CHEM 141-0"
+   ]
+  },
+  {
+   "id": "CHEM 141-0",
+   "dept": "CHEM",
+   "num": "141-0",
+   "title": "Fundamentals of Chemistry Laboratory I",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical analysis of real samples using basic laboratory techniques including titration, colorimetric analysis, density measurements, and atomic spectroscopy. Planning, data collection, interpretation, and reporting on experiments. Must be taken concurrently with CHEM 131-0.",
+   "text": "Prerequisite: CHEM 110-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20141-0"
+  },
+  {
+   "id": "CHEM 142-0",
+   "dept": "CHEM",
+   "num": "142-0",
+   "title": "Fundamentals of Chemistry Laboratory II",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemistry laboratory techniques applied to materials science and nanotechnology, acid-base chemistry, and chemical kinetics. Planning, data collection, interpretation, and reporting on experiments. Must be taken concurrently with CHEM 132-0.",
+   "text": "Prerequisites: CHEM 131-0 , CHEM 141-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20142-0",
+   "links": [
+    "CHEM 131-0",
+    "CHEM 141-0"
+   ]
+  },
+  {
+   "id": "CHEM 151-0",
+   "dept": "CHEM",
+   "num": "151-0",
+   "title": "General Chemistry I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Quantum mechanics, electronic structure, periodic properties of elements, chemical bonding, thermodynamics, gas laws, intermolecular forces, properties of solids and liquids, solutions and colligative properties.",
+   "text": "Prerequisite: permission of department by placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20151-0"
+  },
+  {
+   "id": "CHEM 152-0",
+   "dept": "CHEM",
+   "num": "152-0",
+   "title": "General Chemistry II",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical equilibrium, aqueous solution equilibria, chemical kinetics, metals in chemistry and biology, oxidation-reduction reactions and electrochemistry.",
+   "text": "Prerequisites: CHEM 151-0 , CHEM 161-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20152-0",
+   "links": [
+    "CHEM 151-0",
+    "CHEM 161-0"
+   ]
+  },
+  {
+   "id": "CHEM 161-0",
+   "dept": "CHEM",
+   "num": "161-0",
+   "title": "General Chemistry Laboratory I",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical analysis of real samples using basic laboratory techniques including titration, colorimetric analysis, density measurements, and atomic spectroscopy. Planning, data collection, interpretation, and reporting on experiments. Must be taken concurrently with CHEM 151-0.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20161-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "CHEM 162-0",
+   "dept": "CHEM",
+   "num": "162-0",
+   "title": "General Chemistry Laboratory II",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemistry laboratory techniques applied to materials science and nanotechnology, acid-base chemistry, and chemical kinetics. Planning, data collection, interpretation, and reporting on experiments. Must be taken concurrently with CHEM 152-0.",
+   "text": "Prerequisites: CHEM 151-0 , CHEM 161-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20162-0",
+   "links": [
+    "CHEM 151-0",
+    "CHEM 161-0"
+   ]
+  },
+  {
+   "id": "CHEM 171-0",
+   "dept": "CHEM",
+   "num": "171-0",
+   "title": "Advanced General Inorganic Chemistry",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Review of mole problems and stoichiometry; descriptive chemistry, elements, compounds, and inorganic reactions; gas laws; phase equilibria and colligative properties; chemical equilibrium; aqueous equilibria; topics in chemical bonding and molecular structure. Must be taken concurrently with CHEM 181-0.",
+   "text": "Prerequisite: department placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20171-0"
+  },
+  {
+   "id": "CHEM 172-0",
+   "dept": "CHEM",
+   "num": "172-0",
+   "title": "Advanced General Physical Chemistry",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Thermodynamics and equilibrium; chemical kinetics and mechanism; electrochemistry; electronic structure of the atom and quantum theory; advanced topics in chemical bonding; coordination compounds; solid-state chemistry; nuclear chemistry. Must be taken concurrently with CHEM 182-0.",
+   "text": "Prerequisites: CHEM 171-0 , CHEM 181-0 (C- or better); MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20172-0",
+   "links": [
+    "CHEM 171-0",
+    "CHEM 181-0",
+    "MATH 220-1"
+   ]
+  },
+  {
+   "id": "CHEM 181-0",
+   "dept": "CHEM",
+   "num": "181-0",
+   "title": "Advanced General Inorganic Chemistry Laboratory",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Laboratory techniques for studying chemical analysis and chemical reactions relevant to environmental or materials research. Planning, data collection, interpretation, and reporting on experiments. Must be taken concurrently with CHEM 171-0.",
+   "text": "Prerequisite: department placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20181-0"
+  },
+  {
+   "id": "CHEM 182-0",
+   "dept": "CHEM",
+   "num": "182-0",
+   "title": "Advanced General Physical Chemistry Laboratory",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Study of physical chemistry (acid base chemistry, thermodynamics, etc.) in the laboratory. Planning, data collection, interpretation, and reporting on these experiments. Must be taken concurrently with CHEM 172-0.",
+   "text": "Prerequisite: CHEM 171-0 , CHEM 181-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20182-0",
+   "links": [
+    "CHEM 171-0",
+    "CHEM 181-0"
+   ]
+  },
+  {
+   "id": "CHEM 210-1",
+   "dept": "CHEM",
+   "num": "210-1",
+   "title": "",
+   "units": null,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20210-1",
+   "missing": true
+  },
+  {
+   "id": "CHEM 215-1",
+   "dept": "CHEM",
+   "num": "215-1",
+   "title": "Organic Chemistry I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Foundational concepts in organic chemistry will be introduced. Topics include structure and properties of common functional groups, acidity/basicity, conformational analysis, stereochemistry, and reactivity of organic compounds.",
+   "text": "Prerequisites: CHEM 132-0 and CHEM 142-0 , or CHEM 152-0 and CHEM 162-0 , or CHEM 172-0 and CHEM 182-0 (C- or better); or qualifying score on the Chemistry Placement Exam. Must be taken concurrently with CHEM 235-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20215-1",
+   "links": [
+    "CHEM 132-0",
+    "CHEM 142-0",
+    "CHEM 152-0",
+    "CHEM 162-0",
+    "CHEM 172-0",
+    "CHEM 182-0"
+   ]
+  },
+  {
+   "id": "CHEM_ENG 211-0",
+   "dept": "CHEM_ENG",
+   "num": "211-0",
+   "title": "Thermodynamics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The first and second laws of thermodynamics. Entropy and equilibrium. Material and energy balances. Equations of state and properties of fluids. Solutions, phase equilibria, and chemical reactions.",
+   "text": "Prerequisite: CHEM_ENG 210-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM_ENG%20211-0",
+   "autoPrereq": "CHEM_ENG 210-0"
+  },
+  {
+   "id": "COMM_ST 102-0",
+   "dept": "COMM_ST",
+   "num": "102-0",
+   "title": "Public Speaking",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Theory, composition, delivery, and criticism of public speeches.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMM_ST%20102-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "DSGN 106-1",
+   "dept": "DSGN",
+   "num": "106-1",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated introduction to the user-centered design process and technical communication. Students will address challenges proposed by project partners by identifying unmet needs, conducting research, generating and evaluating potential solutions, and finally, presenting a final design concept with supporting documentation. Students also enhance their abilities in equitable teamwork, project management, fabrication skills, and producing written, oral, graphical, and interpersonal communication. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-1 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: Reserved for McCormick students only.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-1"
+  },
+  {
+   "id": "DSGN 106-2",
+   "dept": "DSGN",
+   "num": "106-2",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated iteration on the user-centered design process and technical communication. This course will build on the learning objectives from DTC-1 while adding more focus on ethics in design and communication, equitable distribution of teamwork, project management, documenting and communicating progress, and exploring a wider variety of project topics. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-2 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: DSGN 106-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-2",
+   "links": [
+    "DSGN 106-1"
+   ],
+   "autoPrereq": "DSGN 106-1"
+  },
+  {
+   "id": "EARTH 214-0",
+   "dept": "EARTH",
+   "num": "214-0",
+   "title": "Physical Earth Science",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Physical Earth Science synthesizes physical geology and historical geology. Physical geology examines the creation, modification, and characterization of rocks and minerals, as well as internal and external processes that shape the planet. Historical geology examines the origin and evolution of Earth and life through time. The course includes required laboratory sections and culminates with a required weekend field trip.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=EARTH%20214-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "EARTH 215-0",
+   "dept": "EARTH",
+   "num": "215-0",
+   "title": "Physics of the Earth's Interior",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The earth as a planet: origin, composition, and evolution of the solar system and the earth; internal structure of the earth; plate tectonics. Recommended Background: At least one credit in math, chemistry, biology or physics.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=EARTH%20215-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENGLISH 106-1",
+   "dept": "ENGLISH",
+   "num": "106-1",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENGLISH 106-2",
+   "dept": "ENGLISH",
+   "num": "106-2",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 225-0",
+   "dept": "ENTREP",
+   "num": "225-0",
+   "title": "Principles of Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course serves as the foundational course for the undergraduate minor in entrepreneurship. This survey-style course is a good choice for students who wish to familiarize themselves with the world of entrepreneurship. Students will learn to think like entrepreneurs and will be introduced to key topics relevant to entrepreneurship, including customer discovery, finance, and marketing. They will also learn how to understand and perform analyses of a broad range of entrepreneurial activities related to different applications of entrepreneurship. Taught with IEMS 225-0; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20225-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 325-0",
+   "dept": "ENTREP",
+   "num": "325-0",
+   "title": "Engineering Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The goal of the course is to introduce students to innovation-driven entrepreneurship, a process by which emergent technology serves as the catalyst for new venture formation. This course challenges student teams to develop strategies for commercializing cutting-edge technologies. Each year, the course focuses on a significant innovation space. Taught with IEMS 325-0; may not receive credit for both courses.",
+   "text": "Prerequisite: ENTREP 330-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20325-0",
+   "autoPrereq": "ENTREP 330-1"
+  },
+  {
+   "id": "GEN_ENG 150-0",
+   "dept": "GEN_ENG",
+   "num": "150-0",
+   "title": "Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). Students may receive credit for only one of: COMP_SCI 150, GEN_ENG 150, and GEN_ENG 151.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20150-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 151-0",
+   "dept": "GEN_ENG",
+   "num": "151-0",
+   "title": "Honors Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). The honors section will include students who received a 4 or 5 on AP CS A.",
+   "text": "Prerequisite: COMP_SCI 1CA or instructor permission. Students may not receive credit for both GEN_ENG 151-0 and COMP_SCI 150-0 or GEN_ENG 150-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20151-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 205-2",
+   "dept": "GEN_ENG",
+   "num": "205-2",
+   "title": "Engineering Analysis II",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Linear algebra and introduction to vector methods in engineering analysis. Statics and dynamics of rigid bodies and matrix analysis of trusses and networks. Engineering design problems.",
+   "text": "Prerequisites: C- or better in GEN_ENG 205-1 ; MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-2",
+   "links": [
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "and": [
+     "GEN_ENG 205-1",
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 206-2",
+   "dept": "GEN_ENG",
+   "num": "206-2",
+   "title": "Honors Engineering Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Covers topics addressed in GEN_ENG 205-2 at a deeper level. Intended for students with demonstrated strength in mathematics, computer programming, and/or physics.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 211-0",
+   "dept": "GEN_ENG",
+   "num": "211-0",
+   "title": "Engineering Physics - Statics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to vector methods in engineering analysis. Statics of particles and rigid bodies and matrix analysis of trusses and frames. Engineering design problems.",
+   "text": "Prerequisites: Gen_Eng 150, Gen_Eng 151 or Comp_Sci 150 (Programming), Math 220-1 or equivalent.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "M-F 10:00-10:50, 11:00-11:50, 12:00-12:50, 1:00-1:50 · Huang, Alacron",
+    "Spring 2027": "M-F 12:00-12:50 · TBD"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20211-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 212-0",
+   "dept": "GEN_ENG",
+   "num": "212-0",
+   "title": "Engineering Physics - Dynamics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "A calculus-based physics course which emphasizes dynamic analysis techniques relevant to solving engineering problems in the mechanical domain. This course introduces Newtonian mechanics, descriptions of relative motion in Cartesian and polar coordinate systems, energy conservation methods, mechanical power, momentum, impulse, and numerical and analytical methods for describing oscillatory systems.",
+   "text": "Prerequisites: Math 220-2 or equivalent, GEN_ENG 211, GEN_ENG 241 or equivalent (May be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20212-0",
+   "links": [
+    "GEN_ENG 211-0",
+    "GEN_ENG 241-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     "MATH 220-2",
+     "GEN_ENG 211-0"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 231-0",
+   "dept": "GEN_ENG",
+   "num": "231-0",
+   "title": "Probability and Statistics for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Collecting, summarizing and displaying data. An introduction to probability theory and its applications. Conditional probabilities and expected values. Random variables and distributions. Drawing conclusions and making decisions using data: confidence intervals, hypotheses testing, comparison tests, regression, and correlation.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20231-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 241-0",
+   "dept": "GEN_ENG",
+   "num": "241-0",
+   "title": "Linear Algebra for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solving linear systems of equations and LU factorization. Matrix/vector operations and algebra. Vector spaces and bases. Eigenvalues and eigenvectors, Orthogonality, solution of least squares, and QR factorization. Singular values, singular value decomposition. Applications in science and engineering.",
+   "text": "Prerequisites: GEN_ENG 150 or 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20241-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 251-0",
+   "dept": "GEN_ENG",
+   "num": "251-0",
+   "title": "Applied Ordinary Differential Equations",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Students will learn to identify and solve differential equations derived from scientific and engineered systems. They will also learn to formulate a differential equation for modeling suitable applications, specifically mechanical vibrations and electrical circuits, among others.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151 or CS 150, MATH 220-2 , PHYS 135-1 or GEN_ENG 212 (may be taken concurrently), GEN_ENG 241 (may be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20251-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 212-0",
+    "GEN_ENG 241-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "MATH 220-1",
+   "dept": "MATH",
+   "num": "220-1",
+   "title": "Single-Variable Differential Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Limits. Differentiation. Linear approximation and related rates. Extreme value theorem, mean value theorem, and curve-sketching. Optimization. Students may not receive credit for both MATH 220-1 and any of MATH 211-0, MATH 212-0 (former), MATH 213-0 (former), MATH 218-1, MATH 218-2, or MATH 220-0 (former).",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 220-2",
+   "dept": "MATH",
+   "num": "220-2",
+   "title": "Single-Variable Integral Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Definite integrals, antiderivatives, and the fundamental theorem of calculus. Transcendental and inverse functions. Areas and volumes. Techniques of integration, numerical integration, and improper integrals. First-order linear and separable ordinary differential equations. Students may not receive credit for both MATH 220-2 and any of MATH 213-0 (former), MATH 214-0 (former), MATH 218-3, or MATH 224-0 (former).",
+   "text": "Prerequisite: MATH 218-2 or MATH 220-0 (former) or MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-2",
+   "links": [
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-2",
+     "MATH 220-0",
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-1",
+   "dept": "MATH",
+   "num": "228-1",
+   "title": "Multivariable Differential Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Vectors, vector functions, partial derivatives, Taylor polynomials, and optimization. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-1 and any of MATH 230-0 (former), MATH 230-1, MATH 281-1, MATH 285-2, MATH 290-2, MATH 291-2, or ES_APPM 252-1.",
+   "text": "Prerequisite: MATH 218-3 or MATH 214-0 (former) or MATH 220-2 or MATH 224-0 (former).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-1",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-3",
+     "MATH 214-0",
+     "MATH 220-2",
+     "MATH 224-0"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-2",
+   "dept": "MATH",
+   "num": "228-2",
+   "title": "Multivariable Integral Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Multiple integration: double integrals, triple integrals, and change of variables. Vector calculus: vector fields, line integrals, surface integrals, curl and divergence, Green's theorem, Stokes' theorem, and the divergence theorem. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-2 and any of MATH 230-2, MATH 234-0 (former), MATH 281-2, MATH 285-3, MATH 290-3, MATH 291-3, or ES_APPM 252-2.",
+   "text": "Prerequisite: MATH 228-1 or MATH 230-0 (former) or MATH 230-1 or MATH 281-1 or MATH 285-2 or MATH 290-2 or MATH 291-2 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-2",
+   "links": [
+    "MATH 228-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 228-1",
+     "MATH 230-0",
+     "MATH 230-1",
+     "MATH 281-1",
+     "MATH 285-2",
+     "MATH 290-2",
+     "MATH 291-2",
+     "ES_APPM 252-1"
+    ]
+   }
+  },
+  {
+   "id": "MAT_SCI 201-0",
+   "dept": "MAT_SCI",
+   "num": "201-0",
+   "title": "Introduction to Materials Science and Engineering Principles",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Basic concepts of Materials Science and Engineering: bonding, crystal structure, defects in solids, phase diagrams, and development of microstructures. Processing/structure/property/performance relationships underlying the behavior of metals, ceramics, polymers, semiconductors, and composites. Mechanical, electrical, and chemical properties of engineering materials. Broadly, how materials’ performance influences technological development, the economy, the environment, and society. Not to be taken for credit with or after MAT_SCI 301-0.",
+   "text": "Prerequisites: CHEM 131-0 , CHEM 151-0 , or CHEM 171-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20201-0",
+   "links": [
+    "CHEM 131-0",
+    "CHEM 151-0",
+    "CHEM 171-0"
+   ],
+   "autoPrereq": {
+    "or": [
+     "CHEM 131-0",
+     "CHEM 151-0",
+     "CHEM 171-0"
+    ]
+   }
+  },
+  {
+   "id": "MECH_ENG 222-0",
+   "dept": "MECH_ENG",
+   "num": "222-0",
+   "title": "Thermodynamics & Statistical Mechanics - I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Basic thermodynamics, applications to energy efficiency and climate change, and introduction to statistical thermodynamics.",
+   "text": "Prerequisite: MATH 220-2 and GEN_ENG 205-3 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20222-0",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     "MATH 220-2",
+     "GEN_ENG 205-3"
+    ]
+   }
+  },
+  {
+   "id": "MECH_ENG 241-0",
+   "dept": "MECH_ENG",
+   "num": "241-0",
+   "title": "Fluid Mechanics I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamentals of fluid mechanics. Properties and statics of fluids. Kinematics and dynamics of fluid motion-continuity, momentum, and energy equations. Dimensional analysis, flow in closed conduits.",
+   "text": "Prerequisites: MATH 228-2 (may be taken concurrently) and GEN_ENG 205-4 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20241-0",
+   "links": [
+    "MATH 228-2"
+   ]
+  },
+  {
+   "id": "PERF_ST 103-0",
+   "dept": "PERF_ST",
+   "num": "103-0",
+   "title": "Analysis and Performance of Text",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course studies texts, broadly defined and situated, through performance. Students explore how performance helps the performer and audience interpret a text, as well as express challenging political and personal themes. They examine the ways performance illuminates and draws out deeper understandings of social relations through embodied praxis.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20103-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PERF_ST 203-0",
+   "dept": "PERF_ST",
+   "num": "203-0",
+   "title": "Performance Culture and Communication",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Explores how live performance and dramatic forms of communication are methods used to examine social behavior and cultural expressions.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20203-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHYSICS 135-2",
+   "dept": "PHYSICS",
+   "num": "135-2",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Electricity and magnetism. Must be taken concurrently with PHYSICS 136-2.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-1 ; MATH 230-2 OR MATH 290-2 OR MATH 291-2 (may be taken concurrently).\".",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-2",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "PHYSICS 136-2",
+   "dept": "PHYSICS",
+   "num": "136-2",
+   "title": "General Physics Laboratory",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introductory physics laboratory for students taking PHYSICS 130-2 or PHYSICS 135-2, with which it must be taken concurrently.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20136-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "PRDV 335-0",
+   "dept": "PRDV",
+   "num": "335-0",
+   "title": "Engineering Improv: From Allowing to Application",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Start anywhere, remember you are not the most important person in the scene, and say yes. Through these and other improv techniques, students learn to tackle unexpected obstacles, building skills that can be leveraged in both academic and non-academic contexts to face challenges with resilience.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PRDV%20335-0",
+   "autoPrereq": null
+  }
+ ]
+}

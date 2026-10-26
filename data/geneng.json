@@ -1,0 +1,880 @@
+{
+ "id": "geneng",
+ "name": "General Engineering",
+ "generated": "2026-10-26",
+ "catalogYear": "2026-2027",
+ "quarters": [],
+ "departments": {
+  "DATA_ENG": {
+   "name": "Data Science & Engineering",
+   "abbr": "DATA ENG",
+   "main": true
+  },
+  "ENTREP": {
+   "name": "Entrepreneurship & Innovation",
+   "abbr": "ENTREP",
+   "main": true
+  },
+  "GEN_ENG": {
+   "name": "General Engineering",
+   "abbr": "GEN ENG",
+   "main": true
+  },
+  "COMP_SCI": {
+   "name": "Computer Science",
+   "abbr": "CS",
+   "main": false
+  },
+  "MATH": {
+   "name": "Mathematics",
+   "abbr": "MATH",
+   "main": false
+  },
+  "PHYSICS": {
+   "name": "Physics",
+   "abbr": "PHYS",
+   "main": false
+  }
+ },
+ "programs": [],
+ "sources": [
+  "https://catalogs.northwestern.edu/undergraduate/courses-az/gen_eng/",
+  "https://catalogs.northwestern.edu/undergraduate/courses-az/data_eng/",
+  "https://catalogs.northwestern.edu/undergraduate/courses-az/entrep/"
+ ],
+ "courses": [
+  {
+   "id": "DATA_ENG 200-0",
+   "dept": "DATA_ENG",
+   "num": "200-0",
+   "title": "Foundations of Data Science",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Foundations of Data Science will cover the fundamentals of data science and the context within which this field operates. This course will introduce the steps of the data science lifecycle and the associated data tools and techniques, through implementation in languages such as Python.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DATA_ENG%20200-0"
+  },
+  {
+   "id": "DATA_ENG 300-0",
+   "dept": "DATA_ENG",
+   "num": "300-0",
+   "title": "Data Engineering Studio",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "DATA_ENG 200-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "and 1 unit in each of statistics foundations, intermediate programming, and applied machine learning"
+   ],
+   "desc": "Data Engineering Studio teaches how to build a sustainable data science lifecycle.Students will analyze data in multiple contexts (e.g., SQL, building machine learning models), share the findings with peers, and practice iteratively refining the analysis based on feedback. They will become acquainted with the common pitfalls in applying data analytics to real-world datasets. Several modern data engineering tools, such as docker containers, Spark, Airflow, and MLFlow, will be covered.",
+   "text": "Prerequisite: DATA_ENG 200-0 and 1 unit from each of the following core areas; Statistics Foundations, Intermediate Programming/Algorithmic Skills, and Applied Machine Learning.Prereq for DATA_ENG 300.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DATA_ENG%20300-0"
+  },
+  {
+   "id": "ENTREP 225-0",
+   "dept": "ENTREP",
+   "num": "225-0",
+   "title": "Principles of Entrepreneurship",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course serves as the foundational course for the undergraduate minor in entrepreneurship. This survey-style course is a good choice for students who wish to familiarize themselves with the world of entrepreneurship. Students will learn to think like entrepreneurs and will be introduced to key topics relevant to entrepreneurship, including customer discovery, finance, and marketing. They will also learn how to understand and perform analyses of a broad range of entrepreneurial activities related to different applications of entrepreneurship. Taught with IEMS 225-0; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20225-0"
+  },
+  {
+   "id": "ENTREP 325-0",
+   "dept": "ENTREP",
+   "num": "325-0",
+   "title": "Engineering Entrepreneurship",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ENTREP 330-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The goal of the course is to introduce students to innovation-driven entrepreneurship, a process by which emergent technology serves as the catalyst for new venture formation. This course challenges student teams to develop strategies for commercializing cutting-edge technologies. Each year, the course focuses on a significant innovation space. Taught with IEMS 325-0; may not receive credit for both courses.",
+   "text": "Prerequisite: ENTREP 330-1 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20325-0"
+  },
+  {
+   "id": "ENTREP 330-1",
+   "dept": "ENTREP",
+   "num": "330-1",
+   "title": "Startup Accounting and Finance",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course meets a core requirement for the Farley undergraduate minor in entrepreneurship. This course teaches students foundational accounting principles and how to manage the finances of small and early-stage businesses. Students will work in teams on projects driven by case studies and will immediately be able to apply their learnings to their own startup projects.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20330-1"
+  },
+  {
+   "id": "ENTREP 331-0",
+   "dept": "ENTREP",
+   "num": "331-0",
+   "title": "Entrepreneurial Sales and Marketing",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course meets a core requirement for the undergraduate minor in entrepreneurship. The goal of the course is to teach students about the tools and strategies that startups use to generate revenue. It covers a broad range of topics related to sales and marketing including branding, positioning, lead generation, direct selling, social media, content marketing, influencer marketing, SEO, paid search, email marketing and other current trends. The class is a mixture of lecture, breakout groups and guest speakers.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20331-0"
+  },
+  {
+   "id": "ENTREP 332-0",
+   "dept": "ENTREP",
+   "num": "332-0",
+   "title": "Financing Entrepreneurial Ventures",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [
+    "ENTREP 225-0",
+    "ENTREP 325-0"
+   ],
+   "notes": [],
+   "desc": "Topics selected from work of current interest in entrepreneurship and innovation. May be repeated for credit.",
+   "text": "Prerequisites: ENTREP 225-0 and ENTREP 325-0 recommended.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20332-0"
+  },
+  {
+   "id": "ENTREP 340-0",
+   "dept": "ENTREP",
+   "num": "340-0",
+   "title": "Innovation for Impact",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This dynamic, experiential course empowers students to develop entrepreneurial solutions to address some of today's most urgent climate and environmental challenges. Working in interdisciplinary teams, students will tackle pressing issues such as water security, renewable energy, sustainable transportation, urban resilience, ecosystem preservation, and clean technology innovation. The course offers the flexibility to address both regional challenges — including opportunities within the Great Lakes ecosystem — and global environmental problems that require innovative thinking.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20340-0"
+  },
+  {
+   "id": "ENTREP 360-0",
+   "dept": "ENTREP",
+   "num": "360-0",
+   "title": "Leadership, Ethics, and You",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This class is designed for students who want to explore how ethics and integrity are tied to leadership, and how developing leadership skills can contribute to students' future successes in both entrepreneurial endeavors and more traditional careers.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20360-0"
+  },
+  {
+   "id": "ENTREP 365-0",
+   "dept": "ENTREP",
+   "num": "365-0",
+   "title": "Tech Ethics and Business Integrity",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course will explore the unique ethical challenges that face the technology industry, utilizing recent and historical case studies. Students will be challenged to think about what it means to run a business with integrity by examining common issues within the workplace as well as the responsibility that businesses have to customers. Data privacy abuses, sexual misconduct, and corporate greed, among many other topics, will be addressed.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20365-0"
+  },
+  {
+   "id": "ENTREP 395-0",
+   "dept": "ENTREP",
+   "num": "395-0",
+   "title": "Special Topics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Topics selected from work of current interest in entrepreneurship and innovation. May be repeated for credit.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20395-0"
+  },
+  {
+   "id": "GEN_ENG 150-0",
+   "dept": "GEN_ENG",
+   "num": "150-0",
+   "title": "Programming for Engineers",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). Students may receive credit for only one of: COMP_SCI 150, GEN_ENG 150, and GEN_ENG 151.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20150-0"
+  },
+  {
+   "id": "GEN_ENG 151-0",
+   "dept": "GEN_ENG",
+   "num": "151-0",
+   "title": "Honors Programming for Engineers",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). The honors section will include students who received a 4 or 5 on AP CS A.",
+   "text": "Prerequisite: COMP_SCI 1CA or instructor permission. Students may not receive credit for both GEN_ENG 151-0 and COMP_SCI 150-0 or GEN_ENG 150-0 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20151-0"
+  },
+  {
+   "id": "GEN_ENG 195-1",
+   "dept": "GEN_ENG",
+   "num": "195-1",
+   "title": "Engineering Dialog",
+   "units": 0.33,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Weekly seminar addressing subjects of interest in engineering, design, engineering policy, and entrepreneurial activities. For participants in the invitation-only Murphy Institute Scholars Program. May be repeated.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20195-1"
+  },
+  {
+   "id": "GEN_ENG 195-2",
+   "dept": "GEN_ENG",
+   "num": "195-2",
+   "title": "Engineering Discourse",
+   "units": 0.33,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Weekly seminar addressing subjects of interest in engineering, design, engineering policy, and entrepreneurial activities. For participants in the invitation-only Murphy Institute Scholars Program. May be repeated.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20195-2"
+  },
+  {
+   "id": "GEN_ENG 195-3",
+   "dept": "GEN_ENG",
+   "num": "195-3",
+   "title": "Engineering Discussion",
+   "units": 0.34,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Weekly seminar addressing subjects of interest in engineering, design, engineering policy, and entrepreneurial activities. For participants in the invitation-only Murphy Institute Scholars Program. May be repeated.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20195-3"
+  },
+  {
+   "id": "GEN_ENG 196-1",
+   "dept": "GEN_ENG",
+   "num": "196-1",
+   "title": "Engineering Dialog",
+   "units": 0.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Noncredit counterpart to GEN_ENG 195-1.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20196-1"
+  },
+  {
+   "id": "GEN_ENG 196-2",
+   "dept": "GEN_ENG",
+   "num": "196-2",
+   "title": "Engineering Discourse",
+   "units": 0.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Noncredit counterpart to GEN_ENG 195-2.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20196-2"
+  },
+  {
+   "id": "GEN_ENG 196-3",
+   "dept": "GEN_ENG",
+   "num": "196-3",
+   "title": "Engineering Discussion",
+   "units": 0.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Noncredit counterpart to GEN_ENG 195-3.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20196-3"
+  },
+  {
+   "id": "GEN_ENG 205-1",
+   "dept": "GEN_ENG",
+   "num": "205-1",
+   "title": "Engineering Analysis I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to linear algebra from computational, mathematical, and applications viewpoints. Computational methods using a higher-level software package such as MATLAB.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-1"
+  },
+  {
+   "id": "GEN_ENG 205-2",
+   "dept": "GEN_ENG",
+   "num": "205-2",
+   "title": "Engineering Analysis II",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "GEN_ENG 205-1",
+     "MATH 220-1"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Linear algebra and introduction to vector methods in engineering analysis. Statics and dynamics of rigid bodies and matrix analysis of trusses and networks. Engineering design problems.",
+   "text": "Prerequisites: C- or better in GEN_ENG 205-1 ; MATH 220-1 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-2"
+  },
+  {
+   "id": "GEN_ENG 205-3",
+   "dept": "GEN_ENG",
+   "num": "205-3",
+   "title": "Engineering Analysis III",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "GEN_ENG 205-2",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Dynamic behavior of the elements. Modeling of mechanical (both translational and rotational), electrical, thermal, hydraulic, and chemical systems composed of those elements.",
+   "text": "Prerequisite: C- or better in GEN_ENG 205-2 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-3"
+  },
+  {
+   "id": "GEN_ENG 205-4",
+   "dept": "GEN_ENG",
+   "num": "205-4",
+   "title": "Engineering Analysis IV",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "GEN_ENG 205-2",
+     "MATH 220-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solution methods for ordinary differential equations, including exact, numerical, and qualitative methods. Applications and modeling principles; solution techniques.",
+   "text": "Prerequisites: C- or better in GEN_ENG 205-2 ; MATH 220-2 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-4"
+  },
+  {
+   "id": "GEN_ENG 206-1",
+   "dept": "GEN_ENG",
+   "num": "206-1",
+   "title": "Honor Engineering Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "instructor consent"
+   ],
+   "desc": "Covers topics addressed in GEN_ENG 205-1 at a deeper level. Intended for students with demonstrated strength in mathematics, computer programming, and/or physics.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-1"
+  },
+  {
+   "id": "GEN_ENG 206-2",
+   "dept": "GEN_ENG",
+   "num": "206-2",
+   "title": "Honors Engineering Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "instructor consent"
+   ],
+   "desc": "Covers topics addressed in GEN_ENG 205-2 at a deeper level. Intended for students with demonstrated strength in mathematics, computer programming, and/or physics.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-2"
+  },
+  {
+   "id": "GEN_ENG 206-3",
+   "dept": "GEN_ENG",
+   "num": "206-3",
+   "title": "Honors Engineering Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "instructor consent"
+   ],
+   "desc": "Covers topics addressed in GEN_ENG 205-3 at a deeper level. Intended for students with demonstrated strength in mathematics, computer programming, and/or physics.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-3"
+  },
+  {
+   "id": "GEN_ENG 206-4",
+   "dept": "GEN_ENG",
+   "num": "206-4",
+   "title": "Honors Engineering Analysis IV",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "instructor consent"
+   ],
+   "desc": "Covers topics addressed in GEN_ENG 205-4 at a deeper level. Intended for students with demonstrated strength in mathematics, computer programming, and/or physics.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-4"
+  },
+  {
+   "id": "GEN_ENG 211-0",
+   "dept": "GEN_ENG",
+   "num": "211-0",
+   "title": "Engineering Physics - Statics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     "MATH 220-1"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Introduction to vector methods in engineering analysis. Statics of particles and rigid bodies and matrix analysis of trusses and frames. Engineering design problems.",
+   "text": "Prerequisites: Gen_Eng 150, Gen_Eng 151 or Comp_Sci 150 (Programming), Math 220-1 or equivalent.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20211-0"
+  },
+  {
+   "id": "GEN_ENG 212-0",
+   "dept": "GEN_ENG",
+   "num": "212-0",
+   "title": "Engineering Physics - Dynamics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MATH 220-2",
+     "GEN_ENG 211-0"
+    ]
+   },
+   "coreq": "GEN_ENG 241-0",
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "A calculus-based physics course which emphasizes dynamic analysis techniques relevant to solving engineering problems in the mechanical domain. This course introduces Newtonian mechanics, descriptions of relative motion in Cartesian and polar coordinate systems, energy conservation methods, mechanical power, momentum, impulse, and numerical and analytical methods for describing oscillatory systems.",
+   "text": "Prerequisites: Math 220-2 or equivalent, GEN_ENG 211, GEN_ENG 241 or equivalent (May be taken concurrently).",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20212-0"
+  },
+  {
+   "id": "GEN_ENG 220-1",
+   "dept": "GEN_ENG",
+   "num": "220-1",
+   "title": "Analy/Comp Graph",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to AutoCAD, geographic information systems (GIS), and electronic surveying and measuring.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20220-1"
+  },
+  {
+   "id": "GEN_ENG 220-2",
+   "dept": "GEN_ENG",
+   "num": "220-2",
+   "title": "Analy/Comp Graph II",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to AutoCAD, geographic information systems (GIS), and electronic surveying and measuring.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20220-2"
+  },
+  {
+   "id": "GEN_ENG 231-0",
+   "dept": "GEN_ENG",
+   "num": "231-0",
+   "title": "Probability and Statistics for Engineers",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Collecting, summarizing and displaying data. An introduction to probability theory and its applications. Conditional probabilities and expected values. Random variables and distributions. Drawing conclusions and making decisions using data: confidence intervals, hypotheses testing, comparison tests, regression, and correlation.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20231-0"
+  },
+  {
+   "id": "GEN_ENG 241-0",
+   "dept": "GEN_ENG",
+   "num": "241-0",
+   "title": "Linear Algebra for Engineers",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solving linear systems of equations and LU factorization. Matrix/vector operations and algebra. Vector spaces and bases. Eigenvalues and eigenvectors, Orthogonality, solution of least squares, and QR factorization. Singular values, singular value decomposition. Applications in science and engineering.",
+   "text": "Prerequisites: GEN_ENG 150 or 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20241-0"
+  },
+  {
+   "id": "GEN_ENG 251-0",
+   "dept": "GEN_ENG",
+   "num": "251-0",
+   "title": "Applied Ordinary Differential Equations",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   },
+   "coreq": {
+    "and": [
+     {
+      "or": [
+       "PHYSICS 135-1",
+       "GEN_ENG 212-0"
+      ]
+     },
+     "GEN_ENG 241-0"
+    ]
+   },
+   "recommended": [],
+   "notes": [],
+   "desc": "Students will learn to identify and solve differential equations derived from scientific and engineered systems. They will also learn to formulate a differential equation for modeling suitable applications, specifically mechanical vibrations and electrical circuits, among others.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151 or CS 150, MATH 220-2 , PHYS 135-1 or GEN_ENG 212 (may be taken concurrently), GEN_ENG 241 (may be taken concurrently).",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20251-0"
+  },
+  {
+   "id": "GEN_ENG 295-0",
+   "dept": "GEN_ENG",
+   "num": "295-0",
+   "title": "Special Topics in Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Intermediate-level topics suggested by students or faculty members and approved by the curriculum committee.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20295-0"
+  },
+  {
+   "id": "GEN_ENG 355-0",
+   "dept": "GEN_ENG",
+   "num": "355-0",
+   "title": "Domestic Study Affiliated",
+   "units": 0.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fulltime registration in an academic program in the continental United States that is affiliated with Northwestern. Upon successful completion of the program, registration is replaced with credits transferred from the affiliated institution.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20355-0"
+  },
+  {
+   "id": "GEN_ENG 395-0",
+   "dept": "GEN_ENG",
+   "num": "395-0",
+   "title": "Special Topics in Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Topics suggested by faculty and approved by the curriculum committee.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20395-0"
+  },
+  {
+   "id": "GEN_ENG 397-0",
+   "dept": "GEN_ENG",
+   "num": "397-0",
+   "title": "Selected Topics in Engineering",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Topics of limited scope as suggested by faculty and approved by the curriculum committee.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20397-0"
+  },
+  {
+   "id": "GEN_ENG 399-0",
+   "dept": "GEN_ENG",
+   "num": "399-0",
+   "title": "Independent Study",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Independent study on an engineering subject supervised by a faculty member and concluding with a final report.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20399-0"
+  },
+  {
+   "id": "COMP_SCI 150-0",
+   "dept": "COMP_SCI",
+   "num": "150-0",
+   "title": "Fundamentals of Programming and Computational Problem Solving",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "An introduction to Object-oriented programming: focus on Python but including a brief introduction to a statically typed language (e.g. C++). Students will use some approaches from Artificial Intelligence and Machine Learning to complete programming assignments. Required for the computer science degree. Students may receive credit for only one of: COMP_SCI 150, GEN_ENG 150, and GEN_ENG 151.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20150-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 220-1",
+   "dept": "MATH",
+   "num": "220-1",
+   "title": "Single-Variable Differential Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Limits. Differentiation. Linear approximation and related rates. Extreme value theorem, mean value theorem, and curve-sketching. Optimization. Students may not receive credit for both MATH 220-1 and any of MATH 211-0, MATH 212-0 (former), MATH 213-0 (former), MATH 218-1, MATH 218-2, or MATH 220-0 (former).",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 220-2",
+   "dept": "MATH",
+   "num": "220-2",
+   "title": "Single-Variable Integral Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Definite integrals, antiderivatives, and the fundamental theorem of calculus. Transcendental and inverse functions. Areas and volumes. Techniques of integration, numerical integration, and improper integrals. First-order linear and separable ordinary differential equations. Students may not receive credit for both MATH 220-2 and any of MATH 213-0 (former), MATH 214-0 (former), MATH 218-3, or MATH 224-0 (former).",
+   "text": "Prerequisite: MATH 218-2 or MATH 220-0 (former) or MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-2",
+   "links": [
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-2",
+     "MATH 220-0",
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "PHYSICS 135-1",
+   "dept": "PHYSICS",
+   "num": "135-1",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Mechanics. Must be taken concurrently with PHYSICS 136-1.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 ; MATH 230-1 OR MATH 290-1 OR MATH 291-1 (may be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-1",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2"
+   ]
+  }
+ ]
+}

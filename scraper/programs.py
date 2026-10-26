@@ -69,11 +69,13 @@ def classify(label, from_header):
     return "elective" if from_header else "track"
 
 
-def parse_program(html, labels=None, container="textcontainer", until=None):
+def parse_program(html, labels=None, container="textcontainer", until=None, major_from=None):
     """labels maps a heading to what the site shows: a new label, None to ignore
     that list, or {"label", "kind", "need", "flatten"} to correct how a list is
     read ("flatten": rows the catalog marks "or" are separate choices). Reading
-    stops at a heading starting with `until` (optional extras such as concentrations)."""
+    stops at a heading starting with `until` (optional extras such as concentrations).
+    `major_from` names the first heading of the major's own courses, for pages
+    that put them under the core section's heading."""
     labels = labels or {}
     container = BeautifulSoup(html, "html.parser").find(id=container)
     lists, notes = [], []
@@ -102,6 +104,8 @@ def parse_program(html, labels=None, container="textcontainer", until=None):
         cls = el.get("class") or []
         if "areaheader" in cls or "areasubheader" in cls:
             header = heading(el.get_text(" "))
+            if major_from and header.startswith(major_from):
+                section, in_core = "Major Program", False
             if not in_core:
                 candidates.append(header)
             continue

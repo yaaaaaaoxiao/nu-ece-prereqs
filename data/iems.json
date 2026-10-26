@@ -1,0 +1,2375 @@
+{
+ "id": "iems",
+ "name": "Industrial Engineering & Management Sciences",
+ "generated": "2026-10-26",
+ "catalogYear": "2026-2027",
+ "quarters": [
+  "Fall 2026",
+  "Winter 2027",
+  "Spring 2027"
+ ],
+ "departments": {
+  "IEMS": {
+   "name": "Industrial Engineering & Management Sciences",
+   "abbr": "IEMS",
+   "main": true
+  },
+  "BMD_ENG": {
+   "name": "Biomedical Engineering",
+   "abbr": "BME",
+   "main": false
+  },
+  "CHEM_ENG": {
+   "name": "Chemical Engineering",
+   "abbr": "CHEM ENG",
+   "main": false
+  },
+  "CIV_ENV": {
+   "name": "Civil and Environmental Engineering",
+   "abbr": "CIV ENV",
+   "main": false
+  },
+  "COMM_ST": {
+   "name": "Communication Studies",
+   "abbr": "COMM ST",
+   "main": false
+  },
+  "COMP_SCI": {
+   "name": "Computer Science",
+   "abbr": "CS",
+   "main": false
+  },
+  "DSGN": {
+   "name": "Segal Design Institute",
+   "abbr": "DSGN",
+   "main": false
+  },
+  "ENGLISH": {
+   "name": "English",
+   "abbr": "ENGLISH",
+   "main": false
+  },
+  "ENTREP": {
+   "name": "Entrepreneurship & Innovation",
+   "abbr": "ENTREP",
+   "main": false
+  },
+  "ES_APPM": {
+   "name": "Engineering Science & Applied Math",
+   "abbr": "ES APPM",
+   "main": false
+  },
+  "GEN_ENG": {
+   "name": "General Engineering",
+   "abbr": "GEN ENG",
+   "main": false
+  },
+  "MATH": {
+   "name": "Mathematics",
+   "abbr": "MATH",
+   "main": false
+  },
+  "PERF_ST": {
+   "name": "Performance Studies",
+   "abbr": "PERF ST",
+   "main": false
+  },
+  "PHIL": {
+   "name": "Philosophy",
+   "abbr": "PHIL",
+   "main": false
+  },
+  "PHYSICS": {
+   "name": "Physics",
+   "abbr": "PHYS",
+   "main": false
+  },
+  "POLI_SCI": {
+   "name": "Political Science",
+   "abbr": "POLI SCI",
+   "main": false
+  },
+  "PRDV": {
+   "name": "Personal Development",
+   "abbr": "PRDV",
+   "main": false
+  }
+ },
+ "programs": [
+  {
+   "id": "ie-bs",
+   "name": "Industrial Engineering BS",
+   "short": "IE BS",
+   "type": "major",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/industrial-engineering-management-sciences/industrial-engineering-degree/",
+   "default": true,
+   "lists": [
+    {
+     "label": "Mathematics",
+     "kind": "core",
+     "need": 4,
+     "items": [
+      [
+       [
+        "MATH 220-1"
+       ]
+      ],
+      [
+       [
+        "MATH 220-2"
+       ]
+      ],
+      [
+       [
+        "MATH 228-1"
+       ]
+      ],
+      [
+       [
+        "MATH 228-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Basic science",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "PHYSICS 135-1"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Engineering foundations",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "GEN_ENG 150-0"
+       ],
+       [
+        "GEN_ENG 151-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 231-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 241-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Design and writing",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "DSGN 106-1",
+        "DSGN 106-2"
+       ]
+      ],
+      [
+       [
+        "ENGLISH 106-1",
+        "ENGLISH 106-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Speaking or innovation",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMM_ST 102-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 225-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 325-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 103-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 203-0"
+       ]
+      ],
+      [
+       [
+        "PRDV 335-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 390-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Related courses",
+     "kind": "required",
+     "need": 2,
+     "items": [
+      [
+       [
+        "CIV_ENV 205-0"
+       ]
+      ],
+      [
+       [
+        "COMP_SCI 217-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Methods core",
+     "kind": "required",
+     "need": 7,
+     "items": [
+      [
+       [
+        "IEMS 302-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 303-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 304-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 313-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 314-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 315-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 317-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Professional practice",
+     "kind": "elective",
+     "need": 2,
+     "items": [
+      [
+       [
+        "IEMS 294-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 394-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Ethical development",
+     "kind": "elective",
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMM_ST 205-0"
+       ]
+      ],
+      [
+       [
+        "ENGLISH 288-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 360-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 365-0"
+       ]
+      ],
+      [
+       [
+        "PHIL 220-0"
+       ]
+      ],
+      [
+       [
+        "PHIL 225-0"
+       ]
+      ],
+      [
+       [
+        "PHIL 260-0"
+       ]
+      ],
+      [
+       [
+        "PHIL 262-0"
+       ]
+      ],
+      [
+       [
+        "PHIL 269-0"
+       ]
+      ],
+      [
+       [
+        "PHIL 355-0"
+       ]
+      ],
+      [
+       [
+        "PHIL 364-0"
+       ]
+      ],
+      [
+       [
+        "POLI_SCI 305-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Operations electives",
+     "kind": "elective",
+     "need": 1,
+     "items": [
+      [
+       [
+        "IEMS 365-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 381-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 382-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 383-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 385-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 395-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Industrial engineering electives",
+     "kind": "elective",
+     "need": null,
+     "items": [
+      [
+       [
+        "IEMS 305-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 307-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 351-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 352-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 373-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 395-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Management science electives",
+     "kind": "elective",
+     "need": 2,
+     "items": [
+      [
+       [
+        "IEMS 325-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 340-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 341-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 342-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 343-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 344-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 345-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 349-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 350-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 370-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 395-0"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "1 ethical development course",
+    "2 management science electives courses",
+    "1 operations elective course",
+    "Major Program (22 units)",
+    "7 IEMS elective courses",
+    "3 additional courses from",
+    "3 general technical elective courses chosen from areas below"
+   ]
+  }
+ ],
+ "sources": [
+  "https://catalogs.northwestern.edu/undergraduate/courses-az/iems/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/industrial-engineering-management-sciences/industrial-engineering-degree/",
+  "https://www.mccormick.northwestern.edu/industrial/academics/courses/"
+ ],
+ "courses": [
+  {
+   "id": "IEMS 200-0",
+   "dept": "IEMS",
+   "num": "200-0",
+   "title": "Why IE: Professional Foundations of Industrial Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "In this seminar course we introduce first- and second-year students to the field of Industrial Engineering and Management Sciences (IEMS) and its ethical, global and societal contexts. Focus on modeling, systems thinking and process improvement, as well as the career paths of IE graduates. Opportunities will be provided to develop skills in teamwork and in oral and written communication.",
+   "text": "Prerequisite: Open only to first- and second-year students.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MWF 2:00-2:50 · Mejía"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20200-0"
+  },
+  {
+   "id": "IEMS 201-0",
+   "dept": "IEMS",
+   "num": "201-0",
+   "title": "Introduction to Statistics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "MATH 218-2",
+     "MATH 220-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Collecting data; summarizing and displaying data; drawing conclusions from data; probability background, confidence intervals, hypotheses tests, regression, correlation. Not open to industrial engineering degree candidates. May not receive credit for both IEMS 201-0 and any of BMD_ENG 220-0, IEMS 303-0, or CHEM_ENG 312-0.",
+   "text": "Prerequisite: MATH 218-2 or MATH 220-2 or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20201-0"
+  },
+  {
+   "id": "IEMS 225-0",
+   "dept": "IEMS",
+   "num": "225-0",
+   "title": "Principles of Entrepreneurship",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to essential elements of building one's own business, from brainstorming ideas and assessing opportunities to pitching a business idea. History of entrepreneurship and the entrepreneurial psyche. Business plan fundamentals, including strategy, finance, accounting, marketing, operations, and choosing the ideal management team. Taught with ENTREP 225-0; may not receive credit for both courses. May not be taken after IEMS 325-0 or ENTREP 325-0.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20225-0"
+  },
+  {
+   "id": "IEMS 294-0",
+   "dept": "IEMS",
+   "num": "294-0",
+   "title": "Professional Practice Studio",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "DSGN 106-1",
+     "DSGN 106-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course develops the professional and analytical skills required for successful industrial engineering project work. Students learn how to scope problems, conduct relevant background research, select appropriate models and methods, perform simple analysis, and communicate results through clear writing, effective visualizations, and compelling narratives. The class will use many short cases and applied exercises to teach concepts.?No previous?IE courses are required.?The course is meant to prepare students for internships, the?Client Project Challenge (CPC) class, other IE classes, and their careers.",
+   "text": "Prerequisites: DSGN 106-1 , DSGN 106-2 , sophomore standing.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTH 12:30-1:50 · Mejía, Watson"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20294-0"
+  },
+  {
+   "id": "IEMS 301-0",
+   "dept": "IEMS",
+   "num": "301-0",
+   "title": "Introduction to Statistical Learning",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "IEMS 201-0",
+       "IEMS 303-0",
+       "BMD_ENG 220-0",
+       "CHEM_ENG 312-0",
+       "GEN_ENG 231-0",
+       "MATH 314-0"
+      ]
+     },
+     {
+      "or": [
+       "COMP_SCI 110-0",
+       "COMP_SCI 150-0",
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "GEN_ENG 205-1",
+       "GEN_ENG 206-1"
+      ]
+     },
+     "GEN_ENG 241-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course offers a modern treatment of statistical learning, focusing on modeling data for prediction and insight. It blends theoretical foundations with practical programming applications to prepare students for both advanced study and real-world data analysis. May not receive credit for both IEMS 301-0 and IEMS 304-0.",
+   "text": "Prerequisites: IEMS 201-0 , IEMS 303-0 ,BMD_ENG 220-0, CHEM_ENG 312-0 , GEN_ENG 231-0 , or MATH 314-0 ; COMP_SCI 110-0 , COMP_SCI 150-0 , GEN_ENG 150-0 , GEN_ENG 151-0 , GEN_ENG 205-1 , or GEN_ENG 206-1 ; GEN_ENG 241-0 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MWF 12:00-12:50 · Sadeghiamirshahidi"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20301-0"
+  },
+  {
+   "id": "IEMS 302-0",
+   "dept": "IEMS",
+   "num": "302-0",
+   "title": "Probability",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MATH 228-2",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to probability theory and its applications. Conditional probabilities and expectation values. Random variables and distributions, including binomial, Poisson, exponential, and normal. Joint distributions and limit laws for foundation of and connection to statistics. Examples in reliability, inventory, finance, and statistics. May not receive credit for both IEMS 302-0 and any of the following: ELEC_ENG 302-0; MATH 310-1, MATH 314-0, MATH 385-0; STAT 320-1, STAT 383-0.",
+   "text": "Prerequisite: prior completion of or concurrent enrollment in MATH 228-2 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 10:00-10:50 · Wilson · (Lab: TH 12:00, 1:00)",
+    "Winter 2027": "MWF 10:00-10:50 · Wilson · (Lab: TH 2:00, 3:00)",
+    "Spring 2027": "MWF 9:00-9:50 · Gaudio · (Lab: TH 2:00, 3:00)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20302-0"
+  },
+  {
+   "id": "IEMS 303-0",
+   "dept": "IEMS",
+   "num": "303-0",
+   "title": "Engineering Statistics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "IEMS 302-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "A second course in statistics that goes deeper into estimation theory and nonparametric statistics, and introduces Bayesian inference, experiment design and ANOVA.",
+   "text": "Prerequisite: IEMS 302-0 or equivalent.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MWF 9:00-9:50 · Nelson · (Lab: W 2:00, 3:00, 5:00)",
+    "Spring 2027": "TTH 12:30-1:50 · Chan · (Lab: W 1:00, 2:00)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20303-0"
+  },
+  {
+   "id": "IEMS 304-0",
+   "dept": "IEMS",
+   "num": "304-0",
+   "title": "Statistical Learning for Data Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "IEMS 303-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Predictive modeling of data using modern regression and classification methods. Multiple linear regression; logistic regression; pitfalls and diagnostics; nonparametric and nonlinear regression and classification such as trees, nearest neighbors, neural networks, and ensemble methods.",
+   "text": "Prerequisites: IEMS 303-0 or equivalent.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 1:00-1:50 · Chen · (Lab: F 10:00)",
+    "Winter 2027": "MWF 1:00-1:50 · Apley · (Lab: F 9:00, 10:00)",
+    "Spring 2027": "MWF 1:00-1:50 · Chen · (Lab: F 2:00, 3:00)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20304-0"
+  },
+  {
+   "id": "IEMS 305-0",
+   "dept": "IEMS",
+   "num": "305-0",
+   "title": "Foundations of Modern Machine Learning",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "IEMS 301-0",
+     "IEMS 304-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "This course introduces the theoretical foundations and practical implementation of machine learning methods, with an emphasis on modern algorithmic developments. The curriculum spans classical statistical learning techniques including regression, classification, regularization, and clustering as well as contemporary deep learning architectures such as feedforward and convolutional neural networks, recurrent models, and transformers. Core algorithmic principles, including backpropagation, optimization, regularization, and representation learning, are developed both analytically and through software implementation. Students engage with the material through coding-based projects and by examining the computational foundations of large-scale language models.",
+   "text": "Prerequisites: IEMS 301-0 or IEMS 304-0 or equivalent.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTH 9:30-10:50 · Shi"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20305-0"
+  },
+  {
+   "id": "IEMS 307-0",
+   "dept": "IEMS",
+   "num": "307-0",
+   "title": "Quality Improvement by Experimental Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "IEMS 201-0",
+     "IEMS 303-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Methods for designing and analyzing industrial experiments. Blocking; randomization; multiple regression; factorial and fractional factorial experiments; response surface methodology; Taguchi's robust design; split plot experimentation. Homework, labs, and project.",
+   "text": "Prerequisite: IEMS 201-0 , IEMS 303-0 , or equivalent.",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "TTH 12:30-1:50 · Shi"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20307-0"
+  },
+  {
+   "id": "IEMS 310-0",
+   "dept": "IEMS",
+   "num": "310-0",
+   "title": "Operations Research",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 205-1",
+       "GEN_ENG 206-1",
+       "MATH 240-0",
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "GEN_ENG 241-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Survey of operations research techniques. Linear programming, decision theory, stochastic processes, game theory. May not be taken for credit with or after IEMS 313-0.",
+   "text": "Prerequisites: GEN_ENG 205-1 , GEN_ENG 206-1 or MATH 240-0 or GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 241-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 2:00-2:50 · Sadeghiamirshahidi"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20310-0"
+  },
+  {
+   "id": "IEMS 313-0",
+   "dept": "IEMS",
+   "num": "313-0",
+   "title": "Linear Optimization for Decision Making",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "COMP_SCI 110-0",
+       "COMP_SCI 111-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     {
+      "or": [
+       "GEN_ENG 205-1",
+       "GEN_ENG 206-1",
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "GEN_ENG 241-0",
+     "MATH 228-1"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Formulation and solution of applicable optimization models, including linear, integer, nonlinear, and network problems. Efficient algorithmic methods and use of computer modeling languages and systems. Homework, exams, and project.",
+   "text": "Prerequisites: COMP_SCI 110-0 , COMP_SCI 111-0 , or COMP_SCI 150-0 ; GEN_ENG 205-1 , GEN_ENG 206-1 , GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 241-0 ; MATH 228-1 ; sophomore standing .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 11:00-11:50 · Morton · (Lab: M 4:00, 5:00 )",
+    "Winter 2027": "MWF 11:00-11:50 · Morton · (Lab: M 3:00, 4:00)",
+    "Spring 2027": "MWF 11:00-11:50 · Mehrotra · (Lab: M 2:00, 3:00)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20313-0"
+  },
+  {
+   "id": "IEMS 314-0",
+   "dept": "IEMS",
+   "num": "314-0",
+   "title": "Nonlinear Optimization for Decision Making",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "GEN_ENG 150-0",
+     "COMP_SCI 150-0",
+     "GEN_ENG 231-0",
+     "GEN_ENG 241-0",
+     "MATH 228-1"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Theory and algorithms of nonlinear optimization as a bridge between deterministic linear models and data-driven decision making under uncertainty. This course covers convex and nonconvex modeling, first- and second-order optimality conditions, duality theory, and numerical methods including gradient-based, stochastic, Newton-type, and constrained optimization algorithms. Case studies from machine learning, finance, and engineering motivate the formulation and analysis of real-world nonlinear models. Students implement foundational solvers from first principles, construct more advanced solvers using generative-AI assisted development, and deploy these methods on applications such as nonlinear regression and classification, portfolio optimization, and parameter estimation in complex systems.",
+   "text": "Prerequisites: GEN_ENG 150 or COMP_SCI 150, GEN_ENG 231, GEN_ENG 241, MATH 228-1 ; or equivalent.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTH 9:30-10:50 · Nocedal · (Lab: M 12:00)",
+    "Spring 2027": "MWF 10:00-10:50 · Xiong · (Lab: W 11-11:50, 12-12:50)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20314-0"
+  },
+  {
+   "id": "IEMS 315-0",
+   "dept": "IEMS",
+   "num": "315-0",
+   "title": "Stochastic Models",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "IEMS 302-0",
+     {
+      "or": [
+       "GEN_ENG 205-1",
+       "GEN_ENG 206-1",
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "GEN_ENG 241-0",
+     "ES_APPM 245-0",
+     "IEMS 303-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamental concepts of probability theory; modeling and analysis of systems having random dynamics, particularly queueing systems.",
+   "text": "Prerequisites: IEMS 302-0 ; GEN_ENG 205-1 , GEN_ENG 206-1 , GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 241-0 ; ES_APPM 245-0 ; and prior completion of or concurrent enrollment in IEMS 303-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 9:00-9:50 · Gaudio · (Lab: F 12:00, 1:00)",
+    "Spring 2027": "MWF 9:00-9:50 · Grosof · (Lab: F 10:00, 11:00)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20315-0"
+  },
+  {
+   "id": "IEMS 317-0",
+   "dept": "IEMS",
+   "num": "317-0",
+   "title": "Discrete Event Systems Simulation",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "IEMS 303-0",
+     {
+      "or": [
+       "IEMS 310-0",
+       "IEMS 315-0"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Computer simulation of discrete-change systems subject to uncertainty. Choice of input distributions; development of models; design and analysis of simulation experiments. Mini-projects, exams, and computer labs.",
+   "text": "Prerequisites: IEMS 303-0 ; IEMS 310-0 or IEMS 315-0 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MWF 2:00-2:50 · Rhee · (Lab: F 12:00, 1:00)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20317-0"
+  },
+  {
+   "id": "IEMS 325-0",
+   "dept": "IEMS",
+   "num": "325-0",
+   "title": "Engineering Entrepreneurship",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "CIV_ENV 205-0",
+     "ENTREP 330-1"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Overview of the entrepreneurial process from an engineering perspective. Idea generation, planning, financing, marketing, protecting, staffing, leading, growing, and harvesting. Business models for startups. Lectures, guest speakers, and case studies. Taught with IEMS 325-0; may not receive credit for both courses.",
+   "text": "Prerequisite: 1 course in accounting or finance such as CIV_ENV 205-0 or ENTREP 330-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20325-0"
+  },
+  {
+   "id": "IEMS 340-0",
+   "dept": "IEMS",
+   "num": "340-0",
+   "title": "Qualitative Methods in Engineering Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "DSGN 106-1",
+     "DSGN 106-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Use of field research methods to solve management problems. Students define projects, design field studies and pilot tests of data collection instruments, and present results.",
+   "text": "Prerequisites: DSGN 106-1 and DSGN 106-2 , or consent of instructor for non-McCormick students.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "TTH 2:00-3:20 · Mejía · (Lab: W 5:00)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20340-0"
+  },
+  {
+   "id": "IEMS 341-0",
+   "dept": "IEMS",
+   "num": "341-0",
+   "title": "Social Networks Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The use of social network analysis to understand the growing connectivity and complexity in the world around us on different scales, ranging from small groups to the World Wide Web. How we create social, economic, and technological networks, and how they enable and constrain attitudes and behaviors.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20341-0"
+  },
+  {
+   "id": "IEMS 342-0",
+   "dept": "IEMS",
+   "num": "342-0",
+   "title": "Organizational Behavior",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Manager's view of tools available to recruit, develop, appraise, compensate, organize, and lead a team going through change. Application of psychological principles relating to human dynamics, motivation, teams, power, and organizational culture. Lectures, guest speakers, and exams. Work experience recommended.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "W 5:00-7:50 · Mejía"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20342-0"
+  },
+  {
+   "id": "IEMS 343-0",
+   "dept": "IEMS",
+   "num": "343-0",
+   "title": "Project Management for Engineers",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "CIV_ENV 205-0",
+     "IEMS 303-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "A case study-based exploration of the body of project management knowledge. Key topics include project scheduling, risk management, project leadership, small-group dynamics, project methodologies, lifecycle concepts, and project controls. A Socratic approach is taken to exploring various case studies in the context of established and leading-edge project management concepts.",
+   "text": "Prerequisites: CIV_ENV 205-0 and IEMS 303-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "M 5:00-7:50 · Werwath"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20343-0"
+  },
+  {
+   "id": "IEMS 344-0",
+   "dept": "IEMS",
+   "num": "344-0",
+   "title": "Whole-Brain Leadership",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "junior standing"
+   ],
+   "desc": "This course examines whole-brain thinking and leading. Students will draw upon previous work and leadership experience to identify their own thinking and leading preferences and those of team member, and will examine contrasting thinking and leading styles in an effort to appreciate and combine these to produce optimal outcomes. A number of leadership theories and ways of leading will be examined including creative and agile leadership. Analytical thinkers/leaders will be challenged to spend more time with innovation and creativity, while creative thinkers/leaders will be presented with opportunities to engage in analytical problem-solving. Work experience recommended.",
+   "text": "Prerequisite: Junior standing.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MW 3:00–4:20 · Poll"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20344-0"
+  },
+  {
+   "id": "IEMS 345-0",
+   "dept": "IEMS",
+   "num": "345-0",
+   "title": "Negotiations and Conflict Resolution for Engineers",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "junior standing"
+   ],
+   "desc": "In this highly interactive class, students participate in negotiation and dispute resolution simulations that range in complexity from single-party/single-issue to multiparty/ multi-issue cases. In addition students explore the role of agents and third parties in the managing conflict. Throughout all of the simulations integrative and distributive strategies are emphasized that can be applied across a variety of contexts.",
+   "text": "Prerequisite: Junior standing.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TH 5:00-7:50 · Rekoske"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20345-0"
+  },
+  {
+   "id": "IEMS 349-0",
+   "dept": "IEMS",
+   "num": "349-0",
+   "title": "Organizational Leadership",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course enables students to think critically about leadership in organizations by understanding five facets of leadership. The five facets are areas of theorizing that explain what makes leadership effective: features, functions, form, fit, and focus. We will learn to answer questions about who is influential, what makes for good leadership, when (under what conditions?), and why (through what mechanisms?) is leadership successful. We explore leadership concepts using a set of illustrative case studies of interesting people who have led interesting lives of impact. Students may not receive credit for both IEMS 349-0 and COMM_ST 350-SA.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20349-0"
+  },
+  {
+   "id": "IEMS 350-0",
+   "dept": "IEMS",
+   "num": "350-0",
+   "title": "Humans, AI, and the Future of Decision-making",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Examines how individuals, teams, and organizations make decisions alongside AI systems. Students develop diagnostic tools to identify where AI adds value, choose appropriate integration strategies, and design the role, process, and governance changes that transformative AI adoption requires. Drawing on management research and practice, the course prepares students to lead AI-enabled change across levels of analysis, from individual workflows to organizational transformation.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "T 5:00-7:50 · Contractor"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20350-0"
+  },
+  {
+   "id": "IEMS 351-0",
+   "dept": "IEMS",
+   "num": "351-0",
+   "title": "AI-Enabled Sequential Decision Making",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "IEMS 303-0",
+     "IEMS 313-0",
+     "IEMS 314-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Formulation and solution of sequential decision-making problems under uncertainty. Markov decision processes and exact solution methods, including value iteration, policy iteration, and linear programming. Model-based methods, including model predictive control and Monte Carlo tree search. Model-free reinforcement learning methods, including deep Q networks, policy gradient, and actorcritic algorithms. Students implement these methods in Python and apply them through case studies that highlight the capabilities and limitations of each approach.",
+   "text": "Prerequisites: IEMS 303-0 , IEMS 313-0 , IEMS 314-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20351-0"
+  },
+  {
+   "id": "IEMS 352-0",
+   "dept": "IEMS",
+   "num": "352-0",
+   "title": "Foundations of Generative AI & Reasoning Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "IEMS 304-0",
+     "COMP_SCI 217-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course provides a hands-on introduction to the science and algorithms behind today’s Large Language Models (LLMs) and agentic AI. Architecture, training, and deployment of transformer-based models. Prompt engineering (including algorithmic approaches), and post-training with reinforcement learning methods such as RLHF and direct preference optimization for alignment and safety. The course also covers large reasoning models, in-context learning, and agentic AI state-of-the-art (architectures, memory, context engineering). Focus on practical implementations using modern software techniques and understanding the science of LLMs and agents.",
+   "text": "Prerequisites: IEMS 304-0 , COMP_SCI 217-0 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTH 2:00-3:20 · Klabjan"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20352-0"
+  },
+  {
+   "id": "IEMS 365-0",
+   "dept": "IEMS",
+   "num": "365-0",
+   "title": "Analytics for Social Good",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "IEMS 303-0",
+     "IEMS 313-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Challenges and opportunities in using analytics to pursue social good. Application of data-analysis and decision-making tools and frameworks to such case studies as disaster response and community-based healthcare. For juniors and seniors with interests in humanitarian and nonprofit operations.",
+   "text": "Prerequisites: IEMS 303-0 and IEMS 313-0 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MWF 11:00-11:50 · Sinclair · (Lab: W 4:00)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20365-0"
+  },
+  {
+   "id": "IEMS 370-0",
+   "dept": "IEMS",
+   "num": "370-0",
+   "title": "Tech Investment & Enterprise Strategy",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 205-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Examines how investors and executives evaluate, raise capital, and compete around technology-driven businesses. Emphasizes how valuation frameworks must be adapted to account for uncertainty, scalability, competitive dynamics, and strategic interaction. Covers fundamentals of technology valuation and investing, spanning venture capital, growth equity, and private equity contexts; and examination of how strategy shapes value, introducing tools such as network effects, strategy rules, competitive tactics, and reasoning under deep technological uncertainty. Throughout the course, students integrate financial analysis with strategic judgment through discussion of real-world cases.",
+   "text": "Prerequisites: CIV_ENV 205-0 or equivalent.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTH 11:00-12:20 · McCarter",
+    "Spring 2027": "TTH 11:00–12:20 · McCarter"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20370-0"
+  },
+  {
+   "id": "IEMS 373-0",
+   "dept": "IEMS",
+   "num": "373-0",
+   "title": "Intro to Financial Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "CIV_ENV 205-0",
+     "IEMS 302-0",
+     "IEMS 303-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "or equivalent"
+   ],
+   "desc": "Financial markets, derivative securities, risk management, mathematical models in finance. Foreign exchange, debt, equity, commodity markets. Investing, trading, hedging, arbitrage. Forwards, futures, options, swaps, exotic derivatives. Models of price dynamics, binomial model, introduction to Black-Scholes theory and Monte Carlo simulation. Homework, projects, and guest speakers.",
+   "text": "Prerequisites: CIV_ENV 205-0 , IEMS 302-0 , IEMS 303-0 or equivalents, or consent of instructor.",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "TTH 3:30-4:50 · Balasanov"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20373-0"
+  },
+  {
+   "id": "IEMS 381-0",
+   "dept": "IEMS",
+   "num": "381-0",
+   "title": "Supply Chain Modeling and Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "IEMS 313-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Application and development of mathematical modeling tools for the analysis of strategic, tactical, and operational supply-chain problems, including facility location, customer assignment, vehicle routing, and inventory management. Related topics including the role of information and decision support systems in supply chains. Homework, exams, and project.",
+   "text": "Prerequisite: IEMS 313-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTH 12:30-1:50 · Watson · (Lab: F 2:00, 3:00)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20381-0"
+  },
+  {
+   "id": "IEMS 382-0",
+   "dept": "IEMS",
+   "num": "382-0",
+   "title": "Operations Engineering and Management",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "IEMS 302-0",
+     {
+      "or": [
+       "IEMS 310-0",
+       "IEMS 313-0"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Applications of operations research methods in managing and control of operations processes in manufacturing and service systems: including operations strategy; process-flow analysis; forecasting; capacity management; variability analysis; flow time and inventory management; flexible operations; lean operations; and production and workforce scheduling in manufacturing and service systems. Case studies, homework, and exams.",
+   "text": "Prerequisites: IEMS 302-0 ; IEMS 310-0 or IEMS 313-0 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTH 9:30-10:50 · Iravani"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20382-0"
+  },
+  {
+   "id": "IEMS 383-0",
+   "dept": "IEMS",
+   "num": "383-0",
+   "title": "Service Engineering and Management",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "IEMS 313-0",
+     "IEMS 315-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Exploration of service industries: cost-reduction and service-enhancement models, location planning, workforce scheduling, yield management, queuing analysis, and call-center management.",
+   "text": "Prerequisites: IEMS 313-0 , IEMS 315-0 .",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTH 2:00-3:20 · Iravani"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20383-0"
+  },
+  {
+   "id": "IEMS 385-0",
+   "dept": "IEMS",
+   "num": "385-0",
+   "title": "Introduction to Health Systems Management",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "IEMS 303-0",
+     "IEMS 313-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Health systems, lean concepts, patient-flow analysis, inference, and data-driven knowledge generation, decisions, and change. Forecasting, operations, and optimization of health resources.",
+   "text": "Prerequisites: IEMS 303-0 , IEMS 313-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTH 3:30-4:50 · Mehrotra"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20385-0"
+  },
+  {
+   "id": "IEMS 392-0",
+   "dept": "IEMS",
+   "num": "392-0",
+   "title": "Client Project Challenge with AI",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "IEMS 294-0",
+     "IEMS 302-0",
+     "IEMS 303-0",
+     "IEMS 304-0",
+     "IEMS 313-0",
+     {
+      "or": [
+       "IEMS 350-0",
+       "IEMS 351-0",
+       "IEMS 352-0"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Open-ended client projects involving application of AI-enabled decision-making techniques to complex data analysis and decision problems. Typically taken at the end of junior year or at the start of senior year. Closed to seniors in spring quarter.",
+   "text": "Prerequisites: IEMS 294-0 , 302-0 , 303-0 , 304-0 , 313-0 ; IEMS 350-0 or IEMS 351-0 or IEMS 352-0 . May not receive credit for both IEMS 392-0 and IEMS 394-0 .",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20392-0"
+  },
+  {
+   "id": "IEMS 394-0",
+   "dept": "IEMS",
+   "num": "394-0",
+   "title": "Industrial Engineering Client Project Challenge",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "IEMS 294-0",
+     "IEMS 302-0",
+     "IEMS 303-0",
+     "IEMS 304-0",
+     "IEMS 313-0",
+     {
+      "or": [
+       "IEMS 350-0",
+       "IEMS 351-0",
+       "IEMS 352-0"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Open-ended client projects involving application of operations research techniques to complex data analysis and decision problems. Typically taken at the end of junior year or at the start of senior year. Closed to seniors in spring quarter.",
+   "text": "Prerequisites: IEMS 294-0 , 302-0 , 303-0 , 304-0 , 313-0 ; IEMS 350-0 or IEMS 351-0 or IEMS 352-0 . Antirequisite: May not receive credit for both IEMS 392-0 and IEMS 394-0 .",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "TTH 5:00-6:20 · Watson",
+    "Spring 2027": "MWF 5:00-6:50 · Watson, Mejía"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20394-0"
+  },
+  {
+   "id": "IEMS 395-0",
+   "dept": "IEMS",
+   "num": "395-0",
+   "title": "Special Topics in Industrial Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Topics suggested by students or faculty members and approved by the department.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20395-0"
+  },
+  {
+   "id": "IEMS 399-0",
+   "dept": "IEMS",
+   "num": "399-0",
+   "title": "Independent Study in Industrial Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Independent study on an industrial engineering topic supervised by a faculty member.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20399-0"
+  },
+  {
+   "id": "BMD_ENG 220-0",
+   "dept": "BMD_ENG",
+   "num": "220-0",
+   "title": "",
+   "units": null,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20220-0",
+   "missing": true
+  },
+  {
+   "id": "BMD_ENG 390-2",
+   "dept": "BMD_ENG",
+   "num": "390-2",
+   "title": "Biomedical Engineering Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development of a design project initiated during the previous quarter.",
+   "text": "Prerequisite: BMD_ENG 390-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20390-2",
+   "autoPrereq": "BMD_ENG 390-1"
+  },
+  {
+   "id": "CHEM_ENG 312-0",
+   "dept": "CHEM_ENG",
+   "num": "312-0",
+   "title": "Probability and Statistics for Chemical Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to probability theory and statistical methods necessary for analyzing the behavior of processes and experiments. Statistical tests for detecting significant changes in process parameters relevant to engineering problems. Students are encouraged but not required to be familiar with coding prior to taking this course.",
+   "text": "Prerequisites: MATH 220-1 , 220-2 , 228-1 , 228-2 or equivalent; COMP_SCI 150-0 , GEN_ENG 150, or GEN_ENG 151-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM_ENG%20312-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-1"
+   ]
+  },
+  {
+   "id": "CIV_ENV 205-0",
+   "dept": "CIV_ENV",
+   "num": "205-0",
+   "title": "Economics and Finance for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Principles of corporate finance; financial decisions of firms; value; risk and return; investment and capital budgeting decisions under certainty and uncertainty; performance evaluation. May not be taken for credit with or after KELLG_FE 310-0.",
+   "text": "Prerequisite: MATH 220-1 ; basic understanding of probability and economics recommended.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20205-0",
+   "links": [
+    "MATH 220-1"
+   ],
+   "autoPrereq": "MATH 220-1"
+  },
+  {
+   "id": "COMM_ST 102-0",
+   "dept": "COMM_ST",
+   "num": "102-0",
+   "title": "Public Speaking",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Theory, composition, delivery, and criticism of public speeches.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMM_ST%20102-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COMM_ST 205-0",
+   "dept": "COMM_ST",
+   "num": "205-0",
+   "title": "Theories of Persuasion",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Survey of major theories that explain how to change another person's attitudes and behaviors. Applications to persuasion within a variety of contexts, including relationships, organizations, legal campaigns, and the mass culture.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMM_ST%20205-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COMP_SCI 110-0",
+   "dept": "COMP_SCI",
+   "num": "110-0",
+   "title": "Introduction to Computer Programming",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to programming practice using a modern programming language. Analysis and formulation of problems for computer solution. Systematic design, construction, and testing of programs. Substantial programming assignments. Not to be taken for credit with or after COMP_SCI 111-0.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20110-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COMP_SCI 111-0",
+   "dept": "COMP_SCI",
+   "num": "111-0",
+   "title": "Fundamentals of Computer Programming",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamental concepts of computer programming with heavy emphasis on design of recursive algorithms and test-driven development. Functional, imperative, and object-oriented programming paradigms. Procedural abstraction, data abstraction, and modularity. Required for the computer science degree.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20111-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COMP_SCI 150-0",
+   "dept": "COMP_SCI",
+   "num": "150-0",
+   "title": "Fundamentals of Programming and Computational Problem Solving",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "An introduction to Object-oriented programming: focus on Python but including a brief introduction to a statically typed language (e.g. C++). Students will use some approaches from Artificial Intelligence and Machine Learning to complete programming assignments. Required for the computer science degree. Students may receive credit for only one of: COMP_SCI 150, GEN_ENG 150, and GEN_ENG 151.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20150-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COMP_SCI 217-0",
+   "dept": "COMP_SCI",
+   "num": "217-0",
+   "title": "Applied Data Management",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This class offers a hands-on introduction to data representation, data modelling, and the SQL language for accessing and analyzing data in relational databases. Students access and analyze data in real-world large-scale databases from the public domain. Not for computer science or computer engineering degree candidates.",
+   "text": "Prerequisites: COMP_SCI 150 or GEN_ENG 150 or GEN_ENG 151.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20217-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0"
+   ],
+   "autoPrereq": {
+    "or": [
+     "COMP_SCI 150-0",
+     "GEN_ENG 150-0",
+     "GEN_ENG 151-0"
+    ]
+   }
+  },
+  {
+   "id": "DSGN 106-1",
+   "dept": "DSGN",
+   "num": "106-1",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated introduction to the user-centered design process and technical communication. Students will address challenges proposed by project partners by identifying unmet needs, conducting research, generating and evaluating potential solutions, and finally, presenting a final design concept with supporting documentation. Students also enhance their abilities in equitable teamwork, project management, fabrication skills, and producing written, oral, graphical, and interpersonal communication. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-1 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: Reserved for McCormick students only.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-1"
+  },
+  {
+   "id": "DSGN 106-2",
+   "dept": "DSGN",
+   "num": "106-2",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated iteration on the user-centered design process and technical communication. This course will build on the learning objectives from DTC-1 while adding more focus on ethics in design and communication, equitable distribution of teamwork, project management, documenting and communicating progress, and exploring a wider variety of project topics. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-2 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: DSGN 106-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-2",
+   "links": [
+    "DSGN 106-1"
+   ],
+   "autoPrereq": "DSGN 106-1"
+  },
+  {
+   "id": "ENGLISH 106-1",
+   "dept": "ENGLISH",
+   "num": "106-1",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENGLISH 106-2",
+   "dept": "ENGLISH",
+   "num": "106-2",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENGLISH 288-0",
+   "dept": "ENGLISH",
+   "num": "288-0",
+   "title": "Topics in Literature and Ethics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Although content varies depending on the course topic, all versions of this course explore literary texts that emerge from, and speak back to, ethical and/or religious traditions. Suitable for majors and non-majors. No prior knowledge of the field is expected. May be repeated for credit with a different topic.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20288-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 225-0",
+   "dept": "ENTREP",
+   "num": "225-0",
+   "title": "Principles of Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course serves as the foundational course for the undergraduate minor in entrepreneurship. This survey-style course is a good choice for students who wish to familiarize themselves with the world of entrepreneurship. Students will learn to think like entrepreneurs and will be introduced to key topics relevant to entrepreneurship, including customer discovery, finance, and marketing. They will also learn how to understand and perform analyses of a broad range of entrepreneurial activities related to different applications of entrepreneurship. Taught with IEMS 225-0; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20225-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 325-0",
+   "dept": "ENTREP",
+   "num": "325-0",
+   "title": "Engineering Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The goal of the course is to introduce students to innovation-driven entrepreneurship, a process by which emergent technology serves as the catalyst for new venture formation. This course challenges student teams to develop strategies for commercializing cutting-edge technologies. Each year, the course focuses on a significant innovation space. Taught with IEMS 325-0; may not receive credit for both courses.",
+   "text": "Prerequisite: ENTREP 330-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20325-0",
+   "links": [
+    "ENTREP 330-1"
+   ],
+   "autoPrereq": "ENTREP 330-1"
+  },
+  {
+   "id": "ENTREP 330-1",
+   "dept": "ENTREP",
+   "num": "330-1",
+   "title": "Startup Accounting and Finance",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course meets a core requirement for the Farley undergraduate minor in entrepreneurship. This course teaches students foundational accounting principles and how to manage the finances of small and early-stage businesses. Students will work in teams on projects driven by case studies and will immediately be able to apply their learnings to their own startup projects.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20330-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 360-0",
+   "dept": "ENTREP",
+   "num": "360-0",
+   "title": "Leadership, Ethics, and You",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This class is designed for students who want to explore how ethics and integrity are tied to leadership, and how developing leadership skills can contribute to students' future successes in both entrepreneurial endeavors and more traditional careers.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20360-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 365-0",
+   "dept": "ENTREP",
+   "num": "365-0",
+   "title": "Tech Ethics and Business Integrity",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course will explore the unique ethical challenges that face the technology industry, utilizing recent and historical case studies. Students will be challenged to think about what it means to run a business with integrity by examining common issues within the workplace as well as the responsibility that businesses have to customers. Data privacy abuses, sexual misconduct, and corporate greed, among many other topics, will be addressed.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20365-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "ES_APPM 245-0",
+   "dept": "ES_APPM",
+   "num": "245-0",
+   "title": "Elementary Applied Linear Algebra",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Basic linear algebra methods including basic matrix/vector operations, solution of linear systems of equations, eigenvalues, and singular values. Focus will be on applications of the methods on a range of engineering topics including: least squares and data fitting, game theory, graph theory, principal component analysis, linear programming, and other related engineering topics.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20245-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 150-0",
+   "dept": "GEN_ENG",
+   "num": "150-0",
+   "title": "Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). Students may receive credit for only one of: COMP_SCI 150, GEN_ENG 150, and GEN_ENG 151.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20150-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 151-0",
+   "dept": "GEN_ENG",
+   "num": "151-0",
+   "title": "Honors Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). The honors section will include students who received a 4 or 5 on AP CS A.",
+   "text": "Prerequisite: COMP_SCI 1CA or instructor permission. Students may not receive credit for both GEN_ENG 151-0 and COMP_SCI 150-0 or GEN_ENG 150-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20151-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 205-1",
+   "dept": "GEN_ENG",
+   "num": "205-1",
+   "title": "Engineering Analysis I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to linear algebra from computational, mathematical, and applications viewpoints. Computational methods using a higher-level software package such as MATLAB.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 206-1",
+   "dept": "GEN_ENG",
+   "num": "206-1",
+   "title": "Honor Engineering Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Covers topics addressed in GEN_ENG 205-1 at a deeper level. Intended for students with demonstrated strength in mathematics, computer programming, and/or physics.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 231-0",
+   "dept": "GEN_ENG",
+   "num": "231-0",
+   "title": "Probability and Statistics for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Collecting, summarizing and displaying data. An introduction to probability theory and its applications. Conditional probabilities and expected values. Random variables and distributions. Drawing conclusions and making decisions using data: confidence intervals, hypotheses testing, comparison tests, regression, and correlation.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MTWF 9-9:50 Olds, MTWF 11-11:50 Chan, MTWF 2-2:50 Chan",
+    "Winter 2027": "MTWF 9:00-9:50 MTWF 10:00-10:50 · Ankenman, Sadeghi",
+    "Spring 2027": "MTWF 10-10:50 Wilson MTWF 11-11:50 Wilson MTWF 2-2:50 Grosof · MTWF 3-3:50 Sadeghi"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20231-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 241-0",
+   "dept": "GEN_ENG",
+   "num": "241-0",
+   "title": "Linear Algebra for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solving linear systems of equations and LU factorization. Matrix/vector operations and algebra. Vector spaces and bases. Eigenvalues and eigenvectors, Orthogonality, solution of least squares, and QR factorization. Singular values, singular value decomposition. Applications in science and engineering.",
+   "text": "Prerequisites: GEN_ENG 150 or 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20241-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "MATH 218-2",
+   "dept": "MATH",
+   "num": "218-2",
+   "title": "Single-Variable Calculus with Precalculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Extreme value theorem, mean value theorem, and curve-sketching. Related rates. Optimization. Transcendental and inverse functions. Students may not receive credit for both MATH 218-2 and any of MATH 211-0, MATH 212-0 (former), MATH 220-0 (former), or MATH 220-1.",
+   "text": "Prerequisite: MATH 218-1 or consent of the department.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20218-2"
+  },
+  {
+   "id": "MATH 220-1",
+   "dept": "MATH",
+   "num": "220-1",
+   "title": "Single-Variable Differential Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Limits. Differentiation. Linear approximation and related rates. Extreme value theorem, mean value theorem, and curve-sketching. Optimization. Students may not receive credit for both MATH 220-1 and any of MATH 211-0, MATH 212-0 (former), MATH 213-0 (former), MATH 218-1, MATH 218-2, or MATH 220-0 (former).",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 220-2",
+   "dept": "MATH",
+   "num": "220-2",
+   "title": "Single-Variable Integral Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Definite integrals, antiderivatives, and the fundamental theorem of calculus. Transcendental and inverse functions. Areas and volumes. Techniques of integration, numerical integration, and improper integrals. First-order linear and separable ordinary differential equations. Students may not receive credit for both MATH 220-2 and any of MATH 213-0 (former), MATH 214-0 (former), MATH 218-3, or MATH 224-0 (former).",
+   "text": "Prerequisite: MATH 218-2 or MATH 220-0 (former) or MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-2",
+   "links": [
+    "MATH 218-2",
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-2",
+     "MATH 220-0",
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-1",
+   "dept": "MATH",
+   "num": "228-1",
+   "title": "Multivariable Differential Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Vectors, vector functions, partial derivatives, Taylor polynomials, and optimization. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-1 and any of MATH 230-0 (former), MATH 230-1, MATH 281-1, MATH 285-2, MATH 290-2, MATH 291-2, or ES_APPM 252-1.",
+   "text": "Prerequisite: MATH 218-3 or MATH 214-0 (former) or MATH 220-2 or MATH 224-0 (former).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-1",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-3",
+     "MATH 214-0",
+     "MATH 220-2",
+     "MATH 224-0"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-2",
+   "dept": "MATH",
+   "num": "228-2",
+   "title": "Multivariable Integral Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Multiple integration: double integrals, triple integrals, and change of variables. Vector calculus: vector fields, line integrals, surface integrals, curl and divergence, Green's theorem, Stokes' theorem, and the divergence theorem. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-2 and any of MATH 230-2, MATH 234-0 (former), MATH 281-2, MATH 285-3, MATH 290-3, MATH 291-3, or ES_APPM 252-2.",
+   "text": "Prerequisite: MATH 228-1 or MATH 230-0 (former) or MATH 230-1 or MATH 281-1 or MATH 285-2 or MATH 290-2 or MATH 291-2 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-2",
+   "links": [
+    "MATH 228-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 228-1",
+     "MATH 230-0",
+     "MATH 230-1",
+     "MATH 281-1",
+     "MATH 285-2",
+     "MATH 290-2",
+     "MATH 291-2",
+     "ES_APPM 252-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 240-0",
+   "dept": "MATH",
+   "num": "240-0",
+   "title": "Linear Algebra",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Elementary linear algebra: systems of linear equations, matrix algebra, subspaces, determinants, eigenvalues, eigenvectors, and orthogonality. Students may not receive credit for both MATH 240-0 and any of MATH 281-3, MATH 285-1, MATH 290-1, MATH 291-1, GEN_ENG 205-1, or GEN_ENG 206-1.",
+   "text": "Prerequisite: MATH 230-1 or MATH 230-0 (former) or MATH 281-1 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20240-0",
+   "autoPrereq": {
+    "or": [
+     "MATH 230-1",
+     "MATH 230-0",
+     "MATH 281-1",
+     "ES_APPM 252-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 314-0",
+   "dept": "MATH",
+   "num": "314-0",
+   "title": "Probability and Statistics for Econometrics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to probability theory and statistical methods, including properties of probability distributions, sampling distributions, parameter estimation, confidence intervals and hypothesis testing. For students planning to take ECON 381-1. Students may not receive credit for both MATH 314-0 and any of MATH 310-1, MATH 311-1, MATH 385-0, STAT 320-1, STAT 383-0, IEMS 302-0, or ELEC_ENG 302-0. Prerequisite or corequisite: MATH 226-0 or MATH 281-2; and MATH 228-2 or MATH 230-2 or MATH 234-0 (former), or MATH 281-2 or MATH 285-3 or MATH 290-3 or MATH 291-3 or ES_APPM 252-2.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20314-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PERF_ST 103-0",
+   "dept": "PERF_ST",
+   "num": "103-0",
+   "title": "Analysis and Performance of Text",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course studies texts, broadly defined and situated, through performance. Students explore how performance helps the performer and audience interpret a text, as well as express challenging political and personal themes. They examine the ways performance illuminates and draws out deeper understandings of social relations through embodied praxis.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20103-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PERF_ST 203-0",
+   "dept": "PERF_ST",
+   "num": "203-0",
+   "title": "Performance Culture and Communication",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Explores how live performance and dramatic forms of communication are methods used to examine social behavior and cultural expressions.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20203-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHIL 220-0",
+   "dept": "PHIL",
+   "num": "220-0",
+   "title": "Introduction to Critical Theory",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Crisis, criticism, and critique in philosophical, political, and cultural contexts. Focus on the philosophical aspects of critical theory with reference to social conditions and art, literary, and/or political forms. COMP_LIT 207-0 and PHIL 220-0 are taught together; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHIL%20220-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHIL 225-0",
+   "dept": "PHIL",
+   "num": "225-0",
+   "title": "Minds and Machines",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introductory course addressing philosophical issues arising from the study of intelligence, including the possibility of machine intelligence and its relevance to the study of human intelligence.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHIL%20225-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHIL 260-0",
+   "dept": "PHIL",
+   "num": "260-0",
+   "title": "Introduction to Moral Philosophy",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Overview of some of the main ideas and most influential writings of moral philosophy.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHIL%20260-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHIL 262-0",
+   "dept": "PHIL",
+   "num": "262-0",
+   "title": "Ethical Problems and Public Issues",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Analysis of such controversial issues as the death penalty, abortion, euthanasia, sexual morality, economic justice and welfare, pornography and censorship, discrimination and preferential treatment, the environment, and world hunger.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHIL%20262-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHIL 269-0",
+   "dept": "PHIL",
+   "num": "269-0",
+   "title": "Bioethics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Ethical analysis of a variety of issues such as the human genome project, genetic therapy, cloning and stem cell transplantation, human and animal research, reproductive technologies, and the allocation of resources.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHIL%20269-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHIL 355-0",
+   "dept": "PHIL",
+   "num": "355-0",
+   "title": "Scientific Method in the Social Sciences",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Analysis of the philosophical foundations of social inquiry with reference to selected problems, thinkers, and schools, both classical and modern.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHIL%20355-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHIL 364-0",
+   "dept": "PHIL",
+   "num": "364-0",
+   "title": "Business and Professional Ethics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Application of ethical theories (Kantianism, utilitarianism, etc.) in a commercial setting. Topics include social responsibilities of corporations, public regulation, moral limits of marketing (e.g., marketing to children, noxious products), social justice versus fair compensation.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHIL%20364-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHYSICS 135-1",
+   "dept": "PHYSICS",
+   "num": "135-1",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Mechanics. Must be taken concurrently with PHYSICS 136-1.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 ; MATH 230-1 OR MATH 290-1 OR MATH 291-1 (may be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-1",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "POLI_SCI 305-0",
+   "dept": "POLI_SCI",
+   "num": "305-0",
+   "title": "Integrity and the Politics of Corruption",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This seminar delves into fraught political problems revolving around corruption and abuse of power. To tackle these problems, we examine two ideas related to \"the people.\" First, the people as the owner of public property stolen by corrupt politicians. Second, the people as an agent with its own moral integrity. Both ideas combine abstract philosophy with concrete politics.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=POLI_SCI%20305-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PRDV 335-0",
+   "dept": "PRDV",
+   "num": "335-0",
+   "title": "Engineering Improv: From Allowing to Application",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Start anywhere, remember you are not the most important person in the scene, and say yes. Through these and other improv techniques, students learn to tackle unexpected obstacles, building skills that can be leveraged in both academic and non-academic contexts to face challenges with resilience.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PRDV%20335-0",
+   "autoPrereq": null
+  }
+ ]
+}

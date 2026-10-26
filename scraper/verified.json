@@ -1,4 +1,6 @@
 {
+ "CHEM_ENG 375-0": "Prerequisite: CHEM_ENG 307-0 , CHEM_ENG 323-0 , or consent of instructor.",
+ "CIV_ENV 323-0": "Prerequisites: CIV_ENV 216-0 ; CIV_ENV 221-0 or equivalent.",
  "COMP_ENG 205-0": "Prerequisite: COMP_SCI 111-0 or GEN_ENG 205-1 ; COMP_ENG 203-0 recommended.",
  "COMP_ENG 303-0": "Prerequisite: COMP_ENG 203-0 .",
  "COMP_ENG 329-0": "Prerequisite: COMP_SCI 110-0 or COMP_SCI 111-0 .",
@@ -103,6 +105,19 @@
  "ELEC_ENG 389-0": "Prerequisite: ELEC_ENG 381-0 or consent of instructor.",
  "ELEC_ENG 390-0": "Prerequisite: COMP_SCI 230-0.",
  "ELEC_ENG 398-0": "Prerequisite: senior standing.",
+ "ENTREP 325-0": "Prerequisite: ENTREP 330-1 .",
+ "ENTREP 332-0": "Prerequisites: ENTREP 225-0 and ENTREP 325-0 recommended.",
+ "GEN_ENG 151-0": "Prerequisite: COMP_SCI 1CA or instructor permission. Students may not receive credit for both GEN_ENG 151-0 and COMP_SCI 150-0 or GEN_ENG 150-0 .",
+ "GEN_ENG 205-2": "Prerequisites: C- or better in GEN_ENG 205-1 ; MATH 220-1 .",
+ "GEN_ENG 205-3": "Prerequisite: C- or better in GEN_ENG 205-2 .",
+ "GEN_ENG 205-4": "Prerequisites: C- or better in GEN_ENG 205-2 ; MATH 220-2 .",
+ "GEN_ENG 206-1": "Prerequisite: consent of instructor.",
+ "GEN_ENG 206-2": "Prerequisite: consent of instructor.",
+ "GEN_ENG 206-3": "Prerequisite: consent of instructor.",
+ "GEN_ENG 206-4": "Prerequisite: consent of instructor.",
+ "IEMS 307-0": "Prerequisite: IEMS 201-0 , IEMS 303-0 , or equivalent.",
+ "IEMS 340-0": "Prerequisites: DSGN 106-1 and DSGN 106-2 , or consent of instructor for non-McCormick students.",
+ "IEMS 373-0": "Prerequisites: CIV_ENV 205-0 , IEMS 302-0 , IEMS 303-0 or equivalents, or consent of instructor.",
  "MAT_SCI 201-0": "Prerequisites: CHEM 131-0 , CHEM 151-0 , or CHEM 171-0 .",
  "MAT_SCI 316-1": "Prerequisite: MAT_SCI 315-0 or equivalent.",
  "MAT_SCI 316-2": "Prerequisite: MAT_SCI 316-1 or instructor consent.",
@@ -124,5 +139,6 @@
  "MAT_SCI 380-0": "Prerequisite: MAT_SCI 351-1 or equivalent.",
  "MAT_SCI 382-0": "Prerequisite: senior standing or consent of instructor.",
  "MAT_SCI 396-1": "Prerequisite: senior standing in the materials science and engineering or materials science program.",
- "MAT_SCI 396-2": "Prerequisite: senior standing in the materials science and engineering or materials science program."
+ "MAT_SCI 396-2": "Prerequisite: senior standing in the materials science and engineering or materials science program.",
+ "MECH_ENG 364-0": "Prerequisites: CIV_ENV 216-0 , MECH_ENG 241-0 or equivalent."
 }

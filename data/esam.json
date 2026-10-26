@@ -1,0 +1,1714 @@
+{
+ "id": "esam",
+ "name": "Engineering Sciences & Applied Mathematics",
+ "generated": "2026-10-26",
+ "catalogYear": "2026-2027",
+ "quarters": [
+  "Fall 2026",
+  "Winter 2027",
+  "Spring 2027"
+ ],
+ "departments": {
+  "ES_APPM": {
+   "name": "Engineering Science & Applied Math",
+   "abbr": "ES APPM",
+   "main": true
+  },
+  "BMD_ENG": {
+   "name": "Biomedical Engineering",
+   "abbr": "BME",
+   "main": false
+  },
+  "COMM_ST": {
+   "name": "Communication Studies",
+   "abbr": "COMM ST",
+   "main": false
+  },
+  "DSGN": {
+   "name": "Segal Design Institute",
+   "abbr": "DSGN",
+   "main": false
+  },
+  "ELEC_ENG": {
+   "name": "Electrical Engineering",
+   "abbr": "EE",
+   "main": false
+  },
+  "ENGLISH": {
+   "name": "English",
+   "abbr": "ENGLISH",
+   "main": false
+  },
+  "ENTREP": {
+   "name": "Entrepreneurship & Innovation",
+   "abbr": "ENTREP",
+   "main": false
+  },
+  "GEN_ENG": {
+   "name": "General Engineering",
+   "abbr": "GEN ENG",
+   "main": false
+  },
+  "IEMS": {
+   "name": "Industrial Engineering & Management Sciences",
+   "abbr": "IEMS",
+   "main": false
+  },
+  "MATH": {
+   "name": "Mathematics",
+   "abbr": "MATH",
+   "main": false
+  },
+  "PERF_ST": {
+   "name": "Performance Studies",
+   "abbr": "PERF ST",
+   "main": false
+  },
+  "PHYSICS": {
+   "name": "Physics",
+   "abbr": "PHYS",
+   "main": false
+  },
+  "PRDV": {
+   "name": "Personal Development",
+   "abbr": "PRDV",
+   "main": false
+  }
+ },
+ "programs": [
+  {
+   "id": "appm-bs",
+   "name": "Applied Mathematics BS",
+   "short": "Applied Math BS",
+   "type": "major",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/engineering-sciences-applied-mathematics/applied-mathematics-degree/",
+   "default": true,
+   "lists": [
+    {
+     "label": "Mathematics",
+     "kind": "core",
+     "need": 4,
+     "items": [
+      [
+       [
+        "MATH 220-1"
+       ]
+      ],
+      [
+       [
+        "MATH 220-2"
+       ]
+      ],
+      [
+       [
+        "MATH 228-1"
+       ]
+      ],
+      [
+       [
+        "MATH 228-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Basic science",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "PHYSICS 135-1",
+        "PHYSICS 136-1"
+       ]
+      ],
+      [
+       [
+        "PHYSICS 135-2",
+        "PHYSICS 136-2"
+       ]
+      ],
+      [
+       [
+        "PHYSICS 135-3",
+        "PHYSICS 136-3"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Engineering foundations",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "GEN_ENG 150-0"
+       ],
+       [
+        "GEN_ENG 151-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 231-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 241-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Design and writing",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "DSGN 106-1",
+        "DSGN 106-2"
+       ]
+      ],
+      [
+       [
+        "ENGLISH 106-1",
+        "ENGLISH 106-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Speaking or innovation",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMM_ST 102-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 225-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 325-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 103-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 203-0"
+       ]
+      ],
+      [
+       [
+        "PRDV 335-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 390-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Basic technical coursework",
+     "kind": "required",
+     "need": 1,
+     "items": [
+      [
+       [
+        "GEN_ENG 251-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Applied math coursework",
+     "kind": "required",
+     "need": 6,
+     "items": [
+      [
+       [
+        "ES_APPM 312-0"
+       ],
+       [
+        "MATH 325-0"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 314-0"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 321-0"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 322-0"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 345-0"
+       ],
+       [
+        "MATH 334-0"
+       ]
+      ],
+      [
+       [
+        "ES_APPM 346-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Probability and statistics",
+     "kind": "elective",
+     "need": 1,
+     "items": [
+      [
+       [
+        "ES_APPM 405-1"
+       ],
+       [
+        "IEMS 303-0"
+       ]
+      ],
+      [
+       [
+        "ELEC_ENG 302-0"
+       ],
+       [
+        "IEMS 302-0"
+       ],
+       [
+        "MATH 310-1"
+       ]
+      ],
+      [
+       [
+        "MATH 310-2"
+       ]
+      ],
+      [
+       [
+        "MATH 310-3"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "More probability, statistics or optimization",
+     "kind": "elective",
+     "need": 1,
+     "items": [
+      [
+       [
+        "IEMS 310-0"
+       ]
+      ],
+      [
+       [
+        "IEMS 313-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Mathematical modeling",
+     "kind": "elective",
+     "need": 1,
+     "items": [
+      [
+       [
+        "ES_APPM 370-1"
+       ],
+       [
+        "ES_APPM 375-1"
+       ],
+       [
+        "ES_APPM 395-0"
+       ],
+       [
+        "ES_APPM 399-0"
+       ],
+       [
+        "ES_APPM 495-0"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "1 additional unit of any 300- or 400-level ES_APPM course",
+    "Major Program (22 units)",
+    "5 courses in engineering or the sciences at the 300 level or higher leading to an approved concentration",
+    "2 technical electives at the 300 level or higher in engineering, science, or mathematics"
+   ]
+  }
+ ],
+ "sources": [
+  "https://catalogs.northwestern.edu/undergraduate/courses-az/es_appm/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/engineering-sciences-applied-mathematics/applied-mathematics-degree/",
+  "https://www.mccormick.northwestern.edu/applied-math/academics/courses/"
+ ],
+ "courses": [
+  {
+   "id": "ES_APPM 245-0",
+   "dept": "ES_APPM",
+   "num": "245-0",
+   "title": "Elementary Applied Linear Algebra",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Basic linear algebra methods including basic matrix/vector operations, solution of linear systems of equations, eigenvalues, and singular values. Focus will be on applications of the methods on a range of engineering topics including: least squares and data fitting, game theory, graph theory, principal component analysis, linear programming, and other related engineering topics.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20245-0"
+  },
+  {
+   "id": "ES_APPM 252-1",
+   "dept": "ES_APPM",
+   "num": "252-1",
+   "title": "Honors Calculus for Engineers",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus sequence for the mathematically interested students who want to dig deeper, cover more mathematical material, and see more applications than the standard calculus sequence offers. It also provides an introduction to computation (no previous experience required). Satisfies the same requirements as Math 228-1,2.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20252-1"
+  },
+  {
+   "id": "ES_APPM 252-2",
+   "dept": "ES_APPM",
+   "num": "252-2",
+   "title": "Honors Calculus for Engineers",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus sequence for the mathematically interested students who want to dig deeper, cover more mathematical material, and see more applications than the standard calculus sequence offers. It also provides an introduction to computation (no previous experience required). Satisfies the same requirements as Math 228-1,2.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20252-2"
+  },
+  {
+   "id": "ES_APPM 311-0",
+   "dept": "ES_APPM",
+   "num": "311-0",
+   "title": "Methods of Applied Mathematics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "GEN_ENG 205-4",
+     "GEN_ENG 206-4",
+     "GEN_ENG 251-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "ES_APPM 311-0 provides a survey of methods of applied mathematics with a focus on differential equations and is intended for undergraduate and graduate engineering students. It is not suitable for undergraduate or graduate students in applied mathematics; they take ES_APPM 314-0, instead. Ordinary differential equations: review of elementary ODEs, initial and boundary value problems, Fredholm Alternative Theorem, Power series solution of ODEs, Special functions, Sturm-Liouville eigenvalue problems, Eigenfunction expansions, Fourier series. Partial Differential Equations: Classification, Heat, Wave and Laplace equations and their applications, Solution by separation of variables, Series solutions, Full and partial eigenfunction expansions.",
+   "text": "Prerequisites: GEN_ENG 205-4 , GEN_ENG 206-4 , or GEN_ENG 251-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 11:00-11:50 · Vlahovska"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20311-0"
+  },
+  {
+   "id": "ES_APPM 312-0",
+   "dept": "ES_APPM",
+   "num": "312-0",
+   "title": "Complex Variables",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "GEN_ENG 205-4",
+     "GEN_ENG 206-4",
+     "MATH 250-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Imaginary numbers and complex variables, analytic functions, calculus of complex functions, contour integration with application to transform inversion, conformal mapping.",
+   "text": "Prerequisite: GEN_ENG 205-4 , GEN_ENG 206-4 , or MATH 250-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20312-0"
+  },
+  {
+   "id": "ES_APPM 314-0",
+   "dept": "ES_APPM",
+   "num": "314-0",
+   "title": "Advanced Methods for Differential Equations",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The intended audience for this course are students interested in applied mathematics, specifically, in analytical solution techniques for differential equations. Review of methods for solving ODEs, including power series methods. Self-adjoint and non self-adjoint boundary value problems. Special Functions. Eigenvalue problems. Eigenfunction expansions. Transform methods. Distribution theory. Green’s functions for ODEs. Solution of PDEs by separation of variables. No textbook required; lecture notes provided. May not receive credit for both this course and ES_APPM 311. Suggessted.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 12:30-2:00 · Miksis"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20314-0"
+  },
+  {
+   "id": "ES_APPM 321-0",
+   "dept": "ES_APPM",
+   "num": "321-0",
+   "title": "Models in Applied Mathematics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "ES_APPM 311-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "The aim of this course is to introduce mathematical modeling to students interested in applied mathematics. The intended audience are undergraduate seniors in applied mathematics or 1st year graduate students interested in applied mathematics.",
+   "text": "Prerequisites: ES_APPM 311/314 or permission of Instructor.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 3:30-4:50 · Miksis"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20321-0"
+  },
+  {
+   "id": "ES_APPM 322-0",
+   "dept": "ES_APPM",
+   "num": "322-0",
+   "title": "Applied Dynamical Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "GEN_ENG 205-4",
+     "GEN_ENG 206-4",
+     "GEN_ENG 251-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Example-oriented survey of nonlinear dynamical systems, including chaos. Combines numerical exploration of differential equations describing physical problems with analytic methods and geometric concepts. Applications to mechanical, fluid dynamical, electrical, chemical, and biological systems.",
+   "text": "Prerequisites: GEN_ENG 205-4 , GEN_ENG 206-4 , or GEN_ENG 251-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20322-0"
+  },
+  {
+   "id": "ES_APPM 344-0",
+   "dept": "ES_APPM",
+   "num": "344-0",
+   "title": "High Performance Scientific Computing",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solving partial differential equations using high performance computing platforms. Basic C programming. Distributed computing using MPI. GPU programming using CUDA. Adaptation of algorithms for solving PDE's to different architectures.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20344-0"
+  },
+  {
+   "id": "ES_APPM 345-0",
+   "dept": "ES_APPM",
+   "num": "345-0",
+   "title": "Applied Linear Algebra",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "GEN_ENG 205-4",
+     "GEN_ENG 206-4",
+     "ES_APPM 245-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Understanding and implementation of algorithms to calculate matrix decompositions such as eigenvalue/vector, LU, QR, and SVD decompositions. Applications include data-fitting, image analysis, and ranking algorithms.",
+   "text": "Prerequisites: GEN_ENG 205-4 , GEN_ENG 206-4 , ES_APPM 245-0 , or MATH240-0.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTh 12:30-1:50 · Mangan"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20345-0"
+  },
+  {
+   "id": "ES_APPM 346-0",
+   "dept": "ES_APPM",
+   "num": "346-0",
+   "title": "Modeling and Computation in Science & Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     {
+      "and": [
+       "MATH 228-2",
+       "MATH 240-0",
+       "MATH 250-0"
+      ]
+     },
+     {
+      "and": [
+       "GEN_ENG 205-4",
+       "PHYSICS 135-1",
+       "PHYSICS 135-2"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent",
+    "familiarity with a programming language",
+    "or instructor consent"
+   ],
+   "desc": "Advanced techniques for initial value problems, differential algebraic systems, bifurcations, chaos, and partial differential equations. Applications drawn from different physical areas.",
+   "text": "Prerequisites: MATH 228-2 , MATH 240-0 , and MATH 250-0 ; or GEN_ENG 205-4 and PHYSICS 135-1 , PHYSICS 135-2 ; or equivalent; familiarity with a programming language; or consent of instructor.",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "TTh 12:30-1:50 · Miksis"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20346-0"
+  },
+  {
+   "id": "ES_APPM 370-1",
+   "dept": "ES_APPM",
+   "num": "370-1",
+   "title": "Introduction to Computational Neuroscience",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "From neurons to networks. Ion channels, Hodgkin-Huxley framework, simplified models, cable equation, synapses, spike triggered average, and optimal stimulus. Feedforward and recurrent firing rate networks. Statistical approach, Bayesian modeling. Brief introduction to numerical methods.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20370-1"
+  },
+  {
+   "id": "ES_APPM 372-0",
+   "dept": "ES_APPM",
+   "num": "372-0",
+   "title": "Introduction to the Analysis of RNA Sequencing Data",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course will give an introduction to the theory and practice of analyzing high-throughput RNA sequencing through lectures and hands-on exercises. The basic topics covered will include: 1) the format of/working with raw sequencing data; 2) aligning reads to a reference genome; 3) the format of/working with aligned SAM/BAM files; 4) different ways to perform read-based gene counting; 4) How to visually explore reads and read counts; 5) variance shrinkage and principal components; 6) The theory of/doing differential expression analysis. Additional topics will be covered as time permits, based in part upon the interests of the course participants.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MW 3:30-4:50 · Kath"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20372-0"
+  },
+  {
+   "id": "ES_APPM 375-1",
+   "dept": "ES_APPM",
+   "num": "375-1",
+   "title": "Quantitative Biology I: Experiments, Data, Models, and Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "High-resolution, high-throughput, and dynamic imaging and sequencing data is the substrate of modern biology. The course consists of case-studies where we learn how to computational work with, analyze, and make sense of experimental dataset using fundamental principles of mathematics, statistics, and physics. No formal course prerequisites. Programming in python.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20375-1"
+  },
+  {
+   "id": "ES_APPM 375-2",
+   "dept": "ES_APPM",
+   "num": "375-2",
+   "title": "Quantitative Biology II: Experiments, Data, Models, and Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "High-resolution, high-throughput, and dynamic imaging and sequencing data is the substrate of modern biology. In this course we learn how to perform experiments, and computational work with, analyze, and make sense of experimental dataset using fundamental principles of mathematics, statistics, and physics. No formal course prerequisites. Programming in python.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20375-2"
+  },
+  {
+   "id": "ES_APPM 395-0",
+   "dept": "ES_APPM",
+   "num": "395-0",
+   "title": "Special Topics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20395-0"
+  },
+  {
+   "id": "ES_APPM 398-0",
+   "dept": "ES_APPM",
+   "num": "398-0",
+   "title": "Introduction to Applied Math Research",
+   "units": 0.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This is a seminar course where ESAM faculty present their current and planned research topics in applied mathematics.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20398-0"
+  },
+  {
+   "id": "ES_APPM 399-0",
+   "dept": "ES_APPM",
+   "num": "399-0",
+   "title": "Projects",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Special studies to be carried out under faculty direction. Credit to be arranged.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ES_APPM%20399-0"
+  },
+  {
+   "id": "BMD_ENG 390-2",
+   "dept": "BMD_ENG",
+   "num": "390-2",
+   "title": "Biomedical Engineering Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development of a design project initiated during the previous quarter.",
+   "text": "Prerequisite: BMD_ENG 390-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20390-2",
+   "autoPrereq": "BMD_ENG 390-1"
+  },
+  {
+   "id": "COMM_ST 102-0",
+   "dept": "COMM_ST",
+   "num": "102-0",
+   "title": "Public Speaking",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Theory, composition, delivery, and criticism of public speeches.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMM_ST%20102-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "DSGN 106-1",
+   "dept": "DSGN",
+   "num": "106-1",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated introduction to the user-centered design process and technical communication. Students will address challenges proposed by project partners by identifying unmet needs, conducting research, generating and evaluating potential solutions, and finally, presenting a final design concept with supporting documentation. Students also enhance their abilities in equitable teamwork, project management, fabrication skills, and producing written, oral, graphical, and interpersonal communication. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-1 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: Reserved for McCormick students only.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-1"
+  },
+  {
+   "id": "DSGN 106-2",
+   "dept": "DSGN",
+   "num": "106-2",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated iteration on the user-centered design process and technical communication. This course will build on the learning objectives from DTC-1 while adding more focus on ethics in design and communication, equitable distribution of teamwork, project management, documenting and communicating progress, and exploring a wider variety of project topics. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-2 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: DSGN 106-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-2",
+   "links": [
+    "DSGN 106-1"
+   ],
+   "autoPrereq": "DSGN 106-1"
+  },
+  {
+   "id": "ELEC_ENG 302-0",
+   "dept": "ELEC_ENG",
+   "num": "302-0",
+   "title": "Probabilistic Systems",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to probability theory and its applications. Axioms of probability, distributions, discrete and continuous random variables, conditional and joint distributions, correlation, limit laws, connection to statistics, and applications in engineering systems. Students may not receive credit for both ELEC_ENG 302-0 and any of the following: IEMS 302-0; MATH 310-1; MATH 311-1; MATH 314-0; MATH 385-0; STAT 320-1; STAT 383-0.",
+   "text": "Corequisite: MATH 228-2 or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20302-0",
+   "links": [
+    "GEN_ENG 231-0",
+    "MATH 228-2"
+   ],
+   "autoPrereq": "GEN_ENG 231-0"
+  },
+  {
+   "id": "ENGLISH 106-1",
+   "dept": "ENGLISH",
+   "num": "106-1",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENGLISH 106-2",
+   "dept": "ENGLISH",
+   "num": "106-2",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 225-0",
+   "dept": "ENTREP",
+   "num": "225-0",
+   "title": "Principles of Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course serves as the foundational course for the undergraduate minor in entrepreneurship. This survey-style course is a good choice for students who wish to familiarize themselves with the world of entrepreneurship. Students will learn to think like entrepreneurs and will be introduced to key topics relevant to entrepreneurship, including customer discovery, finance, and marketing. They will also learn how to understand and perform analyses of a broad range of entrepreneurial activities related to different applications of entrepreneurship. Taught with IEMS 225-0; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20225-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 325-0",
+   "dept": "ENTREP",
+   "num": "325-0",
+   "title": "Engineering Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The goal of the course is to introduce students to innovation-driven entrepreneurship, a process by which emergent technology serves as the catalyst for new venture formation. This course challenges student teams to develop strategies for commercializing cutting-edge technologies. Each year, the course focuses on a significant innovation space. Taught with IEMS 325-0; may not receive credit for both courses.",
+   "text": "Prerequisite: ENTREP 330-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20325-0",
+   "autoPrereq": "ENTREP 330-1"
+  },
+  {
+   "id": "GEN_ENG 150-0",
+   "dept": "GEN_ENG",
+   "num": "150-0",
+   "title": "Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). Students may receive credit for only one of: COMP_SCI 150, GEN_ENG 150, and GEN_ENG 151.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20150-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 151-0",
+   "dept": "GEN_ENG",
+   "num": "151-0",
+   "title": "Honors Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). The honors section will include students who received a 4 or 5 on AP CS A.",
+   "text": "Prerequisite: COMP_SCI 1CA or instructor permission. Students may not receive credit for both GEN_ENG 151-0 and COMP_SCI 150-0 or GEN_ENG 150-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20151-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 205-4",
+   "dept": "GEN_ENG",
+   "num": "205-4",
+   "title": "Engineering Analysis IV",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solution methods for ordinary differential equations, including exact, numerical, and qualitative methods. Applications and modeling principles; solution techniques.",
+   "text": "Prerequisites: C- or better in GEN_ENG 205-2 ; MATH 220-2 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MTWThF 4:00-4:50 · Alberts",
+    "Winter 2027": "MTWThF 12:00-12:50 · Alberts"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-4",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     "GEN_ENG 205-2",
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 206-4",
+   "dept": "GEN_ENG",
+   "num": "206-4",
+   "title": "Honors Engineering Analysis IV",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Covers topics addressed in GEN_ENG 205-4 at a deeper level. Intended for students with demonstrated strength in mathematics, computer programming, and/or physics.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-4",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 231-0",
+   "dept": "GEN_ENG",
+   "num": "231-0",
+   "title": "Probability and Statistics for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Collecting, summarizing and displaying data. An introduction to probability theory and its applications. Conditional probabilities and expected values. Random variables and distributions. Drawing conclusions and making decisions using data: confidence intervals, hypotheses testing, comparison tests, regression, and correlation.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20231-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 241-0",
+   "dept": "GEN_ENG",
+   "num": "241-0",
+   "title": "Linear Algebra for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solving linear systems of equations and LU factorization. Matrix/vector operations and algebra. Vector spaces and bases. Eigenvalues and eigenvectors, Orthogonality, solution of least squares, and QR factorization. Singular values, singular value decomposition. Applications in science and engineering.",
+   "text": "Prerequisites: GEN_ENG 150 or 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TBD · Mangan"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20241-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 251-0",
+   "dept": "GEN_ENG",
+   "num": "251-0",
+   "title": "Applied Ordinary Differential Equations",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Students will learn to identify and solve differential equations derived from scientific and engineered systems. They will also learn to formulate a differential equation for modeling suitable applications, specifically mechanical vibrations and electrical circuits, among others.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151 or CS 150, MATH 220-2 , PHYS 135-1 or GEN_ENG 212 (may be taken concurrently), GEN_ENG 241 (may be taken concurrently).",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MTWThF (Time TBD) · Bayliss"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20251-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 241-0",
+    "MATH 220-2",
+    "PHYSICS 135-1"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "IEMS 302-0",
+   "dept": "IEMS",
+   "num": "302-0",
+   "title": "Probability",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to probability theory and its applications. Conditional probabilities and expectation values. Random variables and distributions, including binomial, Poisson, exponential, and normal. Joint distributions and limit laws for foundation of and connection to statistics. Examples in reliability, inventory, finance, and statistics. May not receive credit for both IEMS 302-0 and any of the following: ELEC_ENG 302-0; MATH 310-1, MATH 314-0, MATH 385-0; STAT 320-1, STAT 383-0.",
+   "text": "Prerequisite: prior completion of or concurrent enrollment in MATH 228-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20302-0",
+   "links": [
+    "MATH 228-2"
+   ]
+  },
+  {
+   "id": "IEMS 303-0",
+   "dept": "IEMS",
+   "num": "303-0",
+   "title": "Engineering Statistics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "A second course in statistics that goes deeper into estimation theory and nonparametric statistics, and introduces Bayesian inference, experiment design and ANOVA.",
+   "text": "Prerequisite: IEMS 302-0 or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20303-0",
+   "links": [
+    "IEMS 302-0"
+   ]
+  },
+  {
+   "id": "IEMS 310-0",
+   "dept": "IEMS",
+   "num": "310-0",
+   "title": "Operations Research",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Survey of operations research techniques. Linear programming, decision theory, stochastic processes, game theory. May not be taken for credit with or after IEMS 313-0.",
+   "text": "Prerequisites: GEN_ENG 205-1 , GEN_ENG 206-1 or MATH 240-0 or GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 241-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20310-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 241-0",
+    "MATH 240-0"
+   ]
+  },
+  {
+   "id": "IEMS 313-0",
+   "dept": "IEMS",
+   "num": "313-0",
+   "title": "Linear Optimization for Decision Making",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Formulation and solution of applicable optimization models, including linear, integer, nonlinear, and network problems. Efficient algorithmic methods and use of computer modeling languages and systems. Homework, exams, and project.",
+   "text": "Prerequisites: COMP_SCI 110-0 , COMP_SCI 111-0 , or COMP_SCI 150-0 ; GEN_ENG 205-1 , GEN_ENG 206-1 , GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 241-0 ; MATH 228-1 ; sophomore standing .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20313-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 241-0",
+    "MATH 228-1"
+   ]
+  },
+  {
+   "id": "MATH 220-1",
+   "dept": "MATH",
+   "num": "220-1",
+   "title": "Single-Variable Differential Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Limits. Differentiation. Linear approximation and related rates. Extreme value theorem, mean value theorem, and curve-sketching. Optimization. Students may not receive credit for both MATH 220-1 and any of MATH 211-0, MATH 212-0 (former), MATH 213-0 (former), MATH 218-1, MATH 218-2, or MATH 220-0 (former).",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 220-2",
+   "dept": "MATH",
+   "num": "220-2",
+   "title": "Single-Variable Integral Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Definite integrals, antiderivatives, and the fundamental theorem of calculus. Transcendental and inverse functions. Areas and volumes. Techniques of integration, numerical integration, and improper integrals. First-order linear and separable ordinary differential equations. Students may not receive credit for both MATH 220-2 and any of MATH 213-0 (former), MATH 214-0 (former), MATH 218-3, or MATH 224-0 (former).",
+   "text": "Prerequisite: MATH 218-2 or MATH 220-0 (former) or MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-2",
+   "links": [
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-2",
+     "MATH 220-0",
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-1",
+   "dept": "MATH",
+   "num": "228-1",
+   "title": "Multivariable Differential Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Vectors, vector functions, partial derivatives, Taylor polynomials, and optimization. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-1 and any of MATH 230-0 (former), MATH 230-1, MATH 281-1, MATH 285-2, MATH 290-2, MATH 291-2, or ES_APPM 252-1.",
+   "text": "Prerequisite: MATH 218-3 or MATH 214-0 (former) or MATH 220-2 or MATH 224-0 (former).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-1",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-3",
+     "MATH 214-0",
+     "MATH 220-2",
+     "MATH 224-0"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-2",
+   "dept": "MATH",
+   "num": "228-2",
+   "title": "Multivariable Integral Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Multiple integration: double integrals, triple integrals, and change of variables. Vector calculus: vector fields, line integrals, surface integrals, curl and divergence, Green's theorem, Stokes' theorem, and the divergence theorem. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-2 and any of MATH 230-2, MATH 234-0 (former), MATH 281-2, MATH 285-3, MATH 290-3, MATH 291-3, or ES_APPM 252-2.",
+   "text": "Prerequisite: MATH 228-1 or MATH 230-0 (former) or MATH 230-1 or MATH 281-1 or MATH 285-2 or MATH 290-2 or MATH 291-2 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-2",
+   "links": [
+    "ES_APPM 252-1",
+    "MATH 228-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 228-1",
+     "MATH 230-0",
+     "MATH 230-1",
+     "MATH 281-1",
+     "MATH 285-2",
+     "MATH 290-2",
+     "MATH 291-2",
+     "ES_APPM 252-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 240-0",
+   "dept": "MATH",
+   "num": "240-0",
+   "title": "Linear Algebra",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Elementary linear algebra: systems of linear equations, matrix algebra, subspaces, determinants, eigenvalues, eigenvectors, and orthogonality. Students may not receive credit for both MATH 240-0 and any of MATH 281-3, MATH 285-1, MATH 290-1, MATH 291-1, GEN_ENG 205-1, or GEN_ENG 206-1.",
+   "text": "Prerequisite: MATH 230-1 or MATH 230-0 (former) or MATH 281-1 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20240-0",
+   "links": [
+    "ES_APPM 252-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 230-1",
+     "MATH 230-0",
+     "MATH 281-1",
+     "ES_APPM 252-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 250-0",
+   "dept": "MATH",
+   "num": "250-0",
+   "title": "Elementary Differential Equations",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Elementary ordinary differential equations: first-order equations, second-order linear equations, series solutions, and systems of first-order linear equations. Students may not receive credit for both MATH 250-0 and any of MATH 281-3, MATH 360-1, GEN_ENG 205-4, or GEN_ENG 206-4.",
+   "text": "Prerequisites: MATH 226-0 or MATH 281-2 ; and MATH 228-2 or MATH 230-2 or MATH 234-0 (former) or MATH 281-2 or MATH 285-3 or MATH 290-3 or MATH 291-3 or ES_APPM 252-2 ; and MATH 240-0 or MATH 285-1 or MATH 290-1 or MATH 291-1 or GEN_ENG 205-1 or GEN_ENG 206-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20250-0",
+   "links": [
+    "ES_APPM 252-2",
+    "MATH 228-2",
+    "MATH 240-0"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "MATH 226-0",
+       "MATH 281-2"
+      ]
+     },
+     {
+      "or": [
+       "MATH 228-2",
+       "MATH 230-2",
+       "MATH 234-0",
+       "MATH 281-2",
+       "MATH 285-3",
+       "MATH 290-3",
+       "MATH 291-3",
+       "ES_APPM 252-2"
+      ]
+     },
+     {
+      "or": [
+       "MATH 240-0",
+       "MATH 285-1",
+       "MATH 290-1",
+       "MATH 291-1",
+       "GEN_ENG 205-1",
+       "GEN_ENG 206-1"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "MATH 310-1",
+   "dept": "MATH",
+   "num": "310-1",
+   "title": "Probability and Stochastic Processes",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Axioms of probability. Conditional probability and independence. Random variables. Joint distributions. Expectation. Limit theorems: the weak law of large numbers and the central limit theorem. Students may not receive credit for both MATH 310-1 and any of MATH 311-1, MATH 314-0, MATH 385-0, STAT 320-1, STAT 383-0, IEMS 302-0, or ELEC_ENG 302-0. Prerequisite or corequisite: MATH 226-0 or MATH 281-2; and MATH 228-2 or MATH 230-2 or MATH 234-0 (former), or MATH 281-2 or MATH 285-3 or MATH 290-3 or MATH 291-3 or ES_APPM 252-2.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20310-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 310-2",
+   "dept": "MATH",
+   "num": "310-2",
+   "title": "Probability and Stochastic Processes",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Discrete-time Markov chains, recurrence and transience, limit theorems for Markov chains. Branching processes. Students may not receive credit for both MATH 310-2 and MATH 311-2.",
+   "text": "Prerequisites: MATH 240-0 or MATH 281-3 or MATH 285-1 or MATH 290-1 or MATH 291-1 or GEN_ENG 205-1 or GEN_ENG 206-1 ; and MATH 310-1 or MATH 311-1 or MATH 314-0 or MATH 385-0 or STAT 320-1 or STAT 383-0 or IEMS 302-0 or ELEC_ENG 302-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20310-2",
+   "links": [
+    "ELEC_ENG 302-0",
+    "IEMS 302-0",
+    "MATH 240-0",
+    "MATH 310-1"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "MATH 240-0",
+       "MATH 281-3",
+       "MATH 285-1",
+       "MATH 290-1",
+       "MATH 291-1",
+       "GEN_ENG 205-1",
+       "GEN_ENG 206-1"
+      ]
+     },
+     {
+      "or": [
+       "MATH 310-1",
+       "MATH 311-1",
+       "MATH 314-0",
+       "MATH 385-0",
+       "STAT 320-1",
+       "STAT 383-0",
+       "IEMS 302-0",
+       "ELEC_ENG 302-0"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "MATH 310-3",
+   "dept": "MATH",
+   "num": "310-3",
+   "title": "Probability and Stochastic Processes",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Continuous-time Markov chains, queues, population growth models. Brownian motion and other diffusion processes. Additional topics as time permits. Students may not receive credit for both MATH 310-3 and MATH 311-3.",
+   "text": "Prerequisite: MATH 310-2 or MATH 311-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20310-3",
+   "links": [
+    "MATH 310-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 310-2",
+     "MATH 311-2"
+    ]
+   }
+  },
+  {
+   "id": "MATH 325-0",
+   "dept": "MATH",
+   "num": "325-0",
+   "title": "Complex Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Complex numbers. Analytic functions. Complex integration. Cauchy's theorem and the Cauchy integral formula. Series. Residues. Additional topics as time permits. Students may not receive credit for both MATH 325-0 and either MATH 382-0 or ES_APPM 312-0.",
+   "text": "Prerequisites: MATH 226-0 or MATH 281-2 ; and MATH 228-2 or MATH 230-2 or MATH 234-0 (former) or MATH 281-2 or MATH 285-3 or MATH 290-3 or MATH 291-3 or ES_APPM 252-2 ; and MATH 240-0 or MATH 281-3 or MATH 285-1 or MATH 290-1 or MATH 291-1 or GEN_ENG 205-1 or GEN_ENG 206-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20325-0",
+   "links": [
+    "ES_APPM 252-2",
+    "MATH 228-2",
+    "MATH 240-0"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "MATH 226-0",
+       "MATH 281-2"
+      ]
+     },
+     {
+      "or": [
+       "MATH 228-2",
+       "MATH 230-2",
+       "MATH 234-0",
+       "MATH 281-2",
+       "MATH 285-3",
+       "MATH 290-3",
+       "MATH 291-3",
+       "ES_APPM 252-2"
+      ]
+     },
+     {
+      "or": [
+       "MATH 240-0",
+       "MATH 281-3",
+       "MATH 285-1",
+       "MATH 290-1",
+       "MATH 291-1",
+       "GEN_ENG 205-1",
+       "GEN_ENG 206-1"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "MATH 334-0",
+   "dept": "MATH",
+   "num": "334-0",
+   "title": "Linear Algebra: Second Course",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Vector spaces. Linear maps. Eigenvalues, eigenvectors and invariant subspaces. Inner product spaces. Canonical forms of operators on real and complex vector spaces.",
+   "text": "Prerequisite: MATH 300-0 or MATH 291-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20334-0",
+   "autoPrereq": {
+    "or": [
+     "MATH 300-0",
+     "MATH 291-2"
+    ]
+   }
+  },
+  {
+   "id": "PERF_ST 103-0",
+   "dept": "PERF_ST",
+   "num": "103-0",
+   "title": "Analysis and Performance of Text",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course studies texts, broadly defined and situated, through performance. Students explore how performance helps the performer and audience interpret a text, as well as express challenging political and personal themes. They examine the ways performance illuminates and draws out deeper understandings of social relations through embodied praxis.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20103-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PERF_ST 203-0",
+   "dept": "PERF_ST",
+   "num": "203-0",
+   "title": "Performance Culture and Communication",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Explores how live performance and dramatic forms of communication are methods used to examine social behavior and cultural expressions.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20203-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHYSICS 135-1",
+   "dept": "PHYSICS",
+   "num": "135-1",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Mechanics. Must be taken concurrently with PHYSICS 136-1.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 ; MATH 230-1 OR MATH 290-1 OR MATH 291-1 (may be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-1",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "PHYSICS 135-2",
+   "dept": "PHYSICS",
+   "num": "135-2",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Electricity and magnetism. Must be taken concurrently with PHYSICS 136-2.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-1 ; MATH 230-2 OR MATH 290-2 OR MATH 291-2 (may be taken concurrently).\".",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-2",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2",
+    "PHYSICS 135-1"
+   ]
+  },
+  {
+   "id": "PHYSICS 135-3",
+   "dept": "PHYSICS",
+   "num": "135-3",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Introduction to wave phenomena, optics, and modern physics. Must be taken concurrently with PHYSICS 136-3.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-3",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2",
+    "PHYSICS 135-2"
+   ]
+  },
+  {
+   "id": "PHYSICS 136-1",
+   "dept": "PHYSICS",
+   "num": "136-1",
+   "title": "General Physics Laboratory",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introductory physics laboratory for students taking PHYSICS 130-1 or PHYSICS 135-1, with which it must be taken concurrently.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20136-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHYSICS 136-2",
+   "dept": "PHYSICS",
+   "num": "136-2",
+   "title": "General Physics Laboratory",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introductory physics laboratory for students taking PHYSICS 130-2 or PHYSICS 135-2, with which it must be taken concurrently.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20136-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHYSICS 136-3",
+   "dept": "PHYSICS",
+   "num": "136-3",
+   "title": "General Physics Laboratory",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introductory physics laboratory for students taking PHYSICS 130-3 or PHYSICS 135-3, with which it must be taken concurrently.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20136-3",
+   "autoPrereq": null
+  },
+  {
+   "id": "PRDV 335-0",
+   "dept": "PRDV",
+   "num": "335-0",
+   "title": "Engineering Improv: From Allowing to Application",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Start anywhere, remember you are not the most important person in the scene, and say yes. Through these and other improv techniques, students learn to tackle unexpected obstacles, building skills that can be leveraged in both academic and non-academic contexts to face challenges with resilience.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PRDV%20335-0",
+   "autoPrereq": null
+  }
+ ]
+}

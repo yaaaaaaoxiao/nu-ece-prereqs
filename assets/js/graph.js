@@ -931,10 +931,14 @@ export class GraphView {
 // each a few card columns wide. Within a tier, courses take the free slot
 // closest to their prerequisites (and the courses they unlock), so chains
 // line up vertically. Courses with no links on the map close each cell (by
-// step, they get a band of their own at the bottom).
+// step, they get bands of their own: introductory ones at the top, advanced
+// ones at the bottom).
 
 const levelOf = c => Math.floor(parseInt(c.num, 10) / 100) * 100;
-const UNLINKED = Infinity; // the band, by step, for courses with no links
+// The bands, by step, for courses with no links: 100- and 200-level ones
+// (first-year seminars, intro courses) above step 1, the rest after the last step.
+const UNLINKED_INTRO = -1;
+const UNLINKED = Infinity;
 
 // How many prerequisites deep each course is on the map: the longest chain of
 // prerequisites leading to it. A corequisite may share its band.
@@ -952,7 +956,7 @@ function stepsOf(courses, edges, linked) {
     depth.set(id, d);
     return d;
   };
-  return c => (linked.has(c.id) ? of(c.id) : UNLINKED);
+  return c => (linked.has(c.id) ? of(c.id) : levelOf(c) < 300 ? UNLINKED_INTRO : UNLINKED);
 }
 
 // A course page's rows, by step: how many steps before or after its course
@@ -992,7 +996,8 @@ const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
 const bandName = (arrange, band, focus) => {
   if (arrange === 'level') return `${band}-level`;
   if (focus) return band < 0 ? `${plural(-band, 'step')} before` : band > 0 ? `${plural(band, 'step')} after` : 'This course';
-  if (band === UNLINKED) return 'Not linked to other courses';
+  if (band === UNLINKED_INTRO) return 'Not linked \u00b7 introductory (100\u2013200 level)';
+  if (band === UNLINKED) return 'Not linked \u00b7 advanced (300 level and up)';
   return band ? `Step ${band + 1}` : 'Step 1 \u00b7 start here';
 };
 const byId = (a, b) => a.id.localeCompare(b.id);

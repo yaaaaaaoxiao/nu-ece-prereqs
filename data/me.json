@@ -1,0 +1,2069 @@
+{
+ "id": "me",
+ "name": "Mechanical Engineering",
+ "generated": "2026-10-26",
+ "catalogYear": "2026-2027",
+ "quarters": [
+  "Fall 2026",
+  "Winter 2027",
+  "Spring 2027"
+ ],
+ "departments": {
+  "MECH_ENG": {
+   "name": "Mechanical Engineering",
+   "abbr": "ME",
+   "main": true
+  },
+  "BMD_ENG": {
+   "name": "Biomedical Engineering",
+   "abbr": "BME",
+   "main": false
+  },
+  "CHEM": {
+   "name": "Chemistry",
+   "abbr": "CHEM",
+   "main": false
+  },
+  "CIV_ENV": {
+   "name": "Civil and Environmental Engineering",
+   "abbr": "CIV ENV",
+   "main": false
+  },
+  "COMM_ST": {
+   "name": "Communication Studies",
+   "abbr": "COMM ST",
+   "main": false
+  },
+  "COMP_SCI": {
+   "name": "Computer Science",
+   "abbr": "CS",
+   "main": false
+  },
+  "DSGN": {
+   "name": "Segal Design Institute",
+   "abbr": "DSGN",
+   "main": false
+  },
+  "ELEC_ENG": {
+   "name": "Electrical Engineering",
+   "abbr": "EE",
+   "main": false
+  },
+  "ENGLISH": {
+   "name": "English",
+   "abbr": "ENGLISH",
+   "main": false
+  },
+  "ENTREP": {
+   "name": "Entrepreneurship & Innovation",
+   "abbr": "ENTREP",
+   "main": false
+  },
+  "GEN_ENG": {
+   "name": "General Engineering",
+   "abbr": "GEN ENG",
+   "main": false
+  },
+  "MATH": {
+   "name": "Mathematics",
+   "abbr": "MATH",
+   "main": false
+  },
+  "MAT_SCI": {
+   "name": "Materials Science & Engineering",
+   "abbr": "MAT_SCI",
+   "main": false
+  },
+  "PERF_ST": {
+   "name": "Performance Studies",
+   "abbr": "PERF ST",
+   "main": false
+  },
+  "PHYSICS": {
+   "name": "Physics",
+   "abbr": "PHYS",
+   "main": false
+  },
+  "PRDV": {
+   "name": "Personal Development",
+   "abbr": "PRDV",
+   "main": false
+  }
+ },
+ "programs": [
+  {
+   "id": "me-bs",
+   "name": "Mechanical Engineering BS",
+   "short": "ME BS",
+   "type": "major",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/mechanical-engineering/mechanical-engineering-degree/",
+   "default": true,
+   "lists": [
+    {
+     "label": "Mathematics",
+     "kind": "core",
+     "need": 4,
+     "items": [
+      [
+       [
+        "MATH 220-1"
+       ]
+      ],
+      [
+       [
+        "MATH 220-2"
+       ]
+      ],
+      [
+       [
+        "MATH 228-1"
+       ]
+      ],
+      [
+       [
+        "MATH 228-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Basic science",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "PHYSICS 135-2",
+        "PHYSICS 136-2"
+       ]
+      ],
+      [
+       [
+        "PHYSICS 135-3",
+        "PHYSICS 136-3"
+       ]
+      ],
+      [
+       [
+        "CHEM 131-0",
+        "CHEM 141-0"
+       ],
+       [
+        "CHEM 151-0",
+        "CHEM 161-0"
+       ],
+       [
+        "CHEM 171-0",
+        "CHEM 181-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Engineering foundations",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "GEN_ENG 211-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 212-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 251-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Design and writing",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "DSGN 106-1",
+        "DSGN 106-2"
+       ]
+      ],
+      [
+       [
+        "ENGLISH 106-1",
+        "ENGLISH 106-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Speaking or innovation",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMM_ST 102-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 225-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 325-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 103-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 203-0"
+       ]
+      ],
+      [
+       [
+        "PRDV 335-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 390-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Required courses",
+     "kind": "required",
+     "need": 11,
+     "items": [
+      [
+       [
+        "CIV_ENV 216-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 201-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 222-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 233-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 240-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 241-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 314-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 315-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 340-1"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 377-0"
+       ]
+      ],
+      [
+       [
+        "MECH_ENG 390-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Capstone design",
+     "kind": "design",
+     "need": 1,
+     "items": [
+      [
+       [
+        "MECH_ENG 398-1",
+        "MECH_ENG 398-2"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "Major Program (22 units)",
+    "6 courses to satisfy a concentration area listed below"
+   ]
+  }
+ ],
+ "sources": [
+  "https://catalogs.northwestern.edu/undergraduate/courses-az/mech_eng/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/mechanical-engineering/mechanical-engineering-degree/",
+  "https://www.mccormick.northwestern.edu/mechanical/academics/courses/"
+ ],
+ "courses": [
+  {
+   "id": "MECH_ENG 222-0",
+   "dept": "MECH_ENG",
+   "num": "222-0",
+   "title": "Thermodynamics & Statistical Mechanics - I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MATH 220-2",
+     "GEN_ENG 205-3"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Basic thermodynamics, applications to energy efficiency and climate change, and introduction to statistical thermodynamics.",
+   "text": "Prerequisite: MATH 220-2 and GEN_ENG 205-3 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "Sec 20 MTWF 12-12:50; Sec 21 MTWF 1:00-1:50 · S. Lichter"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20222-0"
+  },
+  {
+   "id": "MECH_ENG 224-0",
+   "dept": "MECH_ENG",
+   "num": "224-0",
+   "title": "Scientific and Embedded Programming in Python",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "GEN_ENG 205-1",
+     "GEN_ENG 206-1",
+     "GEN_ENG 150-0",
+     "GEN_ENG 151-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Python is arguably now the world's foremost programming language. It is the go-to coding language for data scientists, machine learning researchers, design engineers, and anyone who needs to grab and process the vast amounts of data online, from networked sensors, or smart devices. Recently Python has become practical for coding in embedded systems, as well. Embedded microcontrollers are relevant for our annual robot design competition, NU engineering teams (Solar car, Baja), internships, and experimental apparatuses. Our approach to coding emphasizes algorithm creation, debugging, methodical creation and partitioning in a modern notebook framework, as well as hardware-level access for microcontroller applications. The course is taught in an active learning format.",
+   "text": "Prerequisite: GEN_ENG 205-1 , GEN_ENG 206-1 , GEN_ENG 150-0 or GEN_ENG 151-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20224-0"
+  },
+  {
+   "id": "MECH_ENG 233-0",
+   "dept": "MECH_ENG",
+   "num": "233-0",
+   "title": "Electronics Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Design and prototyping of analog and digital electronic circuits using semiconductor devices: diodes, transistors, op amps, logic chips, etc. Optical and other sensors, power electronics, filters, and feedback control. Extensive hands-on construction and debugging. Intended for engineers in all disciplines.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "Sec 20 MWF 2-2:50; Sec 21 MWF 3-3:50 · M. Peshkin"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20233-0"
+  },
+  {
+   "id": "MECH_ENG 240-0",
+   "dept": "MECH_ENG",
+   "num": "240-0",
+   "title": "Intro to Mechanical Design and Manufactrng",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MAT_SCI 201-0",
+     "CIV_ENV 216-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to strategy and methods of designing, manufacturing, and testing of mechanical products. Material properties and selection methodology, engineering drawing and CAD, and simple manufacturing processes.",
+   "text": "Prerequisites: MAT_SCI 201-0 ; CIV_ENV 216-0 .",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "Sec 20 MWF 10:00-10:50 J. Keys/T. Sun, Sec 21 MWF 2:00-2:50 T. Sun/ J.Keys"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20240-0"
+  },
+  {
+   "id": "MECH_ENG 241-0",
+   "dept": "MECH_ENG",
+   "num": "241-0",
+   "title": "Fluid Mechanics I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MATH 228-2",
+     "GEN_ENG 205-4"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamentals of fluid mechanics. Properties and statics of fluids. Kinematics and dynamics of fluid motion-continuity, momentum, and energy equations. Dimensional analysis, flow in closed conduits.",
+   "text": "Prerequisites: MATH 228-2 (may be taken concurrently) and GEN_ENG 205-4 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MTWF 11:00-11:50 · S. Ghosal",
+    "Spring 2027": "MTWF 5:30-6:20 · S. Ghosal"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20241-0"
+  },
+  {
+   "id": "MECH_ENG 301-0",
+   "dept": "MECH_ENG",
+   "num": "301-0",
+   "title": "Introduction to Robotics Laboratory",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MECH_ENG 224-0",
+     {
+      "or": [
+       "COMP_SCI 110-0",
+       "COMP_SCI 111-0",
+       "COMP_SCI 150-0",
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or some programming experience and instructor consent"
+   ],
+   "desc": "A laboratory-based introduction to robotics. Focus will be on both hardware (sensors and actuators) and software (sensor processing and behavior development). Topics will include: the basics in kinematics, dynamics, control and motion planning; and an introduction to Artificial Intelligence (AI) and Machine Learning (ML). Cross-listed as COMP_SCI 301-0. Does not count towards graduate level credit; graduate students must recieve permission to enroll.",
+   "text": "Prerequisites: MECH_ENG 224-0 , COMP_SCI 110-0 , COMP_SCI 111-0 , COMP_SCI 150-0 , GEN_ENG 150-0 , GEN_ENG 151-0 , or some programming experience and consent of instructor.",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "TTh 12:30-3:20 · B. Argall"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20301-0"
+  },
+  {
+   "id": "MECH_ENG 302-0",
+   "dept": "MECH_ENG",
+   "num": "302-0",
+   "title": "Artifical Life",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "COMP_SCI 349-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course introduces students to the growing field of Artificial Life: the study of “life as it could be” rather than as it happened to unfold on Earth. We will address fundamental questions about what distinguishes life from matter; the conditions in which complex adaptive systems may arise and how they may be shaped to suit our needs; as well as whether or not there can even be a science of the artificial. Answers to these questions are of interest as a basic intellectual pursuit, but they may also lead to useful computational, mechanical, chemical and biological technologies.",
+   "text": "Prerequisites: Comp_sci 349 or MS CS or PhDs CS.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTh 2-3:20 · S. Kriegman"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20302-0"
+  },
+  {
+   "id": "MECH_ENG 314-0",
+   "dept": "MECH_ENG",
+   "num": "314-0",
+   "title": "Machine Dynamics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "GEN_ENG 205-4",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This class covers the foundations of rigid multi-body mechanics. Topics include geometry of rigid bodies, rotating bodies, Lagrangian mechanics and variational principles, conservation of energy and momentum, symmetries, impact dynamics, and numerical methods that may be used to simulate mechanical systems. Students numerically simulate rigid body systems and use rigid body geometry to visualize simulations.",
+   "text": "Prerequisite: GEN_ENG 205-4 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MTWF 12:00-12:50 · T. Murphey",
+    "Spring 2027": "MTWF 9:00-9:50 · T. Murphey"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20314-0"
+  },
+  {
+   "id": "MECH_ENG 315-0",
+   "dept": "MECH_ENG",
+   "num": "315-0",
+   "title": "Theory of Machines: Design of Elements",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MECH_ENG 240-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Factors influencing the proportioning of machine elements-stresses, deformations, and failure criteria-as applied to shafts, springs, belts, bearings, gears. Lectures, laboratory.",
+   "text": "Prerequisite: MECH_ENG 240-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 3:30-5:30 · J. Wang",
+    "Spring 2027": "TTh 3:30-5:30 · J. Wang"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20315-0"
+  },
+  {
+   "id": "MECH_ENG 316-0",
+   "dept": "MECH_ENG",
+   "num": "316-0",
+   "title": "Mechanical Systems Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MECH_ENG 315-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Design of mechanical systems such as cams, multi-bar linkages, and precision machines. Design principles and best practices. Case studies and team-based projects.",
+   "text": "Prerequisite: MECH_ENG 315-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20316-0"
+  },
+  {
+   "id": "MECH_ENG 320-0",
+   "dept": "MECH_ENG",
+   "num": "320-0",
+   "title": "Micro- and Nanomechanical Properties of Surfaces",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Micro and nanomechanical interactions between surfaces, fractal nature of surfaces, interfacial forces, principles of micromechanics, characterization of surfaces using atomic force microscopy, optical interferometry, and nanoindentation.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20320-0"
+  },
+  {
+   "id": "MECH_ENG 322-0",
+   "dept": "MECH_ENG",
+   "num": "322-0",
+   "title": "Thermodynamics and Statistical Mechanics II",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MECH_ENG 222-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Classical and statistical thermodynamics.",
+   "text": "Prerequisite: MECH_ENG 222-0 .",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MWF 2-2:50 · J. Kim"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20322-0"
+  },
+  {
+   "id": "MECH_ENG 327-0",
+   "dept": "MECH_ENG",
+   "num": "327-0",
+   "title": "Finite Elements for Stress Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development of finite elements from variational principles and application to static stress analysis. Introduction to techniques for transient and generalized field problems. Computer implementation of finite element techniques. Taught with CIV_ENV 327-0; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20327-0"
+  },
+  {
+   "id": "MECH_ENG 328-0",
+   "dept": "MECH_ENG",
+   "num": "328-0",
+   "title": "Computational Failure Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "CIV_ENV 327-0",
+     "MECH_ENG 327-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The course will cover the use of the scientific method for accident investigation, hypothesis development, and the use of the finite element method to analyze the root cause of a failure. Practical application problems for both civil and mechanical structures will be analyzed using commercial finite element codes (Abaqus, Hypermesh, LS-Dyna).",
+   "text": "Prerequisite: CIV_ENV 327-0 or MECH_ENG 327-0 .",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTh 3:30-4:50 · M. Fleming"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20328-0"
+  },
+  {
+   "id": "MECH_ENG 329-0",
+   "dept": "MECH_ENG",
+   "num": "329-0",
+   "title": "Mechanistic Data Science for Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduce mechanistic data science for engineering through the integration of mathematical scientific principles using six basic data science concepts: multimodal data generation and collection, extraction of mechanistic features, knowledge-driven dimension reduction, reduced order surrogate models, regression and classification models, and system and design. These concepts will be implemented using Python and MATLAB for engineering applications.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20329-0"
+  },
+  {
+   "id": "MECH_ENG 333-0",
+   "dept": "MECH_ENG",
+   "num": "333-0",
+   "title": "Introduction to Mechatronics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "MECH_ENG 233-0",
+     "ELEC_ENG 221-0",
+     "BMD_ENG 308-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Introduction to microprocessor-controlled electromechanical systems. Interfacing sensors and actuators to computers, electrical and mechanical prototyping, dissection of a commercial product. Final team project.",
+   "text": "Prerequisite: MECH_ENG 233-0 or ELEC_ENG 221-0 or BMD_ENG 308-0 , or consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "Sec 20 TTh 11-12:20; Sec 21 TTh 12:30-1:50 · N. Marchuk"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20333-0"
+  },
+  {
+   "id": "MECH_ENG 340-1",
+   "dept": "MECH_ENG",
+   "num": "340-1",
+   "title": "Computer Integrated Manufacturing: Manufacturing Processes",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MECH_ENG 240-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Use of computers to improve productivity and reduce costs in the manufacture of discrete parts and assemblies. Manufacturing processes: Analysis and evaluation of process usage in the contemporary manufacturing environment.",
+   "text": "Prerequisite: MECH_ENG 240-0 or consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "Sec 20 TTh 11-12:20; Sec 21 TTh 12:30-1:50 · P. Guo"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20340-1"
+  },
+  {
+   "id": "MECH_ENG 340-2",
+   "dept": "MECH_ENG",
+   "num": "340-2",
+   "title": "Computer Integrated Manufacturing: CAD/CAM",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MECH_ENG 340-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Use of computers to improve productivity and reduce costs in the manufacture of discrete parts and assemblies. CAD/ CAM: Geometric modeling, dimensioning systems, tolerances, design for manufacture, programming of machine tools.",
+   "text": "Prerequisite: MECH_ENG 340-1 or consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MW 3:30 - 4:50 · M. Beltran · (Lab: M,W 5:00 – 8:00PM; T, Th 2:00 – 5:00PM; T, Th 5:30 – 8:30PM)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20340-2"
+  },
+  {
+   "id": "MECH_ENG 340-3",
+   "dept": "MECH_ENG",
+   "num": "340-3",
+   "title": "Computer Integrated Manufacturing: Automation",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MECH_ENG 340-2",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Use of computers to improve productivity and reduce costs in the manufacture of discrete parts and assemblies. Manufacturing automation: sensors, actuators, and computers for automation; principles of computer control; programmable logic controllers; robotic devices; assembly automation.",
+   "text": "Prerequisite: MECH_ENG 340-2 or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20340-3"
+  },
+  {
+   "id": "MECH_ENG 341-0",
+   "dept": "MECH_ENG",
+   "num": "341-0",
+   "title": "Computational Methods for Engineering Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "senior standing"
+   ],
+   "desc": "Introduction to a wide range of computational techniques for engineering design. Modeling, simulation, optimization, design software, examples, and projects with emphasis on computational techniques for design and manufacturing related applications.",
+   "text": "Prerequisite: senior standing or consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTh 9:30-10:50 · W. Chen"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20341-0"
+  },
+  {
+   "id": "MECH_ENG 346-0",
+   "dept": "MECH_ENG",
+   "num": "346-0",
+   "title": "Introduction to Tribology",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamentals of surface contact: surface topography, asperity contact, interfacial phenomena. Friction theories and wear mechanisms. Temperatures in sliding contacts. Hydrodynamic, hydrostatic, elastohydrodynamic, and boundary lubrication.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 12:30-1:50 · Q. Wang"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20346-0"
+  },
+  {
+   "id": "MECH_ENG 359-0",
+   "dept": "MECH_ENG",
+   "num": "359-0",
+   "title": "Reliability Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "GEN_ENG 205-4",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Probability concepts and random variables. Failure rates and reliability testing. Wearin, wear-out, random failures. Probabilistic treatment of loads, capacity, safety factors. Reliability of redundant and maintained systems. Fault tree analysis.",
+   "text": "Prerequisite: GEN_ENG 205-4 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20359-0"
+  },
+  {
+   "id": "MECH_ENG 360-0",
+   "dept": "MECH_ENG",
+   "num": "360-0",
+   "title": "Mechanics of Sports",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Applications of mechanics and mathematical modeling to sports, including baseball, basketball, golf, soccer, swimming, and running, among others. Introduction to the biomechanics of sports.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20360-0"
+  },
+  {
+   "id": "MECH_ENG 362-0",
+   "dept": "MECH_ENG",
+   "num": "362-0",
+   "title": "Stress Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 216-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Theory of elasticity: elastic stability, principle of minimum potential energy, Rayleigh-Ritz methods. Introduction to finite element methods of stress analysis: computer implementation and use of commercial codes. Structural analysis of rods, beams, columns, and plates.",
+   "text": "Prerequisite: CIV_ENV 216-0 .",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MWF 10:00-10:50 · S. Krishnaswamy"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20362-0"
+  },
+  {
+   "id": "MECH_ENG 363-0",
+   "dept": "MECH_ENG",
+   "num": "363-0",
+   "title": "Mechanical Vibrations",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MECH_ENG 314-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Analysis of vibrations in single and multi-degree of freedom systems. Free and forced vibrations with various types of damping. Response to steady-state and transient excitations.",
+   "text": "Prerequisite: MECH_ENG 314-0 .",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MW 12-1:20 · O. Balogun"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20363-0"
+  },
+  {
+   "id": "MECH_ENG 364-0",
+   "dept": "MECH_ENG",
+   "num": "364-0",
+   "title": "Introduction to Aerospace Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "CIV_ENV 216-0",
+     "MECH_ENG 241-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "The purpose of the course is to learn the language of aerospace engineering and to explore emerging concepts in this field. This course will cover essential topics in areas relevant to aerospace engineering including Aerodynamics, Flight Dynamics, Propulsion, and Orbital Mechanics. Computational tools for structural analysis, fluid flow calculations, and flight dynamics modeling will be introduced.",
+   "text": "Prerequisites: CIV_ENV 216-0 , MECH_ENG 241-0 or equivalent.",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "MWF 11:00-11:50 · S. Krishnaswamy"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20364-0"
+  },
+  {
+   "id": "MECH_ENG 366-0",
+   "dept": "MECH_ENG",
+   "num": "366-0",
+   "title": "Finite Elements for Design & Optimizatn",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MECH_ENG 327-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "senior standing"
+   ],
+   "desc": "Numerical methods for interaction and optimal CAD. Fully stressed design; design sensitivity analysis and descent methods; optimality criteria to automated design.",
+   "text": "Prerequisites: senior standing; MECH_ENG 327-0 or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20366-0"
+  },
+  {
+   "id": "MECH_ENG 367-0",
+   "dept": "MECH_ENG",
+   "num": "367-0",
+   "title": "Quantitative Methods in Life Cycle Analysis",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Lifecycle analysis (LCA) framework for environmental assessment of technology systems, focusing on modeling methods for systems mass and energy flows, process and input-output-based systems inventories, environmental impact analysis, and methods for robust engineering decisions. MECH_ENG 367-0 is taught with CHEM_ENG 367-0; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTh 11-12:20 · J. Dunn"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20367-0"
+  },
+  {
+   "id": "MECH_ENG 371-0",
+   "dept": "MECH_ENG",
+   "num": "371-0",
+   "title": "Combustion Engines",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Theoretical and actual cycles, combustion, detonation, carburetion, fuels, performance characteristics, and fuel-cell power.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20371-0"
+  },
+  {
+   "id": "MECH_ENG 373-0",
+   "dept": "MECH_ENG",
+   "num": "373-0",
+   "title": "Engineering Fluid Mechanics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MECH_ENG 241-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Laminar and turbulent duct flows. Boundary layers and potential flows. Lift and drag forces. Thermodynamics and mechanics of compressible flow. Nozzle flows and choking. Wave motion and shock waves. Applications to fluid machinery.",
+   "text": "Prerequisite: MECH_ENG 241-0 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MWF 11:00-11:50 · N. Patankar · (Lab: Recitation: Th 11AM )"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20373-0"
+  },
+  {
+   "id": "MECH_ENG 377-0",
+   "dept": "MECH_ENG",
+   "num": "377-0",
+   "title": "Heat Transfer",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MECH_ENG 241-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamentals of heat transfer by conduction, convection, and radiation. Steady and transient heat conduction in solids. Forced and free convection in fluids. Properties of thermal radiation. Radiation heat transfer between solids. Solar radiation.",
+   "text": "Prerequisite: MECH_ENG 241-0 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MWF 9:00-9:50 · M. Kulkarni",
+    "Spring 2027": "MWF 11-11:50 · G. Wagner"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20377-0"
+  },
+  {
+   "id": "MECH_ENG 378-0",
+   "dept": "MECH_ENG",
+   "num": "378-0",
+   "title": "Applied Computational Fluid Dynamics and Heat Transfer",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course provides an understanding of the theory and process of computational flow analysis by giving students the opportunity to use commercial simulation software (ANSYS/Fluent) to solve fluid flow problems. Topics covered include conservation of mass, momentum and energy; boundary conditions; turbulence modeling; mesh generation; solution procedures; and verification/validation. Topics will be presented through lectures, hands-on computer lab sessions, and team-based projects.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTh 11-12:20 · G. Wagner"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20378-0"
+  },
+  {
+   "id": "MECH_ENG 380-0",
+   "dept": "MECH_ENG",
+   "num": "380-0",
+   "title": "Thermal Energy Systems Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Applications of the principles of energy engineering analysis to the design of thermal systems. Consideration of such systems as air conditioning, oil piping, refrigeration, fluid distribution, and pneumatic control. Projects will be tailored to the class. Solution of open-ended design problems including introduction to EES (Engineering Equation Solver) software that has built-in thermophysical properties.",
+   "text": "Prerequisite: Basic Thermodynamics or equivalent.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MWF 10:00-10:50 · M. Kulkarni"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20380-0"
+  },
+  {
+   "id": "MECH_ENG 381-0",
+   "dept": "MECH_ENG",
+   "num": "381-0",
+   "title": "Introduction to Micro-electro-mechanical Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CIV_ENV 216-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Introduction to MEMS devices, with an emphasis on their manufacturing and mechanical behavior. Materials properties, microfabrication technology, mechanical behavior of microstructures, design, and packaging. Case studies on sensors, wireless communications, fluidic systems, microengines, and biological devices.",
+   "text": "Prerequisite: CIV_ENV 216-0 or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20381-0"
+  },
+  {
+   "id": "MECH_ENG 382-0",
+   "dept": "MECH_ENG",
+   "num": "382-0",
+   "title": "Experiments in Micro- and Nano Science and Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MECH_ENG 381-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Interdisciplinary topics spanning the physical and biological sciences and engineering. Seven integrated labs in which students acquire hands-on experience in various aspects of micro-and nanoscience and engineering: cleanroom microfabrication, flow visualization in micro-channels, nanomechanics, AFM and dippen nanolithography, multiphysics computational tools, and experimental techniques to evaluate micro-and nanoscale devices.",
+   "text": "Prerequisite: MECH_ENG 381-0 or consent of instructor.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTh 2-3:20 · H. Espinosa · (Lab: WF 2-4; 4-6)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20382-0"
+  },
+  {
+   "id": "MECH_ENG 390-0",
+   "dept": "MECH_ENG",
+   "num": "390-0",
+   "title": "Intro to Dynamic Systems",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MECH_ENG 241-0",
+     "CIV_ENV 216-0",
+     "GEN_ENG 205-4"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Modeling the dynamic behavior of physical systems. Concepts of causality, dependent and independent storages, and state. Introduction to bond graphs. Generation of state equations; analytical and computer simulation of system behavior. Application to problems of engineering interest.",
+   "text": "Prerequisites: MECH_ENG 241-0 ; CIV_ENV 216-0 ; GEN_ENG 205-4 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MTWF 10:00-10:50 · C. Aksland",
+    "Spring 2027": "MTWF 10:00-10:50 · C. Aksland"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20390-0"
+  },
+  {
+   "id": "MECH_ENG 395-0",
+   "dept": "MECH_ENG",
+   "num": "395-0",
+   "title": "Special Topics in Mechanical Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Topics suggested by students or faculty members and approved by the department.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20395-0"
+  },
+  {
+   "id": "MECH_ENG 398-1",
+   "dept": "MECH_ENG",
+   "num": "398-1",
+   "title": "Engineering Design I",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "senior standing"
+   ],
+   "desc": "Experience in the creative process of design. Defining product specifications, developing and analyzing ideas, using CAD drawings, building physical prototypes, demonstrating feasibility, and achieving full alpha-level functionality.",
+   "text": "Prerequisite: senior standing or consent of department.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 2-3:20 · M. Beltran/D. Gatchell/A. Birdwell",
+    "Winter 2027": "TTh 12:30-1:50 · M. Beltran/J. Keys"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20398-1"
+  },
+  {
+   "id": "MECH_ENG 398-2",
+   "dept": "MECH_ENG",
+   "num": "398-2",
+   "title": "Engineering Design II",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "senior standing"
+   ],
+   "desc": "Experience in the creative process of design. Defining product specifications, developing and analyzing ideas, using CAD drawings, building physical prototypes, demonstrating feasibility, and achieving full alpha-level functionality.",
+   "text": "Prerequisite: senior standing or consent of department.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTh 3:30-4:50 · M. Beltran/D. Gatchell/A. Birdwell",
+    "Spring 2027": "TTh 12:30-1:50 · M. Beltran/J. Keys"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20398-2"
+  },
+  {
+   "id": "BMD_ENG 308-0",
+   "dept": "BMD_ENG",
+   "num": "308-0",
+   "title": "Biomedical Signals and Circuits",
+   "units": 1.25,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Time and frequency domain analysis: convolution representation, Fourier series, Fourier transforms, frequency response, filtering, sampling.",
+   "text": "Prerequisite: PHYSICS 135-2 or consent of instructor; BMD_ENG 207-0 (can be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20308-0",
+   "links": [
+    "PHYSICS 135-2"
+   ],
+   "autoPrereq": "PHYSICS 135-2"
+  },
+  {
+   "id": "BMD_ENG 390-2",
+   "dept": "BMD_ENG",
+   "num": "390-2",
+   "title": "Biomedical Engineering Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development of a design project initiated during the previous quarter.",
+   "text": "Prerequisite: BMD_ENG 390-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20390-2",
+   "autoPrereq": "BMD_ENG 390-1"
+  },
+  {
+   "id": "CHEM 131-0",
+   "dept": "CHEM",
+   "num": "131-0",
+   "title": "Fundamentals of Chemistry I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Quantum mechanics, electronic structure, periodic properties of elements, chemical bonding, thermodynamics, intermolecular forces, properties of solids and liquids, solutions and colligative properties.",
+   "text": "Prerequisite: CHEM 110-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20131-0"
+  },
+  {
+   "id": "CHEM 141-0",
+   "dept": "CHEM",
+   "num": "141-0",
+   "title": "Fundamentals of Chemistry Laboratory I",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical analysis of real samples using basic laboratory techniques including titration, colorimetric analysis, density measurements, and atomic spectroscopy. Planning, data collection, interpretation, and reporting on experiments. Must be taken concurrently with CHEM 131-0.",
+   "text": "Prerequisite: CHEM 110-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20141-0"
+  },
+  {
+   "id": "CHEM 151-0",
+   "dept": "CHEM",
+   "num": "151-0",
+   "title": "General Chemistry I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Quantum mechanics, electronic structure, periodic properties of elements, chemical bonding, thermodynamics, gas laws, intermolecular forces, properties of solids and liquids, solutions and colligative properties.",
+   "text": "Prerequisite: permission of department by placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20151-0"
+  },
+  {
+   "id": "CHEM 161-0",
+   "dept": "CHEM",
+   "num": "161-0",
+   "title": "General Chemistry Laboratory I",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical analysis of real samples using basic laboratory techniques including titration, colorimetric analysis, density measurements, and atomic spectroscopy. Planning, data collection, interpretation, and reporting on experiments. Must be taken concurrently with CHEM 151-0.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20161-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "CHEM 171-0",
+   "dept": "CHEM",
+   "num": "171-0",
+   "title": "Advanced General Inorganic Chemistry",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Review of mole problems and stoichiometry; descriptive chemistry, elements, compounds, and inorganic reactions; gas laws; phase equilibria and colligative properties; chemical equilibrium; aqueous equilibria; topics in chemical bonding and molecular structure. Must be taken concurrently with CHEM 181-0.",
+   "text": "Prerequisite: department placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20171-0"
+  },
+  {
+   "id": "CHEM 181-0",
+   "dept": "CHEM",
+   "num": "181-0",
+   "title": "Advanced General Inorganic Chemistry Laboratory",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Laboratory techniques for studying chemical analysis and chemical reactions relevant to environmental or materials research. Planning, data collection, interpretation, and reporting on experiments. Must be taken concurrently with CHEM 171-0.",
+   "text": "Prerequisite: department placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20181-0"
+  },
+  {
+   "id": "CIV_ENV 216-0",
+   "dept": "CIV_ENV",
+   "num": "216-0",
+   "title": "Mechanics of Materials I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Analytical and experimental study of stresses and deformations and their application to the design of machine and structural elements subjected to static, dynamic, and repeated loads.",
+   "text": "Prerequisite: GEN_ENG 205-2 or GEN_ENG 206-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20216-0",
+   "autoPrereq": {
+    "or": [
+     "GEN_ENG 205-2",
+     "GEN_ENG 206-2"
+    ]
+   }
+  },
+  {
+   "id": "CIV_ENV 327-0",
+   "dept": "CIV_ENV",
+   "num": "327-0",
+   "title": "Finite Element Methods in Mechanics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development of finite elements from variational principles and application to static stress analysis. Introduction to techniques for transient and generalized field problems. Computer implementation of finite element techniques. Taught with MECH_ENG 327-0; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 12:30-1:50 · B. Bahmani"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=CIV_ENV%20327-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COMM_ST 102-0",
+   "dept": "COMM_ST",
+   "num": "102-0",
+   "title": "Public Speaking",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Theory, composition, delivery, and criticism of public speeches.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMM_ST%20102-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COMP_SCI 110-0",
+   "dept": "COMP_SCI",
+   "num": "110-0",
+   "title": "Introduction to Computer Programming",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to programming practice using a modern programming language. Analysis and formulation of problems for computer solution. Systematic design, construction, and testing of programs. Substantial programming assignments. Not to be taken for credit with or after COMP_SCI 111-0.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20110-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COMP_SCI 111-0",
+   "dept": "COMP_SCI",
+   "num": "111-0",
+   "title": "Fundamentals of Computer Programming",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamental concepts of computer programming with heavy emphasis on design of recursive algorithms and test-driven development. Functional, imperative, and object-oriented programming paradigms. Procedural abstraction, data abstraction, and modularity. Required for the computer science degree.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20111-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COMP_SCI 150-0",
+   "dept": "COMP_SCI",
+   "num": "150-0",
+   "title": "Fundamentals of Programming and Computational Problem Solving",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "An introduction to Object-oriented programming: focus on Python but including a brief introduction to a statically typed language (e.g. C++). Students will use some approaches from Artificial Intelligence and Machine Learning to complete programming assignments. Required for the computer science degree. Students may receive credit for only one of: COMP_SCI 150, GEN_ENG 150, and GEN_ENG 151.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20150-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "COMP_SCI 349-0",
+   "dept": "COMP_SCI",
+   "num": "349-0",
+   "title": "Machine Learning",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Study of algorithms that improve through experience. Topics typically include Bayesian learning, decision trees, genetic algorithms, neural networks, Markov models, and reinforcement learning. Assignments include programming projects and written work.",
+   "text": "Prerequisites: COMP_SCI 214; GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 205-1 , GEN_ENG 206-1 , GEN_ENG 241-0 , or MATH 240-0 ; GEN_ENG 231-0 , IEMS 201-0 , IEMS 303-0 , ELEC_ENG 302-0 , STAT 210-0 , MATH 310-1 (or COMP_SCI grad standing).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMP_SCI%20349-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 205-1",
+    "GEN_ENG 206-1"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "COMP_SCI 208-0",
+       "COMP_SCI 214-0"
+      ]
+     },
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     {
+      "or": [
+       "GEN_ENG 205-1",
+       "GEN_ENG 206-1",
+       "GEN_ENG 241-0",
+       "MATH 240-0"
+      ]
+     },
+     {
+      "or": [
+       "GEN_ENG 231-0",
+       "IEMS 201-0",
+       "IEMS 303-0",
+       "ELEC_ENG 302-0",
+       "STAT 210-0",
+       "MATH 310-1"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "DSGN 106-1",
+   "dept": "DSGN",
+   "num": "106-1",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated introduction to the user-centered design process and technical communication. Students will address challenges proposed by project partners by identifying unmet needs, conducting research, generating and evaluating potential solutions, and finally, presenting a final design concept with supporting documentation. Students also enhance their abilities in equitable teamwork, project management, fabrication skills, and producing written, oral, graphical, and interpersonal communication. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-1 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: Reserved for McCormick students only.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-1"
+  },
+  {
+   "id": "DSGN 106-2",
+   "dept": "DSGN",
+   "num": "106-2",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated iteration on the user-centered design process and technical communication. This course will build on the learning objectives from DTC-1 while adding more focus on ethics in design and communication, equitable distribution of teamwork, project management, documenting and communicating progress, and exploring a wider variety of project topics. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-2 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: DSGN 106-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-2",
+   "links": [
+    "DSGN 106-1"
+   ],
+   "autoPrereq": "DSGN 106-1"
+  },
+  {
+   "id": "ELEC_ENG 221-0",
+   "dept": "ELEC_ENG",
+   "num": "221-0",
+   "title": "Fundamentals of Circuits",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamental concepts in electrical circuits; circuit analysis and network theorems; linearity and superposition; series/parallel combinations of R, L, and C circuits; sinusoidal forcing; complex frequency and Bode plots; mutual inductance and transformers; two port networks.",
+   "text": "Prerequisite: ELEC_ENG 202-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ELEC_ENG%20221-0",
+   "autoPrereq": "ELEC_ENG 202-0"
+  },
+  {
+   "id": "ENGLISH 106-1",
+   "dept": "ENGLISH",
+   "num": "106-1",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENGLISH 106-2",
+   "dept": "ENGLISH",
+   "num": "106-2",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 225-0",
+   "dept": "ENTREP",
+   "num": "225-0",
+   "title": "Principles of Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course serves as the foundational course for the undergraduate minor in entrepreneurship. This survey-style course is a good choice for students who wish to familiarize themselves with the world of entrepreneurship. Students will learn to think like entrepreneurs and will be introduced to key topics relevant to entrepreneurship, including customer discovery, finance, and marketing. They will also learn how to understand and perform analyses of a broad range of entrepreneurial activities related to different applications of entrepreneurship. Taught with IEMS 225-0; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20225-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 325-0",
+   "dept": "ENTREP",
+   "num": "325-0",
+   "title": "Engineering Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The goal of the course is to introduce students to innovation-driven entrepreneurship, a process by which emergent technology serves as the catalyst for new venture formation. This course challenges student teams to develop strategies for commercializing cutting-edge technologies. Each year, the course focuses on a significant innovation space. Taught with IEMS 325-0; may not receive credit for both courses.",
+   "text": "Prerequisite: ENTREP 330-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20325-0",
+   "autoPrereq": "ENTREP 330-1"
+  },
+  {
+   "id": "GEN_ENG 150-0",
+   "dept": "GEN_ENG",
+   "num": "150-0",
+   "title": "Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). Students may receive credit for only one of: COMP_SCI 150, GEN_ENG 150, and GEN_ENG 151.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20150-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 151-0",
+   "dept": "GEN_ENG",
+   "num": "151-0",
+   "title": "Honors Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). The honors section will include students who received a 4 or 5 on AP CS A.",
+   "text": "Prerequisite: COMP_SCI 1CA or instructor permission. Students may not receive credit for both GEN_ENG 151-0 and COMP_SCI 150-0 or GEN_ENG 150-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20151-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 205-1",
+   "dept": "GEN_ENG",
+   "num": "205-1",
+   "title": "Engineering Analysis I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to linear algebra from computational, mathematical, and applications viewpoints. Computational methods using a higher-level software package such as MATLAB.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 205-3",
+   "dept": "GEN_ENG",
+   "num": "205-3",
+   "title": "Engineering Analysis III",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Dynamic behavior of the elements. Modeling of mechanical (both translational and rotational), electrical, thermal, hydraulic, and chemical systems composed of those elements.",
+   "text": "Prerequisite: C- or better in GEN_ENG 205-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-3",
+   "autoPrereq": "GEN_ENG 205-2"
+  },
+  {
+   "id": "GEN_ENG 205-4",
+   "dept": "GEN_ENG",
+   "num": "205-4",
+   "title": "Engineering Analysis IV",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solution methods for ordinary differential equations, including exact, numerical, and qualitative methods. Applications and modeling principles; solution techniques.",
+   "text": "Prerequisites: C- or better in GEN_ENG 205-2 ; MATH 220-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-4",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     "GEN_ENG 205-2",
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 206-1",
+   "dept": "GEN_ENG",
+   "num": "206-1",
+   "title": "Honor Engineering Analysis",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Covers topics addressed in GEN_ENG 205-1 at a deeper level. Intended for students with demonstrated strength in mathematics, computer programming, and/or physics.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 211-0",
+   "dept": "GEN_ENG",
+   "num": "211-0",
+   "title": "Engineering Physics - Statics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to vector methods in engineering analysis. Statics of particles and rigid bodies and matrix analysis of trusses and frames. Engineering design problems.",
+   "text": "Prerequisites: Gen_Eng 150, Gen_Eng 151 or Comp_Sci 150 (Programming), Math 220-1 or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20211-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 212-0",
+   "dept": "GEN_ENG",
+   "num": "212-0",
+   "title": "Engineering Physics - Dynamics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "A calculus-based physics course which emphasizes dynamic analysis techniques relevant to solving engineering problems in the mechanical domain. This course introduces Newtonian mechanics, descriptions of relative motion in Cartesian and polar coordinate systems, energy conservation methods, mechanical power, momentum, impulse, and numerical and analytical methods for describing oscillatory systems.",
+   "text": "Prerequisites: Math 220-2 or equivalent, GEN_ENG 211, GEN_ENG 241 or equivalent (May be taken concurrently).",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MTWF 10:00 - 10:50 J. Keys; MTWF 1:00 - 1:50 J. Keys",
+    "Spring 2027": "Sec 20 MTWF 10–10:50 K. Lynch; Sec 21 MTWF 11–11:50 M. Kulkarni; Sec 22 MTWF 1–1:50 J. Keys"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20212-0",
+   "links": [
+    "GEN_ENG 211-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     "MATH 220-2",
+     "GEN_ENG 211-0"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 251-0",
+   "dept": "GEN_ENG",
+   "num": "251-0",
+   "title": "Applied Ordinary Differential Equations",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Students will learn to identify and solve differential equations derived from scientific and engineered systems. They will also learn to formulate a differential equation for modeling suitable applications, specifically mechanical vibrations and electrical circuits, among others.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151 or CS 150, MATH 220-2 , PHYS 135-1 or GEN_ENG 212 (may be taken concurrently), GEN_ENG 241 (may be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20251-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 212-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "MATH 220-1",
+   "dept": "MATH",
+   "num": "220-1",
+   "title": "Single-Variable Differential Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Limits. Differentiation. Linear approximation and related rates. Extreme value theorem, mean value theorem, and curve-sketching. Optimization. Students may not receive credit for both MATH 220-1 and any of MATH 211-0, MATH 212-0 (former), MATH 213-0 (former), MATH 218-1, MATH 218-2, or MATH 220-0 (former).",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 220-2",
+   "dept": "MATH",
+   "num": "220-2",
+   "title": "Single-Variable Integral Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Definite integrals, antiderivatives, and the fundamental theorem of calculus. Transcendental and inverse functions. Areas and volumes. Techniques of integration, numerical integration, and improper integrals. First-order linear and separable ordinary differential equations. Students may not receive credit for both MATH 220-2 and any of MATH 213-0 (former), MATH 214-0 (former), MATH 218-3, or MATH 224-0 (former).",
+   "text": "Prerequisite: MATH 218-2 or MATH 220-0 (former) or MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-2",
+   "links": [
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-2",
+     "MATH 220-0",
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-1",
+   "dept": "MATH",
+   "num": "228-1",
+   "title": "Multivariable Differential Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Vectors, vector functions, partial derivatives, Taylor polynomials, and optimization. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-1 and any of MATH 230-0 (former), MATH 230-1, MATH 281-1, MATH 285-2, MATH 290-2, MATH 291-2, or ES_APPM 252-1.",
+   "text": "Prerequisite: MATH 218-3 or MATH 214-0 (former) or MATH 220-2 or MATH 224-0 (former).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-1",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-3",
+     "MATH 214-0",
+     "MATH 220-2",
+     "MATH 224-0"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-2",
+   "dept": "MATH",
+   "num": "228-2",
+   "title": "Multivariable Integral Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Multiple integration: double integrals, triple integrals, and change of variables. Vector calculus: vector fields, line integrals, surface integrals, curl and divergence, Green's theorem, Stokes' theorem, and the divergence theorem. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-2 and any of MATH 230-2, MATH 234-0 (former), MATH 281-2, MATH 285-3, MATH 290-3, MATH 291-3, or ES_APPM 252-2.",
+   "text": "Prerequisite: MATH 228-1 or MATH 230-0 (former) or MATH 230-1 or MATH 281-1 or MATH 285-2 or MATH 290-2 or MATH 291-2 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-2",
+   "links": [
+    "MATH 228-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 228-1",
+     "MATH 230-0",
+     "MATH 230-1",
+     "MATH 281-1",
+     "MATH 285-2",
+     "MATH 290-2",
+     "MATH 291-2",
+     "ES_APPM 252-1"
+    ]
+   }
+  },
+  {
+   "id": "MAT_SCI 201-0",
+   "dept": "MAT_SCI",
+   "num": "201-0",
+   "title": "Introduction to Materials Science and Engineering Principles",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Basic concepts of Materials Science and Engineering: bonding, crystal structure, defects in solids, phase diagrams, and development of microstructures. Processing/structure/property/performance relationships underlying the behavior of metals, ceramics, polymers, semiconductors, and composites. Mechanical, electrical, and chemical properties of engineering materials. Broadly, how materials’ performance influences technological development, the economy, the environment, and society. Not to be taken for credit with or after MAT_SCI 301-0.",
+   "text": "Prerequisites: CHEM 131-0 , CHEM 151-0 , or CHEM 171-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20201-0",
+   "links": [
+    "CHEM 131-0",
+    "CHEM 151-0",
+    "CHEM 171-0"
+   ],
+   "autoPrereq": {
+    "or": [
+     "CHEM 131-0",
+     "CHEM 151-0",
+     "CHEM 171-0"
+    ]
+   }
+  },
+  {
+   "id": "PERF_ST 103-0",
+   "dept": "PERF_ST",
+   "num": "103-0",
+   "title": "Analysis and Performance of Text",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course studies texts, broadly defined and situated, through performance. Students explore how performance helps the performer and audience interpret a text, as well as express challenging political and personal themes. They examine the ways performance illuminates and draws out deeper understandings of social relations through embodied praxis.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20103-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PERF_ST 203-0",
+   "dept": "PERF_ST",
+   "num": "203-0",
+   "title": "Performance Culture and Communication",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Explores how live performance and dramatic forms of communication are methods used to examine social behavior and cultural expressions.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20203-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHYSICS 135-2",
+   "dept": "PHYSICS",
+   "num": "135-2",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Electricity and magnetism. Must be taken concurrently with PHYSICS 136-2.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-1 ; MATH 230-2 OR MATH 290-2 OR MATH 291-2 (may be taken concurrently).\".",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-2",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "PHYSICS 135-3",
+   "dept": "PHYSICS",
+   "num": "135-3",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Introduction to wave phenomena, optics, and modern physics. Must be taken concurrently with PHYSICS 136-3.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-3",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2",
+    "PHYSICS 135-2"
+   ]
+  },
+  {
+   "id": "PHYSICS 136-2",
+   "dept": "PHYSICS",
+   "num": "136-2",
+   "title": "General Physics Laboratory",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introductory physics laboratory for students taking PHYSICS 130-2 or PHYSICS 135-2, with which it must be taken concurrently.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20136-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHYSICS 136-3",
+   "dept": "PHYSICS",
+   "num": "136-3",
+   "title": "General Physics Laboratory",
+   "units": 0.34,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introductory physics laboratory for students taking PHYSICS 130-3 or PHYSICS 135-3, with which it must be taken concurrently.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20136-3",
+   "autoPrereq": null
+  },
+  {
+   "id": "PRDV 335-0",
+   "dept": "PRDV",
+   "num": "335-0",
+   "title": "Engineering Improv: From Allowing to Application",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Start anywhere, remember you are not the most important person in the scene, and say yes. Through these and other improv techniques, students learn to tackle unexpected obstacles, building skills that can be leveraged in both academic and non-academic contexts to face challenges with resilience.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PRDV%20335-0",
+   "autoPrereq": null
+  }
+ ]
+}

@@ -478,5 +478,275 @@
    "department honors program"
   ],
   "why": "Program requirement only."
+ },
+ "DATA_ENG 300-0": {
+  "text": "Prerequisite: DATA_ENG 200-0 and 1 unit from each of the following core areas; Statistics Foundations, Intermediate Programming/Algorithmic Skills, and Applied Machine Learning.Prereq for DATA_ENG 300.",
+  "prereq": "DATA_ENG 200-0",
+  "coreq": null,
+  "notes": [
+   "and 1 unit in each of statistics foundations, intermediate programming, and applied machine learning"
+  ],
+  "why": "The core-area requirement is prose; the parser also read 'Prereq for DATA_ENG 300' as the course itself."
+ },
+ "GEN_ENG 211-0": {
+  "text": "Prerequisites: Gen_Eng 150, Gen_Eng 151 or Comp_Sci 150 (Programming), Math 220-1 or equivalent.",
+  "prereq": {
+   "and": [
+    {
+     "or": [
+      "GEN_ENG 150-0",
+      "GEN_ENG 151-0",
+      "COMP_SCI 150-0"
+     ]
+    },
+    "MATH 220-1"
+   ]
+  },
+  "coreq": null,
+  "notes": [
+   "or equivalent"
+  ],
+  "why": "One programming course and MATH 220-1, not one of all four."
+ },
+ "GEN_ENG 212-0": {
+  "text": "Prerequisites: Math 220-2 or equivalent, GEN_ENG 211, GEN_ENG 241 or equivalent (May be taken concurrently).",
+  "prereq": {
+   "and": [
+    "MATH 220-2",
+    "GEN_ENG 211-0"
+   ]
+  },
+  "coreq": "GEN_ENG 241-0",
+  "notes": [
+   "or equivalent"
+  ],
+  "why": "MATH 220-2 and GEN_ENG 211 are both required; GEN_ENG 241 may be taken at the same time."
+ },
+ "GEN_ENG 231-0": {
+  "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+  "prereq": {
+   "and": [
+    {
+     "or": [
+      "GEN_ENG 150-0",
+      "GEN_ENG 151-0"
+     ]
+    },
+    "MATH 220-2"
+   ]
+  },
+  "coreq": null,
+  "notes": [],
+  "why": "'GEN_ENG 150 or GEN_ENG 151, MATH 220-2': one programming course and MATH 220-2."
+ },
+ "GEN_ENG 241-0": {
+  "text": "Prerequisites: GEN_ENG 150 or 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+  "prereq": {
+   "and": [
+    {
+     "or": [
+      "GEN_ENG 150-0",
+      "GEN_ENG 151-0"
+     ]
+    },
+    "MATH 220-2"
+   ]
+  },
+  "coreq": null,
+  "notes": [],
+  "why": "'GEN_ENG 150 or 151, MATH 220-2': one programming course and MATH 220-2."
+ },
+ "GEN_ENG 251-0": {
+  "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151 or CS 150, MATH 220-2 , PHYS 135-1 or GEN_ENG 212 (may be taken concurrently), GEN_ENG 241 (may be taken concurrently).",
+  "prereq": {
+   "and": [
+    {
+     "or": [
+      "GEN_ENG 150-0",
+      "GEN_ENG 151-0",
+      "COMP_SCI 150-0"
+     ]
+    },
+    "MATH 220-2"
+   ]
+  },
+  "coreq": {
+   "and": [
+    {
+     "or": [
+      "PHYSICS 135-1",
+      "GEN_ENG 212-0"
+     ]
+    },
+    "GEN_ENG 241-0"
+   ]
+  },
+  "notes": [],
+  "why": "Programming and MATH 220-2 first; PHYS 135-1 or GEN_ENG 212, and GEN_ENG 241, may be taken at the same time."
+ },
+ "BMD_ENG 308-0": {
+  "text": "Prerequisite: PHYSICS 135-2 or consent of instructor; BMD_ENG 207-0 (can be taken concurrently).",
+  "prereq": "PHYSICS 135-2",
+  "coreq": "BMD_ENG 207-0",
+  "notes": [
+   "or instructor consent"
+  ],
+  "why": "BMD_ENG 207 'can be taken concurrently', so it's a corequisite."
+ },
+ "MECH_ENG 301-0": {
+  "text": "Prerequisites: MECH_ENG 224-0 , COMP_SCI 110-0 , COMP_SCI 111-0 , COMP_SCI 150-0 , GEN_ENG 150-0 , GEN_ENG 151-0 , or some programming experience and consent of instructor.",
+  "prereq": {
+   "and": [
+    "MECH_ENG 224-0",
+    {
+     "or": [
+      "COMP_SCI 110-0",
+      "COMP_SCI 111-0",
+      "COMP_SCI 150-0",
+      "GEN_ENG 150-0",
+      "GEN_ENG 151-0"
+     ]
+    }
+   ]
+  },
+  "coreq": null,
+  "notes": [
+   "or some programming experience and instructor consent"
+  ],
+  "why": "MECH_ENG 224 plus one of the listed programming courses, not all of them."
+ },
+ "ES_APPM 346-0": {
+  "text": "Prerequisites: MATH 228-2 , MATH 240-0 , and MATH 250-0 ; or GEN_ENG 205-4 and PHYSICS 135-1 , PHYSICS 135-2 ; or equivalent; familiarity with a programming language; or consent of instructor.",
+  "prereq": {
+   "or": [
+    {
+     "and": [
+      "MATH 228-2",
+      "MATH 240-0",
+      "MATH 250-0"
+     ]
+    },
+    {
+     "and": [
+      "GEN_ENG 205-4",
+      "PHYSICS 135-1",
+      "PHYSICS 135-2"
+     ]
+    }
+   ]
+  },
+  "coreq": null,
+  "notes": [
+   "or equivalent",
+   "familiarity with a programming language",
+   "or instructor consent"
+  ],
+  "why": "Two alternative routes separated by '; or'."
+ },
+ "DSGN 386-0": {
+  "text": "Prerequisite: Any IEMS 300 level, MECH_ENG 340-1 , DSGN 308, or consent of instructor. Reserved for Juniors and Seniors.",
+  "prereq": {
+   "or": [
+    "MECH_ENG 340-1",
+    "DSGN 308-0"
+   ]
+  },
+  "coreq": null,
+  "notes": [
+   "or any 300-level IEMS course",
+   "or instructor consent",
+   "junior or senior standing"
+  ],
+  "why": "One of the listed options; 'Any IEMS 300 level' is not a course (the parser read it as IEMS 300-0)."
+ },
+ "IEMS 392-0": {
+  "text": "Prerequisites: IEMS 294-0 , 302-0 , 303-0 , 304-0 , 313-0 ; IEMS 350-0 or IEMS 351-0 or IEMS 352-0 . May not receive credit for both IEMS 392-0 and IEMS 394-0 .",
+  "prereq": {
+   "and": [
+    "IEMS 294-0",
+    "IEMS 302-0",
+    "IEMS 303-0",
+    "IEMS 304-0",
+    "IEMS 313-0",
+    {
+     "or": [
+      "IEMS 350-0",
+      "IEMS 351-0",
+      "IEMS 352-0"
+     ]
+    }
+   ]
+  },
+  "coreq": null,
+  "notes": [],
+  "why": "'IEMS 294, 302, 303, 304, 313; IEMS 350 or 351 or 352': all five plus one of the three."
+ },
+ "IEMS 394-0": {
+  "text": "Prerequisites: IEMS 294-0 , 302-0 , 303-0 , 304-0 , 313-0 ; IEMS 350-0 or IEMS 351-0 or IEMS 352-0 . Antirequisite: May not receive credit for both IEMS 392-0 and IEMS 394-0 .",
+  "prereq": {
+   "and": [
+    "IEMS 294-0",
+    "IEMS 302-0",
+    "IEMS 303-0",
+    "IEMS 304-0",
+    "IEMS 313-0",
+    {
+     "or": [
+      "IEMS 350-0",
+      "IEMS 351-0",
+      "IEMS 352-0"
+     ]
+    }
+   ]
+  },
+  "coreq": null,
+  "notes": [],
+  "why": "'IEMS 294, 302, 303, 304, 313; IEMS 350 or 351 or 352': all five plus one of the three."
+ },
+ "DSGN 357-0": {
+  "text": "Prerequisites: DSGN 106-1 and DSGN 106-2 , or DSGN 208-0 . At least one of: DSGN 306-0 , 308-0 , 380-1 and 380-2 , 381-0 , 382-1 and 380-2 , 384-1 and 384-2 .",
+  "prereq": {
+   "and": [
+    {
+     "or": [
+      {
+       "and": [
+        "DSGN 106-1",
+        "DSGN 106-2"
+       ]
+      },
+      "DSGN 208-0"
+     ]
+    },
+    {
+     "or": [
+      "DSGN 306-0",
+      "DSGN 308-0",
+      {
+       "and": [
+        "DSGN 380-1",
+        "DSGN 380-2"
+       ]
+      },
+      "DSGN 381-0",
+      {
+       "and": [
+        "DSGN 382-1",
+        "DSGN 380-2"
+       ]
+      },
+      {
+       "and": [
+        "DSGN 384-1",
+        "DSGN 384-2"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "coreq": null,
+  "notes": [],
+  "why": "The 'At least one of' list was dropped. '382-1 and 380-2' is as the catalog has it (382-2 may be meant)."
  }
 }

@@ -105,7 +105,7 @@ def parse_dept(html):
     soup = BeautifulSoup(html, "html.parser")
     name = ""
     for h1 in soup.find_all("h1"):
-        m = re.match(r"(.*) \(([A-Z_]+)\)$", clean(h1.get_text()))
+        m = re.match(r"(.*) \(([A-Za-z_]+)\)$", clean(h1.get_text()))  # "General Engineering (Gen_Eng)"
         if m:
             name = m.group(1)
     courses = {}
@@ -198,7 +198,8 @@ def build_map(cfg, config, catalog, fetcher, overrides, verified):
               "empty_programs": []}
     nodes = {}
     # Short department names used in prereq text ("CS 214") -> catalog codes.
-    aliases = {abbr: dept for dept, abbr in config["abbreviations"].items() if " " not in abbr}
+    aliases = {abbr: dept for dept, abbr in config["abbreviations"].items() if " " not in abbr and abbr != dept}
+    aliases.update(without_comments(config.get("aliases", {})))
 
     for dept in cfg["departments"]:
         for cid, c in catalog.dept(dept)["courses"].items():
@@ -220,7 +221,8 @@ def build_map(cfg, config, catalog, fetcher, overrides, verified):
     for pid in cfg.get("programs", []):
         p = config["programs"][pid]
         url = config["catalog"] + p["path"]
-        lists, notes = parse_program(fetcher.get(url), without_comments(p.get("labels", {})), until=p.get("until"))
+        lists, notes = parse_program(fetcher.get(url), without_comments(p.get("labels", {})), until=p.get("until"),
+                                     major_from=p.get("majorFrom"))
         if p.get("core"):
             core = config["cores"][p["core"]]
             lists = merge_core(lists, core_lists(fetcher.get(config["catalog"] + core["path"]),
@@ -295,7 +297,7 @@ def build_map(cfg, config, catalog, fetcher, overrides, verified):
         info = catalog.dept(n["dept"])
         depts[n["dept"]] = {
             "name": info["name"] if info else n["dept"],
-            "abbr": config["abbreviations"].get(n["dept"], n["dept"]),
+            "abbr": config["abbreviations"].get(n["dept"], n["dept"].replace("_", " ")),
             "main": n["dept"] in cfg["departments"],
         }
 

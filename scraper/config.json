@@ -8,9 +8,13 @@
   "ELEC_ENG": "EE",
   "ES_APPM": "ES APPM",
   "GEN_ENG": "GEN ENG",
-  "MAT_SCI": "MSE",
+  "MAT_SCI": "MAT_SCI",
   "MECH_ENG": "ME",
   "PHYSICS": "PHYS"
+ },
+ "aliases": {
+  "_comment": "Short names in catalog prerequisite text ('MSE 201') that aren't shown on the site.",
+  "MSE": "MAT_SCI"
  },
  "cores": {
   "_comment": "School-wide requirements every degree with 'core' shares; degree pages often only name these areas. Only lists with kind 'core' are used, and a degree page's own list for an area (e.g. its science) wins.",
@@ -249,6 +253,260 @@
      "need": 4
     }
    }
+  },
+  "ai-bs": {
+   "name": "Artificial Intelligence BS",
+   "short": "AI BS",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/artificial-intelligence/artificial-intelligence-major/",
+   "core": "mccormick",
+   "labels": {
+    "5 required courses": "Required courses",
+    "Societal impact course list": "Societal impact",
+    "Technical electives list": {
+     "label": "Technical electives",
+     "kind": "elective",
+     "need": 7,
+     "flatten": true
+    }
+   }
+  },
+  "bme-bs": {
+   "name": "Biomedical Engineering BS",
+   "short": "BME BS",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/biomedical-engineering/biomedical-engineering-degree/",
+   "core": "mccormick",
+   "labels": {
+    "Basic Engineering (6 courses)": {
+     "label": "Basic engineering",
+     "kind": "elective",
+     "need": 6
+    },
+    "Core courses (9 courses + 1 zero-credit seminar)": {
+     "label": "Required courses",
+     "kind": "required"
+    }
+   }
+  },
+  "cheme-bs": {
+   "name": "Chemical Engineering BS",
+   "short": "ChemE BS",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/chemical-engineering/chemical-engineering-degree/",
+   "core": "mccormick",
+   "labels": {
+    "17 required courses": "Required courses"
+   }
+  },
+  "biotech-minor": {
+   "name": "Biotechnology and Biochemical Engineering minor",
+   "short": "Biotech minor",
+   "type": "minor",
+   "path": "/undergraduate/engineering-applied-science/chemical-engineering/biotechnology-biochemical-engineering-minor/",
+   "labels": {
+    "Requirements (10 units)": {
+     "label": "Biology and biochemical engineering",
+     "kind": "required"
+    },
+    "Core Electives": {
+     "label": "Core electives",
+     "kind": "elective",
+     "need": 1
+    },
+    "Extended Electives": {
+     "label": "Extended electives",
+     "kind": "elective",
+     "need": 2
+    }
+   }
+  },
+  "civil-bs": {
+   "name": "Civil Engineering BS",
+   "short": "Civil BS",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/civil-environmental-engineering/civil-engineering-degree/",
+   "core": "mccormick",
+   "labels": {
+    "4 units of basic science": {
+     "label": "Basic science",
+     "kind": "core",
+     "need": 4
+    },
+    "8 civil engineering foundations courses": {
+     "label": "Civil engineering foundations",
+     "kind": "required"
+    },
+    "4 civil engineering breadth courses": {
+     "label": "Civil engineering breadth",
+     "kind": "required"
+    },
+    "3 design courses (2 capstone design courses are 0.5 units each)": "Design courses",
+    "1 professional development course (0.34 units)": {
+     "label": "Professional development",
+     "kind": "required"
+    }
+   }
+  },
+  "env-bs": {
+   "name": "Environmental Engineering BS",
+   "short": "Env Eng BS",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/civil-environmental-engineering/environmental-engineering-degree/",
+   "core": "mccormick",
+   "labels": {
+    "3 gateway courses": {
+     "label": "Gateway courses",
+     "kind": "required"
+    },
+    "7 basic engineering courses": {
+     "label": "Basic engineering",
+     "kind": "required"
+    },
+    "8 environmental engineering core courses": {
+     "label": "Environmental engineering core",
+     "kind": "required"
+    },
+    "2 capstone design courses (0.5 units each)": "Capstone design",
+    "1 professional development course (0.34 units)": {
+     "label": "Professional development",
+     "kind": "required"
+    }
+   }
+  },
+  "env-minor": {
+   "name": "Environmental Engineering minor",
+   "short": "Env Eng minor",
+   "type": "minor",
+   "path": "/undergraduate/engineering-applied-science/civil-environmental-engineering/environmental-engineering-minor/",
+   "labels": {
+    "Core Courses (6 units)": "Core courses",
+    "Electives (2 units): choose 2 courses from below": "Electives"
+   }
+  },
+  "arch-minor": {
+   "name": "Architectural Engineering and Design minor",
+   "short": "Arch Eng minor",
+   "type": "minor",
+   "path": "/undergraduate/engineering-applied-science/civil-environmental-engineering/architectural-engineering-design-minor/",
+   "labels": {
+    "Architectural Seminar - 0 unit": {
+     "label": "Architectural seminar",
+     "kind": "required"
+    },
+    "Core courses - 3 required units": "Core courses",
+    "Architecture History - 2 units": {
+     "label": "Architecture history",
+     "kind": "elective",
+     "need": 2
+    },
+    "Design and Analysis Techniques - choose 3 units": "Design and analysis techniques"
+   }
+  },
+  "ie-bs": {
+   "name": "Industrial Engineering BS",
+   "short": "IE BS",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/industrial-engineering-management-sciences/industrial-engineering-degree/",
+   "core": "mccormick",
+   "labels": {
+    "2 related courses": {
+     "label": "Related courses",
+     "kind": "required"
+    },
+    "7 industrial engineering methods core courses": {
+     "label": "Methods core",
+     "kind": "required"
+    },
+    "3 professional practice courses": "Professional practice",
+    "Ethical Development Courses": {
+     "label": "Ethical development",
+     "kind": "elective",
+     "need": 1
+    },
+    "Operations Electives": {
+     "label": "Operations electives",
+     "kind": "elective",
+     "need": 1
+    },
+    "Industrial Engineering Electives": {
+     "label": "Industrial engineering electives",
+     "kind": "elective"
+    },
+    "Management Science Electives": {
+     "label": "Management science electives",
+     "kind": "elective",
+     "need": 2
+    },
+    "Other Approved Non-engineering Technical Electives": null,
+    "Quantitative Finance": null,
+    "Operations, Transportation & Logistics": null,
+    "Data Science and Engineering": null,
+    "Human-centered Engineering": null,
+    "Graduate Preparation": null,
+    "Product Management": null
+   }
+  },
+  "me-bs": {
+   "name": "Mechanical Engineering BS",
+   "short": "ME BS",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/mechanical-engineering/mechanical-engineering-degree/",
+   "core": "mccormick",
+   "labels": {
+    "3 mechanical engineering foundations courses": {
+     "label": "Engineering foundations",
+     "kind": "core"
+    },
+    "11 required courses": "Required courses",
+    "2 capstone courses": "Capstone design"
+   }
+  },
+  "appm-bs": {
+   "name": "Applied Mathematics BS",
+   "short": "Applied Math BS",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/engineering-sciences-applied-mathematics/applied-mathematics-degree/",
+   "core": "mccormick",
+   "labels": {
+    "5 units of basic technical coursework": {
+     "label": "Basic technical coursework",
+     "kind": "required"
+    },
+    "7 units of engineering sciences and applied mathematics coursework": {
+     "label": "Applied math coursework",
+     "kind": "required"
+    },
+    "1 unit of probability and statistics coursework chosen from the options below": "Probability and statistics",
+    "1 additional unit of probability and statistics coursework chosen from the options above or 1 course chosen from the options below": "More probability, statistics or optimization",
+    "1 unit of mathematical modeling coursework chosen from the options below": "Mathematical modeling"
+   }
+  },
+  "made-bs": {
+   "name": "Manufacturing and Design Engineering BS",
+   "short": "MaDE BS",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/segal-design-institute/manufacturing-design-engineering-degree/",
+   "core": "mccormick",
+   "majorFrom": "3 manufacturing and design engineering foundations courses",
+   "labels": {
+    "3 manufacturing and design engineering foundations courses": {
+     "label": "Engineering foundations",
+     "kind": "core"
+    },
+    "11 core courses": {
+     "label": "Required courses",
+     "kind": "required"
+    },
+    "3 MaDE capstone sequence courses": {
+     "label": "Capstone sequence",
+     "kind": "required"
+    },
+    "1 manufacturing and design engineering course": {
+     "label": "Manufacturing engineering design",
+     "kind": "required"
+    }
+   }
   }
  },
  "maps": [
@@ -284,6 +542,7 @@
    "programs": [
     "cs-bs",
     "cs-ba",
+    "ai-bs",
     "cs-minor",
     "ai-minor",
     "mlds-minor",
@@ -314,6 +573,136 @@
     "format": "mccormick",
     "url": "https://www.mccormick.northwestern.edu/materials-science/academics/courses/"
    }
+  },
+  {
+   "id": "bme",
+   "name": "Biomedical Engineering",
+   "departments": [
+    "BMD_ENG"
+   ],
+   "programs": [
+    "bme-bs"
+   ],
+   "defaultPrograms": [
+    "bme-bs"
+   ],
+   "schedule": {
+    "format": "mccormick",
+    "url": "https://www.mccormick.northwestern.edu/biomedical/academics/courses/"
+   }
+  },
+  {
+   "id": "chbe",
+   "name": "Chemical & Biological Engineering",
+   "departments": [
+    "CHEM_ENG"
+   ],
+   "programs": [
+    "cheme-bs",
+    "biotech-minor"
+   ],
+   "defaultPrograms": [
+    "cheme-bs"
+   ],
+   "schedule": {
+    "format": "mccormick",
+    "url": "https://www.mccormick.northwestern.edu/chemical-biological/academics/courses/"
+   }
+  },
+  {
+   "id": "cee",
+   "name": "Civil & Environmental Engineering",
+   "departments": [
+    "CIV_ENV"
+   ],
+   "programs": [
+    "civil-bs",
+    "env-bs",
+    "env-minor",
+    "arch-minor"
+   ],
+   "defaultPrograms": [
+    "civil-bs"
+   ],
+   "schedule": {
+    "format": "mccormick",
+    "url": "https://www.mccormick.northwestern.edu/civil-environmental/academics/courses/"
+   }
+  },
+  {
+   "id": "iems",
+   "name": "Industrial Engineering & Management Sciences",
+   "departments": [
+    "IEMS"
+   ],
+   "programs": [
+    "ie-bs"
+   ],
+   "defaultPrograms": [
+    "ie-bs"
+   ],
+   "schedule": {
+    "format": "mccormick",
+    "url": "https://www.mccormick.northwestern.edu/industrial/academics/courses/"
+   }
+  },
+  {
+   "id": "me",
+   "name": "Mechanical Engineering",
+   "departments": [
+    "MECH_ENG"
+   ],
+   "programs": [
+    "me-bs"
+   ],
+   "defaultPrograms": [
+    "me-bs"
+   ],
+   "schedule": {
+    "format": "mccormick",
+    "url": "https://www.mccormick.northwestern.edu/mechanical/academics/courses/"
+   }
+  },
+  {
+   "id": "esam",
+   "name": "Engineering Sciences & Applied Mathematics",
+   "departments": [
+    "ES_APPM"
+   ],
+   "programs": [
+    "appm-bs"
+   ],
+   "defaultPrograms": [
+    "appm-bs"
+   ],
+   "schedule": {
+    "format": "mccormick",
+    "url": "https://www.mccormick.northwestern.edu/applied-math/academics/courses/"
+   }
+  },
+  {
+   "id": "made",
+   "name": "Manufacturing & Design Engineering",
+   "departments": [
+    "DSGN"
+   ],
+   "programs": [
+    "made-bs"
+   ],
+   "defaultPrograms": [
+    "made-bs"
+   ]
+  },
+  {
+   "id": "geneng",
+   "name": "General Engineering",
+   "departments": [
+    "GEN_ENG",
+    "DATA_ENG",
+    "ENTREP"
+   ],
+   "programs": [],
+   "defaultPrograms": []
   }
  ]
 }

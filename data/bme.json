@@ -1,0 +1,2054 @@
+{
+ "id": "bme",
+ "name": "Biomedical Engineering",
+ "generated": "2026-10-26",
+ "catalogYear": "2026-2027",
+ "quarters": [
+  "Fall 2026",
+  "Winter 2027",
+  "Spring 2027"
+ ],
+ "departments": {
+  "BMD_ENG": {
+   "name": "Biomedical Engineering",
+   "abbr": "BME",
+   "main": true
+  },
+  "BIOL_SCI": {
+   "name": "Biological Sciences",
+   "abbr": "BIOL SCI",
+   "main": false
+  },
+  "CHEM": {
+   "name": "Chemistry",
+   "abbr": "CHEM",
+   "main": false
+  },
+  "COMM_ST": {
+   "name": "Communication Studies",
+   "abbr": "COMM ST",
+   "main": false
+  },
+  "DSGN": {
+   "name": "Segal Design Institute",
+   "abbr": "DSGN",
+   "main": false
+  },
+  "ENGLISH": {
+   "name": "English",
+   "abbr": "ENGLISH",
+   "main": false
+  },
+  "ENTREP": {
+   "name": "Entrepreneurship & Innovation",
+   "abbr": "ENTREP",
+   "main": false
+  },
+  "GEN_ENG": {
+   "name": "General Engineering",
+   "abbr": "GEN ENG",
+   "main": false
+  },
+  "MATH": {
+   "name": "Mathematics",
+   "abbr": "MATH",
+   "main": false
+  },
+  "MAT_SCI": {
+   "name": "Materials Science & Engineering",
+   "abbr": "MAT_SCI",
+   "main": false
+  },
+  "MECH_ENG": {
+   "name": "Mechanical Engineering",
+   "abbr": "ME",
+   "main": false
+  },
+  "PERF_ST": {
+   "name": "Performance Studies",
+   "abbr": "PERF ST",
+   "main": false
+  },
+  "PHYSICS": {
+   "name": "Physics",
+   "abbr": "PHYS",
+   "main": false
+  },
+  "PRDV": {
+   "name": "Personal Development",
+   "abbr": "PRDV",
+   "main": false
+  }
+ },
+ "programs": [
+  {
+   "id": "bme-bs",
+   "name": "Biomedical Engineering BS",
+   "short": "BME BS",
+   "type": "major",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/biomedical-engineering/biomedical-engineering-degree/",
+   "default": true,
+   "lists": [
+    {
+     "label": "Mathematics",
+     "kind": "core",
+     "need": 4,
+     "items": [
+      [
+       [
+        "MATH 220-1"
+       ]
+      ],
+      [
+       [
+        "MATH 220-2"
+       ]
+      ],
+      [
+       [
+        "MATH 228-1"
+       ]
+      ],
+      [
+       [
+        "MATH 228-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Basic science",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "PHYSICS 135-2"
+       ]
+      ],
+      [
+       [
+        "BIOL_SCI 201-0"
+       ]
+      ],
+      [
+       [
+        "CHEM 131-0",
+        "CHEM 132-0"
+       ],
+       [
+        "CHEM 151-0",
+        "CHEM 152-0"
+       ],
+       [
+        "CHEM 171-0",
+        "CHEM 172-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Engineering foundations",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "GEN_ENG 150-0"
+       ],
+       [
+        "GEN_ENG 151-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 231-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 241-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Design and writing",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "DSGN 106-1",
+        "DSGN 106-2"
+       ]
+      ],
+      [
+       [
+        "ENGLISH 106-1",
+        "ENGLISH 106-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Speaking or innovation",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMM_ST 102-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 225-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 325-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 103-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 203-0"
+       ]
+      ],
+      [
+       [
+        "PRDV 335-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 390-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Basic engineering",
+     "kind": "elective",
+     "need": 6,
+     "items": [
+      [
+       [
+        "BMD_ENG 270-0"
+       ],
+       [
+        "MECH_ENG 241-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 211-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 212-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 251-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 250-0"
+       ],
+       [
+        "MECH_ENG 222-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 271-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 201-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Required courses",
+     "kind": "required",
+     "need": 10,
+     "items": [
+      [
+       [
+        "BMD_ENG 101-0"
+       ]
+      ],
+      [
+       [
+        "CHEM 215-1"
+       ],
+       [
+        "PHYSICS 135-3"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 207-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 304-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 305-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 306-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 308-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 309-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 378-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 390-1"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "Major Program (22 units)",
+    "Technical electives (7 units)",
+    "• Partial-unit laboratory courses may be combined to satisfy the technical elective requirement. Up to 12 laboratory courses (0.34 units each) may be applied toward the seven required technical elective units.",
+    "1. At least two units must be 300-level BME courses classified as 100% engineering topics. These courses are identified in the ABET partitioning table unless otherwise noted below.",
+    "• All 400-level BME courses (except BME 499) are classified as 100% engineering topics and may be used to satisfy this requirement without petition.",
+    "• BMD_ENG 390-3 may be taken with departmental permission and used to satisfy this requirement.",
+    "• The following eligible BME courses have the indicated science prerequisites: CHEM 215-1 : BMD_ENG 317-0 , BMD_ENG 340-0 . PHYSICS 135-3 : BMD_ENG 325-0 , BMD_ENG 327-0 , BMD_ENG 333-0 . BIOL_SCI 202-0 and CHEM 215-1 : BMD_ENG 343-0 , BMD_ENG 344-0 , BMD_ENG 346-",
+    "2. At least three total units must be courses that are classified as 100% engineering topics.",
+    "• Beyond the two required BME courses, at least one additional unit must be a course classified as 100% engineering topics.",
+    "• Partial-unit courses classified as 100% engineering topics may be combined to satisfy the additional engineering unit requirement (e.g., DSGN 240-0 and DSGN 321-0 ).",
+    "3. Graded independent research cannot be used to satisfy Requirement 1.",
+    "• BMD_ENG 499 is not classified as 100% engineering topics and therefore cannot be used to satisfy Requirements 1 or 2. However, multiple units of BMD_ENG 499 may be applied toward the seven required technical elective units.",
+    "• Any engineering course listed on the ABET partitioning table may be used as a technical elective. However, only courses classified as 100% engineering topics may be used to satisfy Engineering Requirements 1 and 2.",
+    "• Any 300-level or higher MATH course, except MATH 395-",
+    "• All 300-level biology, chemistry, and physics courses",
+    "• The following lower-level science courses: BIOL_SCI 202-0 , CHEM 215-1 (if not used to satisfy a core requirement), CHEM 215-2 , CHEM 215-3 , PHYSICS 135-3 (if not used to satisfy a core requirement)"
+   ]
+  }
+ ],
+ "sources": [
+  "https://catalogs.northwestern.edu/undergraduate/courses-az/bmd_eng/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/biomedical-engineering/biomedical-engineering-degree/",
+  "https://www.mccormick.northwestern.edu/biomedical/academics/courses/"
+ ],
+ "courses": [
+  {
+   "id": "BMD_ENG 101-0",
+   "dept": "BMD_ENG",
+   "num": "101-0",
+   "title": "Introduction to Biomedical Engineering",
+   "units": 0.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Information to 1) help students determine if BME is the right major for them and 2) learn how to make the most of their undergraduate experience. The field of biomedical engineering, career and research opportunities, ethics.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "Th 3:00-3:50pm · Olds",
+    "Winter 2027": "Th 3:00-3:50pm · Olds"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20101-0"
+  },
+  {
+   "id": "BMD_ENG 207-0",
+   "dept": "BMD_ENG",
+   "num": "207-0",
+   "title": "BME Lab: Experimental Design",
+   "units": 0.5,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "BMD_ENG 220-0",
+     "GEN_ENG 231-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "A laboratory course focusing on quantitative physiological measurements and analyses, instrument characterization, statistical design of experiments, and training in preparation and organization of laboratory notes and reports.",
+   "text": "Prerequisite: BMD_ENG 220-0 or GEN_ENG 231-0 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTh 2-3:50pm · Gentry",
+    "Spring 2027": "TTh 11:00am-12:50pm OR TTh 2pm-3:50pm · Ankeny, Lescott"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20207-0"
+  },
+  {
+   "id": "BMD_ENG 250-0",
+   "dept": "BMD_ENG",
+   "num": "250-0",
+   "title": "Thermodynamics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MATH 228-1",
+     {
+      "or": [
+       "CHEM 132-0",
+       "CHEM 152-0",
+       "CHEM 172-0"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Physical and chemical principles as applied to biological systems and medical devices. Topics include material balances, thermodynamics, solution chemistry, electrochemistry, surface chemistry, transport, and kinetics.",
+   "text": "Prerequisites: MATH 228-1 ; CHEM 132-0 , CHEM 152-0 , or CHEM 172-0 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MWF 1:00-1:50pm · TBD"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20250-0"
+  },
+  {
+   "id": "BMD_ENG 270-0",
+   "dept": "BMD_ENG",
+   "num": "270-0",
+   "title": "Fluid Mechanics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "BMD_ENG 250-0",
+       "BMD_ENG 271-0"
+      ]
+     },
+     "GEN_ENG 205-4",
+     "MATH 228-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamentals of fluid mechanics and their applications to biological systems.",
+   "text": "Prerequisites: BMD_ENG 250 or BMD_ENG 271; GEN_ENG 205-4 ; MATH 228-2 .",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MWF 12 - 12:50pm · O'Neill"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20270-0"
+  },
+  {
+   "id": "BMD_ENG 271-0",
+   "dept": "BMD_ENG",
+   "num": "271-0",
+   "title": "Introduction to Biomechanics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 251-0",
+       "GEN_ENG 211-0"
+      ]
+     },
+     "GEN_ENG 241-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Analysis of stresses and deformations in solids. Problems in biomechanics, with emphasis on assumptions appropriate to modeling biological materials including bone, skin, muscle, and cell membranes.",
+   "text": "Prerequisites: GEN_ENG 251 or GEN_ENG 211-0 ; and GEN_ENG 241-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "Th 11:00-11:50am · Major",
+    "Winter 2027": "Th 11:00-11:50am · Major"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20271-0"
+  },
+  {
+   "id": "BMD_ENG 304-0",
+   "dept": "BMD_ENG",
+   "num": "304-0",
+   "title": "Quantitative Systems Physiology",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "PHYSICS 135-2",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Cardiovascular, respiratory, and immune systems, including physiology and pathophysiology. Case studies and a design team project. Integrated lab activities; no separate section.",
+   "text": "Prerequisite: Students must have taken PHYSICS 135-2 ; junior standing recommended.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 9:00-9:50am · Backman, Efimov"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20304-0"
+  },
+  {
+   "id": "BMD_ENG 305-0",
+   "dept": "BMD_ENG",
+   "num": "305-0",
+   "title": "Quantitative Systems Physiology",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Cellular mechanisms of and quantitative systems' approach to human renal, digestive, endocrine, and metabolic physiology. Integrated lab activities; no separate section.",
+   "text": "Prerequisite: junior standing recommended.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MWF 9:00-9:50am · Ankeny"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20305-0"
+  },
+  {
+   "id": "BMD_ENG 306-0",
+   "dept": "BMD_ENG",
+   "num": "306-0",
+   "title": "Quantitative Systems Physiology",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "PHYSICS 135-2",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Functional/structural aspects of vertebrate nervous system. Neural biophysics. Integrated lab activities; no separate section.",
+   "text": "Prerequisite: PHYSICS 135-2 ; junior standing recommended.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MWF 9 - 9:50am · MacIver"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20306-0"
+  },
+  {
+   "id": "BMD_ENG 308-0",
+   "dept": "BMD_ENG",
+   "num": "308-0",
+   "title": "Biomedical Signals and Circuits",
+   "units": 1.25,
+   "role": "main",
+   "prereq": "PHYSICS 135-2",
+   "coreq": "BMD_ENG 207-0",
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Time and frequency domain analysis: convolution representation, Fourier series, Fourier transforms, frequency response, filtering, sampling.",
+   "text": "Prerequisite: PHYSICS 135-2 or consent of instructor; BMD_ENG 207-0 (can be taken concurrently).",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MWF 2:00-3:50pm · Jack Zhang, Marchuk"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20308-0"
+  },
+  {
+   "id": "BMD_ENG 309-0",
+   "dept": "BMD_ENG",
+   "num": "309-0",
+   "title": "Biomedical Systems Analysis",
+   "units": 1.25,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "BMD_ENG 207-0",
+     "BMD_ENG 308-0",
+     "BMD_ENG 220-0",
+     "GEN_ENG 205-4"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to linear systems analysis. Time and frequency domain techniques for analyzing linear systems, emphasizing their applications to biomedical systems. Python-based problem sets and a summative instrumentation and analysis lab project illustrate topics covered in class.",
+   "text": "Prerequisites: BMD_ENG 207-0 ; BMD_ENG 308-0 ; BMD_ENG 220-0; GEN_ENG 205-4 .",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "MWF 2:00-3:50pm · O'Neill, Chen"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20309-0"
+  },
+  {
+   "id": "BMD_ENG 311-0",
+   "dept": "BMD_ENG",
+   "num": "311-0",
+   "title": "Computational Genomics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "BMD_ENG 220-0",
+     {
+      "or": [
+       "BIOL_SCI 201-0",
+       "BIOL_SCI 202-0"
+      ]
+     }
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The course introduces state-of-the-art genomic sequencing technologies and computational modeling of high-throughput sequencing datasets. Through the course, students will learn how to apply these experimental and computational genomics technologies to study gene expression regulation underlying various biological processes, such as oncogenesis. Students will also apply computational and statistical skills, using linux and R/Matlab/Python.",
+   "text": "Prerequisites: BMD_ENG 220-0; BIOL_SCI 201-0 or BIOL_SCI 202-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20311-0"
+  },
+  {
+   "id": "BMD_ENG 312-0",
+   "dept": "BMD_ENG",
+   "num": "312-0",
+   "title": "Biomedical Applications in Machine Learning",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "BMD_ENG 220-0",
+     "GEN_ENG 205-1",
+     "MATH 220-1",
+     "MATH 220-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Supervised learning tasks such as regression and classification, Convolutional Neural Networks and image analysis techniques and hidden Markov models, unsupervised learning approaches such as clustering and dimensionality reduction will be applied to both structured (numerical) and image data. All models will be implemented in Python, either from scratch or using high-level libraries.",
+   "text": "Prerequisites: BMD_ENG 220-0, GEN_ENG 205-1 , MATH 220-1 , MATH 220-2 , or is a BME MS or PhD Student.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTh 11:00am-12:20pm · Ludvig"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20312-0"
+  },
+  {
+   "id": "BMD_ENG 313-0",
+   "dept": "BMD_ENG",
+   "num": "313-0",
+   "title": "Wearable Devices: From Sensing to Biomedical Inference",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "BMD_ENG 207-0",
+     "BMD_ENG 220-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course will review the challenges and opportunities associated with using wearable devices to infer biomedical information about individuals and populations. It will cover techniques from signal processing, machine learning, and artificial intelligence relevant to this objective. Content will be taught using a series of projects relevant to the quantification of human movement and rehabilitation medicine.",
+   "text": "Prerequisites: BMD_ENG 207-0 and BMD_ENG 220-0.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20313-0"
+  },
+  {
+   "id": "BMD_ENG 317-0",
+   "dept": "BMD_ENG",
+   "num": "317-0",
+   "title": "Biochemical Sensors",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "BIOL_SCI 201-0",
+     "CHEM 215-1"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Theory, design, and applications of biochemical sensors used in medical diagnosis, biomedical research, and patient monitoring. Detection of biomolecules with optical, electrochemical, mass spectrometry and other sensors. Start-up translation of sensor technology.",
+   "text": "Prerequisites: BIOL_SCI 201-0 ; CHEM 215-1 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 12-12:50pm · Berns"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20317-0"
+  },
+  {
+   "id": "BMD_ENG 325-0",
+   "dept": "BMD_ENG",
+   "num": "325-0",
+   "title": "Introduction to Medical Imaging",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "PHYSICS 135-3",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Diagnostic X-rays; X-ray film and radiographic image; computed tomography; ultrasound.",
+   "text": "Prerequisites: Students must have completed PHYSICS 135-3 and knowledge of Fourier concepts.",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 11-11:50pm · Sahakian"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20325-0"
+  },
+  {
+   "id": "BMD_ENG 327-0",
+   "dept": "BMD_ENG",
+   "num": "327-0",
+   "title": "Magnetic Resonance Imaging",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "PHYSICS 135-3",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Nuclear magnetic resonance; two-dimensional Fourier transform, spinecho and gradientecho imaging; gradient and RF hardware.",
+   "text": "Prerequisite: PHYSICS 135-3 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTh 9:30-10:50am · Golestani Rad"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20327-0"
+  },
+  {
+   "id": "BMD_ENG 333-0",
+   "dept": "BMD_ENG",
+   "num": "333-0",
+   "title": "Modern Optical Microscopy & Imaging",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "BMD_ENG 220-0",
+     "GEN_ENG 205-4",
+     "PHYSICS 135-3"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Rigorous introduction to principles, current trends, emerging technologies, and biomedical applications of modern optical microscopy.",
+   "text": "Prerequisites: BMD_ENG 220-0, GEN_ENG 205-4 , PHYSICS 135-3 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 9:30-10:50am · Hao Zhang"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20333-0"
+  },
+  {
+   "id": "BMD_ENG 340-0",
+   "dept": "BMD_ENG",
+   "num": "340-0",
+   "title": "Pharmaceutical Engineering: From Discovery to Therapeutics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "CHEM 215-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course will take students through the process of drug development from initial innovative concept and identified medical need, to proof of efficacy, clinical trials, and translation to big pharma. Professor Moskal will draw upon his experience from academia and industry to chart out each critical step of drug development; additional industry experts will present guest lectures.",
+   "text": "Prerequisites: CHEM 215-1 or be BME MS/PhD student to enroll in this class.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20340-0"
+  },
+  {
+   "id": "BMD_ENG 343-0",
+   "dept": "BMD_ENG",
+   "num": "343-0",
+   "title": "Biomaterials and Medical Devices",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "BIOL_SCI 201-0",
+     "BIOL_SCI 202-0",
+     "CHEM 215-1",
+     "MAT_SCI 201-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Structure-property relationships for biomaterials. Metal, ceramic, and polymeric implant materials and their implant applications. Interactions of materials with the body.",
+   "text": "Prerequisites: BIOL_SCI 201-0 , BIOL_SCI 202-0 (can be taken concurrently), CHEM 215-1 , MAT_SCI 201-0 or be a BME Graduate student.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTh 12:30 - 1:50pm · Ameer"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20343-0"
+  },
+  {
+   "id": "BMD_ENG 344-0",
+   "dept": "BMD_ENG",
+   "num": "344-0",
+   "title": "Biological Performance of Materials",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "BIOL_SCI 201-0",
+     "BIOL_SCI 202-0",
+     "CHEM 215-1",
+     "MAT_SCI 201-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Structure-property relationships of materials, physical chemistry of surfaces and interfaces, materials-tissue interactions, applications to the selection and design of materials for medical implants and devices.",
+   "text": "Prerequisites: BIOL_SCI 201-0 , BIOL_SCI 202-0 (can be taken concurrently), CHEM 215-1 , MAT_SCI 201-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 12:30-1:50pm · Volpatti"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20344-0"
+  },
+  {
+   "id": "BMD_ENG 346-0",
+   "dept": "BMD_ENG",
+   "num": "346-0",
+   "title": "Tissue Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "BIOL_SCI 201-0",
+     "BIOL_SCI 202-0",
+     "CHEM 215-1"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "In vivo molecular, cellular, and organ engineering, with emphasis on the foundations, techniques, experiments, and clinical applications of tissue engineering.",
+   "text": "Prerequisites: BIOL_SCI 201-0 , BIOL_SCI 202-0 (can be taken concurrently), CHEM 215-1 , or be a BME Graduate student.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTh 9:30-10:50am · Ameer"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20346-0"
+  },
+  {
+   "id": "BMD_ENG 347-0",
+   "dept": "BMD_ENG",
+   "num": "347-0",
+   "title": "Foundations of Regenerative Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "BIOL_SCI 201-0",
+     "BIOL_SCI 202-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Embryonic development, stem cell engineering, somatic regeneration, genome and transcriptome modifications, cell and tissue-level regenerative engineering.",
+   "text": "Prerequisites: BIOL_SCI 201-0 or BIOL_SCI 202-0 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 11:00am-12:20pm · Liu"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20347-0"
+  },
+  {
+   "id": "BMD_ENG 348-0",
+   "dept": "BMD_ENG",
+   "num": "348-0",
+   "title": "Applications of Regenerative Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "BIOL_SCI 201-0",
+     "BIOL_SCI 202-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Mechanisms of human disease, development and application of molecular, cellular, and tissue-level regenerative engineering strategies to selected human disorders, including neurodegenerative disorders, stroke, cystic fibrosis, cirrhosis, diabetes, muscular degenerative disorders, and skin injury.",
+   "text": "Prerequisite: BIOL_SCI 201-0 or BIOL_SCI 202-0 , or be a BME Graduate student to enroll.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "TTh 2:00pm-3:20pm · Liu"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20348-0"
+  },
+  {
+   "id": "BMD_ENG 353-0",
+   "dept": "BMD_ENG",
+   "num": "353-0",
+   "title": "Bioelectronics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development and design of sensors, stimulators, and their medical devices for biointegrated electronics. Materials design and fabrication of passive and active components for sensitive, multimodal, and robust wearable and implantable devices.",
+   "text": "Prerequisite: junior or senior standing recommended.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTh 9:30-10:50am · Rogers, Rivnay"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20353-0"
+  },
+  {
+   "id": "BMD_ENG 354-0",
+   "dept": "BMD_ENG",
+   "num": "354-0",
+   "title": "Bioelectronics Lab",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "BMD_ENG 353-0",
+     "MAT_SCI 353-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Laboratories focused on the practical implementation, instrumentation, and fabrication of wearables and skinsensing. Applications range from vital sign monitoring to rehabilitation.",
+   "text": "Prerequisites: BMD_ENG 353 or MAT_SCI 353. Concurrent enrollment is acceptable.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "M 4-4:50pm, T 4:00-6:50pm · Rogers, Rivnay"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20354-0"
+  },
+  {
+   "id": "BMD_ENG 365-0",
+   "dept": "BMD_ENG",
+   "num": "365-0",
+   "title": "Control of Human Limbs and Their Artificial Replacements",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "senior standing"
+   ],
+   "desc": "Human movement, biomechanics, skeletal and muscular anatomy, comparative anatomy, muscle physiology, and locomotion. Engineering design of artificial limbs.",
+   "text": "Prerequisite: senior standing with engineering or physical science background.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "M 5:00-8:00pm · Gard (Chicago Campus)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20365-0"
+  },
+  {
+   "id": "BMD_ENG 366-0",
+   "dept": "BMD_ENG",
+   "num": "366-0",
+   "title": "Biomechanics of Movement",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "BMD_ENG 271-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Engineering mechanics applied to analyze human movement, including models of muscle and tendon, kinematics of joints, and dynamics of multi-joint movement. Applications in sports, rehabilitation, and orthopedics.",
+   "text": "Prerequisite: BMD_ENG 271-0 or BME graduate student.",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "WF 12:30-1:50pm · Murray"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20366-0"
+  },
+  {
+   "id": "BMD_ENG 377-0",
+   "dept": "BMD_ENG",
+   "num": "377-0",
+   "title": "Intermediate Fluid Mechanics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "BMD_ENG 270-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Fundamental concepts of fluid dynamics. Kinematics, mass and momentum balances, constitutive relations. Navier-Stokes equations and methods of solution. Sealing techniques.",
+   "text": "Prerequisite: BMD_ENG 270-0 or consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20377-0"
+  },
+  {
+   "id": "BMD_ENG 378-0",
+   "dept": "BMD_ENG",
+   "num": "378-0",
+   "title": "Transport Fundamentals",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "BMD_ENG 270-0",
+     "MATH 228-1"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamental and biomedical applications of diffusive and convective heat and mass transfer.",
+   "text": "Prerequisites: BMD_ENG 270-0 ; MATH 228-1 .",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 1:00-1:50pm (Discussion: Th 2-3:20pm) · Hisey"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20378-0"
+  },
+  {
+   "id": "BMD_ENG 380-0",
+   "dept": "BMD_ENG",
+   "num": "380-0",
+   "title": "Medical Devices, Disease & Global Health",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Health systems and technologies to address health problems of the world's underserved populations, with special emphasis on developing countries.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "Next offering TBD"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20380-0"
+  },
+  {
+   "id": "BMD_ENG 390-1",
+   "dept": "BMD_ENG",
+   "num": "390-1",
+   "title": "Biomedical Engineering Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Open-ended team-designed projects in the medical devices arena. Systems approach requiring design strategy and concepts, including reliability, safety, ethics, economic analysis, marketing, FDA regulations, and patents. Written and oral reports.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "MWF 3:00-4:50pm · Glucksberg, O'Neill"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20390-1"
+  },
+  {
+   "id": "BMD_ENG 390-2",
+   "dept": "BMD_ENG",
+   "num": "390-2",
+   "title": "Biomedical Engineering Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "BMD_ENG 390-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development of a design project initiated during the previous quarter.",
+   "text": "Prerequisite: BMD_ENG 390-1 .",
+   "reviewed": false,
+   "offered": {
+    "Winter 2027": "MWF 3:00-4:50pm · Glucksberg, O'Neill"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20390-2"
+  },
+  {
+   "id": "BMD_ENG 390-3",
+   "dept": "BMD_ENG",
+   "num": "390-3",
+   "title": "Biomedical Engineering Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "BMD_ENG 390-1",
+     "BMD_ENG 390-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "instructor consent"
+   ],
+   "desc": "Continuation of a design project; independent study. May not be repeated for credit.",
+   "text": "Prerequisites: BMD_ENG 390-1 or BMD_ENG 390-2 ; consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20390-3"
+  },
+  {
+   "id": "BMD_ENG 395-0",
+   "dept": "BMD_ENG",
+   "num": "395-0",
+   "title": "Topics in Biomedical Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Special Topics in Biomedical Engineering.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20395-0"
+  },
+  {
+   "id": "BMD_ENG 396-0",
+   "dept": "BMD_ENG",
+   "num": "396-0",
+   "title": "Special Topics",
+   "units": 0.5,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Special Topics in Biomedical Engineering, Laboratory emphasis.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20396-0"
+  },
+  {
+   "id": "BMD_ENG 398-0",
+   "dept": "BMD_ENG",
+   "num": "398-0",
+   "title": "Special Topics in Biomedical Engineering",
+   "units": 0.34,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Special Topics in Biomedical Engineering, Laboratory emphasis.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20398-0"
+  },
+  {
+   "id": "BMD_ENG 399-0",
+   "dept": "BMD_ENG",
+   "num": "399-0",
+   "title": "Projects",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "SEE DEPT FOR SECTION AND PERMISSION NUMBERS.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20399-0"
+  },
+  {
+   "id": "BIOL_SCI 201-0",
+   "dept": "BIOL_SCI",
+   "num": "201-0",
+   "title": "Molecular Biology",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course focuses on how information is stored and propagated in DNA, and used and regulated to generate proteins at the proper time and location. It also applies this information to understanding fundamentals of biotechnology.",
+   "text": "Prerequisite: Students must have completed CHEM 131-0 , CHEM 151-0 , or CHEM 171-0 to register.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BIOL_SCI%20201-0",
+   "links": [
+    "CHEM 131-0",
+    "CHEM 151-0",
+    "CHEM 171-0"
+   ]
+  },
+  {
+   "id": "BIOL_SCI 202-0",
+   "dept": "BIOL_SCI",
+   "num": "202-0",
+   "title": "Cell Biology",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course covers how biomolecules function together to generate the complexity of cells, and how cells behave collectively to communicate with each other and to enact key decisions, such as proliferation and cell death.",
+   "text": "Prerequisite: Students must have completed BIOL_SCI 201-0 to register for this course. Must be taken concurrently with BIOL_SCI 232-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BIOL_SCI%20202-0",
+   "links": [
+    "BIOL_SCI 201-0"
+   ]
+  },
+  {
+   "id": "BMD_ENG 220-0",
+   "dept": "BMD_ENG",
+   "num": "220-0",
+   "title": "",
+   "units": null,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20220-0",
+   "missing": true
+  },
+  {
+   "id": "CHEM 131-0",
+   "dept": "CHEM",
+   "num": "131-0",
+   "title": "Fundamentals of Chemistry I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Quantum mechanics, electronic structure, periodic properties of elements, chemical bonding, thermodynamics, intermolecular forces, properties of solids and liquids, solutions and colligative properties.",
+   "text": "Prerequisite: CHEM 110-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20131-0"
+  },
+  {
+   "id": "CHEM 132-0",
+   "dept": "CHEM",
+   "num": "132-0",
+   "title": "Fundamentals of Chemistry II",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical equilibrium, aqueous solution equilibria, chemical kinetics, metals in chemistry and biology, oxidation-reduction reactions and electrochemistry.",
+   "text": "Prerequisites: CHEM 131-0 , CHEM 141-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20132-0",
+   "links": [
+    "CHEM 131-0"
+   ]
+  },
+  {
+   "id": "CHEM 151-0",
+   "dept": "CHEM",
+   "num": "151-0",
+   "title": "General Chemistry I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Quantum mechanics, electronic structure, periodic properties of elements, chemical bonding, thermodynamics, gas laws, intermolecular forces, properties of solids and liquids, solutions and colligative properties.",
+   "text": "Prerequisite: permission of department by placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20151-0"
+  },
+  {
+   "id": "CHEM 152-0",
+   "dept": "CHEM",
+   "num": "152-0",
+   "title": "General Chemistry II",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical equilibrium, aqueous solution equilibria, chemical kinetics, metals in chemistry and biology, oxidation-reduction reactions and electrochemistry.",
+   "text": "Prerequisites: CHEM 151-0 , CHEM 161-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20152-0",
+   "links": [
+    "CHEM 151-0"
+   ]
+  },
+  {
+   "id": "CHEM 171-0",
+   "dept": "CHEM",
+   "num": "171-0",
+   "title": "Advanced General Inorganic Chemistry",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Review of mole problems and stoichiometry; descriptive chemistry, elements, compounds, and inorganic reactions; gas laws; phase equilibria and colligative properties; chemical equilibrium; aqueous equilibria; topics in chemical bonding and molecular structure. Must be taken concurrently with CHEM 181-0.",
+   "text": "Prerequisite: department placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20171-0"
+  },
+  {
+   "id": "CHEM 172-0",
+   "dept": "CHEM",
+   "num": "172-0",
+   "title": "Advanced General Physical Chemistry",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Thermodynamics and equilibrium; chemical kinetics and mechanism; electrochemistry; electronic structure of the atom and quantum theory; advanced topics in chemical bonding; coordination compounds; solid-state chemistry; nuclear chemistry. Must be taken concurrently with CHEM 182-0.",
+   "text": "Prerequisites: CHEM 171-0 , CHEM 181-0 (C- or better); MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20172-0",
+   "links": [
+    "CHEM 171-0",
+    "MATH 220-1"
+   ]
+  },
+  {
+   "id": "CHEM 215-1",
+   "dept": "CHEM",
+   "num": "215-1",
+   "title": "Organic Chemistry I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Foundational concepts in organic chemistry will be introduced. Topics include structure and properties of common functional groups, acidity/basicity, conformational analysis, stereochemistry, and reactivity of organic compounds.",
+   "text": "Prerequisites: CHEM 132-0 and CHEM 142-0 , or CHEM 152-0 and CHEM 162-0 , or CHEM 172-0 and CHEM 182-0 (C- or better); or qualifying score on the Chemistry Placement Exam. Must be taken concurrently with CHEM 235-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20215-1",
+   "links": [
+    "CHEM 132-0",
+    "CHEM 152-0",
+    "CHEM 172-0"
+   ]
+  },
+  {
+   "id": "COMM_ST 102-0",
+   "dept": "COMM_ST",
+   "num": "102-0",
+   "title": "Public Speaking",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Theory, composition, delivery, and criticism of public speeches.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMM_ST%20102-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "DSGN 106-1",
+   "dept": "DSGN",
+   "num": "106-1",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated introduction to the user-centered design process and technical communication. Students will address challenges proposed by project partners by identifying unmet needs, conducting research, generating and evaluating potential solutions, and finally, presenting a final design concept with supporting documentation. Students also enhance their abilities in equitable teamwork, project management, fabrication skills, and producing written, oral, graphical, and interpersonal communication. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-1 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: Reserved for McCormick students only.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-1"
+  },
+  {
+   "id": "DSGN 106-2",
+   "dept": "DSGN",
+   "num": "106-2",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated iteration on the user-centered design process and technical communication. This course will build on the learning objectives from DTC-1 while adding more focus on ethics in design and communication, equitable distribution of teamwork, project management, documenting and communicating progress, and exploring a wider variety of project topics. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-2 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: DSGN 106-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-2",
+   "links": [
+    "DSGN 106-1"
+   ],
+   "autoPrereq": "DSGN 106-1"
+  },
+  {
+   "id": "ENGLISH 106-1",
+   "dept": "ENGLISH",
+   "num": "106-1",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENGLISH 106-2",
+   "dept": "ENGLISH",
+   "num": "106-2",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 225-0",
+   "dept": "ENTREP",
+   "num": "225-0",
+   "title": "Principles of Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course serves as the foundational course for the undergraduate minor in entrepreneurship. This survey-style course is a good choice for students who wish to familiarize themselves with the world of entrepreneurship. Students will learn to think like entrepreneurs and will be introduced to key topics relevant to entrepreneurship, including customer discovery, finance, and marketing. They will also learn how to understand and perform analyses of a broad range of entrepreneurial activities related to different applications of entrepreneurship. Taught with IEMS 225-0; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20225-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 325-0",
+   "dept": "ENTREP",
+   "num": "325-0",
+   "title": "Engineering Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The goal of the course is to introduce students to innovation-driven entrepreneurship, a process by which emergent technology serves as the catalyst for new venture formation. This course challenges student teams to develop strategies for commercializing cutting-edge technologies. Each year, the course focuses on a significant innovation space. Taught with IEMS 325-0; may not receive credit for both courses.",
+   "text": "Prerequisite: ENTREP 330-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20325-0",
+   "autoPrereq": "ENTREP 330-1"
+  },
+  {
+   "id": "GEN_ENG 150-0",
+   "dept": "GEN_ENG",
+   "num": "150-0",
+   "title": "Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). Students may receive credit for only one of: COMP_SCI 150, GEN_ENG 150, and GEN_ENG 151.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20150-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 151-0",
+   "dept": "GEN_ENG",
+   "num": "151-0",
+   "title": "Honors Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). The honors section will include students who received a 4 or 5 on AP CS A.",
+   "text": "Prerequisite: COMP_SCI 1CA or instructor permission. Students may not receive credit for both GEN_ENG 151-0 and COMP_SCI 150-0 or GEN_ENG 150-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20151-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 205-1",
+   "dept": "GEN_ENG",
+   "num": "205-1",
+   "title": "Engineering Analysis I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to linear algebra from computational, mathematical, and applications viewpoints. Computational methods using a higher-level software package such as MATLAB.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 205-4",
+   "dept": "GEN_ENG",
+   "num": "205-4",
+   "title": "Engineering Analysis IV",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solution methods for ordinary differential equations, including exact, numerical, and qualitative methods. Applications and modeling principles; solution techniques.",
+   "text": "Prerequisites: C- or better in GEN_ENG 205-2 ; MATH 220-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-4",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     "GEN_ENG 205-2",
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 211-0",
+   "dept": "GEN_ENG",
+   "num": "211-0",
+   "title": "Engineering Physics - Statics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to vector methods in engineering analysis. Statics of particles and rigid bodies and matrix analysis of trusses and frames. Engineering design problems.",
+   "text": "Prerequisites: Gen_Eng 150, Gen_Eng 151 or Comp_Sci 150 (Programming), Math 220-1 or equivalent.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20211-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 212-0",
+   "dept": "GEN_ENG",
+   "num": "212-0",
+   "title": "Engineering Physics - Dynamics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "A calculus-based physics course which emphasizes dynamic analysis techniques relevant to solving engineering problems in the mechanical domain. This course introduces Newtonian mechanics, descriptions of relative motion in Cartesian and polar coordinate systems, energy conservation methods, mechanical power, momentum, impulse, and numerical and analytical methods for describing oscillatory systems.",
+   "text": "Prerequisites: Math 220-2 or equivalent, GEN_ENG 211, GEN_ENG 241 or equivalent (May be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20212-0",
+   "links": [
+    "GEN_ENG 211-0",
+    "GEN_ENG 241-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     "MATH 220-2",
+     "GEN_ENG 211-0"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 231-0",
+   "dept": "GEN_ENG",
+   "num": "231-0",
+   "title": "Probability and Statistics for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Collecting, summarizing and displaying data. An introduction to probability theory and its applications. Conditional probabilities and expected values. Random variables and distributions. Drawing conclusions and making decisions using data: confidence intervals, hypotheses testing, comparison tests, regression, and correlation.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20231-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 241-0",
+   "dept": "GEN_ENG",
+   "num": "241-0",
+   "title": "Linear Algebra for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solving linear systems of equations and LU factorization. Matrix/vector operations and algebra. Vector spaces and bases. Eigenvalues and eigenvectors, Orthogonality, solution of least squares, and QR factorization. Singular values, singular value decomposition. Applications in science and engineering.",
+   "text": "Prerequisites: GEN_ENG 150 or 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20241-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "GEN_ENG 251-0",
+   "dept": "GEN_ENG",
+   "num": "251-0",
+   "title": "Applied Ordinary Differential Equations",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Students will learn to identify and solve differential equations derived from scientific and engineered systems. They will also learn to formulate a differential equation for modeling suitable applications, specifically mechanical vibrations and electrical circuits, among others.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151 or CS 150, MATH 220-2 , PHYS 135-1 or GEN_ENG 212 (may be taken concurrently), GEN_ENG 241 (may be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20251-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 212-0",
+    "GEN_ENG 241-0",
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 150-0",
+       "GEN_ENG 151-0",
+       "COMP_SCI 150-0"
+      ]
+     },
+     "MATH 220-2"
+    ]
+   }
+  },
+  {
+   "id": "MATH 220-1",
+   "dept": "MATH",
+   "num": "220-1",
+   "title": "Single-Variable Differential Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Limits. Differentiation. Linear approximation and related rates. Extreme value theorem, mean value theorem, and curve-sketching. Optimization. Students may not receive credit for both MATH 220-1 and any of MATH 211-0, MATH 212-0 (former), MATH 213-0 (former), MATH 218-1, MATH 218-2, or MATH 220-0 (former).",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 220-2",
+   "dept": "MATH",
+   "num": "220-2",
+   "title": "Single-Variable Integral Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Definite integrals, antiderivatives, and the fundamental theorem of calculus. Transcendental and inverse functions. Areas and volumes. Techniques of integration, numerical integration, and improper integrals. First-order linear and separable ordinary differential equations. Students may not receive credit for both MATH 220-2 and any of MATH 213-0 (former), MATH 214-0 (former), MATH 218-3, or MATH 224-0 (former).",
+   "text": "Prerequisite: MATH 218-2 or MATH 220-0 (former) or MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-2",
+   "links": [
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-2",
+     "MATH 220-0",
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-1",
+   "dept": "MATH",
+   "num": "228-1",
+   "title": "Multivariable Differential Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Vectors, vector functions, partial derivatives, Taylor polynomials, and optimization. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-1 and any of MATH 230-0 (former), MATH 230-1, MATH 281-1, MATH 285-2, MATH 290-2, MATH 291-2, or ES_APPM 252-1.",
+   "text": "Prerequisite: MATH 218-3 or MATH 214-0 (former) or MATH 220-2 or MATH 224-0 (former).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-1",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-3",
+     "MATH 214-0",
+     "MATH 220-2",
+     "MATH 224-0"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-2",
+   "dept": "MATH",
+   "num": "228-2",
+   "title": "Multivariable Integral Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Multiple integration: double integrals, triple integrals, and change of variables. Vector calculus: vector fields, line integrals, surface integrals, curl and divergence, Green's theorem, Stokes' theorem, and the divergence theorem. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-2 and any of MATH 230-2, MATH 234-0 (former), MATH 281-2, MATH 285-3, MATH 290-3, MATH 291-3, or ES_APPM 252-2.",
+   "text": "Prerequisite: MATH 228-1 or MATH 230-0 (former) or MATH 230-1 or MATH 281-1 or MATH 285-2 or MATH 290-2 or MATH 291-2 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-2",
+   "links": [
+    "MATH 228-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 228-1",
+     "MATH 230-0",
+     "MATH 230-1",
+     "MATH 281-1",
+     "MATH 285-2",
+     "MATH 290-2",
+     "MATH 291-2",
+     "ES_APPM 252-1"
+    ]
+   }
+  },
+  {
+   "id": "MAT_SCI 201-0",
+   "dept": "MAT_SCI",
+   "num": "201-0",
+   "title": "Introduction to Materials Science and Engineering Principles",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Basic concepts of Materials Science and Engineering: bonding, crystal structure, defects in solids, phase diagrams, and development of microstructures. Processing/structure/property/performance relationships underlying the behavior of metals, ceramics, polymers, semiconductors, and composites. Mechanical, electrical, and chemical properties of engineering materials. Broadly, how materials’ performance influences technological development, the economy, the environment, and society. Not to be taken for credit with or after MAT_SCI 301-0.",
+   "text": "Prerequisites: CHEM 131-0 , CHEM 151-0 , or CHEM 171-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20201-0",
+   "links": [
+    "CHEM 131-0",
+    "CHEM 151-0",
+    "CHEM 171-0"
+   ],
+   "autoPrereq": {
+    "or": [
+     "CHEM 131-0",
+     "CHEM 151-0",
+     "CHEM 171-0"
+    ]
+   }
+  },
+  {
+   "id": "MAT_SCI 353-0",
+   "dept": "MAT_SCI",
+   "num": "353-0",
+   "title": "Bioelectronics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development and design of sensors, stimulators, and their medical devices for biointegrated electronics. Materials design and fabrication of passive and active components for sensitive, multimodal, and robust wearable and implantable devices.",
+   "text": "Prerequisite: junior or senior standing recommended.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTh 9:30-10:50am · Rogers, Rivnay"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20353-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "MECH_ENG 222-0",
+   "dept": "MECH_ENG",
+   "num": "222-0",
+   "title": "Thermodynamics & Statistical Mechanics - I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Basic thermodynamics, applications to energy efficiency and climate change, and introduction to statistical thermodynamics.",
+   "text": "Prerequisite: MATH 220-2 and GEN_ENG 205-3 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20222-0",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "and": [
+     "MATH 220-2",
+     "GEN_ENG 205-3"
+    ]
+   }
+  },
+  {
+   "id": "MECH_ENG 241-0",
+   "dept": "MECH_ENG",
+   "num": "241-0",
+   "title": "Fluid Mechanics I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Fundamentals of fluid mechanics. Properties and statics of fluids. Kinematics and dynamics of fluid motion-continuity, momentum, and energy equations. Dimensional analysis, flow in closed conduits.",
+   "text": "Prerequisites: MATH 228-2 (may be taken concurrently) and GEN_ENG 205-4 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MECH_ENG%20241-0",
+   "links": [
+    "GEN_ENG 205-4",
+    "MATH 228-2"
+   ]
+  },
+  {
+   "id": "PERF_ST 103-0",
+   "dept": "PERF_ST",
+   "num": "103-0",
+   "title": "Analysis and Performance of Text",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course studies texts, broadly defined and situated, through performance. Students explore how performance helps the performer and audience interpret a text, as well as express challenging political and personal themes. They examine the ways performance illuminates and draws out deeper understandings of social relations through embodied praxis.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20103-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PERF_ST 203-0",
+   "dept": "PERF_ST",
+   "num": "203-0",
+   "title": "Performance Culture and Communication",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Explores how live performance and dramatic forms of communication are methods used to examine social behavior and cultural expressions.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20203-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHYSICS 135-2",
+   "dept": "PHYSICS",
+   "num": "135-2",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Electricity and magnetism. Must be taken concurrently with PHYSICS 136-2.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-1 ; MATH 230-2 OR MATH 290-2 OR MATH 291-2 (may be taken concurrently).\".",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-2",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "PHYSICS 135-3",
+   "dept": "PHYSICS",
+   "num": "135-3",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Introduction to wave phenomena, optics, and modern physics. Must be taken concurrently with PHYSICS 136-3.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-3",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2",
+    "PHYSICS 135-2"
+   ]
+  },
+  {
+   "id": "PRDV 335-0",
+   "dept": "PRDV",
+   "num": "335-0",
+   "title": "Engineering Improv: From Allowing to Application",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Start anywhere, remember you are not the most important person in the scene, and say yes. Through these and other improv techniques, students learn to tackle unexpected obstacles, building skills that can be leveraged in both academic and non-academic contexts to face challenges with resilience.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PRDV%20335-0",
+   "autoPrereq": null
+  }
+ ]
+}

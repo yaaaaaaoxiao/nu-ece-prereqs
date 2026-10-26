@@ -1,7 +1,11 @@
 # Course Prerequisite Map
 
-An interactive map of course prerequisites for Northwestern majors: Electrical &
-Computer Engineering, Computer Science, and Materials Science & Engineering. Click a course to see everything it
+An interactive map of course prerequisites for Northwestern's McCormick School of
+Engineering: every McCormick department and major (Biomedical, Chemical, Civil,
+Environmental, Computer, Electrical, Industrial, Manufacturing & Design, Materials,
+Mechanical, Applied Math, Computer Science and AI). Prerequisites are checked by hand for
+ECE, CS, MSE and General Engineering; the other departments' are read automatically and
+marked as such. Click a course to see everything it
 requires and everything it unlocks, mark what you've taken to see what you can
 take next, and highlight a degree requirement, technical track or quarter.
 
@@ -93,6 +97,8 @@ Then open <http://localhost:8000>.
 
 ```
 index.html              page shell
+classic/                the graph-only version from October 2026, frozen with its own data
+                        (linked from the help dialog; scrapes don't touch it)
 assets/css/style.css    all styles (light/dark tokens at the top)
 assets/js/
   main.js               state, pages and URLs, wiring
@@ -196,8 +202,9 @@ from each of any three areas") are kept as notes for students to read. Use
 (`{"label", "kind", "need", "flatten"}`; `flatten` treats rows the catalog
 marks "or" as separate choices, for long lists formatted that way). `until`
 stops reading the page at a heading, e.g. `"Concentrations"` for optional
-extras whose headings repeat the requirement areas' names. Check the result in
-the Plan tab.
+extras whose headings repeat the requirement areas' names. `majorFrom` names
+the first heading of the major's own courses on pages that leave them under the
+core section's heading (Manufacturing & Design). Check the result in the Plan tab.
 
 McCormick degrees share a school core (math, science, engineering foundations,
 design and writing, speaking). Degree pages often only name those areas, so a
@@ -222,7 +229,9 @@ for an area itself (each degree's science, the CS math sequence), its list wins.
   and so are the courses listed by its programs.
 - `schedule` (optional) is a department schedule page. Only the McCormick
   format is supported so far (`"format": "mccormick"`).
-- Add short names for new departments to `abbreviations` so nodes read "CS 214".
+- Add short names for new departments to `abbreviations` so nodes read "CS 214"; without one a
+  course shows its catalog code ("CHEM ENG 212"). Short names the catalog's prerequisite text
+  uses but the site shouldn't show ("MSE 201" for MAT_SCI) go in `aliases`.
 
 - Give each program a `short` name for the programs button ("EE BS").
 
@@ -263,9 +272,12 @@ Actions → General → Allow GitHub Actions to create and approve pull requests
   , [Materials Science and Engineering BS](https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/materials-science-engineering/materials-science-engineering-degree/)
   and [Materials Science minor](https://catalogs.northwestern.edu/undergraduate/arts-sciences/materials-science/materials-science-minor/)
 - [McCormick degree requirements](https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/#requirementstext) (the school core)
-- Course schedules for [ECE](https://www.mccormick.northwestern.edu/electrical-computer/academics/courses/),
-  [CS](https://www.mccormick.northwestern.edu/computer-science/academics/courses/)
-  and [MSE](https://www.mccormick.northwestern.edu/materials-science/academics/courses/)
+- Each McCormick department's course list (`courses-az/<code>/`) and degree pages,
+  as listed in `scraper/config.json`
+- Course schedules from each department's McCormick "courses" page (e.g.
+  [ECE](https://www.mccormick.northwestern.edu/electrical-computer/academics/courses/)).
+  Segal Design (DSGN) and General Engineering have none in that format, so their courses
+  show no quarters.
 
 Course descriptions are shown as the catalog has them, apart from characters
 the catalog's source lost (it has "?" for some apostrophes, dashes and quotes,

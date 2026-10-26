@@ -377,15 +377,22 @@ export class CourseMap {
         else if (key.startsWith(compact)) score = Math.min(score, 1);
       }
       if (score > 1) {
+        // Closer matches first: the title starts with what was typed, then
+        // every word is a whole word in it, then every word starts one, then
+        // it's somewhere inside.
         const title = normText(c.title);
         const titleWords = title.split(' ');
-        if (words.every(w => titleWords.some(t => t.startsWith(w)))) score = 2;
-        else if (title.includes(q)) score = 3;
+        if (title.startsWith(q)) score = 2;
+        else if (words.every(w => titleWords.includes(w))) score = 3;
+        else if (words.every(w => titleWords.some(t => t.startsWith(w)))) score = 4;
+        else if (title.includes(q)) score = 5;
       }
       if (score < Infinity) scored.push([score, c]);
     }
-    scored.sort(([sa, a], [sb, b]) =>
-      sa - sb || (a.role === 'main' ? 0 : 1) - (b.role === 'main' ? 0 : 1) || a.id.localeCompare(b.id));
+    // Then by course number (MATH 220 before CHEM 342), then by department.
+    const number = c => c.num.split('-').map(Number);
+    scored.sort(([sa, a], [sb, b]) => sa - sb || number(a)[0] - number(b)[0] || number(a)[1] - number(b)[1]
+      || a.dept.localeCompare(b.dept));
     return scored.slice(0, limit).map(([, c]) => c);
   }
 

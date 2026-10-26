@@ -60,7 +60,7 @@
    "id": "cs",
    "name": "Computer Science",
    "file": "cs.json",
-   "courses": 236,
+   "courses": 239,
    "catalogYear": "2026-2027",
    "generated": "2026-10-26",
    "departments": [
@@ -78,6 +78,13 @@
      "id": "cs-ba",
      "name": "Computer Science BA (Weinberg)",
      "short": "CS BA",
+     "type": "major",
+     "default": false
+    },
+    {
+     "id": "ai-bs",
+     "name": "Artificial Intelligence BS",
+     "short": "AI BS",
      "type": "major",
      "default": false
     },
@@ -137,6 +144,188 @@
      "default": false
     }
    ]
+  },
+  {
+   "id": "bme",
+   "name": "Biomedical Engineering",
+   "file": "bme.json",
+   "courses": 76,
+   "catalogYear": "2026-2027",
+   "generated": "2026-10-26",
+   "departments": [
+    "BMD_ENG"
+   ],
+   "programs": [
+    {
+     "id": "bme-bs",
+     "name": "Biomedical Engineering BS",
+     "short": "BME BS",
+     "type": "major",
+     "default": true
+    }
+   ]
+  },
+  {
+   "id": "chbe",
+   "name": "Chemical & Biological Engineering",
+   "file": "chbe.json",
+   "courses": 108,
+   "catalogYear": "2026-2027",
+   "generated": "2026-10-26",
+   "departments": [
+    "CHEM_ENG"
+   ],
+   "programs": [
+    {
+     "id": "cheme-bs",
+     "name": "Chemical Engineering BS",
+     "short": "ChemE BS",
+     "type": "major",
+     "default": true
+    },
+    {
+     "id": "biotech-minor",
+     "name": "Biotechnology and Biochemical Engineering minor",
+     "short": "Biotech minor",
+     "type": "minor",
+     "default": false
+    }
+   ]
+  },
+  {
+   "id": "cee",
+   "name": "Civil & Environmental Engineering",
+   "file": "cee.json",
+   "courses": 111,
+   "catalogYear": "2026-2027",
+   "generated": "2026-10-26",
+   "departments": [
+    "CIV_ENV"
+   ],
+   "programs": [
+    {
+     "id": "civil-bs",
+     "name": "Civil Engineering BS",
+     "short": "Civil BS",
+     "type": "major",
+     "default": true
+    },
+    {
+     "id": "env-bs",
+     "name": "Environmental Engineering BS",
+     "short": "Env Eng BS",
+     "type": "major",
+     "default": false
+    },
+    {
+     "id": "env-minor",
+     "name": "Environmental Engineering minor",
+     "short": "Env Eng minor",
+     "type": "minor",
+     "default": false
+    },
+    {
+     "id": "arch-minor",
+     "name": "Architectural Engineering and Design minor",
+     "short": "Arch Eng minor",
+     "type": "minor",
+     "default": false
+    }
+   ]
+  },
+  {
+   "id": "iems",
+   "name": "Industrial Engineering & Management Sciences",
+   "file": "iems.json",
+   "courses": 83,
+   "catalogYear": "2026-2027",
+   "generated": "2026-10-26",
+   "departments": [
+    "IEMS"
+   ],
+   "programs": [
+    {
+     "id": "ie-bs",
+     "name": "Industrial Engineering BS",
+     "short": "IE BS",
+     "type": "major",
+     "default": true
+    }
+   ]
+  },
+  {
+   "id": "me",
+   "name": "Mechanical Engineering",
+   "file": "me.json",
+   "courses": 82,
+   "catalogYear": "2026-2027",
+   "generated": "2026-10-26",
+   "departments": [
+    "MECH_ENG"
+   ],
+   "programs": [
+    {
+     "id": "me-bs",
+     "name": "Mechanical Engineering BS",
+     "short": "ME BS",
+     "type": "major",
+     "default": true
+    }
+   ]
+  },
+  {
+   "id": "esam",
+   "name": "Engineering Sciences & Applied Mathematics",
+   "file": "esam.json",
+   "courses": 58,
+   "catalogYear": "2026-2027",
+   "generated": "2026-10-26",
+   "departments": [
+    "ES_APPM"
+   ],
+   "programs": [
+    {
+     "id": "appm-bs",
+     "name": "Applied Mathematics BS",
+     "short": "Applied Math BS",
+     "type": "major",
+     "default": true
+    }
+   ]
+  },
+  {
+   "id": "made",
+   "name": "Manufacturing & Design Engineering",
+   "file": "made.json",
+   "courses": 76,
+   "catalogYear": "2026-2027",
+   "generated": "2026-10-26",
+   "departments": [
+    "DSGN"
+   ],
+   "programs": [
+    {
+     "id": "made-bs",
+     "name": "Manufacturing and Design Engineering BS",
+     "short": "MaDE BS",
+     "type": "major",
+     "default": true
+    }
+   ]
+  },
+  {
+   "id": "geneng",
+   "name": "General Engineering",
+   "file": "geneng.json",
+   "courses": 43,
+   "catalogYear": "2026-2027",
+   "generated": "2026-10-26",
+   "departments": [
+    "GEN_ENG",
+    "DATA_ENG",
+    "ENTREP"
+   ],
+   "programs": []
   }
  ]
 }
