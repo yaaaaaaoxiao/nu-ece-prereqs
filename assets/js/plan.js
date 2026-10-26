@@ -1,5 +1,5 @@
 // The student's plan: courses taken or planned (optionally in a quarter), the
-// year they started, and the majors/minors they're pursuing on each map.
+// year they started, and the majors/minors they're pursuing.
 // Saved per viewer in localStorage through prefs.
 import { prefs } from './store.js';
 import { satisfied, unmet } from './model.js';
@@ -54,7 +54,9 @@ export class Plan {
       for (const id of prefs.get('taken', [])) this.courses[id] = { s: 'taken', t: null };
     }
     this.start = saved?.start ?? parseTerm(currentTerm()).year;
-    this.programs = saved?.programs || {};
+    // Earlier versions kept programs per map ({ ece: [...] }); they're one list now.
+    const programs = saved?.programs;
+    this.programs = Array.isArray(programs) ? programs : [...new Set(Object.values(programs || {}).flat())];
   }
 
   save() {
@@ -104,14 +106,13 @@ export class Plan {
     this.save();
   }
 
-  // Programs chosen on a map, or null if the student hasn't chosen any.
-  chosenPrograms(mapId) {
-    const ids = this.programs[mapId];
-    return ids && ids.length ? ids : null;
+  // The majors and minors the student picked, or null if they haven't.
+  chosenPrograms() {
+    return this.programs.length ? this.programs : null;
   }
 
-  setPrograms(mapId, ids) {
-    this.programs[mapId] = ids;
+  setPrograms(ids) {
+    this.programs = ids;
     this.save();
   }
 

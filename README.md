@@ -13,9 +13,10 @@ take next, and highlight a degree requirement, technical track or quarter.
 
 ## Features
 
-- **The whole picture:** courses sit in rows by level (100, 200, 300) and columns by
-  department, placed under their prerequisites with every link drawn, so chains are
-  visible at a glance. Each course shows how many courses on the map it leads to
+- **The whole picture:** courses sit in columns by department and rows by prerequisite
+  step (each course one row below its last prerequisite on the map, so MATH 228-2 sits
+  above the courses that need it), with every link drawn, so chains are visible at a
+  glance. The legend can switch rows to course levels (100, 200, 300) instead. Each course shows how many courses on the map it leads to
   (the badge gets darker the more it opens up) and the quarters it's offered this
   year (**F W S**, dark where it runs), the panel lists the map's gateway courses,
   and a minimap helps when zoomed in.
@@ -42,10 +43,13 @@ take next, and highlight a degree requirement, technical track or quarter.
   between quarters). It warns when a prerequisite isn't done before the quarter you
   planned, a corequisite is missing, or the course wasn't offered in that quarter on
   the current schedule. Everything is saved in your browser only.
-- **Majors and minors together:** pick any combination of the programs a map offers
-  (e.g. Electrical Engineering BS + Computer Science minor). The Plan tab shows each
-  program's requirement lists checked against your plan, and flags courses that count
-  toward more than one. It's a checklist from the catalog, not an official degree audit.
+- **Majors and minors together:** pick any combination of majors and minors with the
+  button at the top (e.g. Electrical Engineering BS + Materials Science and Engineering BS,
+  or EE BS + Computer Science minor). The map shows every course in your majors'
+  departments plus your minors' courses, combined from each program's map. The Plan
+  tab shows each program's requirement lists checked against your plan, and flags
+  courses that count toward more than one. It's a checklist from the catalog, not an
+  official degree audit.
 - **Highlights:** degree requirements, technical tracks/areas, and what's offered each quarter.
 - **Search** by number or title (`EE 221`, `ce303`, `signals`).
 - **List view:** an accessible, phone-friendly alternative to the graph, with a plan
@@ -75,7 +79,7 @@ assets/js/
   model.js              data model: edges, chains, search, programs, progress
   plan.js               the viewer's plan: statuses, quarters, prerequisite checks
   path.js               path to a course: fewest courses still needed, by quarter
-  graph.js              level layout + SVG rendering, pan/zoom, keyboard nav
+  graph.js              layout (prerequisite steps or levels) + SVG, pan/zoom, keyboard nav
   panel.js              details panel
   list.js               list view
   planview.js           Plan tab: programs, quarter grid, requirements checklist
@@ -199,8 +203,13 @@ for an area itself (each degree's science, the CS math sequence), its list wins.
   format is supported so far (`"format": "mccormick"`).
 - Add short names for new departments to `abbreviations` so nodes read "CS 214".
 
-Run the scraper, review the flagged prerequisites as above, and the new map
-appears in the site's map menu. The site needs no changes.
+- Give each program a `short` name for the programs button ("EE BS").
+
+Run the scraper, review the flagged prerequisites as above, and the map's
+programs appear in the site's programs dialog (`data/maps.json` lists each map's
+departments and programs). A major's map is the one listing it in
+`defaultPrograms`; choosing majors from several maps combines them in the
+browser (`combineData` in `model.js`). The site needs no changes.
 
 ## Deploying to GitHub Pages
 

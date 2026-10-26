@@ -43,6 +43,7 @@
   "_comment": "'labels' renames a list heading on the site (null hides that list, e.g. lists of courses outside engineering).",
   "ee-bs": {
    "name": "Electrical Engineering BS",
+   "short": "EE BS",
    "type": "major",
    "path": "/undergraduate/engineering-applied-science/electrical-computer-engineering/electrical-engineering-degree/",
    "labels": {
@@ -54,6 +55,7 @@
   },
   "ce-bs": {
    "name": "Computer Engineering BS",
+   "short": "CE BS",
    "type": "major",
    "path": "/undergraduate/engineering-applied-science/electrical-computer-engineering/computer-engineering-degree/",
    "labels": {
@@ -67,6 +69,7 @@
   },
   "cs-minor": {
    "name": "Computer Science minor (McCormick)",
+   "short": "CS minor",
    "type": "minor",
    "path": "/undergraduate/engineering-applied-science/computer-science/computer-science-minor/",
    "labels": {
@@ -78,16 +81,19 @@
   },
   "ai-minor": {
    "name": "Artificial Intelligence minor",
+   "short": "AI minor",
    "type": "minor",
    "path": "/undergraduate/engineering-applied-science/artificial-intelligence/artificial-intelligence-minor/"
   },
   "mlds-minor": {
    "name": "Machine Learning and Data Science minor",
+   "short": "ML & data science minor",
    "type": "minor",
    "path": "/undergraduate/engineering-applied-science/machine-learning-data-science/machine-learning-data-science-minor/"
   },
   "math-minor": {
    "name": "Mathematics minor",
+   "short": "Math minor",
    "type": "minor",
    "path": "/undergraduate/arts-sciences/mathematics/mathematics-minor/",
    "labels": {
@@ -98,6 +104,7 @@
   },
   "cs-bs": {
    "name": "Computer Science BS (McCormick)",
+   "short": "CS BS",
    "type": "major",
    "path": "/undergraduate/engineering-applied-science/computer-science/computer-science-degree/",
    "core": "mccormick",
@@ -156,6 +163,7 @@
   },
   "cs-ba": {
    "name": "Computer Science BA (Weinberg)",
+   "short": "CS BA",
    "type": "major",
    "path": "/undergraduate/arts-sciences/computer-science/computer-science-major/",
    "until": "Concentrations",
@@ -216,6 +224,7 @@
   },
   "mse-bs": {
    "name": "Materials Science and Engineering BS",
+   "short": "MSE BS",
    "type": "major",
    "path": "/undergraduate/engineering-applied-science/materials-science-engineering/materials-science-engineering-degree/",
    "core": "mccormick",

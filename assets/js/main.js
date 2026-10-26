@@ -1,6 +1,6 @@
 // App entry: loads a map, owns the state, keeps the URL in sync and wires the
 // graph, list, plan, panel, search and toolbar together.
-import { CourseMap, fetchJSON } from './model.js';
+import { CourseMap, combineData, fetchJSON } from './model.js';
 import { GraphView } from './graph.js';
 import { renderPanel, aboutHTML, esc, statusIcon } from './panel.js';
 import { renderList } from './list.js';
@@ -26,8 +26,9 @@ const TOAST_MS = 6000;
 const $ = sel => document.querySelector(sel);
 const els = {
   mapName: $('#map-name'),
-  mapPicker: $('#map-picker'),
-  mapSelect: $('#map-select'),
+  programsBtn: $('#programs-btn'),
+  programsDialog: $('#programs'),
+  programsList: $('#programs-list'),
   search: $('#search'),
   results: $('#search-results'),
   highlight: $('#highlight'),
@@ -44,11 +45,14 @@ const els = {
   help: $('#help'),
   helpData: $('#help-data'),
   themeBtn: $('#theme-btn'),
+  legendNote: $('#legend-note'),
   toast: $('#toast'),
 };
 
 const state = {
   map: null,
+  programIds: [], // the majors and minors on the map (the student's, or a link's)
+  programIndex: new Map(), // every program the maps offer (see indexPrograms)
   selected: null,
   highlight: '',
   view: 'graph',
@@ -60,6 +64,7 @@ const state = {
   picking: false, // "Mark courses" mode: plain clicks pick too, until Done
   showExternal: prefs.get('showExternal', true),
   showLinks: prefs.get('showLinks', true),
+  arrange: prefs.get('arrange', 'steps'), // graph rows: prerequisite steps, or course 'level'
   pathPace: prefs.get('pathPace', 3), // at most this many courses a quarter on a path
   plan: new Plan(),
   // Derived from the plan and map by derive():
@@ -72,7 +77,8 @@ const state = {
   paths: new Map(), // paths to courses worked out so far (see path.js)
   openDescs: new Set(), // courses whose long description is shown in full
 };
-let maps = [];
+let maps = []; // data/maps.json: each map's file, departments and programs
+const loaded = new Map(); // map id -> its data, once fetched
 const undoStack = []; // plan snapshots, newest last
 let panelSubject = null; // what the panel showed last render (see render())
 
@@ -85,6 +91,7 @@ const graph = window.d3
   })
   : null;
 graph?.setShowLinks(state.showLinks);
+graph?.setArrange(state.arrange);
 $('#show-links').checked = state.showLinks;
 
 const search = new Search(els.search, els.results, {
@@ -107,6 +114,7 @@ const search = new Search(els.search, els.results, {
 
 async function init() {
   syncThemeButton();
+  syncArrange();
   if (!graph) {
     document.querySelector('[data-view="graph"]').disabled = true;
     announce('The graph library could not be loaded, so courses are shown as a list.');
@@ -115,8 +123,7 @@ async function init() {
   try {
     maps = (await fetchJSON('data/maps.json')).maps;
     if (!maps.length) throw new Error('data/maps.json lists no maps.');
-    els.mapSelect.innerHTML = maps.map(m => `<option value="${esc(m.id)}">${esc(m.name)}</option>`).join('');
-    els.mapPicker.hidden = maps.length < 2;
+    state.programIndex = indexPrograms(maps);
     await openMap(readURL());
   } catch (err) {
     console.error(err);
@@ -125,16 +132,65 @@ async function init() {
   }
 }
 
-async function openMap(params) {
-  const entry = maps.find(m => m.id === params.map) || maps[0];
-  const fresh = !state.map || state.map.id !== entry.id;
-  if (fresh) {
-    setStageStatus('Loading course data…');
-    state.map = new CourseMap(await fetchJSON(`data/${entry.file}`));
-    els.mapSelect.value = entry.id;
-    els.mapName.textContent = state.map.name;
-    els.helpData.innerHTML = aboutHTML(state.map);
+// Every program the maps offer, and the map it belongs to: a major's own map
+// (where it's a default), else the first map that lists it.
+function indexPrograms(list) {
+  const index = new Map();
+  for (const m of list) {
+    for (const p of m.programs || []) {
+      if (!index.has(p.id)) index.set(p.id, { ...p, maps: [], home: null });
+      const entry = index.get(p.id);
+      entry.maps.push(m.id);
+      if (p.default && !entry.home) entry.home = m.id;
+    }
   }
+  index.forEach(p => { p.home ||= p.maps[0]; });
+  return index;
+}
+
+const defaultPrograms = () => maps[0].programs.filter(p => p.default).map(p => p.id);
+const ownPrograms = () => (state.plan.chosenPrograms() || []).filter(id => state.programIndex.has(id));
+
+// The programs a link asks for (?programs=ee-bs,mse-bs, or an older ?map=cs),
+// else the student's own, else the first map's majors.
+function programsFrom(params) {
+  const asked = (params.programs || '').split(',').filter(id => state.programIndex.has(id));
+  if (asked.length) return asked;
+  const old = maps.find(m => m.id === params.map);
+  if (old) return old.programs.filter(p => p.default).map(p => p.id);
+  const own = ownPrograms();
+  return own.length ? own : defaultPrograms();
+}
+
+// The map for a set of programs: every course in its majors' departments
+// (from those majors' maps), plus a map that has each minor's lists. Returns
+// whether the map changed.
+async function loadPrograms(ids) {
+  const programs = ids.map(id => state.programIndex.get(id));
+  const homes = [...new Set(programs.filter(p => p.type === 'major').map(p => p.home))];
+  const files = new Set(homes);
+  for (const p of programs) if (p.type !== 'major' && !p.maps.some(m => files.has(m))) files.add(p.maps[0]);
+  const entries = maps.filter(m => files.has(m.id));
+  const key = `${entries.map(m => m.id).join('+')}|${homes.join('+')}`;
+  if (state.map?.key === key) return false;
+  if (entries.some(m => !loaded.has(m.id))) setStageStatus('Loading course data…');
+  const datas = await Promise.all(entries.map(async m => {
+    if (!loaded.has(m.id)) loaded.set(m.id, await fetchJSON(`data/${m.file}`));
+    return loaded.get(m.id);
+  }));
+  const own = maps.filter(m => homes.includes(m.id));
+  const single = datas.length === 1 && own.length === 1;
+  state.map = new CourseMap(single ? datas[0] : combineData(datas, own.flatMap(m => m.departments),
+    { id: key, name: own.length ? own.map(m => m.name).join(' + ') : 'Your minors' }));
+  state.map.key = key;
+  els.mapName.textContent = state.map.name;
+  els.helpData.innerHTML = aboutHTML(state.map);
+  return true;
+}
+
+async function openMap(params) {
+  state.programIds = programsFrom(params);
+  const fresh = await loadPrograms(state.programIds);
   const before = state.visible;
   derive();
   const map = state.map;
@@ -161,10 +217,8 @@ function derive() {
   const { map, plan } = state;
   state.taken = new Set(plan.ids('taken'));
   state.planned = new Set(plan.ids('planned'));
-  const chosen = plan.chosenPrograms(map.id);
-  state.myPrograms = new Set(chosen || []);
-  // With no programs chosen, the map's own majors stand in.
-  state.activePrograms = chosen ? chosen.map(id => map.program(id)).filter(Boolean) : map.programs.filter(p => p.default);
+  state.myPrograms = new Set(state.programIds);
+  state.activePrograms = state.programIds.map(id => map.program(id)).filter(Boolean);
 
   state.paths = new Map();
   const visible = new Set(map.courses.filter(c => c.role === 'main').map(c => c.id));
@@ -238,13 +292,15 @@ function syncInsets() {
 
 function readURL() {
   const p = new URLSearchParams(location.search);
-  return { map: p.get('map'), course: p.get('course'), hl: p.get('hl'), view: p.get('view') };
+  return { programs: p.get('programs'), map: p.get('map'), course: p.get('course'), hl: p.get('hl'), view: p.get('view') };
 }
 
 function writeURL(mode) {
   if (mode === 'none') return;
   const p = new URLSearchParams();
-  if (state.map.id !== maps[0].id) p.set('map', state.map.id);
+  // Programs other than the student's own (or, before they pick, the first map's) go in the link.
+  const own = ownPrograms();
+  if (state.programIds.join() !== (own.length ? own : defaultPrograms()).join()) p.set('programs', state.programIds.join(','));
   if (state.selected) p.set('course', state.selected);
   if (state.highlight) p.set('hl', state.highlight);
   if (state.view !== 'graph') p.set('view', state.view);
@@ -291,6 +347,7 @@ function keepFocus(fn) {
 
 function syncControls() {
   const { view } = state;
+  syncProgramsButton();
   fillHighlightSelect(); // a path is on offer only while it's shown
   els.highlight.value = state.highlight;
   els.highlight.classList.toggle('is-active', !!state.highlight);
@@ -570,9 +627,52 @@ function addToTerm(id, term) {
   moveToTerm([id], term, 'added to');
 }
 
-function setPrograms(ids) {
-  state.plan.setPrograms(state.map.id, ids);
-  planChanged();
+// The student's majors and minors; the map follows them (another major
+// brings its department's courses in).
+async function setPrograms(ids) {
+  if (!ids.length) return;
+  state.plan.setPrograms(ids);
+  state.programIds = ids;
+  const before = state.visible;
+  if (!(await loadPrograms(ids))) {
+    planChanged();
+    renderProgramsDialog();
+    return;
+  }
+  derive();
+  if (state.selected && !state.map.get(state.selected)) state.selected = null;
+  setStageStatus('');
+  if (graph) {
+    graph.setData(state.map, state.visible);
+    syncInsets();
+    graph.fitAll({ animate: false, minScale: 0.45 });
+  }
+  relayout(before);
+  render({ history: 'push' });
+  renderProgramsDialog();
+  announce(`Showing ${state.map.name}.`);
+}
+
+// The topbar button names the programs on the map; its dialog changes them.
+function syncProgramsButton() {
+  const names = state.programIds.map(id => state.programIndex.get(id)?.short || id);
+  els.programsBtn.querySelector('.programs-label').textContent = names.length > 2 ? `${names[0]} + ${names.length - 1} more` : names.join(' + ');
+  els.programsBtn.title = state.programIds.map(id => state.programIndex.get(id)?.name || id).join(', ');
+}
+
+function renderProgramsDialog() {
+  const chosen = new Set(state.programIds);
+  const group = (type, title) => {
+    const list = [...state.programIndex.values()].filter(p => p.type === type);
+    return list.length ? `<fieldset class="prog-group"><legend>${title}</legend>${list.map(p => {
+      const on = chosen.has(p.id);
+      // The last program on the map stays: there'd be nothing to show without one.
+      const last = on && chosen.size === 1;
+      return `<label class="prog-option"><input type="checkbox" data-action="toggle-program" value="${esc(p.id)}"${
+        on ? ' checked' : ''}${last ? ' disabled' : ''}><span>${esc(p.name)}</span></label>`;
+    }).join('')}</fieldset>` : '';
+  };
+  els.programsList.innerHTML = group('major', 'Majors') + group('minor', 'Minors');
 }
 
 function clearPlan() {
@@ -630,6 +730,25 @@ function setPace(n) {
   render();
 }
 
+// Graph rows by prerequisite steps or by course level.
+function setArrange(mode) {
+  if (mode === state.arrange) return;
+  state.arrange = mode;
+  prefs.set('arrange', mode);
+  graph?.setArrange(mode);
+  syncArrange();
+  if (state.selected) revealSelected();
+  else graph?.fitAll({ minScale: 0.45 });
+  announce(mode === 'level' ? 'Rows are course levels.' : 'Rows are prerequisite steps.');
+}
+
+function syncArrange() {
+  document.querySelectorAll('[data-arrange]').forEach(b => b.setAttribute('aria-checked', String(b.dataset.arrange === state.arrange)));
+  els.legendNote.textContent = state.arrange === 'level'
+    ? 'Rows are course levels (100, 200, 300), columns are departments. Links run downward from a course into what it unlocks.'
+    : 'Rows are prerequisite steps: each course sits below its last prerequisite on the map. Columns are departments.';
+}
+
 function setView(view) {
   if (view === state.view || (view === 'graph' && !graph)) return;
   state.view = view;
@@ -684,7 +803,7 @@ document.addEventListener('click', e => {
     toggleSheet();
     return;
   }
-  const t = e.target.closest('[data-select], [data-action], [data-highlight], [data-zoom], [data-view]');
+  const t = e.target.closest('[data-select], [data-action], [data-highlight], [data-zoom], [data-view], [data-arrange]');
   if (!t || t.disabled || t.tagName === 'SELECT') return;
   const { action, id } = t.dataset;
   const toggle = state.view !== 'plan' && (e.shiftKey || e.metaKey || e.ctrlKey);
@@ -692,6 +811,7 @@ document.addEventListener('click', e => {
   else if (t.dataset.highlight) setHighlight(state.highlight === t.dataset.highlight ? '' : t.dataset.highlight);
   else if (t.dataset.zoom) zoom(t.dataset.zoom);
   else if (t.dataset.view) setView(t.dataset.view);
+  else if (t.dataset.arrange) setArrange(t.dataset.arrange);
   else if (action === 'close') select(null);
   else if (action === 'set-status') setStatus([id], t.dataset.status);
   else if (action === 'pick-status') setStatus(takePicked(), t.dataset.status);
@@ -707,7 +827,7 @@ document.addEventListener('click', e => {
   else if (action === 'plan-path') planPath(id);
   else if (action === 'undo') undo();
   else if (action === 'add-to-term') startAdding(t.dataset.term);
-  else if (action === 'remove-program') setPrograms([...state.myPrograms].filter(p => p !== t.dataset.program));
+  else if (action === 'remove-program') setPrograms(state.programIds.filter(p => p !== t.dataset.program));
   else if (action === 'clear-plan') clearPlan();
   else if (action === 'clear-highlight') setHighlight('');
   else if (action === 'toggle-sheet') toggleSheet();
@@ -721,7 +841,10 @@ document.addEventListener('change', e => {
   if (action === 'set-status') setStatus([id], t.value);
   else if (action === 'set-term') setCourseTerm(id, t.value);
   else if (action === 'pick-term' && t.value) moveToTerm(takePicked(), t.value);
-  else if (action === 'add-program' && t.value) setPrograms([...state.myPrograms, t.value]);
+  else if (action === 'add-program' && t.value) setPrograms([...state.programIds, t.value]);
+  else if (action === 'toggle-program') {
+    setPrograms(t.checked ? [...state.programIds, t.value] : state.programIds.filter(id => id !== t.value));
+  }
   else if (action === 'set-pace') setPace(Number(t.value));
   else if (action === 'set-start') {
     state.plan.setStart(Number(t.value));
@@ -774,9 +897,11 @@ window.addEventListener('resize', () => {
   }, 250);
 });
 els.showExternal.addEventListener('change', () => setShowExternal(els.showExternal.checked));
-els.mapSelect.addEventListener('change', () => {
-  openMap({ map: els.mapSelect.value }).then(() => writeURL('push'));
+els.programsBtn.addEventListener('click', () => {
+  renderProgramsDialog();
+  els.programsDialog.showModal();
 });
+els.programsDialog.addEventListener('click', e => { if (e.target === els.programsDialog) els.programsDialog.close(); });
 $('#help-btn').addEventListener('click', () => els.help.showModal());
 els.help.addEventListener('click', e => { if (e.target === els.help) els.help.close(); });
 els.themeBtn.addEventListener('click', () => {

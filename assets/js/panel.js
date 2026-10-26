@@ -496,7 +496,8 @@ function introHTML(map, state) {
           <span><b>The number on a course</b> is how many courses on the map it leads to; darker means more.
           The letters <b class="tip-quarters">F<span class="off">W</span>S</b> are the quarters it's offered this year.</span></li>
         <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="var(--ink-2)" stroke-width="1.8"><rect x="3" y="4" width="16" height="5" rx="1.5"/><rect x="3" y="13" width="16" height="5" rx="1.5" fill="var(--sunken)"/></svg>
-          <span><b>Combine majors and minors</b> in the Plan tab to track their requirements together.</span></li>
+          <span><b>Your majors and minors:</b> pick them with the button at the top. Another major brings its
+          department onto the map, and the Plan tab tracks all their requirements together.</span></li>
         <li><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="var(--ink-2)" stroke-width="1.8" stroke-linecap="round"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 5 5"/></svg>
           <span><b>Search</b> by number or title. Press <kbd>/</kbd> to jump to the search box.</span></li>
       </ul>

@@ -1,7 +1,7 @@
 {
  "id": "mse",
  "name": "Materials Science & Engineering",
- "generated": "2026-10-25",
+ "generated": "2026-10-26",
  "catalogYear": "2026-2027",
  "quarters": [
   "Fall 2026",
@@ -74,6 +74,7 @@
   {
    "id": "mse-bs",
    "name": "Materials Science and Engineering BS",
+   "short": "MSE BS",
    "type": "major",
    "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/materials-science-engineering/materials-science-engineering-degree/",
    "default": true,

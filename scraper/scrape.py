@@ -225,7 +225,7 @@ def build_map(cfg, config, catalog, fetcher, overrides, verified):
             core = config["cores"][p["core"]]
             lists = merge_core(lists, core_lists(fetcher.get(config["catalog"] + core["path"]),
                                                  without_comments(core.get("labels", {})), core["container"]))
-        programs.append({"id": pid, "name": p["name"], "type": p["type"], "url": url,
+        programs.append({"id": pid, "name": p["name"], "short": p.get("short", p["name"]), "type": p["type"], "url": url,
                          "default": pid in cfg.get("defaultPrograms", []), "lists": lists, "notes": notes})
         if not lists:
             issues["empty_programs"].append(pid)
@@ -396,9 +396,12 @@ def main():
         print(f"building {cfg['id']}...", file=sys.stderr)
         data, issues = build_map(cfg, config, catalog, fetcher, overrides, verified)
         (DATA / f"{cfg['id']}.json").write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
+        # The site lists every map's programs (to pick from) without loading every map.
         entries[cfg["id"]] = {"id": cfg["id"], "name": cfg["name"], "file": f"{cfg['id']}.json",
                               "courses": len(data["courses"]), "catalogYear": data["catalogYear"],
-                              "generated": data["generated"]}
+                              "generated": data["generated"], "departments": cfg["departments"],
+                              "programs": [{k: p[k] for k in ("id", "name", "short", "type", "default")}
+                                           for p in data["programs"]]}
         results.append((data, issues))
         print(f"  {len(data['courses'])} courses -> data/{cfg['id']}.json", file=sys.stderr)
         for key, items in issues.items():

@@ -38,6 +38,52 @@ export function unmet(tree, taken) {
   return typeof tree === 'object' && tree.and ? tree.and.filter(t => !satisfied(t, taken)) : [tree];
 }
 
+export const codesIn = tree => {
+  const out = [];
+  eachCode(tree, id => out.push(id));
+  return out;
+};
+
+// One map's data from several maps' files (a student's majors and minors).
+// Courses in `mainDepts` are the map's own; a course another file has as its
+// own, hand-checked, keeps that tree (as autoPrereq) when it isn't one here.
+export function combineData(datas, mainDepts, { id, name }) {
+  const main = new Set(mainDepts);
+  const rank = c => (c.role === 'main' ? 2 : 'autoPrereq' in c ? 1 : 0);
+  const records = new Map();
+  for (const d of datas) {
+    for (const c of d.courses) {
+      const prev = records.get(c.id);
+      const keep = !prev || rank(c) > rank(prev) ? { ...c } : prev;
+      keep.links = [...new Set([...(prev?.links || []), ...(c.links || [])])];
+      records.set(c.id, keep);
+    }
+  }
+  const courses = [...records.values()].map(c => {
+    if (main.has(c.dept) || c.role !== 'main') return c;
+    const links = [...codesIn(c.prereq), ...codesIn(c.coreq), ...c.links].filter(x => x !== c.id && records.has(x));
+    return { ...c, role: 'external', autoPrereq: c.prereq ?? null, prereq: null, coreq: null,
+      recommended: [], notes: [], links: [...new Set(links)] };
+  });
+  courses.forEach(c => { if (!c.links.length) delete c.links; });
+  const departments = {};
+  for (const d of datas) {
+    for (const [code, info] of Object.entries(d.departments)) departments[code] = { ...info, main: main.has(code) };
+  }
+  const unique = (list, key) => [...new Map(list.map(x => [key(x), x])).values()];
+  return {
+    id,
+    name,
+    generated: datas.map(d => d.generated).sort().at(-1),
+    catalogYear: datas[0].catalogYear,
+    quarters: [...new Set(datas.flatMap(d => d.quarters || []))],
+    departments: Object.fromEntries(Object.entries(departments).sort(([a, x], [b, y]) => (y.main - x.main) || a.localeCompare(b))),
+    programs: unique(datas.flatMap(d => d.programs || []), p => p.id),
+    sources: [...new Set(datas.flatMap(d => d.sources || []))],
+    courses: courses.sort((a, b) => (a.role === b.role ? a.id.localeCompare(b.id) : a.role === 'main' ? -1 : 1)),
+  };
+}
+
 export const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const normText = s => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 

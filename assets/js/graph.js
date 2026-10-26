@@ -61,6 +61,7 @@ export class GraphView {
     this.visible = new Set();
     this.state = null;
     this.layout = { nodes: new Map(), edges: [], bands: [], labels: [], loose: new Set(), width: 0, height: 0, cols: '' };
+    this.arrange = 'steps'; // rows by prerequisite steps, or 'level' (100, 200, 300)
     this.reach = new Map(); // course -> how many courses on the map it leads to
     this.focus = { sel: null, up: new Set(), down: new Set() };
     this.transform = d3.zoomIdentity;
@@ -158,7 +159,7 @@ export class GraphView {
     this.reach = new Map([...visibleIds].map(id =>
       [id, [...map.descendants(id)].filter(d => visibleIds.has(d)).length]));
     this.offeredWidth = map.quarters.reduce((w, q, i) => w + this.textWidth(q[0], OFFERED_FONT) + (i ? OFFERED_GAP : 0), 0);
-    this.layout = computeLayout(map, visibleIds, this.viewportSize(), this.titleWidth);
+    this.layout = computeLayout(map, visibleIds, this.viewportSize(), this.titleWidth, this.arrange);
     this.draw(animate && !fresh && !reducedMotion());
     if (this.state) this.update(this.state);
   }
@@ -166,7 +167,7 @@ export class GraphView {
   // Column counts are picked to suit the stage's shape; redo them when it changes a lot.
   refit() {
     if (!this.map) return false;
-    const next = computeLayout(this.map, this.visible, this.viewportSize(), this.titleWidth);
+    const next = computeLayout(this.map, this.visible, this.viewportSize(), this.titleWidth, this.arrange);
     if (next.cols === this.layout.cols) return false;
     this.setData(this.map, this.visible, { animate: true });
     return true;
@@ -177,6 +178,13 @@ export class GraphView {
     const w = this.el.clientWidth || window.innerWidth;
     const h = this.el.clientHeight || window.innerHeight - 120;
     return { w, h };
+  }
+
+  // Rows by prerequisite steps or by course level; the cards glide to their new places.
+  setArrange(mode) {
+    if (mode === this.arrange) return;
+    this.arrange = mode;
+    if (this.map) this.setData(this.map, this.visible, { animate: true });
   }
 
   setShowLinks(on) {
@@ -784,21 +792,50 @@ export class GraphView {
 
 // ------------------------------------------------------------------ layout
 //
-// Rows: course levels, each split into tiers (a course that needs another
-// course of the same level sits in a later tier); tiers start on the same row
-// in every department, so prerequisites are always above what they unlock.
-// Columns: departments, each a few card columns wide. Within a tier, courses
-// take the free slot closest to their prerequisites (and the courses they
-// unlock), so chains line up vertically. Courses with no links on the map
-// close each cell.
+// Rows: bands of prerequisite steps (a course sits in the band after its
+// latest prerequisite on the map, so MATH 228-2 comes before every course that
+// needs it), or of course levels (100, 200, 300). A band is split into tiers
+// when a course needs another course of the same band (a corequisite, or a
+// same-level prerequisite); tiers start on the same row in every department,
+// so prerequisites are always above what they unlock. Columns: departments,
+// each a few card columns wide. Within a tier, courses take the free slot
+// closest to their prerequisites (and the courses they unlock), so chains
+// line up vertically. Courses with no links on the map close each cell (by
+// step, they get a band of their own at the bottom).
 
 const levelOf = c => Math.floor(parseInt(c.num, 10) / 100) * 100;
+const UNLINKED = Infinity; // the band, by step, for courses with no links
+
+// How many prerequisites deep each course is on the map: the longest chain of
+// prerequisites leading to it. A corequisite may share its band.
+function stepsOf(courses, edges, linked) {
+  const into = new Map(courses.map(c => [c.id, []]));
+  for (const e of edges) if (e.kind !== 'rec') into.get(e.target).push(e);
+  const depth = new Map();
+  const visiting = new Set();
+  const of = id => {
+    if (depth.has(id)) return depth.get(id);
+    if (visiting.has(id)) return 0; // a loop in the data
+    visiting.add(id);
+    const d = Math.max(0, ...into.get(id).map(e => of(e.source) + (e.kind === 'co' ? 0 : 1)));
+    visiting.delete(id);
+    depth.set(id, d);
+    return d;
+  };
+  return c => (linked.has(c.id) ? of(c.id) : UNLINKED);
+}
+
+const bandName = (arrange, band) => {
+  if (arrange === 'level') return `${band}-level`;
+  if (band === UNLINKED) return 'Not linked to other courses';
+  return band ? `Step ${band + 1}` : 'Step 1 \u00b7 start here';
+};
 const byId = (a, b) => a.id.localeCompare(b.id);
 const ROW_COST = 40; // px of sideways distance a course trades for one row higher
 const SWEEPS = 4; // placement passes; later ones also look at where children went
 
 // textWidth measures a column title at its zoomed-out size.
-function computeLayout(map, visible, viewport, textWidth) {
+function computeLayout(map, visible, viewport, textWidth, arrange = 'steps') {
   const courses = [...visible].map(id => map.get(id));
   const depts = map.data.departments;
   const edges = map.edges.filter(e => visible.has(e.source) && visible.has(e.target));
@@ -806,12 +843,13 @@ function computeLayout(map, visible, viewport, textWidth) {
   const groupOf = c => (c.role === 'main' ? c.dept : OTHER);
   const mains = Object.keys(depts).filter(d => depts[d].main && courses.some(c => c.role === 'main' && c.dept === d));
   const groups = orderGroups(mains, courses.some(c => c.role !== 'main'), edges, id => groupOf(map.get(id)));
-  const levels = [...new Set(courses.map(levelOf))].sort((a, b) => a - b);
+  const bandOf = arrange === 'level' ? levelOf : stepsOf(courses, edges, linked);
+  const levels = [...new Set(courses.map(bandOf))].sort((a, b) => a - b);
 
-  // Tier = how many same-level prerequisites must come first.
+  // Tier = how many prerequisites in the same band must come first.
   const sameLevel = new Map(courses.map(c => [c.id, []]));
   for (const e of edges) {
-    if (e.kind !== 'rec' && levelOf(map.get(e.source)) === levelOf(map.get(e.target))) {
+    if (e.kind !== 'rec' && bandOf(map.get(e.source)) === bandOf(map.get(e.target))) {
       sameLevel.get(e.target).push(e.source);
     }
   }
@@ -829,7 +867,7 @@ function computeLayout(map, visible, viewport, textWidth) {
   // cells: "level|group" -> { tiers: [[course]], loose: [course] }
   const cells = new Map();
   for (const c of [...courses].sort(byId)) {
-    const key = `${levelOf(c)}|${groupOf(c)}`;
+    const key = `${bandOf(c)}|${groupOf(c)}`;
     if (!cells.has(key)) cells.set(key, { tiers: [], loose: [] });
     const cell = cells.get(key);
     if (!linked.has(c.id)) {
@@ -941,7 +979,7 @@ function computeLayout(map, visible, viewport, textWidth) {
       : [{ cls: 'group-label full', x: groupX[i], y: PAD + 12, text: full },
         { cls: 'group-label short', x: groupX[i], y: PAD + 12, text: short }];
   });
-  for (const b of bands) labels.push({ cls: 'band-label', x: PAD, y: b.top + 27, text: `${b.level}-level` });
+  for (const b of bands) labels.push({ cls: 'band-label', x: PAD, y: b.top + 27, text: bandName(arrange, b.level) });
 
   const loose = new Set(courses.filter(c => !linked.has(c.id)).map(c => c.id));
   const routed = edges.map(e => ({ ...e, d: '' }));

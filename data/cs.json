@@ -1,7 +1,7 @@
 {
  "id": "cs",
  "name": "Computer Science",
- "generated": "2026-10-25",
+ "generated": "2026-10-26",
  "catalogYear": "2026-2027",
  "quarters": [
   "Fall 2026",
@@ -164,6 +164,7 @@
   {
    "id": "cs-bs",
    "name": "Computer Science BS (McCormick)",
+   "short": "CS BS",
    "type": "major",
    "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/computer-science/computer-science-degree/",
    "default": true,
@@ -1190,6 +1191,7 @@
   {
    "id": "cs-ba",
    "name": "Computer Science BA (Weinberg)",
+   "short": "CS BA",
    "type": "major",
    "url": "https://catalogs.northwestern.edu/undergraduate/arts-sciences/computer-science/computer-science-major/",
    "default": false,
@@ -2021,6 +2023,7 @@
   {
    "id": "cs-minor",
    "name": "Computer Science minor (McCormick)",
+   "short": "CS minor",
    "type": "minor",
    "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/computer-science/computer-science-minor/",
    "default": false,
@@ -2424,6 +2427,7 @@
   {
    "id": "ai-minor",
    "name": "Artificial Intelligence minor",
+   "short": "AI minor",
    "type": "minor",
    "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/artificial-intelligence/artificial-intelligence-minor/",
    "default": false,
@@ -2716,6 +2720,7 @@
   {
    "id": "mlds-minor",
    "name": "Machine Learning and Data Science minor",
+   "short": "ML & data science minor",
    "type": "minor",
    "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/machine-learning-data-science/machine-learning-data-science-minor/",
    "default": false,
@@ -3151,6 +3156,7 @@
   {
    "id": "math-minor",
    "name": "Mathematics minor",
+   "short": "Math minor",
    "type": "minor",
    "url": "https://catalogs.northwestern.edu/undergraduate/arts-sciences/mathematics/mathematics-minor/",
    "default": false,

@@ -11,20 +11,24 @@ export function renderPlanView(el, { map, state }) {
 
 // ---------------------------------------------------------------- programs
 
+// Every program the site has, not just this map's: adding a major brings its
+// department onto the map.
 function programsHTML(map, state) {
-  const chosen = [...state.myPrograms].map(id => map.program(id)).filter(Boolean);
-  const others = map.programs.filter(p => !state.myPrograms.has(p.id));
+  const all = [...state.programIndex.values()];
+  const chosen = state.programIds.map(id => state.programIndex.get(id)).filter(Boolean);
+  const others = all.filter(p => !state.myPrograms.has(p.id));
   const options = type => others.filter(p => p.type === type)
     .map(p => `<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');
   return `<section class="plan-section">
     <div class="plan-section-head">
       <h2>Your programs</h2>
-      <p class="muted">Add your major, and any second major or minors, to track their requirements together.</p>
+      <p class="muted">Add your major, and any second major or minors, to track their requirements together.
+        A major from another department brings its courses onto the map.</p>
     </div>
     <div class="program-chips">
       ${chosen.map(p => `<span class="program-chip"><span class="ptype">${esc(p.type)}</span>${esc(p.name)}
-        <button type="button" class="icon-btn" data-action="remove-program" data-program="${esc(p.id)}"
-          aria-label="Remove ${esc(p.name)}">${ICON.close}</button></span>`).join('')}
+        ${chosen.length > 1 ? `<button type="button" class="icon-btn" data-action="remove-program" data-program="${esc(p.id)}"
+          aria-label="Remove ${esc(p.name)}">${ICON.close}</button>` : ''}</span>`).join('')}
       ${others.length ? `<label class="add-program"><span class="sr-only">Add a major or minor</span>
         <select data-action="add-program">
           <option value="">+ Add a major or minor</option>

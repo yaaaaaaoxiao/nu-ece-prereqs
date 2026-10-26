@@ -32,10 +32,10 @@
         <h1>Prerequisite Map</h1>
         <p id="map-name" class="brand-sub">Loading…</p>
       </div>
-      <label class="map-picker" id="map-picker" hidden>
-        <span class="sr-only">Choose a program</span>
-        <select id="map-select"></select>
-      </label>
+      <button type="button" class="programs-btn" id="programs-btn" aria-haspopup="dialog">
+        <span class="sr-only">Your majors and minors: </span><span class="programs-label">Choose programs</span>
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>
+      </button>
     </div>
 
     <div class="search" role="search">
@@ -125,7 +125,11 @@
 
       <details class="legend" id="legend">
         <summary>Legend</summary>
-        <p class="legend-note">Rows are course levels, columns are departments. Links run downward from a course into what it unlocks. Hover or select a course to trace its links.</p>
+        <p class="legend-note" id="legend-note">Rows are prerequisite steps: each course sits below its last prerequisite on the map. Columns are departments.</p>
+        <div class="segmented legend-arrange" role="radiogroup" aria-label="Arrange rows by">
+          <button type="button" role="radio" data-arrange="steps" aria-checked="true">Prerequisite steps</button>
+          <button type="button" role="radio" data-arrange="level" aria-checked="false">Course level</button>
+        </div>
         <label class="legend-toggle"><input type="checkbox" id="show-links"> Show all links</label>
         <h4 class="legend-head">Your plan</h4>
         <ul>
@@ -163,6 +167,19 @@
   <div id="announcer" class="sr-only" aria-live="polite"></div>
   <div id="toast" class="toast" hidden><span class="toast-text"></span><button type="button" class="toast-undo" data-action="undo">Undo</button></div>
 
+  <dialog id="programs" class="help programs-dialog" aria-labelledby="programs-title">
+    <form method="dialog" class="help-close">
+      <button class="icon-btn" aria-label="Close">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg>
+      </button>
+    </form>
+    <h2 id="programs-title">Your majors and minors</h2>
+    <p class="muted">The map shows every course in your majors' departments, plus the courses your minors list,
+      and what they all require. The Plan tab checks the requirements of the same programs.</p>
+    <div id="programs-list"></div>
+    <form method="dialog" class="dialog-actions"><button class="btn primary">Done</button></form>
+  </dialog>
+
   <dialog id="help" class="help" aria-labelledby="help-title">
     <form method="dialog" class="help-close">
       <button class="icon-btn" aria-label="Close">
@@ -171,11 +188,12 @@
     </form>
     <h2 id="help-title">How to use this map</h2>
     <ul class="help-list">
-      <li><b>Reading the map:</b> each row is a course level (100, 200, 300) and each column a department. Courses sit under their prerequisites, and every link runs downward: from the bottom of a course into the course it unlocks. Solid links are required, dashed ones are one of several options, and faint ones connect other departments' courses.</li>
+      <li><b>Reading the map:</b> each column is a department, and each row a prerequisite step: a course sits one row below its last prerequisite, so the courses you take first are at the top (MATH 228-2 sits above the courses that need it). The legend can switch rows to course levels (100, 200, 300) instead. Every link runs downward: from the bottom of a course into the course it unlocks. Solid links are required, dashed ones are one of several options, and faint ones connect other departments' courses.</li>
       <li><b>Select a course</b> by clicking it, searching, or picking it from the list. Its prerequisite chain turns violet and the courses it unlocks turn orange.</li>
       <li><b>Mark your courses:</b> Shift-click (or <kbd>⌘</kbd>/<kbd>Ctrl</kbd>-click) several courses, Shift-drag a box around them, long-press on a touch screen, or press <b>Mark courses</b>; then mark them taken or planned, or put them in a quarter, all at once. A course's details panel can also select it together with everything it requires. Every change can be undone.</li>
       <li><b>Colors:</b> blue is your plan (solid for taken, dashed for planned), green means you can take it now, and amber means a planned course needs a check. The number on a course is how many courses on the map it leads to; darker means more. The letters F W S are the quarters it's offered this year (the dark ones).</li>
       <li><b>Path to a course:</b> in a course's panel, press <b>Show the path</b>. The map outlines the fewest courses you still need in violet, each with the soonest quarter you could take it on this year's schedule, and <b>Add to my plan</b> puts them all in your plan. You choose how many courses a quarter it plans.</li>
+      <li><b>Your majors and minors:</b> the button at the top (next to the title) picks them, in any combination. The map shows every course in your majors' departments plus your minors' courses.</li>
       <li><b>Plan ahead:</b> the <b>Plan</b> tab lays out your quarters, warns when a prerequisite comes too late, and tracks the requirements of your majors and minors together. Your plan is saved only in this browser.</li>
       <li><b>Highlight</b> the courses in a degree requirement, a technical track, or a quarter's schedule from the toolbar.</li>
       <li><b>Move around:</b> drag to pan, scroll to move, pinch or <kbd>Ctrl</kbd> + scroll to zoom. Zoomed out, courses show just their number; zoom in for their names, quarters and counts.</li>

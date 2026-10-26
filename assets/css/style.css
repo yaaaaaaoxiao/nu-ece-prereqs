@@ -192,10 +192,25 @@ svg { flex: none; }
 .brand-text { min-width: 0; }
 .brand h1 { margin: 0; font-size: 15px; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; }
 .brand-sub { margin: 0; font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.map-picker select {
-  border: 1px solid var(--line); border-radius: 8px; background: var(--raised);
-  padding: 5px 8px; font-weight: 550;
+/* The majors and minors on the map; opens the programs dialog. */
+.programs-btn {
+  display: inline-flex; align-items: center; gap: 6px; min-width: 0; max-width: 340px; height: 34px; padding: 0 8px 0 12px;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--raised); color: var(--ink); font-weight: 650;
 }
+.programs-btn:hover { border-color: var(--ink-2); }
+.programs-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.programs-btn svg { flex: none; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.programs-dialog { width: min(480px, calc(100vw - 32px)); }
+.programs-dialog > p { margin: 0 0 14px; font-size: 13.5px; }
+.prog-group { margin: 0 0 14px; padding: 0; border: 0; }
+.prog-group legend { margin-bottom: 6px; padding: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.prog-option { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border: 1px solid var(--hairline); border-radius: 8px;
+  background: var(--raised); cursor: pointer; }
+.prog-option + .prog-option { margin-top: 4px; }
+.prog-option:has(input:checked) { border-color: var(--accent); background: var(--accent-wash); }
+.prog-option input { width: 16px; height: 16px; margin: 0; accent-color: var(--accent); }
+.prog-option:has(input:disabled) { cursor: default; }
+.dialog-actions { display: flex; justify-content: flex-end; margin: 4px 0 0; }
 
 .search { position: relative; flex: 1 1 360px; max-width: 520px; margin-left: auto; }
 .search input {
@@ -479,6 +494,8 @@ svg { flex: none; }
 .legend[open] { max-height: calc(100% - 32px); overflow-y: auto; }
 .legend-head { margin: 2px 12px 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
 .legend-note { margin: 0 12px 8px; max-width: 260px; color: var(--muted); }
+.legend-arrange { margin: 0 12px 10px; }
+.legend-arrange button { height: 26px; padding: 0 10px; font-size: 12px; }
 .legend-toggle { display: flex; align-items: center; gap: 8px; margin: 0 12px 10px; color: var(--ink); cursor: pointer; }
 .legend-toggle input { width: 15px; height: 15px; margin: 0; accent-color: var(--accent); }
 .legend li { display: flex; align-items: center; gap: 10px; }
@@ -682,10 +699,9 @@ svg { flex: none; }
   .topbar { flex-wrap: wrap; gap: 8px; padding: 8px 16px; }
   .brand { flex: 1; }
   .brand-mark { width: 26px; height: 26px; }
-  /* With more than one map, the map menu stands in for the title. */
-  .brand:has(.map-picker:not([hidden])) .brand-text { display: none; }
-  .map-picker { flex: 1; min-width: 0; }
-  .map-picker select { width: 100%; font-weight: 650; }
+  /* The programs button stands in for the title. */
+  .brand-text { display: none; }
+  .programs-btn { flex: 1; max-width: none; }
   .search { order: 3; flex: 1 1 100%; max-width: none; margin-left: 0; }
   .search input { font-size: 16px; } /* 16px stops iOS zooming in on focus */
   .search-kbd { display: none; }
