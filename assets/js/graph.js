@@ -35,7 +35,9 @@ const TERM_FONT = `600 10px ${FONT}`; // matches .node .term
 const OFFERED_FONT = `650 9.5px ${FONT}`; // matches .node .offered
 const OFFERED_GAP = 2; // px between the quarter letters
 const REACH_FONT = `650 10.5px ${FONT}`; // matches .reach text
+const MORE_FONT = `700 10px ${FONT}`; // matches .more text
 const FAR_FONT = `650 19px ${FONT}`; // matches .graph.is-far .node .code
+const STUB = 40; // px: the most a "more courses" line fades out over
 // Below FAR the nodes switch to a large code-only label (semantic zoom);
 // below READABLE even that is too small, so reveal() zooms in.
 const FAR = 0.72;
@@ -52,14 +54,19 @@ const STATUS_TEXT = { taken: 'Taken', planned: 'Planned', ready: 'You can take i
 const listText = items => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`);
 
 export class GraphView {
-  constructor(svgEl, { onSelect, onPick, onPreview, minimap }) {
+  constructor(svgEl, { onSelect, onPick, onPreview, onExpand, minimap }) {
     this.el = svgEl;
     this.svg = d3.select(svgEl);
     this.onSelect = onSelect;
     this.onPick = onPick;
     this.onPreview = onPreview; // a course under the mouse (or keyboard focus), or null
+    this.onExpand = onExpand; // "+3" above a course on a course page: show the courses before it
     this.map = null;
     this.visible = new Set();
+    this.focusId = null; // the course a course page is about (its graph is laid out around it)
+    this.moreUp = new Map(); // course -> how many courses before it aren't drawn (course pages)
+    this.folded = new Map(); // course -> options folded away from it (see foldOptions in model.js)
+    this.foldKey = '';
     this.state = null;
     this.layout = { nodes: new Map(), edges: [], bands: [], labels: [], loose: new Set(), width: 0, height: 0, cols: '' };
     this.arrange = 'steps'; // rows by prerequisite steps, or 'level' (100, 200, 300)
@@ -80,9 +87,11 @@ export class GraphView {
     this.viewport = this.svg.append('g').attr('class', 'viewport');
     this.bandLayer = this.viewport.append('g').attr('class', 'bands');
     this.edgeLayer = this.viewport.append('g').attr('class', 'edges');
+    this.stubLayer = this.viewport.append('g').attr('class', 'stubs');
     this.nodeLayer = this.viewport.append('g').attr('class', 'nodes');
     this.boxRect = this.viewport.append('rect').attr('class', 'select-box').style('display', 'none');
     this.edgeSel = this.edgeLayer.selectAll('path.edge');
+    this.stubSel = this.stubLayer.selectAll('rect.stub');
     this.nodeSel = this.nodeLayer.selectAll('g.node');
 
     // Drag pans, pinch or Ctrl+scroll zooms; plain scrolling pans (onWheel).
@@ -148,19 +157,28 @@ export class GraphView {
 
   // ---------------------------------------------------------------- data
 
-  setData(map, visibleIds, { animate = false } = {}) {
+  // `focus`: the course of a course page, whose graph is laid out around it.
+  // `folded`: course -> options folded away from it (their links aren't
+  // drawn); `foldKey` names that, so the app can tell when it changes.
+  setData(map, visibleIds, { animate = false, focus = null, folded = new Map(), foldKey = '' } = {}) {
     const fresh = map !== this.map;
     this.map = map;
     this.visible = visibleIds;
+    this.focusId = focus;
+    this.folded = folded;
+    this.foldKey = foldKey;
     if (fresh) {
       this.nodeLayer.selectAll('*').remove();
       this.edgeLayer.selectAll('*').remove();
+      this.stubLayer.selectAll('*').remove();
     }
     // The courses each one leads to are what turns orange when it's selected.
+    // A course page draws only part of one chain, so it counts them everywhere.
     this.reach = new Map([...visibleIds].map(id =>
-      [id, [...map.descendants(id)].filter(d => visibleIds.has(d)).length]));
+      [id, [...map.descendants(id)].filter(d => focus || visibleIds.has(d)).length]));
     this.offeredWidth = map.quarters.reduce((w, q, i) => w + this.textWidth(q[0], OFFERED_FONT) + (i ? OFFERED_GAP : 0), 0);
-    this.layout = computeLayout(map, visibleIds, this.viewportSize(), this.titleWidth, this.arrange);
+    this.layout = computeLayout(map, visibleIds, this.viewportSize(), this.titleWidth, { arrange: this.arrange, focus, folded });
+    this.moreUp = new Map(this.layout.stubs.filter(s => s.dir === 'up').map(s => [s.id, s.n]));
     this.draw(animate && !fresh && !reducedMotion());
     if (this.state) this.update(this.state);
   }
@@ -168,10 +186,16 @@ export class GraphView {
   // Column counts are picked to suit the stage's shape; redo them when it changes a lot.
   refit() {
     if (!this.map) return false;
-    const next = computeLayout(this.map, this.visible, this.viewportSize(), this.titleWidth, this.arrange);
+    const next = computeLayout(this.map, this.visible, this.viewportSize(), this.titleWidth,
+      { arrange: this.arrange, focus: this.focusId, folded: this.folded });
     if (next.cols === this.layout.cols) return false;
-    this.setData(this.map, this.visible, { animate: true });
+    this.redraw();
     return true;
+  }
+
+  // The same courses laid out again (another shape or arrangement); the cards glide.
+  redraw() {
+    this.setData(this.map, this.visible, { animate: true, focus: this.focusId, folded: this.folded, foldKey: this.foldKey });
   }
 
   // The stage can be hidden (list view) when the layout is computed.
@@ -185,7 +209,7 @@ export class GraphView {
   setArrange(mode) {
     if (mode === this.arrange) return;
     this.arrange = mode;
-    if (this.map) this.setData(this.map, this.visible, { animate: true });
+    if (this.map) this.redraw();
   }
 
   setShowLinks(on) {
@@ -193,7 +217,7 @@ export class GraphView {
   }
 
   draw(animate) {
-    const { nodes, edges, bands, labels, width } = this.layout;
+    const { nodes, edges, bands, labels, stubs, width } = this.layout;
     const duration = animate ? 450 : 0;
 
     this.bandLayer.selectAll('rect')
@@ -214,12 +238,27 @@ export class GraphView {
 
     // Hide edges while nodes glide to their new places, then fade them back in.
     this.edgeLayer.classed('is-moving', animate);
+    this.stubLayer.classed('is-moving', animate);
     this.edgeSel = this.edgeLayer.selectAll('path.edge')
       .data(edges, e => `${e.source}|${e.target}`)
       .join('path')
       .attr('class', e => `edge k-${e.kind}`)
       .attr('d', e => e.d);
-    if (animate) setTimeout(() => this.edgeLayer.classed('is-moving', false), duration);
+    // A course page draws part of a chain: lines fade out where it goes on (see stubsOf).
+    this.stubSel = this.stubLayer.selectAll('rect.stub')
+      .data(stubs, s => `${s.id}|${s.dir}`)
+      .join('rect')
+      .attr('class', s => `stub is-${s.dir}`)
+      .attr('x', s => s.x - 1.1)
+      .attr('y', s => s.y)
+      .attr('width', 2.2)
+      .attr('height', s => s.len);
+    if (animate) {
+      setTimeout(() => {
+        this.edgeLayer.classed('is-moving', false);
+        this.stubLayer.classed('is-moving', false);
+      }, duration);
+    }
 
     this.nodeSel = this.nodeLayer.selectAll('g.node')
       .data([...nodes.keys()], id => id)
@@ -238,8 +277,24 @@ export class GraphView {
       );
     // Courses with no links here are drawn quieter so the chains stand out.
     this.nodeSel.classed('is-loose', id => this.layout.loose.has(id));
-    this.nodeSel.each((id, i, els) => this.drawReach(d3.select(els[i]), this.reach.get(id) || 0));
+    this.nodeSel.each((id, i, els) => {
+      this.drawReach(d3.select(els[i]), this.reach.get(id) || 0);
+      this.drawMore(d3.select(els[i]), id);
+    });
     this.drawMinimap();
+  }
+
+  // On a course page, "+3" on top of a course says how many courses before it
+  // aren't drawn; clicking it draws them.
+  drawMore(g, id) {
+    const n = this.moreUp.get(id) || 0;
+    const more = g.select('.more').classed('is-on', n > 0);
+    if (!n) return;
+    const text = `+${n}`;
+    const w = this.textWidth(text, MORE_FONT) + 12;
+    more.select('rect').attr('x', -w / 2).attr('width', w);
+    more.select('text').text(text);
+    more.select('title').text(`${n} more course${n === 1 ? '' : 's'} before ${this.map.label(this.map.get(id))}. Click to show ${n === 1 ? 'it' : 'them'}.`);
   }
 
   // The "leads to" badge: a branching icon and the count, darker the more it is.
@@ -313,6 +368,10 @@ export class GraphView {
         this.setHover(null);
         this.onPreview?.(null);
       });
+    // A course standing in for several options (MATH 228-1 or MATH 230-1 ...): cards stacked behind it.
+    for (const off of [7, 3.5]) {
+      g.append('rect').attr('class', 'ghost').attr('x', off).attr('y', off).attr('width', NODE_W).attr('height', NODE_H).attr('rx', 7);
+    }
     g.append('rect').attr('class', 'card').attr('width', NODE_W).attr('height', NODE_H).attr('rx', 7);
     // The viewer's plan: taken, planned, can take now, or planned but needs a check.
     const mark = g.append('g').attr('class', 'mark').attr('aria-hidden', 'true')
@@ -326,6 +385,8 @@ export class GraphView {
     mark.append('path').attr('class', 'i-skip').attr('d', 'M-2.6 0H2.6');
     g.append('text').attr('class', 'code').attr('x', 10).attr('y', 17).text(id => map.label(map.get(id)));
     g.append('text').attr('class', 'title').attr('y', TITLE_Y);
+    // The other options it stands for, under a one-line title: "or MATH 230-1 +5".
+    g.append('text').attr('class', 'alts').attr('x', 10).attr('y', TITLE_Y + TITLE_LEADING);
     // At the end of the title's second line: the quarter in the plan, or else
     // the quarters it's offered this year (F W S).
     const slotY = TITLE_Y + TITLE_LEADING;
@@ -346,6 +407,21 @@ export class GraphView {
     pick.append('circle').attr('r', 7.5);
     pick.append('path').attr('d', 'M-3.2 0.1-1 2.3 3.2-1.9');
     g.append('title');
+    // On a course page: "+3" on the top edge, for courses before it that aren't drawn (see drawMore).
+    const more = g.append('g').attr('class', 'more').attr('aria-hidden', 'true')
+      .attr('transform', `translate(${NODE_W / 2},0)`)
+      .on('click', (e, id) => {
+        e.stopPropagation();
+        if (this.swallowClick) {
+          this.swallowClick = false;
+          return;
+        }
+        this.onExpand?.(id);
+      })
+      .append('g').attr('class', 'more-badge');
+    more.append('rect').attr('y', -7).attr('height', 14).attr('rx', 7);
+    more.append('text').attr('y', 3.5);
+    more.append('title');
     return g;
   }
 
@@ -424,6 +500,7 @@ export class GraphView {
       .classed('has-status', id => !!status(id))
       .classed('is-picked', id => picked.has(id))
       .classed('is-goal', id => !!path && id === path.target)
+      .classed('has-alts', id => !!state.alts?.get(id))
       .attr('aria-pressed', id => String(id === sel || picked.has(id)))
       .attr('aria-label', id => this.describe(id, status(id), hasIssue(id), path));
     this.nodeSel.each((id, i, els) => this.drawCard(els[i], id, status(id), path));
@@ -437,6 +514,7 @@ export class GraphView {
       // Done: a link out of a course you've taken.
       .classed('is-met', e => taken.has(e.source) && !taken.has(e.target));
     this.edgeSel.filter('.is-up, .is-down, .is-hl').raise();
+    this.stubSel.classed('is-dim', s => (sel ? !inFocus(s.id) : !!hl && !hl.ids.has(s.id)));
 
     this.mmNodeSel?.attr('class', id => ['mm-node',
       status(id) && `is-${status(id)}`, picked.has(id) && 'is-picked',
@@ -461,24 +539,41 @@ export class GraphView {
     const termText = term ? termShort(term) : '';
     const offered = !termText && this.hasSchedule(c);
     const reach = this.reach.get(id) || 0;
-    const key = `${status}|${termText}|${next ? 'path' : ''}|${reach}`;
+    const more = this.moreUp.get(id) || 0;
+    const alts = this.state.alts?.get(id);
+    const altNames = alts ? alts.map(o => o.map(x => this.map.label(this.map.get(x))).join(' + ')) : [];
+    const key = `${status}|${termText}|${next ? 'path' : ''}|${reach}|${more}|${altNames.join()}`;
     if (el.dataset.card === key) return;
     el.dataset.card = key;
     const g = d3.select(el);
     const title = c.title || 'Not in the current catalog';
     const slot = termText ? this.textWidth(termText, TERM_FONT) + 6 : offered ? this.offeredWidth + 6 : 0;
     g.select('.code').attr('x', status ? 25 : 10).style('--far', `${this.farSize(c, status)}px`);
-    g.select('.title').selectAll('tspan').data(this.wrapTitle(title, [NODE_W - 20, NODE_W - 20 - slot])).join('tspan')
+    // Standing in for other options, the title gets one line and the options the second.
+    const lines = alts ? [NODE_W - 20] : [NODE_W - 20, NODE_W - 20 - slot];
+    g.select('.title').selectAll('tspan').data(this.wrapTitle(title, lines)).join('tspan')
       .attr('x', 10).attr('dy', (line, i) => (i ? TITLE_LEADING : null)).text(line => line);
+    g.select('.alts').text(alts ? this.altsText(altNames, NODE_W - 20 - slot) : '');
     g.select('.term').text(termText).classed('is-next', !!next);
     g.select('.offered').style('display', offered ? null : 'none')
       .selectAll('tspan').classed('on', q => !!c.offered?.[q]);
     const tip = [c.title ? `${c.id}: ${c.title}` : c.id];
-    if (reach) tip.push(`Leads to ${reach} course${reach === 1 ? '' : 's'} on this map`);
+    if (reach) tip.push(`Leads to ${reach} course${reach === 1 ? '' : 's'}${this.focusId ? '' : ' on this map'}`);
+    if (more) tip.push(`${more} more course${more === 1 ? '' : 's'} before it, not shown`);
+    if (alts) tip.push(`Or instead: ${altNames.join(', ')}`);
     if (status) tip.push(own ? `${STATUS_TEXT[status]}, ${termLabel(own)}` : STATUS_TEXT[status]);
     if (next) tip.push(`On the path: ${termLabel(next)}`);
     if (this.hasSchedule(c)) tip.push(this.scheduleText(c));
-    g.select('title').text(tip.join('\n'));
+    g.select(':scope > title').text(tip.join('\n'));
+  }
+
+  // "or MATH 230-1, MATH 281-1 +4": the options a course stands for, as many as fit.
+  altsText(names, max) {
+    for (let n = names.length; n > 0; n--) {
+      const text = `or ${names.slice(0, n).join(', ')}${n < names.length ? ` +${names.length - n}` : ''}`;
+      if (this.measure.measureText(text).width <= max) return text;
+    }
+    return this.fitText(`or ${names.length} other options`, max);
   }
 
   // This year's schedule covers this map's courses (listed or not) and the
@@ -507,6 +602,10 @@ export class GraphView {
     const reach = this.reach.get(id) || 0;
     const parts = [`${map.label(c)}, ${c.title || 'not in the current catalog'}`];
     parts.push(before ? `${before} prerequisite${before === 1 ? '' : 's'}` : 'no prerequisites');
+    const more = this.moreUp.get(id);
+    if (more) parts.push(`${more} earlier course${more === 1 ? '' : 's'} not shown`);
+    const alts = this.state.alts?.get(id);
+    if (alts) parts.push(`or ${alts.length} other option${alts.length === 1 ? '' : 's'}`);
     if (reach) parts.push(`leads to ${reach} course${reach === 1 ? '' : 's'}`);
     const term = this.state.plan.term(id);
     if (status === 'planned' && term) parts.push(`planned for ${termLabel(term)}`);
@@ -678,6 +777,21 @@ export class GraphView {
     target.call(this.zoom.transform, t);
   }
 
+  // The stage changed width by `dx` px: move the view half as far, so what
+  // was in the middle stays there.
+  panBy(dx) {
+    this.zoom.translateBy(this.svg, dx / 2 / this.transform.k, 0);
+  }
+
+  // A course page: everything if it fits at a readable size, else the course
+  // and as much of its chain as does.
+  frame(id, { animate = false } = {}) {
+    const { width, height } = this.layout;
+    const { w, h } = this.size();
+    if (Math.min((w - 32) / width, (h - 32) / height) >= READABLE) this.fitAll({ animate });
+    else this.reveal(id, { force: true, animate });
+  }
+
   // Bring a course into view: its whole chain if that fits at a readable
   // zoom, else its direct neighbors, else its direct prerequisites, else
   // just the course.
@@ -841,8 +955,43 @@ function stepsOf(courses, edges, linked) {
   return c => (linked.has(c.id) ? of(c.id) : UNLINKED);
 }
 
-const bandName = (arrange, band) => {
+// A course page's rows, by step: how many steps before or after its course
+// each course comes (the longest chain of links between them, so a course
+// that a prerequisite also needs sits above that prerequisite). The course
+// is row 0; a corequisite shares a row.
+function aroundOf(focus, courses, edges) {
+  const into = new Map(courses.map(c => [c.id, []]));
+  const out = new Map(courses.map(c => [c.id, []]));
+  for (const e of edges) {
+    into.get(e.target).push(e);
+    out.get(e.source).push(e);
+  }
+  const longest = (links, end) => {
+    const memo = new Map([[focus, 0]]);
+    const visiting = new Set();
+    const of = id => {
+      if (memo.has(id)) return memo.get(id);
+      if (visiting.has(id)) return -Infinity; // a loop in the data
+      visiting.add(id);
+      const d = Math.max(-Infinity, ...links.get(id).map(e => of(e[end]) + (e.kind === 'co' ? 0 : 1)));
+      visiting.delete(id);
+      memo.set(id, d);
+      return d;
+    };
+    return of;
+  };
+  const toFocus = longest(out, 'target');
+  const fromFocus = longest(into, 'source');
+  return c => {
+    if (toFocus(c.id) > -Infinity) return -toFocus(c.id);
+    return fromFocus(c.id) > -Infinity ? fromFocus(c.id) : -1;
+  };
+}
+
+const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
+const bandName = (arrange, band, focus) => {
   if (arrange === 'level') return `${band}-level`;
+  if (focus) return band < 0 ? `${plural(-band, 'step')} before` : band > 0 ? `${plural(band, 'step')} after` : 'This course';
   if (band === UNLINKED) return 'Not linked to other courses';
   return band ? `Step ${band + 1}` : 'Step 1 \u00b7 start here';
 };
@@ -850,16 +999,18 @@ const byId = (a, b) => a.id.localeCompare(b.id);
 const ROW_COST = 40; // px of sideways distance a course trades for one row higher
 const SWEEPS = 4; // placement passes; later ones also look at where children went
 
-// textWidth measures a column title at its zoomed-out size.
-function computeLayout(map, visible, viewport, textWidth, arrange = 'steps') {
+// textWidth measures a column title at its zoomed-out size. `focus` is the
+// course of a course page: by step, rows count the steps before and after it.
+// Links from options `folded` away aren't drawn.
+function computeLayout(map, visible, viewport, textWidth, { arrange = 'steps', focus = null, folded = new Map() } = {}) {
   const courses = [...visible].map(id => map.get(id));
   const depts = map.data.departments;
-  const edges = map.edges.filter(e => visible.has(e.source) && visible.has(e.target));
+  const edges = map.edges.filter(e => visible.has(e.source) && visible.has(e.target) && !folded.get(e.target)?.has(e.source));
   const linked = new Set(edges.flatMap(e => [e.source, e.target]));
   const groupOf = c => (c.role === 'main' ? c.dept : OTHER);
   const mains = Object.keys(depts).filter(d => depts[d].main && courses.some(c => c.role === 'main' && c.dept === d));
   const groups = orderGroups(mains, courses.some(c => c.role !== 'main'), edges, id => groupOf(map.get(id)));
-  const bandOf = arrange === 'level' ? levelOf : stepsOf(courses, edges, linked);
+  const bandOf = arrange === 'level' ? levelOf : focus ? aroundOf(focus, courses, edges) : stepsOf(courses, edges, linked);
   const levels = [...new Set(courses.map(bandOf))].sort((a, b) => a - b);
 
   // Tier = how many prerequisites in the same band must come first.
@@ -995,12 +1146,60 @@ function computeLayout(map, visible, viewport, textWidth, arrange = 'steps') {
       : [{ cls: 'group-label full', x: groupX[i], y: PAD + 12, text: full },
         { cls: 'group-label short', x: groupX[i], y: PAD + 12, text: short }];
   });
-  for (const b of bands) labels.push({ cls: 'band-label', x: PAD, y: b.top + 27, text: bandName(arrange, b.level) });
+  for (const b of bands) labels.push({ cls: 'band-label', x: PAD, y: b.top + 27, text: bandName(arrange, b.level, focus) });
 
   const loose = new Set(courses.filter(c => !linked.has(c.id)).map(c => c.id));
   const routed = edges.map(e => ({ ...e, d: '' }));
   routeEdges(routed, nodes);
-  return { nodes, edges: routed, bands, labels, loose, width, height, cols: cols.join(',') };
+  const stubs = focus ? stubsOf(map, visible, focus, nodes, folded) : [];
+  return { nodes, edges: routed, bands, labels, loose, stubs, width, height, cols: cols.join(',') };
+}
+
+// A course page draws only part of its course's chain. A course before it
+// whose own prerequisites aren't all drawn gets a line fading out above it
+// (and "+3", how many courses that leaves out; options folded away don't
+// count); a course it unlocks that leads to more gets one fading out below
+// it. A line stops short of any card in its way.
+function stubsOf(map, visible, focus, nodes, folded) {
+  const before = new Set([...map.ancestors(focus), ...map.parents.get(focus).map(e => e.source)]);
+  const needs = id => map.parents.get(id).filter(e => e.kind !== 'rec' && !folded.get(id)?.has(e.source)).map(e => e.source);
+  const earlier = id => {
+    const seen = new Set();
+    const stack = [id];
+    while (stack.length) {
+      for (const p of needs(stack.pop())) {
+        if (seen.has(p)) continue;
+        seen.add(p);
+        stack.push(p);
+      }
+    }
+    return seen;
+  };
+  const room = (p, up) => {
+    const cx = p.x + NODE_W / 2;
+    let gap = STUB;
+    for (const q of nodes.values()) {
+      if (q === p || cx < q.x || cx > q.x + NODE_W) continue;
+      const between = up ? p.y - (q.y + NODE_H) : q.y - (p.y + NODE_H);
+      if (between >= 0) gap = Math.min(gap, between - 4);
+    }
+    return gap;
+  };
+  const stubs = [];
+  for (const id of visible) {
+    if (id === focus) continue;
+    const up = before.has(id);
+    const goesOn = up
+      ? needs(id).some(p => !visible.has(p))
+      : map.children.get(id).some(e => e.kind !== 'rec' && !visible.has(e.target));
+    if (!goesOn) continue;
+    const p = nodes.get(id);
+    const len = Math.max(0, room(p, up));
+    const x = p.x + NODE_W / 2;
+    if (up) stubs.push({ id, dir: 'up', n: [...earlier(id)].filter(a => a !== id && !visible.has(a)).length, x, y: p.y - len, len });
+    else stubs.push({ id, dir: 'down', x, y: p.y + NODE_H, len });
+  }
+  return stubs;
 }
 
 // Put "Other departments" where its links to this map's departments are

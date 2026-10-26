@@ -3,15 +3,17 @@
 //
 // Starts from the viewer's plan (courses taken, or planned for the current
 // quarter) and follows prerequisites back. At each "one of" it takes an option
-// already in the plan, else the earlier part of the course's own sequence
-// (MATH 228-1 for MATH 228-2), else the option needing the fewest courses.
+// already in the plan, else the usual one (`prefer`: what the student's
+// programs ask for, as the graph shows), else the earlier part of the course's
+// own sequence (MATH 228-1 for MATH 228-2), else the option needing the
+// fewest courses.
 // Then it fills quarters from the next one on: a course goes in once
 // its prerequisites are done in an earlier quarter (its corequisites by the
 // same one), in a quarter it runs on this year's schedule, with at most
 // `perQuarter` courses a quarter, counting courses already planned there.
 // Courses with the longest chain still ahead of them go first. Planned
 // courses keep their quarter unless it comes before their prerequisites.
-import { eachCode, satisfied } from './model.js';
+import { earlierPart, eachCode, satisfied } from './model.js';
 import { QUARTERS, currentTerm, parseTerm, termKey, termOrder } from './plan.js';
 
 const LOOKAHEAD = 15; // quarters to fill: five years of fall, winter and spring
@@ -43,16 +45,6 @@ function isBefore(a, b) {
   return i >= 0 && a[i] < b[i];
 }
 
-// MATH 228-1 is the earlier part of MATH 228-2's sequence.
-function earlierPart(map, id, of) {
-  const a = map.get(id);
-  const b = map.get(of);
-  if (!a || !b || a.dept !== b.dept) return false;
-  const [numA, partA] = a.num.split('-');
-  const [numB, partB] = b.num.split('-');
-  return numA === numB && Number(partA) < Number(partB);
-}
-
 // What a course requires: prerequisites (done in an earlier quarter) and
 // corequisites (done by the same quarter). Other departments' courses have
 // them only when the catalog sentence was plain enough to read (autoPrereq).
@@ -63,7 +55,7 @@ function requirements(map, id) {
   return { pre: null, co: null, known: false };
 }
 
-export function findPath(map, plan, target, { perQuarter = 3, now = currentTerm() } = {}) {
+export function findPath(map, plan, target, { perQuarter = 3, now = currentTerm(), prefer = () => 0 } = {}) {
   const start = nextTerm(now);
   const done = plan.doneBefore(start);
   const planned = new Set(plan.ids('planned'));
@@ -122,7 +114,8 @@ export function findPath(map, plan, target, { perQuarter = 3, now = currentTerm(
     if (op === 'and') return new Set(items.flatMap(t => [...needs(t, owner)]));
     if (satisfied(tree, done)) return new Set();
     // An option in the plan, then one without courses marked "not interested",
-    // then the earlier part of the same sequence, then the fewest courses.
+    // then the usual one, then the earlier part of the same sequence, then the
+    // fewest courses.
     // Ties go to the option listed first, usually the standard one.
     // Every option is priced against what was picked before this choice, not
     // against what weighing the other options picked along the way.
@@ -134,7 +127,7 @@ export function findPath(map, plan, target, { perQuarter = 3, now = currentTerm(
     for (const option of options) {
       const { t, set } = option;
       const top = typeof t === 'string' ? [t] : Object.values(t)[0].filter(x => typeof x === 'string');
-      option.rank = [top.some(x => planned.has(x)) ? 0 : 1, [...set].some(x => skipped.has(x)) ? 1 : 0,
+      option.rank = [top.some(x => planned.has(x)) ? 0 : 1, [...set].some(x => skipped.has(x)) ? 1 : 0, -prefer(top),
         typeof t === 'string' && earlierPart(map, t, owner) ? 0 : 1, cost(set)];
       if (!best || isBefore(option.rank, best.rank)) best = option;
     }
@@ -280,6 +273,6 @@ export function findPath(map, plan, target, { perQuarter = 3, now = currentTerm(
 // (derive() in main.js starts a fresh state.paths).
 export function pathFor(state, id) {
   const key = `${id}|${state.pathPace}`;
-  if (!state.paths.has(key)) state.paths.set(key, findPath(state.map, state.plan, id, { perQuarter: state.pathPace }));
+  if (!state.paths.has(key)) state.paths.set(key, findPath(state.map, state.plan, id, { perQuarter: state.pathPace, prefer: state.prefer }));
   return state.paths.get(key);
 }

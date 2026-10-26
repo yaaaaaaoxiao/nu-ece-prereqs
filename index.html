@@ -21,7 +21,7 @@
   <a class="skip-link" href="#panel">Skip to course details</a>
 
   <header class="topbar">
-    <div class="brand">
+    <a class="brand" href="./" data-route title="Home: search courses or pick a major">
       <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
         <rect x="2" y="4" width="11" height="8" rx="2.5"/>
         <rect x="19" y="4" width="11" height="8" rx="2.5"/>
@@ -32,11 +32,17 @@
         <h1>Prerequisite Map</h1>
         <p id="map-name" class="brand-sub">Loading…</p>
       </div>
-      <button type="button" class="programs-btn" id="programs-btn" aria-haspopup="dialog">
-        <span class="sr-only">Your majors and minors: </span><span class="programs-label">Choose programs</span>
-        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>
-      </button>
+    </a>
+
+    <div class="segmented modes" role="radiogroup" aria-label="Find">
+      <button type="button" role="radio" data-mode="search" aria-checked="false">Search</button>
+      <button type="button" role="radio" data-mode="graph" aria-checked="false">Pre-req graph</button>
     </div>
+
+    <button type="button" class="programs-btn" id="programs-btn" aria-haspopup="dialog">
+      <span class="sr-only">Your majors and minors: </span><span class="programs-label">Choose programs</span>
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>
+    </button>
 
     <div class="segmented views" role="radiogroup" aria-label="View">
       <button type="button" role="radio" id="view-graph" data-view="graph" aria-checked="true" title="Graph">
@@ -86,7 +92,23 @@
     <div id="planner" class="planner"></div>
   </div>
 
-  <main class="workspace">
+  <main class="home" id="home" hidden>
+    <div class="home-inner">
+      <h2 class="home-title">Courses and their prerequisites</h2>
+      <p class="home-lede" id="home-lede"></p>
+      <div class="segmented home-modes" role="radiogroup" aria-label="Find">
+        <button type="button" role="radio" data-mode="search" aria-checked="true">Search</button>
+        <button type="button" role="radio" data-mode="graph" aria-checked="false">Pre-req graph</button>
+      </div>
+      <div class="home-search" role="search">
+        <svg class="search-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg>
+        <input id="home-search" type="search" autocomplete="off" spellcheck="false" aria-controls="home-results">
+      </div>
+      <div class="home-results" id="home-results"></div>
+    </div>
+  </main>
+
+  <main class="workspace" id="workspace">
     <section class="stage" id="stage" aria-label="Courses">
       <svg id="graph" class="graph" role="group"
            aria-label="Prerequisite graph. Use the arrow keys to move between courses and Enter to select one.">
@@ -106,9 +128,28 @@
           <marker id="arrow-down" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
             <path class="arrow-down" d="M0 1 10 5 0 9z"/>
           </marker>
+          <!-- A course page's chain goes on past these lines: they fade out away from the card. -->
+          <linearGradient id="fade-up" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0" class="stop-up"/><stop offset="1" class="stop-up" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="fade-down" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" class="stop-down"/><stop offset="1" class="stop-down" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="fade-left" x1="1" y1="0" x2="0" y2="0">
+            <stop offset="0" class="stop-up"/><stop offset="1" class="stop-up" stop-opacity="0"/>
+          </linearGradient>
         </defs>
       </svg>
       <div id="minimap" class="minimap" aria-hidden="true" title="Overview: click or drag to move around"></div>
+      <!-- A course page: how far back its prerequisites go. -->
+      <div class="depth" id="depth">
+        <span class="depth-label" aria-hidden="true">Prerequisites</span>
+        <div class="segmented" role="radiogroup" aria-label="Prerequisites to show">
+          <button type="button" role="radio" data-depth="1" aria-checked="false" title="Only the courses it requires directly">Direct</button>
+          <button type="button" role="radio" data-depth="2" aria-checked="true" title="Its prerequisites, and theirs">2 layers</button>
+          <button type="button" role="radio" data-depth="all" aria-checked="false" title="Everything it requires, all the way back">All</button>
+        </div>
+      </div>
       <div id="list" class="list" hidden></div>
       <div id="plan" class="plan-view" hidden></div>
 
@@ -132,6 +173,7 @@
           <button type="button" role="radio" data-arrange="level" aria-checked="false">Course level</button>
         </div>
         <label class="legend-toggle"><input type="checkbox" id="show-links"> Show all links</label>
+        <label class="legend-toggle" title="Where a course accepts one of several (MATH 228-1 or MATH 230-1), draw every option, not just the usual one"><input type="checkbox" id="show-options"> Show every option</label>
         <h4 class="legend-head">Your plan</h4>
         <ul>
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-card lg-taken" x="0.75" y="0.75" width="34.5" height="14.5" rx="4"/><g class="si si-taken" transform="translate(8.5 8)"><circle r="4.6"/><path d="M-2 0.1-0.6 1.5 2-1.2"/></g></svg>Taken</li>
@@ -147,6 +189,7 @@
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><g class="reach t3" transform="translate(35 8)"><rect x="-29" y="-7" width="29" height="14" rx="7"/><path class="fork" d="M-21.4 -3.6v2.2M-21.4 -1.4l-2.4 3.6M-21.4 -1.4v3.6M-21.4 -1.4l2.4 3.6"/><text x="-5" y="3.6">12</text></g></svg>Leads to 12 courses (darker: more)</li>
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><text class="lg-offered" x="18" y="12"><tspan class="on">F</tspan><tspan dx="2">W</tspan><tspan dx="2" class="on">S</tspan></text></svg>Runs in fall and spring this year</li>
           <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-ext" x="1" y="2" width="34" height="12" rx="3"/></svg>Another department</li>
+          <li><svg viewBox="0 0 36 16" aria-hidden="true"><rect class="lg-ghost" x="5" y="4.5" width="30" height="11" rx="3"/><rect class="lg-ghost" x="3" y="2.5" width="30" height="11" rx="3"/><rect class="lg-card lg-front" x="1" y="0.5" width="30" height="11" rx="3"/></svg>The usual one of several options; the others are named on it</li>
         </ul>
         <h4 class="legend-head">Links</h4>
         <ul>
@@ -157,12 +200,15 @@
           <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-co" d="M2 6h32"/></svg>Take at the same time (corequisite)</li>
           <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-rec" d="M2 6h32"/></svg>Recommended</li>
           <li><svg viewBox="0 0 36 12" aria-hidden="true"><path class="lg-met" d="M2 6h32"/></svg>From a course you took</li>
+          <li class="course-only"><svg viewBox="0 0 36 12" aria-hidden="true"><rect class="lg-stub" x="2" y="5" width="22" height="2.2"/><rect class="lg-more" x="22" y="1" width="13" height="10" rx="5"/><text class="lg-more-text" x="28.5" y="9">+3</text></svg>More courses before it (click to show them)</li>
         </ul>
       </details>
 
       <div class="stage-status" id="stage-status" role="status"></div>
     </section>
 
+    <div class="splitter" id="splitter" role="separator" tabindex="0" aria-orientation="vertical" aria-controls="panel"
+         aria-label="Resize the details panel" title="Drag to resize. Double-click to reset."><span class="splitter-grip"></span></div>
     <aside class="panel" id="panel" tabindex="-1" aria-label="Course details"></aside>
   </main>
 
@@ -205,12 +251,23 @@
       <li>Blue is your plan: solid for taken, dashed for planned. Green: you can take the course now. Amber: a planned course needs a check.</li>
       <li>The number on a course counts the courses it leads to. The dark letters in F W S show the quarters it runs this year.</li>
     </ul>
+    <h3>Find a course or a major</h3>
+    <ul class="help-list">
+      <li><b>Search</b> on the home page finds a course by number or title. Its page shows the courses it unlocks and what it
+        requires, two layers back. <b>Prerequisites</b> above the graph shows fewer or all of them. A fading line and <b>+3</b>
+        on a course mean it needs 3 more; click <b>+3</b> to show them.</li>
+      <li><b>Drag the edge of the details panel</b> to give the graph or the details more room. Double-click it to reset.</li>
+      <li><b>Pre-req graph</b> on the home page opens a major's map: all its courses and how they connect.</li>
+    </ul>
     <h3>Use the map</h3>
     <ul class="help-list">
       <li><b>See a course:</b> point at it to see its details in the panel. To keep them, click it, search for it, or find it in the list. Its prerequisites turn violet, and the courses it unlocks turn orange.</li>
       <li><b>Mark your courses:</b> Shift-click them, Shift-drag a box, or press <b>Mark courses</b>. On a touch screen, long-press a course. You can undo each change.</li>
       <li><b>Plan a route:</b> open a course and press <b>Show the path</b>. The path shows the courses you still need, with the soonest quarter for each. <b>Add to my plan</b> adds all of them.</li>
       <li><b>Pick your programs</b> with the button next to the title. The map shows all courses in your majors' departments, plus your minors' courses.</li>
+      <li><b>One of several:</b> where a course accepts any of several (MATH 228-1, MATH 230-1, MATH 290-2 ...), the graph shows the usual one, with
+        cards stacked behind it and the others named on it: <i>or MATH 230-1 +5</i>. The usual one is the one you took or planned, else
+        the one your programs list. To draw them all, open the <b>Legend</b> and turn on <b>Show every option</b>.</li>
       <li><b>Hide a course</b> you do not want: open it and press <b>Not interested</b>. The site warns you if you need the course. To see hidden courses again, press the hidden count in the toolbar.</li>
       <li><b>Plan your quarters</b> in the <b>Plan</b> tab. It shows prerequisite problems and checks your program requirements. Your plan stays in this browser.</li>
       <li><b>Highlight</b> a requirement list, a track, or a quarter's courses with the menu in the toolbar.</li>

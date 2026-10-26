@@ -184,7 +184,8 @@ svg { flex: none; }
   border-bottom: 1px solid var(--hairline);
   position: relative; z-index: 20;
 }
-.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+/* The logo and title: a link home. */
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; border-radius: 8px; color: inherit; text-decoration: none; }
 .brand-mark { width: 30px; height: 30px; }
 .brand-mark rect { fill: var(--accent); }
 .brand-mark rect:last-of-type { fill: var(--down); }
@@ -248,12 +249,24 @@ svg { flex: none; }
 .top-actions { display: flex; gap: 4px; }
 /* Graph, List or Plan, beside the programs they show. */
 .views { flex: none; }
+/* Search or Pre-req graph: what the site is for, above the search box at
+   home and beside it on the other pages. */
+.modes { flex: none; }
+@media (max-width: 1100px) {
+  /* Away from home, the logo alone, so the controls fit. */
+  body:not([data-page="home"]) .brand-text { display: none; }
+}
 @media (max-width: 960px) {
-  /* The programs button already names what's on the map. */
-  .brand-sub { display: none; }
   .views button { padding: 0 10px; }
   .views .seg-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 }
+
+/* Pages (body[data-page]): home, a course, or a degree map. Each shows the
+   parts of the top bar it uses. */
+.home[hidden], .workspace[hidden] { display: none; }
+body:not([data-page="map"]) :is(.programs-btn, .views, .brand-sub) { display: none; }
+body[data-page="home"] :is(.topbar .modes, .topbar .search) { display: none; }
+body[data-page="home"] .top-actions { margin-left: auto; }
 
 /* ==========================================================================
    Toolbar
@@ -334,7 +347,28 @@ svg { flex: none; }
 /* ==========================================================================
    Workspace: stage (graph or list) + details panel
    ========================================================================== */
-.workspace { grid-row: 3; display: grid; grid-template-columns: minmax(0, 1fr) 380px; min-height: 0; }
+/* --panel-w is set by the splitter (main.js); a course page starts wider. */
+.workspace { grid-row: 3; display: grid; grid-template-columns: minmax(0, 1fr) 0 var(--panel-w, 380px); min-height: 0; }
+
+/* The edge between the graph and the panel: drag it, or focus it and use the
+   arrow keys. It takes no room; its handle straddles the panel's border. */
+.splitter { position: relative; z-index: 6; cursor: col-resize; touch-action: none; }
+.splitter:focus-visible { outline: none; }
+.splitter::before { content: ""; position: absolute; top: 0; bottom: 0; left: -6px; width: 12px; }
+.splitter::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -1px; width: 2px;
+  background: var(--accent); opacity: 0; transition: opacity 0.15s; pointer-events: none;
+}
+.splitter-grip {
+  position: absolute; top: 50%; left: -4px; width: 8px; height: 40px; margin-top: -20px; border-radius: 4px;
+  background: var(--raised); border: 1px solid var(--line); box-shadow: var(--shadow-1); pointer-events: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+.splitter:hover::after, .splitter:focus-visible::after, .is-resizing .splitter::after { opacity: 1; }
+.splitter:hover .splitter-grip, .splitter:focus-visible .splitter-grip, .is-resizing .splitter-grip { background: var(--accent); border-color: var(--accent); }
+/* While dragging, nothing else reacts to the pointer. */
+body.is-resizing { cursor: col-resize; user-select: none; -webkit-user-select: none; }
+body.is-resizing :is(.stage, .panel) { pointer-events: none; }
 
 .stage { position: relative; min-width: 0; min-height: 0; overflow: hidden; background: var(--page); }
 
@@ -365,6 +399,14 @@ svg { flex: none; }
 .node:focus-visible .card { stroke: var(--accent); stroke-width: 2.5; }
 
 .node.is-ext .card { fill: var(--surface); stroke: var(--line); stroke-dasharray: 4 3; }
+/* A course standing in for several options: cards stacked behind it, and the
+   other options named under its title ("or MATH 230-1 +5"). */
+.node .ghost { display: none; fill: var(--surface); stroke: var(--line); stroke-width: 1; }
+.node.has-alts .ghost { display: inline; }
+.node.is-ext .ghost { stroke-dasharray: 4 3; }
+.node.is-dim .ghost { stroke: var(--hairline); }
+.node .alts { font: 11px var(--font); fill: var(--muted); }
+.graph.is-far .node .alts { display: none; }
 /* No links on this map (special topics, projects...): quieter, so the chains stand out. */
 .node.is-loose .card { fill: var(--surface); stroke: var(--hairline); }
 .node.is-loose .code { fill: var(--ink-2); font-weight: 600; }
@@ -468,6 +510,27 @@ svg { flex: none; }
 /* Links show on demand: the selected chain, a hover/focus preview, links inside
    a highlighted list, or all of them when "Show every link" is on. */
 .graph:not(.show-links) .edge:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl) { display: none; }
+
+/* A course page's chain goes on past what's drawn: lines fade out above the
+   courses that need more (with "+3": how many; click to show them) and below
+   the courses that lead to more. */
+.stubs { transition: opacity 0.2s; }
+.stubs.is-moving { opacity: 0; transition: none; }
+.stub { transform-box: fill-box; transform-origin: center; }
+.stub.is-up { fill: url(#fade-up); }
+.stub.is-down { fill: url(#fade-down); }
+.stub.is-dim { opacity: 0.15; }
+.graph.is-far .stub { transform: scaleX(2); }
+.stop-up { stop-color: var(--up); }
+.stop-down { stop-color: var(--down); }
+.node .more { display: none; cursor: pointer; }
+.node .more.is-on { display: inline; }
+.more rect { fill: var(--raised); stroke: var(--up); stroke-width: 1.2; }
+.more text { font: 700 10px var(--font); fill: var(--up); text-anchor: middle; }
+.more:hover rect { fill: var(--up); }
+.more:hover text { fill: var(--raised); }
+.graph.is-far .node .more-badge { transform: scale(1.8); }
+.node.is-dim .more { opacity: 0.28; }
 /* At rest, required links are the backbone; options and other departments' own links recede. */
 .graph.show-links .edge:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl):not(.is-dim) { opacity: 0.8; }
 .graph.show-links .edge.k-alt:not(.is-up):not(.is-down):not(.is-hover):not(.is-hl):not(.is-dim) { opacity: 0.5; }
@@ -523,6 +586,8 @@ svg { flex: none; }
 .lg-co { stroke: var(--edge); stroke-dasharray: 0.5 4; stroke-linecap: round; stroke-width: 2.4 !important; }
 .lg-rec { stroke: var(--line); stroke-dasharray: 0.5 4; stroke-linecap: round; stroke-width: 2.2 !important; }
 .lg-ext { fill: var(--surface); stroke: var(--line); stroke-dasharray: 3 2; stroke-width: 1.2; }
+.lg-ghost { fill: var(--surface); stroke: var(--line); stroke-width: 1; }
+.lg-front { fill: var(--raised); stroke: var(--ink-2); }
 .lg-met { stroke: var(--mine); }
 .lg-card { stroke-width: 1.2; }
 .lg-taken { fill: var(--mine-wash); stroke: var(--mine-line); }
@@ -538,6 +603,19 @@ svg { flex: none; }
 .legend .lg-pick circle { fill: var(--accent); stroke: var(--raised); stroke-width: 1.5; }
 .legend .lg-pick path { fill: none; stroke: var(--raised); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 .legend .si path { stroke-width: 1.4; }
+.lg-stub { fill: url(#fade-left); }
+.legend .lg-more { fill: var(--raised); stroke: var(--up); stroke-width: 1; }
+.legend .lg-more-text { font: 700 7px var(--font); fill: var(--up); text-anchor: middle; }
+body:not([data-page="course"]) .course-only { display: none; }
+
+/* A course page: how far back its prerequisites go. */
+.depth {
+  position: absolute; top: 12px; left: 12px; display: flex; align-items: center; gap: 8px; padding: 3px 3px 3px 12px;
+  background: var(--raised); border: 1px solid var(--border); border-radius: 11px; box-shadow: var(--shadow-1);
+}
+body:not([data-page="course"]) .depth { display: none; }
+.depth-label { font-size: 12px; font-weight: 600; color: var(--muted); }
+.depth .segmented button { height: 26px; padding: 0 10px; font-size: 13px; }
 
 .stage-status {
   position: absolute; inset: 0; display: grid; place-items: center; padding: 24px;
@@ -545,6 +623,59 @@ svg { flex: none; }
 }
 .stage-status:empty { display: none; }
 .stage-status .error { pointer-events: auto; max-width: 420px; color: var(--ink-2); }
+
+/* ==========================================================================
+   Home page: the toggle, one big search box, and results under it. The box
+   starts mid-page and moves up once there's something to show.
+   ========================================================================== */
+.home { grid-row: 3; min-height: 0; overflow-y: auto; padding: 0 16px 64px; }
+.home-inner { max-width: 680px; margin: 0 auto; padding-top: min(16vh, 140px); transition: padding-top 0.2s ease; }
+.home.has-query .home-inner { padding-top: 12px; }
+.home.has-query :is(.home-title, .home-lede) { display: none; }
+.home-title { margin: 0; font-size: 30px; line-height: 1.2; letter-spacing: -0.02em; text-align: center; }
+.home-lede { margin: 8px 0 0; font-size: 15px; color: var(--muted); text-align: center; }
+.home-modes { display: flex; width: max-content; margin: 22px auto 12px; }
+.home-modes button { height: 32px; padding: 0 16px; }
+.home-search { position: relative; }
+.home-search .search-icon { left: 16px; width: 20px; height: 20px; }
+.home-search input {
+  width: 100%; height: 54px; padding: 0 16px 0 48px;
+  border: 1px solid var(--line); border-radius: 14px; background: var(--raised); box-shadow: var(--shadow-1);
+  font-size: 17px;
+}
+.home-search input::placeholder { color: var(--muted); }
+.home-search input:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+.home-results { margin-top: 16px; }
+.home-count, .home-note { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
+.home-note { margin-top: 14px; }
+.home-group { margin: 18px 0 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.home-start p { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; margin: 4px 0 10px; }
+.pill { height: 30px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--raised); font-size: 13px; color: var(--ink-2); }
+.pill:hover { border-color: var(--ink-2); color: var(--ink); }
+
+/* Results: a course (code, title, quarters, what it requires) or a major. */
+.results { margin: 0; padding: 0; list-style: none; border: 1px solid var(--hairline); border-radius: 12px; background: var(--raised); overflow: hidden; }
+.results li + li { border-top: 1px solid var(--hairline); }
+.result { display: grid; grid-template-columns: 112px minmax(0, 1fr) auto; gap: 2px 12px; align-items: baseline;
+  padding: 10px 14px; color: inherit; text-decoration: none; }
+.result:hover, .result:focus-visible { background: var(--accent-wash); }
+.result:focus-visible { outline-offset: -2px; }
+.result .r-code { font-weight: 650; }
+.result .r-title { min-width: 0; }
+.result .r-side { display: inline-flex; align-items: center; gap: 8px; }
+.result .r-meta { grid-column: 2 / 4; font-size: 12.5px; color: var(--muted); }
+.result-program { grid-template-columns: minmax(0, 1fr); }
+.result-program .r-title { font-weight: 600; }
+.result-program .r-meta { grid-column: 1; }
+
+@media (max-width: 760px) {
+  .home-inner { padding-top: 28px; }
+  .home-title { font-size: 24px; }
+  .home-search input { height: 48px; font-size: 16px; }
+  .result { grid-template-columns: 76px minmax(0, 1fr); }
+  .result .r-side { grid-column: 2; }
+  .result .r-meta { grid-column: 2; }
+}
 
 /* ==========================================================================
    List view
@@ -607,6 +738,19 @@ svg { flex: none; }
   min-height: 0; overflow-y: auto;
   background: var(--surface); border-left: 1px solid var(--hairline);
   padding: 18px 20px 28px;
+  container-type: inline-size;
+}
+/* A course page is about its course: more room, a larger title. */
+body[data-page="course"] .panel { padding: 22px 28px 32px; }
+body[data-page="course"] .panel-head h2 { font-size: 24px; }
+body[data-page="course"] .panel-head h2 .code { font-size: 15px; }
+body[data-page="course"] .desc { font-size: 14px; }
+/* A course's sections stack; in a wide panel they make two columns. */
+.course-col + .course-col > section:first-of-type { border-top: 1px solid var(--hairline); }
+@container (min-width: 600px) {
+  .course-cols { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 0 32px; align-items: start; }
+  .course-col + .course-col > section:first-of-type { border-top: 0; }
+  .desc { max-width: 72ch; }
 }
 .panel:focus { outline: none; }
 .panel-grip { display: none; }
@@ -665,6 +809,7 @@ svg { flex: none; }
 .degree-list button:hover { border-color: var(--ink-2); }
 .degree-list .d-name { display: block; font-size: 12px; color: var(--muted); }
 .degree-list .d-group { font-weight: 600; }
+.degree-list .d-open { display: block; margin-top: 2px; font-size: 12px; font-weight: 600; color: var(--accent); }
 
 .schedule { width: 100%; border-collapse: collapse; font-size: 13px; }
 .schedule th { text-align: left; font-weight: 600; padding: 5px 10px 5px 0; white-space: nowrap; vertical-align: top; width: 1%; }
@@ -732,7 +877,7 @@ svg { flex: none; }
    Toast: what just changed, with Undo
    ========================================================================== */
 .toast {
-  position: fixed; left: calc((100% - 380px) / 2); bottom: 24px; z-index: 40; transform: translateX(-50%);
+  position: fixed; left: calc((100% - var(--panel-w, 380px)) / 2); bottom: 24px; z-index: 40; transform: translateX(-50%);
   display: flex; align-items: center; gap: 12px; width: max-content; max-width: calc(100vw - 32px);
   padding: 7px 7px 7px 14px; border-radius: 10px;
   background: var(--ink); color: var(--raised); box-shadow: var(--shadow-2); font-size: 13.5px;
@@ -746,15 +891,14 @@ svg { flex: none; }
    ========================================================================== */
 @media (max-width: 760px) {
   .topbar { flex-wrap: wrap; gap: 8px; padding: 8px 16px; }
-  .brand { flex: 1; }
   .brand-mark { width: 26px; height: 26px; }
-  /* The programs button stands in for the title. */
-  .brand-text { display: none; }
-  .programs-btn { flex: 1; max-width: none; }
-  /* Row 1: programs, views and buttons. Row 2: search. */
-  .views { order: 1; }
-  .top-actions { order: 2; }
-  .search { order: 3; flex: 1 1 100%; max-width: none; margin-left: 0; }
+  /* Row 1: logo, Search / Pre-req graph and buttons. A degree map adds a
+     row for its programs and views. Last row: search. */
+  .modes { order: 1; }
+  .top-actions { order: 2; margin-left: auto; }
+  .programs-btn { order: 3; flex: 1 1 auto; max-width: none; }
+  .views { order: 4; }
+  .search { order: 5; flex: 1 1 100%; max-width: none; margin-left: 0; }
   .search input { font-size: 16px; } /* 16px stops iOS zooming in on focus */
   .search-kbd { display: none; }
   .toolbar { gap: 8px 12px; padding: 8px 16px; }
@@ -773,9 +917,16 @@ svg { flex: none; }
   .toast { left: 50%; bottom: calc(16px + env(safe-area-inset-bottom)); }
 
   .workspace { grid-template-columns: minmax(0, 1fr); }
+  .splitter { display: none; }
+  /* A course page: the depth control on top, the legend under it. */
+  .depth-label { display: none; }
+  .depth { padding: 3px; }
+  body[data-page="course"] .legend { top: 56px; max-height: calc(100% - 68px); }
+  body[data-page="course"] .panel { padding: 6px 16px calc(24px + env(safe-area-inset-bottom)); }
+  body[data-page="course"] .panel-head h2 { font-size: 20px; }
   .panel {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
-    max-height: 58vh; padding: 6px 16px calc(24px + env(safe-area-inset-bottom));
+    max-height: var(--sheet-h, 58vh); padding: 6px 16px calc(24px + env(safe-area-inset-bottom));
     border-left: 0; border-top: 1px solid var(--border); border-radius: 16px 16px 0 0;
     box-shadow: var(--shadow-2);
     transform: translateY(105%); transition: transform 0.25s ease, visibility 0s 0.25s;
@@ -789,7 +940,10 @@ svg { flex: none; }
   .panel.is-picking h2 { font-size: 17px; }
   .pick-actions { flex-wrap: nowrap; overflow-x: auto; margin: 10px -16px 4px; padding: 0 16px 2px; scrollbar-width: none; }
   .pick-actions > * { flex: none; }
-  .panel-grip { display: block; width: calc(100% + 32px); height: 26px; margin: -6px -16px 4px; padding: 0; border: 0; background: none; }
+  .panel-grip { display: block; width: calc(100% + 32px); height: 26px; margin: -6px -16px 4px; padding: 0; border: 0; background: none;
+    touch-action: none; cursor: row-resize; }
+  /* Dragging the grip: the sheet follows the finger (see main.js). */
+  .panel.is-open.is-dragging { transition: none; }
   .panel-grip::before { content: ""; display: block; width: 40px; height: 4px; margin: 0 auto; border-radius: 2px; background: var(--line); }
   /* Keep floating controls clear of the bottom sheet. */
   .legend { top: 12px; bottom: auto; left: 12px; max-height: calc(100% - 24px); overflow-y: auto; }

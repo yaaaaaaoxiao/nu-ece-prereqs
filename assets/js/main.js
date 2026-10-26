@@ -1,8 +1,10 @@
-// App entry: loads a map, owns the state, keeps the URL in sync and wires the
-// graph, list, plan, panel, search and toolbar together.
-import { CourseMap, combineData, dropWarnings, fetchJSON } from './model.js';
+// App entry: owns the state, routes between the pages (home, a course, a
+// degree map), keeps the URL in sync and wires the graph, list, plan, panel,
+// search and toolbar together.
+import { CourseMap, combineData, dropWarnings, eachCode, fetchJSON, foldOptions } from './model.js';
 import { GraphView } from './graph.js';
 import { renderPanel, aboutHTML, esc, ICON, statusIcon } from './panel.js';
+import { renderHome, courseHref, mapHref } from './home.js';
 import { renderList } from './list.js';
 import { renderPlanView } from './planview.js';
 import { Plan, currentTerm, termLabel, termOrder } from './plan.js';
@@ -49,9 +51,24 @@ const els = {
   legendNote: $('#legend-note'),
   toast: $('#toast'),
   confirm: $('#confirm'),
+  home: $('#home'),
+  homeSearch: $('#home-search'),
+  homeResults: $('#home-results'),
+  workspace: $('#workspace'),
+  splitter: $('#splitter'),
 };
 
 const state = {
+  // 'home' (search courses, or pick a major's pre-req graph), 'course' (one
+  // course and its prerequisite chain) or 'map' (a degree's graph, list and plan).
+  page: 'home',
+  homeTab: 'search', // the toggle above the home search box: 'search' or 'graph'
+  homeQuery: { search: '', graph: '' }, // what's typed on each side of the toggle
+  focus: null, // the course a course page is about
+  depth: prefs.get('courseDepth', 2), // how many layers of prerequisites a course page shows: 1, 2 or 'all'
+  opened: new Set(), // courses on the course page whose earlier courses are all shown ("+3" clicked)
+  all: null, // every course on the site, for search and course pages
+  deptMaps: new Map(), // department -> the map it belongs to: { name, programs }
   map: null,
   programIds: [], // the majors and minors on the map (the student's, or a link's)
   programIndex: new Map(), // every program the maps offer (see indexPrograms)
@@ -81,9 +98,16 @@ const state = {
   expanded: new Set(), // panel parts opened in full: "desc:<course>", "unlocks:<course>"
   preview: null, // a course shown in the panel while the mouse is over it
   showSkipped: false, // show the courses marked "not interested" (faded) on the map and list
+  // "One of several" options: the graph draws the usual one (see foldFor), unless every option is shown.
+  showOptions: prefs.get('showOptions', false),
+  prefer: () => 0, // how usual an option is (usualRank)
+  folded: new Map(), // course -> options folded away from it
+  alts: new Map(), // course on the graph -> the options folded into it
+  foldKey: '', // what's folded on the graph, to tell when it needs drawing again
 };
 let maps = []; // data/maps.json: each map's file, departments and programs
-const loaded = new Map(); // map id -> its data, once fetched
+const loaded = new Map(); // map id -> its data (a promise), fetched once
+const built = new Map(); // a degree map's key -> its CourseMap, so going back to it is instant
 const undoStack = []; // plan snapshots, newest last
 let panelSubject = null; // what the panel showed last render (see render())
 
@@ -93,17 +117,23 @@ const graph = window.d3
     onSelect: (id, opts) => select(id, opts),
     onPick: (ids, opts) => pickCourses(ids, opts),
     onPreview: id => preview(id),
+    onExpand: id => showEarlier(id),
     minimap: $('#minimap'),
   })
   : null;
 graph?.setShowLinks(state.showLinks);
 graph?.setArrange(state.arrange);
 $('#show-links').checked = state.showLinks;
+$('#show-options').checked = state.showOptions;
 
 const search = new Search(els.search, els.results, {
   find: q => (state.map ? state.map.search(q, 8) : []),
   describe: optionHTML,
-  onPick: id => (state.addTerm ? addToTerm(id, state.addTerm) : select(id, { source: 'search' })),
+  onPick: id => {
+    if (state.addTerm) addToTerm(id, state.addTerm);
+    else if (state.page === 'course') go(courseHref(id));
+    else select(id, { source: 'search' });
+  },
   onQuery: q => {
     state.query = q;
     if (state.view === 'list' && state.map && !state.addTerm) renderList(els.list, { map: state.map, state, query: q });
@@ -125,17 +155,26 @@ async function init() {
     document.querySelector('[data-view="graph"]').disabled = true;
     announce('The graph library could not be loaded, so courses are shown as a list.');
   }
+  showPage(pageOf(readURL()));
   setStageStatus('Loading course data…');
   try {
     maps = (await fetchJSON('data/maps.json')).maps;
     if (!maps.length) throw new Error('data/maps.json lists no maps.');
     state.programIndex = indexPrograms(maps);
-    await openMap(readURL());
+    state.deptMaps = new Map(maps.flatMap(m => m.departments.map(d =>
+      [d, { name: m.name, programs: m.programs.filter(p => p.default).map(p => p.id) }])));
+    await route(readURL());
   } catch (err) {
-    console.error(err);
-    setStageStatus(`<div class="error"><p><b>Couldn't load the course data.</b></p><p>${esc(err.message)}</p>
-      <button type="button" class="btn" data-action="reload">Try again</button></div>`);
+    loadFailed(err);
   }
+}
+
+// The message goes in the stage, so the home page makes way for it.
+function loadFailed(err) {
+  console.error(err);
+  showPage('map');
+  setStageStatus(`<div class="error"><p><b>Couldn't load the course data.</b></p><p>${esc(err.message)}</p>
+    <button type="button" class="btn" data-action="reload">Try again</button></div>`);
 }
 
 // Every program the maps offer, and the map it belongs to: a major's own map
@@ -179,25 +218,146 @@ async function loadPrograms(ids) {
   const entries = maps.filter(m => files.has(m.id));
   const key = `${entries.map(m => m.id).join('+')}|${homes.join('+')}`;
   if (state.map?.key === key) return false;
-  if (entries.some(m => !loaded.has(m.id))) setStageStatus('Loading course data…');
-  const datas = await Promise.all(entries.map(async m => {
-    if (!loaded.has(m.id)) loaded.set(m.id, await fetchJSON(`data/${m.file}`));
-    return loaded.get(m.id);
-  }));
-  const own = maps.filter(m => homes.includes(m.id));
-  const single = datas.length === 1 && own.length === 1;
-  state.map = new CourseMap(single ? datas[0] : combineData(datas, own.flatMap(m => m.departments),
-    { id: key, name: own.length ? own.map(m => m.name).join(' + ') : 'Your minors' }));
-  state.map.key = key;
-  els.mapName.textContent = state.map.name;
-  els.helpData.innerHTML = aboutHTML(state.map);
+  if (!built.has(key)) {
+    if (entries.some(m => !loaded.has(m.id))) setStageStatus('Loading course data…');
+    const datas = await Promise.all(entries.map(loadData));
+    const own = maps.filter(m => homes.includes(m.id));
+    const single = datas.length === 1 && own.length === 1;
+    const map = new CourseMap(single ? datas[0] : combineData(datas, own.flatMap(m => m.departments),
+      { id: key, name: own.length ? own.map(m => m.name).join(' + ') : 'Your minors' }));
+    map.key = key;
+    built.set(key, map);
+  }
+  useMap(built.get(key));
   return true;
 }
 
-async function openMap(params) {
+function useMap(map) {
+  state.map = map;
+  els.mapName.textContent = map.name;
+  els.helpData.innerHTML = aboutHTML(map);
+}
+
+// One map's data file, fetched once (and again only if it failed).
+function loadData(m) {
+  if (!loaded.has(m.id)) {
+    loaded.set(m.id, fetchJSON(`data/${m.file}`).catch(err => {
+      loaded.delete(m.id);
+      throw err;
+    }));
+  }
+  return loaded.get(m.id);
+}
+
+// Every course on the site in one map, for search and course pages. Each
+// map's departments are its own; the rest are other departments' courses.
+async function loadAll() {
+  if (!state.all) {
+    const datas = await Promise.all(maps.map(loadData));
+    state.all ||= Object.assign(new CourseMap(combineData(datas, maps.flatMap(m => m.departments),
+      { id: 'all', name: 'All courses' })), { key: 'all' });
+  }
+  return state.all;
+}
+
+// ------------------------------------------------------------------ pages
+// Links are real links (they can be copied or opened in a new tab); going
+// to one pushes it and opens its page.
+
+// A link names programs (or, in older links, a map, view or highlight) for a
+// degree map, else a course for its page, else it's the home page.
+function pageOf(p) {
+  if (p.programs || p.map || p.view || (p.hl && !p.hl.startsWith('path:'))) return 'map';
+  return p.course ? 'course' : 'home';
+}
+
+function route(params) {
+  const page = pageOf(params);
+  if (page === 'home') return showHome(params.home === 'graph' ? 'graph' : 'search', params.q || '');
+  if (page === 'course') return showCourse(params.course, params.hl || '');
+  return showMap(params);
+}
+
+function go(href) {
+  history.pushState(null, '', href);
+  route(readURL()).catch(loadFailed);
+}
+
+function homeHref(tab, q = '') {
+  const p = new URLSearchParams();
+  if (tab === 'graph') p.set('home', 'graph');
+  if (q) p.set('q', q);
+  return p.toString() ? `?${p}` : './';
+}
+
+// Which page's parts are on screen, and how much room the details get.
+function showPage(page) {
+  document.body.dataset.page = page;
+  els.home.hidden = page !== 'home';
+  els.workspace.hidden = page === 'home';
+  if (page !== 'map') els.toolbar.hidden = true; // the toolbar holds a degree map's options
+  if (page !== 'home') setPanelWidth(savedPanelWidth());
+}
+
+// Moving to another page drops what was in progress on this one.
+function leavePage() {
+  clearTimeout(previewTimer);
+  state.preview = null;
+  state.picked.clear();
+  state.picking = false;
+  state.addTerm = null;
+  state.highlight = '';
+}
+
+async function showHome(tab, query) {
+  leavePage();
+  state.page = 'home';
+  state.homeTab = tab;
+  state.homeQuery[tab] = query;
+  render({ history: 'replace' });
+  // Ready to type, except on touch screens, where the keyboard would cover the page.
+  if (!touch.matches) els.homeSearch.focus({ preventScroll: true });
+  await loadAll();
+  if (state.page === 'home') render({ history: 'none' });
+}
+
+// A course's page: the course, everything it requires and what it unlocks.
+async function showCourse(id, hl) {
+  const map = await loadAll();
+  if (!map.get(id)) {
+    history.replaceState(null, '', './');
+    return showHome('search', '');
+  }
+  leavePage();
+  if (id !== state.focus) state.opened.clear();
+  state.page = 'course';
+  showPage('course'); // the stage takes this page's size before the graph is laid out
+  useMap(map);
+  state.focus = id;
+  state.selected = id;
+  state.view = 'graph';
+  // Only the student's own programs: a visitor's course page marks none as theirs.
+  state.programIds = ownPrograms();
+  state.highlight = hl === `path:${id}` ? hl : '';
+  derive();
+  setStageStatus('');
+  els.panel.classList.add('is-collapsed'); // phones: the chain first, the details peek
+  layoutGraph({ animate: true }); // from another course page, the cards glide
+  render({ history: 'replace' });
+  syncInsets(); // on phones, once the sheet is open
+  graph?.frame(id);
+  const c = map.get(id);
+  announce(`${map.label(c)}, ${c.title}: what it requires and what it unlocks.`);
+}
+
+async function showMap(params) {
+  leavePage();
   state.programIds = programsFrom(params);
   const fresh = await loadPrograms(state.programIds);
   const before = state.visible;
+  state.page = 'map';
+  showPage('map');
+  state.focus = null;
   derive();
   const map = state.map;
   state.selected = params.course && map.get(params.course) ? params.course : null;
@@ -207,7 +367,7 @@ async function openMap(params) {
   if (!graph && state.view === 'graph') state.view = 'list';
   setStageStatus('');
   if (fresh && graph) {
-    graph.setData(map, state.visible);
+    layoutGraph();
     syncInsets();
     graph.fitAll({ animate: false, minScale: 0.45 });
   } else if (!fresh) {
@@ -228,17 +388,30 @@ function derive() {
   state.activePrograms = state.programIds.map(id => map.program(id)).filter(Boolean);
 
   state.paths = new Map();
-  const visible = new Set(map.courses.filter(c => c.role === 'main').map(c => c.id));
-  if (state.showExternal) {
-    map.required.forEach(id => visible.add(id));
-    state.activePrograms.forEach(p => p.courses.forEach(id => visible.add(id)));
-    [...state.taken, ...state.planned].forEach(id => map.get(id) && visible.add(id));
+  state.prefer = usualRank(map); // before any path is worked out: paths take the usual options too
+  const pathHl = showingPath() ? pathHighlight(state.highlight) : null;
+  const fold = foldFor(map, pathHl);
+  state.folded = fold.folded;
+  let visible;
+  if (state.page === 'course') {
+    // A course page draws its chain, hidden courses and all.
+    visible = chainOf(map, state.focus);
+  } else {
+    visible = new Set(map.courses.filter(c => c.role === 'main').map(c => c.id));
+    if (state.showExternal) {
+      requiredHere(map).forEach(id => visible.add(id));
+      programCourses().forEach(id => map.get(id) && visible.add(id));
+      [...state.taken, ...state.planned].forEach(id => map.get(id) && visible.add(id));
+    }
+    // Courses marked "not interested" leave the map, unless the student asks to see them.
+    if (!state.showSkipped) state.skipped.forEach(id => visible.delete(id));
   }
-  // Courses marked "not interested" leave the map, unless the student asks to see them.
-  if (!state.showSkipped) state.skipped.forEach(id => visible.delete(id));
   // A path being shown brings all of its courses, so all of it is drawn.
-  if (state.showExternal && showingPath()) pathHighlight(state.highlight)?.ids.forEach(id => map.get(id) && visible.add(id));
+  if (pathHl && (state.showExternal || state.page === 'course')) pathHl.ids.forEach(id => map.get(id) && visible.add(id));
   state.visible = visible;
+  state.alts = altsOn(map, fold.alts, visible);
+  state.foldKey = [...visible].filter(id => state.folded.has(id)).sort()
+    .map(id => `${id}:${[...state.folded.get(id)].join()}`).join('|');
   // "Can take now" only means something once some courses are marked taken.
   const planning = [...state.taken].some(id => map.get(id));
   state.ready = new Set(planning
@@ -255,6 +428,93 @@ function derive() {
   if (state.highlight && !highlightOptions().some(h => h.key === state.highlight)) state.highlight = '';
 }
 
+// ------------------------------------------------------ one of several
+// Where a course accepts one of several options (MATH 228-1 or MATH 230-1 or
+// ...), the graph draws the usual one and names the others on its card.
+
+// How usual an option (a list of courses) is; higher is more: one in the
+// student's plan, then one more of their programs ask for, then one more of
+// the site's majors ask for (engineers take MATH 228-1, not MATH 230-1, and
+// GEN_ENG 150 rather than COMP_SCI 150).
+function usualRank(map) {
+  const mine = new Set([...state.taken, ...state.planned]);
+  const own = firstChoices(state.activePrograms);
+  const majors = firstChoices(map.programs.filter(p => p.type === 'major'));
+  const most = (ids, counts) => Math.max(0, ...ids.map(id => counts.get(id) || 0));
+  return ids => (ids.some(id => mine.has(id)) ? 100 : 0) + 10 * Math.min(9, most(ids, own)) + Math.min(9, most(ids, majors));
+}
+
+// How many programs list each course as a requirement's first choice.
+function firstChoices(programs) {
+  const counts = new Map();
+  for (const p of programs) {
+    const ids = new Set(p.lists.flatMap(list => list.items.flatMap(alts => alts[0])));
+    ids.forEach(id => counts.set(id, (counts.get(id) || 0) + 1));
+  }
+  return counts;
+}
+
+// The options folded away, unless the student asked to see every option. A
+// degree map folds only other departments' courses (all of its own are
+// drawn); a course page folds any, but never its own course or the path
+// being shown.
+function foldFor(map, pathHl) {
+  if (state.showOptions) return { folded: new Map(), alts: new Map() };
+  const keep = new Set([...(pathHl?.ids || []), ...(state.page === 'course' ? [state.focus] : [])]);
+  const rank = ids => (ids.some(id => keep.has(id)) ? 1000 : 0) + state.prefer(ids);
+  return foldOptions(map, rank, state.page === 'course' ? undefined : id => map.get(id)?.role !== 'main');
+}
+
+// Other departments' courses that this map's courses require (and recommend),
+// less the options folded away.
+function requiredHere(map) {
+  if (state.showOptions) return map.required;
+  const ids = new Set();
+  for (const c of map.courses) {
+    if (c.role !== 'main') continue;
+    const add = id => { if (!state.folded.get(c.id)?.has(id)) ids.add(id); };
+    eachCode(c.prereq, add);
+    eachCode(c.coreq, add);
+    (c.recommended || []).forEach(add);
+  }
+  return ids;
+}
+
+// The courses of the programs in play: of a requirement's choices, the usual
+// one (all of them while every option is shown).
+function programCourses() {
+  const pick = alts => alts.reduce((best, a) => (state.prefer(a) > state.prefer(best) ? a : best));
+  return state.activePrograms.flatMap(p => p.lists.flatMap(list =>
+    list.items.flatMap(alts => (state.showOptions ? alts.flat() : pick(alts)))));
+}
+
+// What folded into each course on the graph: the other options that the
+// courses it leads to there accept instead. Courses not in the catalog any
+// more (old numbers) are left out, and so is a course page's own course
+// (the page is about it, not its stand-ins).
+function altsOn(map, alts, visible) {
+  const out = new Map();
+  for (const [id, byCourse] of alts) {
+    if (!visible.has(id) || id === graphFocus()) continue;
+    const options = new Map();
+    for (const [target, list] of byCourse) {
+      if (!visible.has(target)) continue;
+      for (const o of list) if (o.every(x => map.get(x) && !map.get(x).missing)) options.set(o.join('+'), o);
+    }
+    // Its own department's versions first: GEN_ENG 151 before COMP_SCI 150.
+    const other = o => Number(map.get(o[0]).dept !== map.get(id).dept);
+    if (options.size) out.set(id, [...options.values()].sort((a, b) => other(a) - other(b)));
+  }
+  return out;
+}
+
+function setShowOptions(on) {
+  state.showOptions = on;
+  prefs.set('showOptions', on);
+  planChanged();
+  announce(on ? 'Showing every option.' : 'Showing the usual option, with the others named on it.');
+}
+
 // "path:<course>" highlights what's still needed for a course, with the
 // quarters to take it in (path.js).
 function pathHighlight(key) {
@@ -267,9 +527,70 @@ function pathHighlight(key) {
 
 const showingPath = () => state.highlight.startsWith('path:');
 
+// A course page's graph: the course, the courses it unlocks directly, and
+// what it requires (the usual option of each "one of") as many layers back
+// as the viewer chose, or all the way back from a course whose "+3" was
+// clicked. A recommended course is drawn, but not what it requires.
+function chainOf(map, id) {
+  const ids = new Set([id, ...map.children.get(id).map(e => e.target)]);
+  const left = new Map([[id, state.depth === 'all' ? Infinity : state.depth]]); // layers still to go back
+  const queue = [id];
+  while (queue.length) {
+    const x = queue.shift();
+    const steps = state.opened.has(x) ? Infinity : left.get(x);
+    if (steps <= 0) continue;
+    for (const e of map.parents.get(x)) {
+      if ((e.kind === 'rec' && x !== id) || state.folded.get(x)?.has(e.source)) continue;
+      ids.add(e.source);
+      const rest = e.kind === 'rec' ? 0 : steps - 1;
+      if (!(left.get(e.source) >= rest)) {
+        left.set(e.source, rest);
+        queue.push(e.source);
+      }
+    }
+  }
+  return ids;
+}
+
+const graphFocus = () => (state.page === 'course' ? state.focus : null);
+
+// "+3" on a course on a course page: draw every course before it.
+function showEarlier(id) {
+  const before = state.visible;
+  state.opened.add(id);
+  derive();
+  relayout(before);
+  render();
+  const added = [...state.visible].filter(x => !before.has(x));
+  if (!added.length) return;
+  syncInsets();
+  graph.showIds([id, ...added], { keep: id });
+  announce(`Showing ${countText(added.length)} before ${state.map.label(state.map.get(id))}.`);
+}
+
+// How far back a course page's prerequisites go: 1 or 2 layers, or all.
+function setDepth(depth) {
+  if (depth === state.depth) return;
+  const before = state.visible;
+  state.depth = depth;
+  prefs.set('courseDepth', depth);
+  state.opened.clear();
+  derive();
+  relayout(before);
+  render();
+  syncInsets();
+  graph?.frame(state.focus, { animate: true });
+  announce(depth === 'all' ? 'Showing everything it requires.'
+    : depth === 1 ? 'Showing only its direct prerequisites.' : 'Showing its prerequisites and theirs.');
+}
+
 // After any change to the plan: recompute, re-lay out the graph if the set of
 // courses on it changed, and redraw.
 function planChanged() {
+  if (state.page === 'home') {
+    render();
+    return;
+  }
   const before = state.visible;
   derive();
   relayout(before);
@@ -277,8 +598,15 @@ function planChanged() {
 }
 
 function relayout(before) {
-  const same = before.size === state.visible.size && [...before].every(id => state.visible.has(id));
-  if (!same && graph) graph.setData(state.map, state.visible, { animate: state.view === 'graph' });
+  const same = before.size === state.visible.size && [...before].every(id => state.visible.has(id))
+    && graph?.foldKey === state.foldKey;
+  if (!same) layoutGraph({ animate: state.view === 'graph' });
+}
+
+// Hands the graph what to draw: the courses, the links folded away, and on a
+// course page, the course it's about.
+function layoutGraph(opts = {}) {
+  graph?.setData(state.map, state.visible, { ...opts, focus: graphFocus(), folded: state.folded, foldKey: state.foldKey });
 }
 
 // Frame the selected course in the part of the graph that nothing covers
@@ -296,25 +624,36 @@ function syncInsets() {
     const peek = isPicking() ? SHEET_PEEK_PICKING : SHEET_PEEK;
     bottom = sheet.classList.contains('is-collapsed') ? peek : sheet.offsetHeight;
   }
-  graph?.setInsets({ top: narrow.matches ? 52 : 0, bottom });
+  // Floating controls cover the top of the stage on phones, and a course page's depth control everywhere.
+  const top = state.page === 'course' ? (narrow.matches ? 98 : 56) : narrow.matches ? 52 : 0;
+  graph?.setInsets({ top, bottom });
 }
 
 function readURL() {
   const p = new URLSearchParams(location.search);
-  return { programs: p.get('programs'), map: p.get('map'), course: p.get('course'), hl: p.get('hl'), view: p.get('view') };
+  return { programs: p.get('programs'), map: p.get('map'), course: p.get('course'), hl: p.get('hl'), view: p.get('view'),
+    home: p.get('home'), q: p.get('q') };
 }
 
 function writeURL(mode) {
   if (mode === 'none') return;
-  const p = new URLSearchParams();
-  // Programs other than the student's own (or, before they pick, the first map's) go in the link.
-  const own = ownPrograms();
-  if (state.programIds.join() !== (own.length ? own : defaultPrograms()).join()) p.set('programs', state.programIds.join(','));
-  if (state.selected) p.set('course', state.selected);
-  if (state.highlight) p.set('hl', state.highlight);
-  if (state.view !== 'graph') p.set('view', state.view);
-  const qs = p.toString();
-  const url = `${location.pathname}${qs ? `?${qs}` : ''}${location.hash}`;
+  let href;
+  if (state.page === 'home') {
+    href = homeHref(state.homeTab, state.homeQuery[state.homeTab].trim());
+  } else if (state.page === 'course') {
+    const p = new URLSearchParams({ course: state.focus });
+    if (showingPath()) p.set('hl', state.highlight);
+    href = `?${p}`;
+  } else {
+    // A degree map's link always names its programs: that's what makes it a map.
+    const p = new URLSearchParams({ programs: state.programIds.join(',') });
+    if (state.selected) p.set('course', state.selected);
+    if (state.highlight) p.set('hl', state.highlight);
+    if (state.view !== 'graph') p.set('view', state.view);
+    href = `?${p}`;
+  }
+  const next = new URL(href, location.href);
+  const url = `${next.pathname}${next.search}${location.hash}`;
   if (url === location.pathname + location.search + location.hash) return;
   history[mode === 'push' ? 'pushState' : 'replaceState'](null, '', url);
 }
@@ -322,8 +661,18 @@ function writeURL(mode) {
 // -------------------------------------------------------------- rendering
 
 function render({ history: mode = 'replace' } = {}) {
+  showPage(state.page);
+  document.title = pageTitle();
+  if (state.page === 'home') {
+    renderHome(els.home, { state, maps });
+    syncControls();
+    writeURL(mode);
+    return;
+  }
   const { map } = state;
   if (!map) return;
+  // A course page keeps its course open, unless a path or courses being marked take the panel.
+  if (state.page === 'course' && !state.selected && !isPicking() && !showingPath()) state.selected = state.focus;
   keepFocus(() => {
     graph?.update(state);
     renderPanel(els.panel, { map, state, repo: repoSlug() });
@@ -343,6 +692,13 @@ function render({ history: mode = 'replace' } = {}) {
   writeURL(mode);
 }
 
+const TITLE = 'Course Prerequisite Map';
+function pageTitle() {
+  const c = state.page === 'course' && state.map?.get(state.focus);
+  if (c) return `${state.map.label(c)} ${c.title} · ${TITLE}`;
+  return state.page === 'map' && state.map ? `${state.map.name} · ${TITLE}` : TITLE;
+}
+
 // Re-rendering replaces controls; put keyboard focus back on the equivalent one.
 const FOCUS_KEYS = ['action', 'select', 'highlight', 'id', 'key', 'status', 'term', 'program', 'view'];
 function keepFocus(fn) {
@@ -355,13 +711,19 @@ function keepFocus(fn) {
 }
 
 function syncControls() {
-  const { view } = state;
+  const { view, page } = state;
+  // The Search / Pre-req graph toggle: a course page is a search result, a degree map a pre-req graph.
+  const mode = page === 'map' ? 'graph' : page === 'course' ? 'search' : state.homeTab;
+  document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-checked', String(b.dataset.mode === mode)));
+  els.toolbar.hidden = page !== 'map' || view === 'plan';
+  if (page === 'home') return;
+  document.querySelectorAll('[data-depth]').forEach(b => b.setAttribute('aria-checked', String(b.dataset.depth === String(state.depth))));
+  syncArrange();
   syncProgramsButton();
   fillHighlightSelect(); // a path is on offer only while it's shown
   els.highlight.value = state.highlight;
   els.highlight.classList.toggle('is-active', !!state.highlight);
   els.showExternal.checked = state.showExternal;
-  els.toolbar.hidden = view === 'plan';
   els.stage.classList.toggle('is-list', view === 'list');
   els.stage.classList.toggle('is-plan', view === 'plan');
   els.list.hidden = view !== 'list';
@@ -485,6 +847,13 @@ function select(id, { source = 'panel', toggle = false } = {}) {
   if (toggle || isPicking()) {
     if (id) togglePick(id);
     else if (!toggle && !state.picking) stopPicking(); // a plain click on empty space
+    return;
+  }
+  // On a course page another course opens its own page; the course itself
+  // stays open (or comes back from a path).
+  if (state.page === 'course') {
+    if (id && id !== state.focus) go(courseHref(id));
+    else if (id && showingPath()) setHighlight('');
     return;
   }
   // Clicking (or pressing Enter on) the selected course again deselects it.
@@ -746,7 +1115,7 @@ async function setPrograms(ids) {
   if (state.selected && !state.map.get(state.selected)) state.selected = null;
   setStageStatus('');
   if (graph) {
-    graph.setData(state.map, state.visible);
+    layoutGraph();
     syncInsets();
     graph.fitAll({ animate: false, minScale: 0.45 });
   }
@@ -845,7 +1214,10 @@ function setArrange(mode) {
   prefs.set('arrange', mode);
   graph?.setArrange(mode);
   syncArrange();
-  if (state.selected) revealSelected();
+  if (state.page === 'course') {
+    syncInsets();
+    graph?.frame(state.focus, { animate: true });
+  } else if (state.selected) revealSelected();
   else graph?.fitAll({ minScale: 0.45 });
   announce(mode === 'level' ? 'Rows are course levels.' : 'Rows are prerequisite steps.');
 }
@@ -854,7 +1226,8 @@ function syncArrange() {
   document.querySelectorAll('[data-arrange]').forEach(b => b.setAttribute('aria-checked', String(b.dataset.arrange === state.arrange)));
   els.legendNote.textContent = state.arrange === 'level'
     ? 'Columns are departments. Each row is a course level (100, 200, 300).'
-    : 'Columns are departments. Each row is a prerequisite step.';
+    : state.page === 'course' ? 'Columns are departments. Rows count the steps before and after this course.'
+      : 'Columns are departments. Each row is a prerequisite step.';
 }
 
 function setView(view) {
@@ -874,6 +1247,51 @@ function toggleSheet() {
   revealSelected();
 }
 
+// On phones the sheet's grip also drags: the sheet follows it and keeps the
+// height it's left at, as a share of the screen. Dragged nearly shut, it
+// closes to a peek.
+const SHEET_MAX = 0.88;
+let sheetDrag = null; // where a drag of the grip started: { y, h, moved }
+let sheetDragged = false; // the click that ends a drag doesn't also toggle the sheet
+const sheetPeek = () => (isPicking() ? SHEET_PEEK_PICKING : SHEET_PEEK);
+
+function useSheetHeight(share) {
+  els.panel.style.setProperty('--sheet-h', share ? `${(share * 100).toFixed(1)}vh` : '');
+}
+useSheetHeight(prefs.get('sheet', null));
+
+els.panel.addEventListener('pointerdown', e => {
+  if (!narrow.matches || e.button || !e.target.closest('.panel-grip')) return;
+  const collapsed = els.panel.classList.contains('is-collapsed');
+  sheetDrag = { y: e.clientY, h: collapsed ? sheetPeek() : els.panel.offsetHeight, moved: false };
+  e.target.setPointerCapture(e.pointerId);
+});
+els.panel.addEventListener('pointermove', e => {
+  if (!sheetDrag || (!sheetDrag.moved && Math.abs(e.clientY - sheetDrag.y) < 6)) return;
+  sheetDrag.moved = true;
+  const h = Math.max(sheetPeek(), Math.min(window.innerHeight * SHEET_MAX, sheetDrag.h + sheetDrag.y - e.clientY));
+  els.panel.classList.add('is-dragging');
+  els.panel.classList.remove('is-collapsed');
+  els.panel.style.setProperty('--sheet-h', `${Math.round(h)}px`);
+});
+els.panel.addEventListener('lostpointercapture', () => {
+  const drag = sheetDrag;
+  sheetDrag = null;
+  if (!drag?.moved) return;
+  els.panel.classList.remove('is-dragging');
+  sheetDragged = true;
+  setTimeout(() => { sheetDragged = false; }, 400);
+  if (els.panel.offsetHeight < sheetPeek() + 60) {
+    els.panel.classList.add('is-collapsed');
+    useSheetHeight(prefs.get('sheet', null));
+  } else {
+    const share = els.panel.offsetHeight / window.innerHeight;
+    prefs.set('sheet', share);
+    useSheetHeight(share);
+  }
+  revealSelected({ force: false });
+});
+
 function setShowExternal(on) {
   state.showExternal = on;
   prefs.set('showExternal', on);
@@ -887,6 +1305,134 @@ function zoom(kind) {
   else if (kind === 'out') graph.zoomBy(1 / 1.3);
   else graph.fitAll();
 }
+
+// ---------------------------------------------------------------- home
+
+// The toggle above the search box. On the home page it switches what the box
+// finds; elsewhere it goes back home to that side.
+function chooseMode(mode) {
+  if (state.page !== 'home') {
+    go(homeHref(mode, state.homeQuery[mode].trim()));
+    return;
+  }
+  if (mode === state.homeTab) return;
+  state.homeTab = mode;
+  render();
+  els.homeSearch.focus();
+}
+
+// A suggestion under the home search box: search for it.
+function searchFor(query) {
+  state.homeQuery.search = query;
+  render();
+  els.homeSearch.focus();
+}
+
+els.homeSearch.addEventListener('input', () => {
+  state.homeQuery[state.homeTab] = els.homeSearch.value;
+  render();
+});
+
+// Enter opens the first result; the arrow keys move between the results.
+els.home.addEventListener('keydown', e => {
+  const links = [...els.homeResults.querySelectorAll('a[data-route]')];
+  if (e.target === els.homeSearch) {
+    if (e.key === 'Enter' && links.length) {
+      e.preventDefault();
+      links[0].click();
+    } else if (e.key === 'ArrowDown' && links.length) {
+      e.preventDefault();
+      links[0].focus();
+    }
+    return;
+  }
+  const i = links.indexOf(e.target);
+  if (i < 0 || (e.key !== 'ArrowDown' && e.key !== 'ArrowUp')) return;
+  e.preventDefault();
+  if (e.key === 'ArrowUp' && i === 0) els.homeSearch.focus();
+  else links[Math.max(0, Math.min(links.length - 1, i + (e.key === 'ArrowDown' ? 1 : -1)))].focus();
+});
+
+// ---------------------------------------------------------------- splitter
+// The edge between the graph and the details panel can be dragged (or moved
+// with the arrow keys) to give either more room. A course page and a degree
+// map each remember their split, as a share of the window; a course page
+// starts with more room for its course.
+
+const PANEL_MIN = 300;
+const STAGE_MIN = 320;
+let panelPx = 0; // the panel's width now
+let grab = null; // where a drag of the splitter started: { x, w }
+let splitTimer;
+const splitPref = page => (page === 'course' ? 'split.course' : 'split.map');
+const workspaceWidth = () => els.workspace.clientWidth || window.innerWidth;
+
+function savedPanelWidth(page = document.body.dataset.page) {
+  const total = workspaceWidth();
+  const share = prefs.get(splitPref(page), null);
+  if (share) return share * total;
+  return page === 'course' ? Math.min(720, Math.max(400, total * 0.42)) : 380;
+}
+
+// `pan` keeps what's in the middle of the graph in the middle while the user resizes.
+function setPanelWidth(px, { pan = false } = {}) {
+  const total = workspaceWidth();
+  const w = Math.round(Math.max(PANEL_MIN, Math.min(total - STAGE_MIN, px)));
+  if (pan && panelPx && w !== panelPx) graph?.panBy(panelPx - w);
+  panelPx = w;
+  document.body.style.setProperty('--panel-w', `${w}px`);
+  els.splitter.setAttribute('aria-valuemin', String(Math.round((PANEL_MIN / total) * 100)));
+  els.splitter.setAttribute('aria-valuemax', String(Math.round(((total - STAGE_MIN) / total) * 100)));
+  els.splitter.setAttribute('aria-valuenow', String(Math.round((w / total) * 100)));
+}
+
+function saveSplit() {
+  prefs.set(splitPref(state.page), panelPx / workspaceWidth());
+}
+
+function resetSplit() {
+  prefs.set(splitPref(state.page), undefined);
+  setPanelWidth(savedPanelWidth(), { pan: true });
+  afterResize();
+}
+
+// The stage changed size: the graph may suit other column counts now.
+function afterResize() {
+  if (state.page === 'home' || state.view !== 'graph' || !graph?.refit()) return;
+  syncInsets();
+  if (state.page === 'course') graph.frame(state.focus, { animate: true });
+  else revealSelected({ force: false });
+}
+
+els.splitter.addEventListener('pointerdown', e => {
+  if (e.button) return;
+  e.preventDefault();
+  els.splitter.setPointerCapture(e.pointerId);
+  grab = { x: e.clientX, w: panelPx };
+  document.body.classList.add('is-resizing');
+});
+els.splitter.addEventListener('pointermove', e => {
+  if (grab) setPanelWidth(grab.w + grab.x - e.clientX, { pan: true });
+});
+els.splitter.addEventListener('lostpointercapture', () => {
+  if (!grab) return;
+  grab = null;
+  document.body.classList.remove('is-resizing');
+  saveSplit();
+  afterResize();
+});
+els.splitter.addEventListener('dblclick', resetSplit);
+// Left and right move the edge (Shift: further); Home and End take it as far as it goes.
+els.splitter.addEventListener('keydown', e => {
+  const step = e.shiftKey ? 120 : 40;
+  const to = { ArrowLeft: panelPx + step, ArrowRight: panelPx - step, Home: PANEL_MIN, End: Infinity }[e.key];
+  if (to === undefined) return;
+  e.preventDefault();
+  setPanelWidth(to, { pan: true });
+  saveSplit();
+  clearTimeout(splitTimer);
+  splitTimer = setTimeout(afterResize, 300);
+});
 
 // ------------------------------------------------------------------- theme
 
@@ -905,21 +1451,38 @@ function syncThemeButton() {
 // ------------------------------------------------------------------ events
 
 document.addEventListener('click', e => {
+  // Links between pages open here (with a modifier key, the browser handles them).
+  const link = e.target.closest('a[data-route]');
+  if (link) {
+    if (!e.button && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+      e.preventDefault();
+      go(link.getAttribute('href'));
+    }
+    return;
+  }
   // Tapping a collapsed sheet (anywhere but its buttons) expands it.
   if (narrow.matches && els.panel.classList.contains('is-collapsed') && e.target.closest('#panel')
       && !e.target.closest('[data-action], select')) {
     toggleSheet();
     return;
   }
-  const t = e.target.closest('[data-select], [data-action], [data-highlight], [data-zoom], [data-view], [data-arrange]');
+  const t = e.target.closest('[data-select], [data-action], [data-highlight], [data-zoom], [data-view], [data-arrange], [data-depth], [data-mode], [data-query]');
   if (!t || t.disabled || t.tagName === 'SELECT') return;
   const { action, id } = t.dataset;
   const toggle = state.view !== 'plan' && (e.shiftKey || e.metaKey || e.ctrlKey);
   if (t.dataset.select) select(t.dataset.select, { source: t.closest('#list') ? 'list' : 'panel', toggle });
+  // On a course page, a program's list opens that program's map, with the list highlighted.
+  else if (t.dataset.highlight && t.dataset.program && state.page === 'course') {
+    go(`${mapHref([t.dataset.program])}&${new URLSearchParams({ course: state.focus, hl: t.dataset.highlight })}`);
+  }
   else if (t.dataset.highlight) setHighlight(state.highlight === t.dataset.highlight ? '' : t.dataset.highlight);
+  else if (t.dataset.mode) chooseMode(t.dataset.mode);
+  else if (t.dataset.query !== undefined) searchFor(t.dataset.query);
+  else if (action === 'open-map') go(`${mapHref(t.dataset.programs.split(','))}&${new URLSearchParams({ course: state.focus })}`);
   else if (t.dataset.zoom) zoom(t.dataset.zoom);
   else if (t.dataset.view) setView(t.dataset.view);
   else if (t.dataset.arrange) setArrange(t.dataset.arrange);
+  else if (t.dataset.depth) setDepth(t.dataset.depth === 'all' ? 'all' : Number(t.dataset.depth));
   else if (action === 'close') select(null);
   else if (action === 'set-status') mark([id], t.dataset.status);
   else if (action === 'pick-status') markPicked(t.dataset.status);
@@ -943,7 +1506,7 @@ document.addEventListener('click', e => {
   else if (action === 'remove-program') setPrograms(state.programIds.filter(p => p !== t.dataset.program));
   else if (action === 'clear-plan') clearPlan();
   else if (action === 'clear-highlight') setHighlight('');
-  else if (action === 'toggle-sheet') toggleSheet();
+  else if (action === 'toggle-sheet' && !sheetDragged) toggleSheet();
   else if (action === 'reload') window.location.reload();
 });
 
@@ -1001,13 +1564,13 @@ $('#show-links').addEventListener('change', e => {
   prefs.set('showLinks', state.showLinks);
   graph?.setShowLinks(state.showLinks);
 });
-// The layout picks column counts to suit the stage's shape.
+$('#show-options').addEventListener('change', e => setShowOptions(e.target.checked));
+// The panel keeps its share of the window; the layout picks column counts to suit the stage's shape.
 let resizeTimer;
 window.addEventListener('resize', () => {
+  if (state.page !== 'home') setPanelWidth(savedPanelWidth());
   clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    if (state.view === 'graph' && graph?.refit()) revealSelected({ force: false });
-  }, 250);
+  resizeTimer = setTimeout(afterResize, 250);
 });
 els.showExternal.addEventListener('change', () => setShowExternal(els.showExternal.checked));
 narrow.addEventListener('change', () => state.map && syncControls());
@@ -1022,7 +1585,7 @@ els.themeBtn.addEventListener('click', () => {
   syncThemeButton();
 });
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncThemeButton);
-window.addEventListener('popstate', () => openMap(readURL()));
+window.addEventListener('popstate', () => route(readURL()).catch(loadFailed));
 // Focusing an off-screen node must never scroll the stage itself.
 els.stage.addEventListener('scroll', () => { els.stage.scrollTop = 0; els.stage.scrollLeft = 0; });
 
@@ -1036,10 +1599,16 @@ document.addEventListener('keydown', e => {
     }
   } else if (e.key === '/' && !typing) {
     e.preventDefault();
-    els.search.focus();
+    (state.page === 'home' ? els.homeSearch : els.search).focus();
+  } else if (state.page === 'home') {
+    // The home page has no courses to mark or zoom.
   } else if (e.key === 'Escape' && (isPicking() || state.selected || state.highlight)) {
-    // Step back one level: the multi-selection, the selected course, then the highlight.
+    // Step back one level: the multi-selection, the selected course, then the
+    // highlight. A course page's course stays.
     if (isPicking()) stopPicking();
+    else if (state.page === 'course') {
+      if (state.highlight) setHighlight('');
+    }
     else if (state.selected) select(null);
     else setHighlight('');
   } else if (!typing && !e.metaKey && !e.ctrlKey && !e.altKey) {

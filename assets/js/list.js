@@ -85,7 +85,7 @@ function rowHTML(map, c, state) {
 }
 
 // F W S, as on the map: dark where the course runs this year.
-function offeredHTML(map, c) {
+export function offeredHTML(map, c) {
   const scheduled = map.quarters.length && (c.role === 'main' || Object.keys(c.offered || {}).length);
   if (!scheduled) return '';
   const on = map.quarters.filter(q => c.offered?.[q]);

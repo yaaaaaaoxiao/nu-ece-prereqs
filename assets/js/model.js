@@ -44,6 +44,93 @@ export const codesIn = tree => {
   return out;
 };
 
+// A course's requirement trees: its prerequisites and corequisites, or for
+// another department's course, the ones read from its catalog text.
+export function requirementTrees(c) {
+  if (!c) return [];
+  return (c.role === 'main' ? [c.prereq, c.coreq] : [c.autoPrereq]).filter(Boolean);
+}
+
+// MATH 228-1 is the earlier part of MATH 228-2's sequence.
+export function earlierPart(map, id, of) {
+  const a = map.get(id);
+  const b = map.get(of);
+  if (!a || !b || a.dept !== b.dept) return false;
+  const [numA, partA] = a.num.split('-');
+  const [numB, partB] = b.num.split('-');
+  return numA === numB && Number(partA) < Number(partB);
+}
+
+// [a, b, ...] keys compared in order: does `a` come after `b`?
+const isAfter = (a, b) => {
+  const i = a.findIndex((v, j) => v !== b[j]);
+  return i >= 0 && a[i] > b[i];
+};
+
+// "One of several" requirements, folded: of each group of options only the
+// usual one is drawn, and the others fold into it. `rank` scores an option
+// (a list of courses; higher is more usual); ties go to the earlier part of
+// the course's own sequence (MATH 228-1 for MATH 228-2), then to the option
+// more courses require (so groups pick alike and fewer cards are drawn),
+// then to the option listed first. Options fold only if `canFold` passes all
+// their courses.
+// Where a course's requirements couldn't be read as a tree, parallel versions
+// among the courses its catalog text names fold the same way (GEN_ENG 151
+// into GEN_ENG 150).
+//
+// Returns `folded` (course -> the courses before it that aren't drawn) and
+// `alts` (usual course -> course it's an option for -> the other options).
+export function foldOptions(map, rank, canFold = () => true) {
+  const folded = new Map();
+  const alts = new Map();
+  for (const c of map.courses) {
+    const keep = new Set();
+    const drop = new Set();
+    // Which options fold into the usual one.
+    const choose = options => {
+      const uses = ids => Math.max(...ids.map(id => map.children.get(id)?.length || 0));
+      const score = i => [rank(options[i]), options[i].length === 1 && earlierPart(map, options[i][0], c.id) ? 1 : 0,
+        uses(options[i]), -i];
+      let best = 0;
+      options.forEach((ids, i) => { if (isAfter(score(i), score(best))) best = i; });
+      const foldable = options.map((ids, i) => i !== best && ids.every(canFold));
+      const others = options.filter((ids, i) => foldable[i]);
+      if (others.length && options[best].length === 1) {
+        if (!alts.has(options[best][0])) alts.set(options[best][0], new Map());
+        const into = alts.get(options[best][0]);
+        into.set(c.id, [...(into.get(c.id) || []), ...others]);
+      }
+      return foldable;
+    };
+    const visit = (tree, drawn) => {
+      if (typeof tree === 'string') {
+        (drawn ? keep : drop).add(tree);
+        return;
+      }
+      const [op, items] = Object.entries(tree)[0];
+      const foldable = op === 'or' && drawn ? choose(items.map(codesIn)) : [];
+      items.forEach((t, i) => visit(t, drawn && !foldable[i]));
+    };
+    const trees = requirementTrees(c);
+    trees.forEach(t => visit(t, true));
+    if (!trees.length) {
+      const named = map.parents.get(c.id).map(e => e.source);
+      const seen = new Set();
+      for (const id of named) {
+        if (seen.has(id)) continue;
+        const group = named.filter(x => x === id || map.parallels.get(id)?.has(x));
+        group.forEach(x => seen.add(x));
+        if (group.length < 2) continue;
+        const foldable = choose(group.map(x => [x]));
+        group.forEach((x, i) => (foldable[i] ? drop : keep).add(x));
+      }
+    }
+    const gone = [...drop].filter(id => !keep.has(id));
+    if (gone.length) folded.set(c.id, new Set(gone));
+  }
+  return { folded, alts };
+}
+
 // One map's data from several maps' files (a student's majors and minors).
 // Courses in `mainDepts` are the map's own; a course another file has as its
 // own, hand-checked, keeps that tree (as autoPrereq) when it isn't one here.
@@ -136,6 +223,28 @@ export class CourseMap {
       this.children.get(e.source).push(e);
     }
 
+    // Parallel versions: one department's courses offered as options for
+    // each other ("MATH 228-1 or MATH 230-1"), neither needing the other.
+    this.parallels = new Map();
+    const pair = (a, b) => {
+      if (!this.parallels.has(a)) this.parallels.set(a, new Set());
+      this.parallels.get(a).add(b);
+    };
+    const options = tree => {
+      if (!tree || typeof tree === 'string') return;
+      const [op, items] = Object.entries(tree)[0];
+      items.forEach(options);
+      if (op !== 'or') return;
+      const ids = items.filter(t => typeof t === 'string' && this.byId.has(t));
+      for (const a of ids) {
+        for (const b of ids) {
+          const same = a !== b && this.byId.get(a).dept === this.byId.get(b).dept;
+          if (same && !this.ancestors(a).has(b) && !this.ancestors(b).has(a)) pair(a, b);
+        }
+      }
+    };
+    this.courses.forEach(c => requirementTrees(c).forEach(options));
+
     // Courses from other departments that a course here requires; they're
     // always worth showing. Others appear only through a chosen program.
     this.required = new Set();
@@ -147,8 +256,9 @@ export class CourseMap {
     }
 
     // Majors/minors. Each requirement list has items; an item is a list of
-    // alternatives, each a list of courses taken together.
-    this.programs = data.programs || [];
+    // alternatives, each a list of courses taken together. Each map keeps its
+    // own copies: maps built from the same file mark different courses.
+    this.programs = (data.programs || []).map(p => ({ ...p, lists: p.lists.map(list => ({ ...list })) }));
     this.highlights = [];
     this.membership = new Map();
     for (const program of this.programs) {
@@ -197,7 +307,7 @@ export class CourseMap {
   }
 
   label(c) {
-    const abbr = this.data.departments[c.dept]?.abbr ?? c.dept;
+    const abbr = this.data.departments[c.dept]?.abbr ?? c.dept.replace(/_/g, ' ');
     return `${abbr} ${c.num.replace(/-0$/, '')}`;
   }
 

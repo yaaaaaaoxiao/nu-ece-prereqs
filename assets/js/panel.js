@@ -245,6 +245,8 @@ function pathNotesHTML(map, path, state) {
 
 // ------------------------------------------------------------------ course
 
+// A wide panel (a course page's, or one the student widened) shows the
+// course in two columns: the student's side, then the course's facts.
 function courseHTML(map, c, state, repo) {
   const units = c.units ? ` · ${c.units} unit${c.units === 1 ? '' : 's'}` : '';
   return `
@@ -253,18 +255,25 @@ function courseHTML(map, c, state, repo) {
         <p class="eyebrow">${esc(map.deptName(c))}${units}</p>
         <h2>${codeHTML(map, c)}${esc(c.title || 'Not in the current catalog')}</h2>
       </div>
-      <button type="button" class="icon-btn" data-action="close" aria-label="Close details">${ICON.close}</button>
+      ${state.page === 'course' ? '' : `<button type="button" class="icon-btn" data-action="close" aria-label="Close details">${ICON.close}</button>`}
     </div>
     ${skippedHTML(map, c, state)}
     ${descHTML(map, c, state)}
-    ${planControlHTML(map, c, state)}
-    ${statusHTML(map, c, state)}
-    ${pathSummaryHTML(map, c, state)}
-    ${requirementsHTML(map, c, state)}
-    ${scheduleHTML(map, c)}
-    ${unlocksHTML(map, c, state)}
-    ${programsHTML(map, c, state)}
-    ${sourceHTML(map, c, repo)}`;
+    <div class="course-cols">
+      <div class="course-col">
+        ${planControlHTML(map, c, state)}
+        ${statusHTML(map, c, state)}
+        ${pathSummaryHTML(map, c, state)}
+        ${requirementsHTML(map, c, state)}
+      </div>
+      <div class="course-col">
+        ${scheduleHTML(map, c)}
+        ${altsHTML(map, c, state)}
+        ${unlocksHTML(map, c, state)}
+        ${programsHTML(map, c, state)}
+        ${sourceHTML(map, c, repo)}
+      </div>
+    </div>`;
 }
 
 // "EE 302" as on the map, with the catalog's own number when it reads
@@ -404,6 +413,17 @@ function requirementsHTML(map, c, state) {
   return html;
 }
 
+// The options folded into this course on the graph: the courses it leads to
+// there also accept these (see foldFor in main.js).
+function altsHTML(map, c, state) {
+  const options = state.alts.get(c.id);
+  if (!options) return '';
+  return `<section><h3>Or instead <span class="h3-count">${options.length}</span></h3>
+    <p class="muted">The courses it leads to here also accept any of these in its place.</p>
+    <ul class="chip-list">${options.map(o => `<li>${o.map(id => chip(map, id, state, 'none')).join('')}</li>`).join('')}</ul>
+  </section>`;
+}
+
 // A long list shows its first few, so the sections after it stay in reach.
 const FEW_UNLOCKS = 6;
 function unlocksHTML(map, c, state) {
@@ -411,7 +431,8 @@ function unlocksHTML(map, c, state) {
   if (!links.length) {
     return '<section><h3>Unlocks</h3><p class="muted">No course on this map needs it.</p></section>';
   }
-  const total = [...map.descendants(c.id)].filter(id => state.visible.has(id)).length;
+  // A course page draws only the first step after the course, so count them all.
+  const total = [...map.descendants(c.id)].filter(id => state.page === 'course' || state.visible.has(id)).length;
   const key = `unlocks:${c.id}`;
   const long = links.length > FEW_UNLOCKS + 2;
   const open = state.expanded.has(key);
@@ -422,15 +443,23 @@ function unlocksHTML(map, c, state) {
     total > links.length ? `<p class="muted section-note">Leads to ${total} courses in all.</p>` : ''}</section>`;
 }
 
-// Requirement lists this course appears in, yours first.
+// Requirement lists this course appears in, yours first. On a degree map each
+// highlights its list; on a course page each opens its program's map.
 function programsHTML(map, c, state) {
+  const page = state.page === 'course';
   const entries = [...(map.membership.get(c.id) || [])]
     .sort((a, b) => Number(state.myPrograms.has(b.program.id)) - Number(state.myPrograms.has(a.program.id)));
-  if (!entries.length) return '';
-  const items = entries.map(m => `<li><button type="button" data-highlight="${esc(m.key)}" aria-pressed="${m.key === state.highlight}"
-      title="Highlight every course in this list"><span class="d-name">${esc(m.program.name)}${
-      state.myPrograms.has(m.program.id) ? ' <span class="mine">yours</span>' : ''}</span>
-      <span class="d-group">${esc(m.list.label)}</span></button></li>`).join('');
+  if (!entries.length) {
+    // In no program's lists: its department's map, if it has one.
+    const home = page && state.deptMaps.get(c.dept);
+    return home?.programs.length ? `<section><h3>Degree map</h3><button type="button" class="btn" data-action="open-map"
+      data-programs="${esc(home.programs.join(','))}">Open the ${esc(home.name)} map</button></section>` : '';
+  }
+  const items = entries.map(m => `<li><button type="button" data-highlight="${esc(m.key)}" data-program="${esc(m.program.id)}"
+      aria-pressed="${!page && m.key === state.highlight}"
+      title="${page ? 'Open this program’s map with this list highlighted' : 'Highlight every course in this list'}">
+      <span class="d-name">${esc(m.program.name)}${state.myPrograms.has(m.program.id) ? ' <span class="mine">yours</span>' : ''}</span>
+      <span class="d-group">${esc(m.list.label)}</span>${page ? '<span class="d-open">Open map ›</span>' : ''}</button></li>`).join('');
   return `<section><h3>Counts toward</h3><ul class="degree-list">${items}</ul></section>`;
 }
 

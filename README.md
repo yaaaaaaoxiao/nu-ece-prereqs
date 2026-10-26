@@ -56,13 +56,26 @@ take next, and highlight a degree requirement, technical track or quarter.
   tab shows each program's requirement lists checked against your plan, and flags
   courses that count toward more than one. It's a checklist from the catalog, not an
   official degree audit.
+- **One of several, simplified:** where a course accepts any of several (MATH 228-1 or
+  MATH 230-1 or the MENU and ISP sequences; CHEM 131, 151 or 171), graphs show the usual
+  one: the one you took or planned, else what your programs list, else what most majors
+  list. Its card has cards stacked behind it and names the others ("or MATH 230-1 +5"),
+  and its panel lists them. **Show every option** in the legend draws them all. Paths take
+  the usual options too.
 - **Highlights:** degree requirements, technical tracks/areas, and what's offered each quarter.
-- **Search** by number or title (`EE 221`, `ce303`, `signals`).
+- **Search first:** the home page is one search box with a toggle above it. **Search**
+  finds any course on the site by number or title (`EE 221`, `ce303`, `signal`), and each
+  course has its own page: its prerequisites two layers back (or just the direct ones, or
+  all of them), the courses it unlocks, and its details beside them. A fading line and
+  "+3" mark a course with more prerequisites; click "+3" to show them. Drag the edge of
+  the details panel to give the graph or the details more room. **Pre-req graph** picks
+  a major and opens its map.
 - **List view:** an accessible, phone-friendly alternative to the graph, with quick
   filters (can take now, taken, planned), a plan status on every row and the quarters
   each course runs (Shift-click rows to select several here too).
-- **Shareable links:** the URL keeps the selected course, highlight and view
-  (e.g. `?course=ELEC_ENG+222-0`). Back/forward work.
+- **Shareable links:** every page has its own link: a search (`?q=signal`), a course's
+  page (`?course=ELEC_ENG+222-0`), or a degree map with its selected course, highlight
+  and view (`?programs=ee-bs&course=ELEC_ENG+222-0`). Back/forward work.
 - Keyboard support, dark mode, phone layout.
 
 ## Run it locally
@@ -82,8 +95,9 @@ Then open <http://localhost:8000>.
 index.html              page shell
 assets/css/style.css    all styles (light/dark tokens at the top)
 assets/js/
-  main.js               state, URL sync, wiring
-  model.js              data model: edges, chains, search, programs, progress
+  main.js               state, pages and URLs, wiring
+  home.js               home page: course search and the major picker
+  model.js              data model: edges, chains, "one of" options, search, programs, progress
   plan.js               the viewer's plan: statuses, quarters, prerequisite checks
   path.js               path to a course: fewest courses still needed, by quarter
   graph.js              layout (prerequisite steps or levels) + SVG, pan/zoom, keyboard nav
