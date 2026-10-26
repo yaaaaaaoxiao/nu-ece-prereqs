@@ -250,6 +250,7 @@ function courseHTML(map, c, state, repo) {
       </div>
       <button type="button" class="icon-btn" data-action="close" aria-label="Close details">${ICON.close}</button>
     </div>
+    ${descHTML(map, c, state)}
     ${planControlHTML(map, c, state)}
     ${statusHTML(map, c, state)}
     ${pathSummaryHTML(map, c, state)}
@@ -258,6 +259,27 @@ function courseHTML(map, c, state, repo) {
     ${programsHTML(map, c, state)}
     ${scheduleHTML(map, c)}
     ${sourceHTML(map, c, repo)}`;
+}
+
+// The catalog's description, under the title. Course codes in it link to the
+// course when it's on this map; a long one shows its first lines until opened.
+const LONG_DESC = 260; // characters, about four lines of the panel
+function descHTML(map, c, state) {
+  if (!c.desc) return '';
+  const long = c.desc.length > LONG_DESC;
+  const open = state.openDescs.has(c.id);
+  return `<div class="desc${long && !open ? ' is-clamped' : ''}"><p>${linkCodes(map, c.desc, c.id)}</p>${long
+    ? `<button type="button" class="link-btn desc-more" data-action="toggle-desc" data-id="${esc(c.id)}"
+        aria-expanded="${open}">${open ? 'Show less' : 'Show more'}</button>` : ''}</div>`;
+}
+
+// "Taught with COMP_ENG 346-0": a code becomes a link when the course is on the
+// map (other than the course itself).
+function linkCodes(map, text, self) {
+  return esc(text).replace(/\b([A-Z][A-Z_]+) (\d{3}-\d)\b/g, (code, dept, num) => {
+    const c = `${dept} ${num}` !== self && map.get(`${dept} ${num}`);
+    return c ? `<button type="button" class="code-link" data-select="${dept} ${num}">${esc(map.label(c))}</button>` : code;
+  });
 }
 
 // Not taken / Planned / Taken, plus the quarter.
@@ -397,7 +419,7 @@ function sourceHTML(map, c, repo) {
     : '<p class="muted">The catalog lists no prerequisites.</p>';
   const report = repo
     ? `<a href="${esc(issueURL(repo, map, c))}" target="_blank" rel="noopener">Report a problem ${ICON.external}</a>` : '';
-  return `<section><h3>Catalog text</h3>${text}
+  return `<section><h3>Prerequisites as written</h3>${text}
     ${review ? `<p class="review-note${c.reviewed && c.role === 'main' ? ' ok' : ''}">${esc(review)}</p>` : ''}
     <div class="links"><a href="${esc(c.url)}" target="_blank" rel="noopener">Open in the catalog ${ICON.external}</a>${report}</div>
   </section>`;

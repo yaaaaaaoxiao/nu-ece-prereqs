@@ -1,0 +1,1926 @@
+{
+ "id": "mse",
+ "name": "Materials Science & Engineering",
+ "generated": "2026-10-25",
+ "catalogYear": "2026-2027",
+ "quarters": [
+  "Fall 2026",
+  "Winter 2027",
+  "Spring 2027"
+ ],
+ "departments": {
+  "MAT_SCI": {
+   "name": "Materials Science & Engineering",
+   "abbr": "MSE",
+   "main": true
+  },
+  "BMD_ENG": {
+   "name": "Biomedical Engineering",
+   "abbr": "BME",
+   "main": false
+  },
+  "CHEM": {
+   "name": "Chemistry",
+   "abbr": "CHEM",
+   "main": false
+  },
+  "COMM_ST": {
+   "name": "Communication Studies",
+   "abbr": "COMM_ST",
+   "main": false
+  },
+  "DSGN": {
+   "name": "Segal Design Institute",
+   "abbr": "DSGN",
+   "main": false
+  },
+  "ENGLISH": {
+   "name": "English",
+   "abbr": "ENGLISH",
+   "main": false
+  },
+  "ENTREP": {
+   "name": "Entrepreneurship & Innovation",
+   "abbr": "ENTREP",
+   "main": false
+  },
+  "GEN_ENG": {
+   "name": "General Engineering",
+   "abbr": "GEN ENG",
+   "main": false
+  },
+  "MATH": {
+   "name": "Mathematics",
+   "abbr": "MATH",
+   "main": false
+  },
+  "PERF_ST": {
+   "name": "Performance Studies",
+   "abbr": "PERF_ST",
+   "main": false
+  },
+  "PHYSICS": {
+   "name": "Physics",
+   "abbr": "PHYS",
+   "main": false
+  },
+  "PRDV": {
+   "name": "Personal Development",
+   "abbr": "PRDV",
+   "main": false
+  }
+ },
+ "programs": [
+  {
+   "id": "mse-bs",
+   "name": "Materials Science and Engineering BS",
+   "type": "major",
+   "url": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/materials-science-engineering/materials-science-engineering-degree/",
+   "default": true,
+   "lists": [
+    {
+     "label": "Mathematics",
+     "kind": "core",
+     "need": 4,
+     "items": [
+      [
+       [
+        "MATH 220-1"
+       ]
+      ],
+      [
+       [
+        "MATH 220-2"
+       ]
+      ],
+      [
+       [
+        "MATH 228-1"
+       ]
+      ],
+      [
+       [
+        "MATH 228-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Basic science",
+     "kind": "core",
+     "need": 2,
+     "items": [
+      [
+       [
+        "PHYSICS 135-2",
+        "PHYSICS 135-3"
+       ]
+      ],
+      [
+       [
+        "CHEM 131-0",
+        "CHEM 132-0"
+       ],
+       [
+        "CHEM 151-0",
+        "CHEM 152-0"
+       ],
+       [
+        "CHEM 171-0",
+        "CHEM 172-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Engineering foundations",
+     "kind": "core",
+     "need": 3,
+     "items": [
+      [
+       [
+        "GEN_ENG 150-0"
+       ],
+       [
+        "GEN_ENG 151-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 231-0"
+       ]
+      ],
+      [
+       [
+        "GEN_ENG 241-0"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Design and writing",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "DSGN 106-1",
+        "DSGN 106-2"
+       ]
+      ],
+      [
+       [
+        "ENGLISH 106-1",
+        "ENGLISH 106-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Speaking or innovation",
+     "kind": "core",
+     "need": 1,
+     "items": [
+      [
+       [
+        "COMM_ST 102-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 225-0"
+       ]
+      ],
+      [
+       [
+        "ENTREP 325-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 103-0"
+       ]
+      ],
+      [
+       [
+        "PERF_ST 203-0"
+       ]
+      ],
+      [
+       [
+        "PRDV 335-0"
+       ]
+      ],
+      [
+       [
+        "BMD_ENG 390-2"
+       ]
+      ]
+     ]
+    },
+    {
+     "label": "Required courses",
+     "kind": "required",
+     "need": 13,
+     "items": [
+      [
+       [
+        "GEN_ENG 251-0"
+       ]
+      ],
+      [
+       [
+        "PHYSICS 135-1"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 301-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 314-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 315-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 316-1",
+        "MAT_SCI 316-2"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 331-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 332-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 351-1",
+        "MAT_SCI 351-2"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 361-0"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 390-1"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 390-2"
+       ]
+      ],
+      [
+       [
+        "MAT_SCI 396-1",
+        "MAT_SCI 396-2"
+       ]
+      ]
+     ]
+    }
+   ],
+   "notes": [
+    "Major Program (22 units)",
+    "6 technical elective courses in engineering, natural sciences (usually chemistry or physics), and mathematics chosen to fulfill an area of concentration"
+   ]
+  }
+ ],
+ "sources": [
+  "https://catalogs.northwestern.edu/undergraduate/courses-az/mat_sci/",
+  "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/materials-science-engineering/materials-science-engineering-degree/",
+  "https://www.mccormick.northwestern.edu/materials-science/academics/courses/"
+ ],
+ "courses": [
+  {
+   "id": "MAT_SCI 190-0",
+   "dept": "MAT_SCI",
+   "num": "190-0",
+   "title": "MS & E Freshman Seminar",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Laboratory-oriented, with research projects emphasizing use of the scanning electron microscope and other modern apparatus; correlation of structure with other properties of materials. Lectures, laboratory.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 2:00-3:20 · Dravid"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20190-0"
+  },
+  {
+   "id": "MAT_SCI 195-0",
+   "dept": "MAT_SCI",
+   "num": "195-0",
+   "title": "Introductory Special Topics in Materials Science and Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introductory topics suggested by students or faculty and approved by the department.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20195-0"
+  },
+  {
+   "id": "MAT_SCI 201-0",
+   "dept": "MAT_SCI",
+   "num": "201-0",
+   "title": "Introduction to Materials Science and Engineering Principles",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "CHEM 131-0",
+     "CHEM 151-0",
+     "CHEM 171-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Basic concepts of Materials Science and Engineering: bonding, crystal structure, defects in solids, phase diagrams, and development of microstructures. Processing/structure/property/performance relationships underlying the behavior of metals, ceramics, polymers, semiconductors, and composites. Mechanical, electrical, and chemical properties of engineering materials. Broadly, how materials’ performance influences technological development, the economy, the environment, and society. Not to be taken for credit with or after MAT_SCI 301-0.",
+   "text": "Prerequisites: CHEM 131-0 , CHEM 151-0 , or CHEM 171-0 .",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "TTh 3:30-4:50 · Wang",
+    "Winter 2027": "TTh 9:30-11:50 · Kelter",
+    "Spring 2027": "MWF 12:00-12:50 · Abdeljawad"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20201-0"
+  },
+  {
+   "id": "MAT_SCI 301-0",
+   "dept": "MAT_SCI",
+   "num": "301-0",
+   "title": "Introduction to Materials Science and Engineering Principles",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "CHEM 131-0",
+     "CHEM 151-0",
+     "CHEM 171-0"
+    ]
+   },
+   "coreq": "MAT_SCI 302-0",
+   "recommended": [],
+   "notes": [
+    "materials science or chemical and biological engineering majors"
+   ],
+   "desc": "Basic concepts of Materials Science and Engineering: bonding, crystal structure, defects in solids, phase diagrams, and development of microstructures. Processing/structure/property/performance relationships underlying the behavior of metals, ceramics, polymers, semiconductors, and composites. Mechanical, electrical, and chemical properties of engineering materials. Broadly, how materials’ performance influences technological development, the economy, the environment, and society.",
+   "text": "Prerequisites: CHEM 131-0 , CHEM 151-0 , or CHEM 171-0 ; major in materials science and engineering or chemical and biological engineering; concurrent enrollment in MAT_SCI 302-0 .",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "TTh 12:30-1:50 · Emery",
+    "Spring 2027": "TTh 11:00-12:20 · King"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20301-0"
+  },
+  {
+   "id": "MAT_SCI 302-0",
+   "dept": "MAT_SCI",
+   "num": "302-0",
+   "title": "Introduction to Materials Laboratories",
+   "units": 0.34,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Lab for students taking MAT_SCI 301. Topics related to: Bonding, crystal structure and defects in solids. Phase diagrams in condensed matter systems. Equilibrium and nonequilibrium development of microstructures. Processing/structure/property/performance relationships underlying behavior of metals, ceramics, polymers, and composites. Mechanical, electrical, chemical properties of engineering materials. To be taken concurrently with MAT_SCI 301-0.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "Stair · (Lab: W or Th: 9:30-10:50)",
+    "Spring 2027": "Stair · (Lab: M or F: 9:30-10:50)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20302-0"
+  },
+  {
+   "id": "MAT_SCI 314-0",
+   "dept": "MAT_SCI",
+   "num": "314-0",
+   "title": "Thermodynamics of Materials",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "CHEM 132-0",
+       "CHEM 152-0",
+       "CHEM 172-0"
+      ]
+     },
+     {
+      "or": [
+       "MATH 228-1",
+       "MATH 230-1"
+      ]
+     },
+     "GEN_ENG 150-0"
+    ]
+   },
+   "coreq": "PHYSICS 135-1",
+   "recommended": [],
+   "notes": [],
+   "desc": "Classical and statistical thermodynamics; entropy and energy functions in liquid and solid solutions, and their applications to phase equilibria. Lectures, problem solving. Materials science and engineering degree candidates may not receive credit for 314 with or after CHEM 342-1.",
+   "text": "Prerequisite: CHEM 132-0 , CHEM 152-0 , or CHEM 172-0 ; MATH 228-1 or MATH 230-1 ; GEN_ENG 150; PHYSICS 135-1 to be taken concurrently.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MTWF 3:00-3:50 · Chazot"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20314-0"
+  },
+  {
+   "id": "MAT_SCI 315-0",
+   "dept": "MAT_SCI",
+   "num": "315-0",
+   "title": "Phase Equilibria & Diffusion of Materials",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "MAT_SCI 201-0",
+       "MAT_SCI 301-0"
+      ]
+     },
+     "MAT_SCI 314-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Application of thermodynamics to ternary phase equilibria. Defects and diffusion in solids. Interdiffusion. Short-circuit diffusion. Defects and transport in ionic solids. Lectures, problem solving, and laboratory.",
+   "text": "Prerequisite: MAT_SCI 201-0 or MAT_SCI 301-0 or equivalent and MAT_SCI 314-0 or equivalent.",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MTWF 1:00-1:50 · Emery · (Lab: M: 3:00-4:50, W: 11:00-12:50, W: 3:00-4:50, Th: 9:00-10:50, F: 9:00-10:50, F: 11:00-12:50, F: 3:00-4:50)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20315-0"
+  },
+  {
+   "id": "MAT_SCI 316-1",
+   "dept": "MAT_SCI",
+   "num": "316-1",
+   "title": "Microstructural Dynamics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MAT_SCI 315-0",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Principles underlying development of microstructures. Defects, diffusion, phase transformations, nucleation and growth, thermal and mechanical treatment of materials. Lectures, laboratory.",
+   "text": "Prerequisite: MAT_SCI 315-0 or equivalent.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MTWF 1:00-1:50 · Shull"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20316-1"
+  },
+  {
+   "id": "MAT_SCI 316-2",
+   "dept": "MAT_SCI",
+   "num": "316-2",
+   "title": "Microstructural Dynamics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MAT_SCI 316-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Principles underlying development of microstructures. Defects, diffusion, phase transformations, nucleation and growth, thermal and mechanical treatment of materials. Lectures, laboratory.",
+   "text": "Prerequisite: MAT_SCI 316-1 or instructor consent.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MWThF 1:00-1:50 · Joester · (Lab: M: 10:00-1:00, M: 2:00-5:00, W: 3:00-6:00, Th: 2:00-5:00, or F: 2:00-5:00pm)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20316-2"
+  },
+  {
+   "id": "MAT_SCI 318-0",
+   "dept": "MAT_SCI",
+   "num": "318-0",
+   "title": "Materials Selection",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "MAT_SCI 201-0",
+     "MAT_SCI 301-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Methods of specifying materials and the processes for making them in the context of a given application. Service performance of materials based on their physical and chemical properties. Case studies and use of high-level databases.",
+   "text": "Prerequisite: MAT_SCI 201-0 or MAT_SCI 301 or permission by instructor.",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "TTh 11:00-12:20 · Emery",
+    "Spring 2027": "TTh 11:00-12:20 · Emery"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20318-0"
+  },
+  {
+   "id": "MAT_SCI 331-0",
+   "dept": "MAT_SCI",
+   "num": "331-0",
+   "title": "Soft Materials",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MAT_SCI 301-0",
+     {
+      "or": [
+       "MAT_SCI 314-0",
+       "CHEM 342-1"
+      ]
+     },
+     "MAT_SCI 316-1",
+     "MAT_SCI 316-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Different kinds of polymeric materials. Relationships between structure and physical properties; rubber elasticity, the glassy state, crystallinity in polymers. Lectures, laboratory.",
+   "text": "Prerequisites: MAT_SCI 301-0 or equivalent; MAT_SCI 314-0 or CHEM 342-1 ; MAT_SCI 316-1 and MAT_SCI 316-2 .",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MWF 2:00-2:50 · Truby"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20331-0"
+  },
+  {
+   "id": "MAT_SCI 332-0",
+   "dept": "MAT_SCI",
+   "num": "332-0",
+   "title": "Mechanical Behavior of Solids",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MAT_SCI 316-1",
+     "MAT_SCI 316-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Plastic deformation and fracture of metals, ceramics, and polymeric materials; structure/property relations. Role of imperfections, state of stress, temperatures, strain rate. Lectures, laboratory.",
+   "text": "Prerequisites: MAT_SCI 316-1 ; MAT_SCI 316-2 .",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "MWF 12:00-12:50 · McCue · (Lab: TBD)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20332-0"
+  },
+  {
+   "id": "MAT_SCI 336-0",
+   "dept": "MAT_SCI",
+   "num": "336-0",
+   "title": "Synthetic Design of New Materials",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "junior standing"
+   ],
+   "desc": "The design of new materials targeting important technological functions through processes requiring chemical reactions, synthesis of molecules, and molecular design for self-assembly and 3D printing. Fundamental principles and design strategies, including polymerization, biosynthesis and biocompatibility, design of molecular precursors for electronic materials and ceramics, synthesis of nanomaterials, composite and hierarchical structures.",
+   "text": "Prerequisite: junior standing in materials science and engineering or consent of instructor.",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "TTh 12:30-1:50 · Stupp"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20336-0"
+  },
+  {
+   "id": "MAT_SCI 340-0",
+   "dept": "MAT_SCI",
+   "num": "340-0",
+   "title": "Ceramic Processing",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MAT_SCI 316-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Steps in production of fired ceramic articles. Powder preparation and characterization, compact formation, slip casting, extrusion and injection molding; firing, liquid-phase and solid-state sintering. Lectures, laboratory.",
+   "text": "Prerequisite: MAT_SCI 316-1 or equivalent.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20340-0"
+  },
+  {
+   "id": "MAT_SCI 345-0",
+   "dept": "MAT_SCI",
+   "num": "345-0",
+   "title": "Corrosion of Materials",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "MAT_SCI 201-0",
+     "MAT_SCI 301-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Corrosion is the deterioration of materials due to electrochemical attack by the environment, driven by the flow of electrons and ions. We will develop fundamental understanding of these electrochemical reactions at equilibrium and their behavior away from equilibrium. This will be followed by the exploration of various corrosion phenomena, their scientific and quantitative basis, and how we can mitigate the adverse effects of corrosion. We will also learn that corrosion can be good and plays an integral role in developing sustainable energy resources and maintaining our infrastructure.",
+   "text": "Prerequisite: MAT_SCI 201-0 or MAT_SCI 301-0 or consent of instructor.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MWF 3-3:50 · Chung"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20345-0"
+  },
+  {
+   "id": "MAT_SCI 351-1",
+   "dept": "MAT_SCI",
+   "num": "351-1",
+   "title": "Introductory Physics of Materials",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MAT_SCI 301-0",
+     {
+      "or": [
+       "GEN_ENG 205-4",
+       "GEN_ENG 206-4",
+       "GEN_ENG 251-0"
+      ]
+     },
+     "PHYSICS 135-2",
+     "PHYSICS 135-3"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "or equivalent"
+   ],
+   "desc": "Quantum mechanics; applications to materials and engineering. Band structures and cohesive energy; thermal behavior; electrical conduction; semiconductors; amorphous semiconductors; magnetic behavior of materials; liquid crystals. Lectures, laboratory, problem solving.",
+   "text": "Prerequisites: MAT_SCI 301-0 or equivalent or consent of instructor; GEN_ENG 205-4 , GEN_ENG 206-4 , or GEN_ENG 251-0 ; PHYSICS 135-2 , PHYSICS 135-3 .",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MWF 10:00-10:50 · Fowlie"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20351-1"
+  },
+  {
+   "id": "MAT_SCI 351-2",
+   "dept": "MAT_SCI",
+   "num": "351-2",
+   "title": "Introductory Physics of Materials",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MAT_SCI 301-0",
+     "MAT_SCI 351-1",
+     {
+      "or": [
+       "GEN_ENG 205-4",
+       "GEN_ENG 206-4",
+       "GEN_ENG 251-0"
+      ]
+     },
+     "PHYSICS 135-2",
+     "PHYSICS 135-3"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "or equivalent"
+   ],
+   "desc": "Quantum mechanics; applications to materials and engineering. Band structures and cohesive energy; thermal behavior; electrical conduction; semiconductors; amorphous semiconductors; magnetic behavior of materials; liquid crystals. Lectures, laboratory, problem solving.",
+   "text": "Prerequisites: MAT_SCI 301-0 or equivalent or consent of instructor; MAT_SCI 351-1 ; GEN_ENG 205-4 , GEN_ENG 206-4 , or GEN_ENG 251-0 ; PHYSICS 135-2 ; PHYSICS 135-3 .",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MWF 10:00-10:50 · Barton · (Lab: T: 9:30-10:50, T: 11:00-12:20, T: 2:00-3:20, T: 3:30-4:50, Th: 11:00-12:20, or Th: 2:00-3:20)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20351-2"
+  },
+  {
+   "id": "MAT_SCI 353-0",
+   "dept": "MAT_SCI",
+   "num": "353-0",
+   "title": "Bioelectronics",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development and design of sensors, stimulators, and their medical devices for biointegrated electronics. Materials design and fabrication of passive and active components for sensitive, multimodal, and robust wearable and implantable devices.",
+   "text": "Prerequisite: junior or senior standing recommended.",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "TTh 9:30-10:50 · Rogers"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20353-0"
+  },
+  {
+   "id": "MAT_SCI 354-0",
+   "dept": "MAT_SCI",
+   "num": "354-0",
+   "title": "Bioelectronics Lab",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": {
+    "or": [
+     "BMD_ENG 353-0",
+     "MAT_SCI 353-0"
+    ]
+   },
+   "recommended": [],
+   "notes": [],
+   "desc": "Laboratories focused on the practical implementation, instrumentation, and fabrication of wearables and skinsensing. Applications range from vital sign monitoring to rehabilitation.",
+   "text": "Prerequisites: BMD_ENG 353 or MAT_SCI 353. Concurrent enrollment is acceptable.",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "M 4:00-4:50 · Rogers · (Lab: Th: 4:00-6:50pm)"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20354-0"
+  },
+  {
+   "id": "MAT_SCI 355-0",
+   "dept": "MAT_SCI",
+   "num": "355-0",
+   "title": "Electronic Materials",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MAT_SCI 316-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Principles, models, and characterization of semiconductor materials. Crystal growth and doping. Diffusion, epitaxy, and monolithic processes. Current transport, non-equilibrium processes, thin films, low-mobility materials, and interfaces.",
+   "text": "Prerequisite: MAT_SCI 316-1 or consent of instructor.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20355-0"
+  },
+  {
+   "id": "MAT_SCI 357-0",
+   "dept": "MAT_SCI",
+   "num": "357-0",
+   "title": "Nanomagnetic Materials for Information Storage",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Overview of materials used for magnetic data storage and of the recording and read processes. Information storage systems, such as optical, solid-state, and probe. Theoretical background for understanding the four energy terms that control the properties of magnetic materials when they are patterned at the nanoscale.",
+   "text": "",
+   "reviewed": false,
+   "offered": {
+    "Fall 2026": "TTh 11:00-12:20 · Phatak"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20357-0"
+  },
+  {
+   "id": "MAT_SCI 358-0",
+   "dept": "MAT_SCI",
+   "num": "358-0",
+   "title": "Modeling and Simulation in Materials Science and Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MAT_SCI 314-0",
+     "MAT_SCI 315-0",
+     "MAT_SCI 316-1",
+     "MAT_SCI 351-1"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The course covers the essential methods and principles for modeling and simulating the structure, properties, and behavior of materials. It focuses on constructing models and identifying approaches to test either theoretical descriptions or experimental observations of materials phenomena on a computer. The course balances breadth versus depth of topics with the goal of producing researchers literate in computational materials science and its applicability across different length scales. Students will construct structure-property models of atomic assemblies, molecules, and solids using first-principles electronic structure (such as density-functional theory), deterministic (molecular dynamics), statistical methods (Monte Carlo and (Un)Supervised Learning), and finite elements models. Computational laboratories will give students extensive hands-on experience with several powerful modern materials modeling codes.",
+   "text": "Prerequisite: MAT_SCI 314-0 , MAT_SCI 315-0 , MAT_SCI 316-1 , and MAT_SCI 351-1 .",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MWF 11:00-11:50 · Rondinelli"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20358-0"
+  },
+  {
+   "id": "MAT_SCI 360-0",
+   "dept": "MAT_SCI",
+   "num": "360-0",
+   "title": "Introduction to Electron Microscopy",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MAT_SCI 301-0",
+     "PHYSICS 135-2",
+     "PHYSICS 135-3"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Theories and practice involved in application of scanning electron microscopy and transmission electron microscopy. Lectures, laboratory. Primarily for undergraduates and for graduate students in other departments.",
+   "text": "Prerequisites: MAT_SCI 301-0 ; PHYSICS 135-2 , PHYSICS 135-3 or equivalent.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20360-0"
+  },
+  {
+   "id": "MAT_SCI 361-0",
+   "dept": "MAT_SCI",
+   "num": "361-0",
+   "title": "Crystallography & Diffraction",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     {
+      "or": [
+       "GEN_ENG 205-4",
+       "GEN_ENG 206-4",
+       "GEN_ENG 251-0"
+      ]
+     },
+     "PHYSICS 135-2",
+     "PHYSICS 135-3"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Elementary crystallography. Basic diffraction theory; reciprocal space. Applications to structure analysis, preferred orientation. Film and counter techniques. Lectures, laboratory.",
+   "text": "Prerequisites: GEN_ENG 205-4 , GEN_ENG 206-4 , or GEN_ENG 251-0 ; PHYSICS 135-2 ; PHYSICS 135-3 .",
+   "reviewed": true,
+   "offered": {
+    "Winter 2027": "MWF 12:00-12:50 · Bedzyk"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20361-0"
+  },
+  {
+   "id": "MAT_SCI 371-0",
+   "dept": "MAT_SCI",
+   "num": "371-0",
+   "title": "Biominerals: Hierarchical Architecture & Function",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MAT_SCI 316-2",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "or equivalent"
+   ],
+   "desc": "How biologically based processing of mineralorganic composites used by living organisms inspires new approaches to materials synthesis in many critical applications-locomotion (bones), defense (shells), and sensing (light, acceleration, magnetic fields).",
+   "text": "Prerequisite: MAT_SCI 316-2 or equivalent, or consent of instructor.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "TTh 2:00-3:20 · Joester"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20371-0"
+  },
+  {
+   "id": "MAT_SCI 376-0",
+   "dept": "MAT_SCI",
+   "num": "376-0",
+   "title": "Nanomaterials",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MAT_SCI 351-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "Introduction to structure-property relationships of materials processed at the nanometer scale. Highly interdisciplinary course appropriate for undergraduate and graduate students in other departments.",
+   "text": "Prerequisite: MAT_SCI 351-1 or consent of instructor.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20376-0"
+  },
+  {
+   "id": "MAT_SCI 377-0",
+   "dept": "MAT_SCI",
+   "num": "377-0",
+   "title": "Supramolecular Design of Materials and Nanostructures",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to frontier research at the interface of chemistry and materials science.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20377-0"
+  },
+  {
+   "id": "MAT_SCI 380-0",
+   "dept": "MAT_SCI",
+   "num": "380-0",
+   "title": "Intro Surface Science & Spectroscopy",
+   "units": 1.0,
+   "role": "main",
+   "prereq": "MAT_SCI 351-1",
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or equivalent"
+   ],
+   "desc": "Surface spectroscopy, including Auger spectroscopy, photoemission, and LEED. Surface dynamics and thermodynamics. Electronic properties of surfaces and interfaces. Gas-surface interactions.",
+   "text": "Prerequisite: MAT_SCI 351-1 or equivalent.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MWF 3:00-3:50 · Bedzyk/Benor"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20380-0"
+  },
+  {
+   "id": "MAT_SCI 381-0",
+   "dept": "MAT_SCI",
+   "num": "381-0",
+   "title": "Materials for Energy-Efficient Technology",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "or": [
+     "MAT_SCI 201-0",
+     "MAT_SCI 301-0"
+    ]
+   },
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "A materials science approach to the challenges of energy efficient technology: energy content of materials; advanced materials for energy harvesting, transmission, storage, and conversion; materials for energy efficient transportation and housing. Term paper and oral presentation.",
+   "text": "Prerequisite: MAT_SCI 201-0 , MAT_SCI 301-0 , or consent of instructor.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20381-0"
+  },
+  {
+   "id": "MAT_SCI 382-0",
+   "dept": "MAT_SCI",
+   "num": "382-0",
+   "title": "Electrochemical Energy Materials and Devices",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "or instructor consent",
+    "senior standing"
+   ],
+   "desc": "Thermodynamics and kinetics of electrochemical processes. Materials for fuel cells, batteries, and electrochemical capacitors, including electrolytes and electrodes. Electrical and mass transport. Effect of microstructure. Electrochemical characterization. Device configurations.",
+   "text": "Prerequisite: senior standing or consent of instructor.",
+   "reviewed": true,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20382-0"
+  },
+  {
+   "id": "MAT_SCI 385-0",
+   "dept": "MAT_SCI",
+   "num": "385-0",
+   "title": "Electronic and Thermal Properties of Materials",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Thermoelectric Devices. Solid-state electronic structure from a solid-state chemistry perspective, phonons in complex materials, electronic and thermal transport at room temperature and above (semi-classical) of metals, semiconductors and some insulators. Familiarity with quantum mechanics and the concept of density-of-states for electrons and phonons. MAT_SCI 351-1 or equivalent is recommended but not required.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20385-0"
+  },
+  {
+   "id": "MAT_SCI 390-1",
+   "dept": "MAT_SCI",
+   "num": "390-1",
+   "title": "Process and Experimental Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MAT_SCI 316-2",
+     "MAT_SCI 351-2"
+    ]
+   },
+   "coreq": null,
+   "recommended": [
+    "MAT_SCI 331-0"
+   ],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "This course introduces students to materials processing techniques used in research and industrial settings and the approaches scientists and engineers take to optimize processing-structure-property-performance relationships. Students are introduced to the systems design approach and design of experiments in order to define their own problems in materials science and engineering. Students develop core competencies in problem identification, experimental decision making, and technical communication.",
+   "text": "Prerequisite: MatSci 316-2 and MatSci 351-2 or consent of instructor. MatSci 331 is recommended. MatSci 390-1 is a prerequisite for MatSci 390-2.",
+   "reviewed": true,
+   "offered": {
+    "Spring 2027": "TTh 2:00-3:20pm · Kumar"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20390-1"
+  },
+  {
+   "id": "MAT_SCI 390-2",
+   "dept": "MAT_SCI",
+   "num": "390-2",
+   "title": "Materials Design",
+   "units": 1.0,
+   "role": "main",
+   "prereq": {
+    "and": [
+     "MAT_SCI 316-2",
+     "MAT_SCI 351-2",
+     "MAT_SCI 390-1"
+    ]
+   },
+   "coreq": null,
+   "recommended": [
+    "MAT_SCI 331-0",
+    "MAT_SCI 332-0"
+   ],
+   "notes": [
+    "or instructor consent"
+   ],
+   "desc": "In this course, students apply a systems design approach to address contemporary problems in materials science and engineering. Using fundamental materials science principles, students implement their own methods and approaches to investigate processing-structure-properties-performance relationships. Students develop core competencies in project management, data collection and analysis, experimental decision making, and technical communication.",
+   "text": "Prerequisites: MAR_SCI 316-2 and MAT_SCI 351-2 or consent of instructor. MAT_SCI 331-0 and MAT_SCI 332-0 are recommended. MAT_SCI 390-1 is a prerequisite for MAT_SCI 390-2 .",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "MWF 12:00-12:50 · McCue/Truby"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20390-2"
+  },
+  {
+   "id": "MAT_SCI 394-0",
+   "dept": "MAT_SCI",
+   "num": "394-0",
+   "title": "Honors Project in Materials Science",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "department honors program"
+   ],
+   "desc": "Independent study and/or research linked to MAT_SCI 396-1 and MAT_SCI 396-2. Comprehensive report on a specific area of modern materials science and engineering.",
+   "text": "Prerequisite: registration in department honors program.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "TBA · TBA",
+    "Winter 2027": "TBA · TBA",
+    "Spring 2027": "TBA · TBA"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20394-0"
+  },
+  {
+   "id": "MAT_SCI 395-0",
+   "dept": "MAT_SCI",
+   "num": "395-0",
+   "title": "Special Topics in Materials Science and Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Topics suggested by students or faculty and approved by the department.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20395-0"
+  },
+  {
+   "id": "MAT_SCI 396-1",
+   "dept": "MAT_SCI",
+   "num": "396-1",
+   "title": "Senior Project in Materials Science and Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "senior standing"
+   ],
+   "desc": "To be taken in two consecutive quarters. Independent basic or applied research project, conceived and performed under the direction of a department faculty member.",
+   "text": "Prerequisite: senior standing in the materials science and engineering or materials science program.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "W 2:00-2:50 · Stair",
+    "Winter 2027": "W 2:00-2:50 · Stair",
+    "Spring 2027": "W 2:00-2:50 · Stair"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20396-1"
+  },
+  {
+   "id": "MAT_SCI 396-2",
+   "dept": "MAT_SCI",
+   "num": "396-2",
+   "title": "Senior Project in Materials Science and Engineering",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [
+    "senior standing"
+   ],
+   "desc": "To be taken in two consecutive quarters. Independent basic or applied research project, conceived and performed under the direction of a department faculty member.",
+   "text": "Prerequisite: senior standing in the materials science and engineering or materials science program.",
+   "reviewed": true,
+   "offered": {
+    "Fall 2026": "W 2:00-2:50 · Stair",
+    "Winter 2027": "W 2:00-2:50 · Stair",
+    "Spring 2027": "W 2:00-2:50 · Stair"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20396-2"
+  },
+  {
+   "id": "MAT_SCI 397-0",
+   "dept": "MAT_SCI",
+   "num": "397-0",
+   "title": "Special Topics in Materials Science and Engineering",
+   "units": 0.34,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Special Topics in Materials Science and Engineering; laboratory emphasis.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20397-0"
+  },
+  {
+   "id": "MAT_SCI 399-0",
+   "dept": "MAT_SCI",
+   "num": "399-0",
+   "title": "Projects",
+   "units": 1.0,
+   "role": "main",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Individual problems, including library and design work; comprehensive report on a specific phase of modern materials science. Credit to be arranged.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MAT_SCI%20399-0"
+  },
+  {
+   "id": "BMD_ENG 353-0",
+   "dept": "BMD_ENG",
+   "num": "353-0",
+   "title": "Bioelectronics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development and design of sensors, stimulators, and their medical devices for biointegrated electronics. Materials design and fabrication of passive and active components for sensitive, multimodal, and robust wearable and implantable devices.",
+   "text": "Prerequisite: junior or senior standing recommended.",
+   "reviewed": false,
+   "offered": {
+    "Spring 2027": "TTh 9:30-10:50 · Rogers"
+   },
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20353-0"
+  },
+  {
+   "id": "BMD_ENG 390-2",
+   "dept": "BMD_ENG",
+   "num": "390-2",
+   "title": "Biomedical Engineering Design",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Development of a design project initiated during the previous quarter.",
+   "text": "Prerequisite: BMD_ENG 390-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=BMD_ENG%20390-2",
+   "autoPrereq": "BMD_ENG 390-1"
+  },
+  {
+   "id": "CHEM 131-0",
+   "dept": "CHEM",
+   "num": "131-0",
+   "title": "Fundamentals of Chemistry I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Quantum mechanics, electronic structure, periodic properties of elements, chemical bonding, thermodynamics, intermolecular forces, properties of solids and liquids, solutions and colligative properties.",
+   "text": "Prerequisite: CHEM 110-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20131-0"
+  },
+  {
+   "id": "CHEM 132-0",
+   "dept": "CHEM",
+   "num": "132-0",
+   "title": "Fundamentals of Chemistry II",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical equilibrium, aqueous solution equilibria, chemical kinetics, metals in chemistry and biology, oxidation-reduction reactions and electrochemistry.",
+   "text": "Prerequisites: CHEM 131-0 , CHEM 141-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20132-0",
+   "links": [
+    "CHEM 131-0"
+   ]
+  },
+  {
+   "id": "CHEM 151-0",
+   "dept": "CHEM",
+   "num": "151-0",
+   "title": "General Chemistry I",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Quantum mechanics, electronic structure, periodic properties of elements, chemical bonding, thermodynamics, gas laws, intermolecular forces, properties of solids and liquids, solutions and colligative properties.",
+   "text": "Prerequisite: permission of department by placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20151-0"
+  },
+  {
+   "id": "CHEM 152-0",
+   "dept": "CHEM",
+   "num": "152-0",
+   "title": "General Chemistry II",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Chemical equilibrium, aqueous solution equilibria, chemical kinetics, metals in chemistry and biology, oxidation-reduction reactions and electrochemistry.",
+   "text": "Prerequisites: CHEM 151-0 , CHEM 161-0 (C- or better).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20152-0",
+   "links": [
+    "CHEM 151-0"
+   ]
+  },
+  {
+   "id": "CHEM 171-0",
+   "dept": "CHEM",
+   "num": "171-0",
+   "title": "Advanced General Inorganic Chemistry",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Review of mole problems and stoichiometry; descriptive chemistry, elements, compounds, and inorganic reactions; gas laws; phase equilibria and colligative properties; chemical equilibrium; aqueous equilibria; topics in chemical bonding and molecular structure. Must be taken concurrently with CHEM 181-0.",
+   "text": "Prerequisite: department placement exam.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20171-0"
+  },
+  {
+   "id": "CHEM 172-0",
+   "dept": "CHEM",
+   "num": "172-0",
+   "title": "Advanced General Physical Chemistry",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Thermodynamics and equilibrium; chemical kinetics and mechanism; electrochemistry; electronic structure of the atom and quantum theory; advanced topics in chemical bonding; coordination compounds; solid-state chemistry; nuclear chemistry. Must be taken concurrently with CHEM 182-0.",
+   "text": "Prerequisites: CHEM 171-0 , CHEM 181-0 (C- or better); MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20172-0",
+   "links": [
+    "CHEM 171-0",
+    "MATH 220-1"
+   ]
+  },
+  {
+   "id": "CHEM 342-1",
+   "dept": "CHEM",
+   "num": "342-1",
+   "title": "Thermodynamics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Laws of applications of thermodynamics. Thermochemistry, chemical potentials, solution thermodynamics, nonideal gases.",
+   "text": "Prerequisites: CHEM 132-0 or CHEM 152-0 or CHEM 172-0 or CHEM 215-3 or CHEM 212-3 or CHEM 217-3 (C- or better); and MATH 230-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=CHEM%20342-1",
+   "links": [
+    "CHEM 132-0",
+    "CHEM 152-0",
+    "CHEM 172-0",
+    "MATH 230-1"
+   ]
+  },
+  {
+   "id": "COMM_ST 102-0",
+   "dept": "COMM_ST",
+   "num": "102-0",
+   "title": "Public Speaking",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Theory, composition, delivery, and criticism of public speeches.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=COMM_ST%20102-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "DSGN 106-1",
+   "dept": "DSGN",
+   "num": "106-1",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated introduction to the user-centered design process and technical communication. Students will address challenges proposed by project partners by identifying unmet needs, conducting research, generating and evaluating potential solutions, and finally, presenting a final design concept with supporting documentation. Students also enhance their abilities in equitable teamwork, project management, fabrication skills, and producing written, oral, graphical, and interpersonal communication. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-1 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: Reserved for McCormick students only.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-1"
+  },
+  {
+   "id": "DSGN 106-2",
+   "dept": "DSGN",
+   "num": "106-2",
+   "title": "Design Thinking and Communication",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Integrated iteration on the user-centered design process and technical communication. This course will build on the learning objectives from DTC-1 while adding more focus on ethics in design and communication, equitable distribution of teamwork, project management, documenting and communicating progress, and exploring a wider variety of project topics. One lecture, two section meetings, and lab. Co-registration with ENGLISH 106-2 required. Primarily intended for first-year engineering students.",
+   "text": "Prerequisite: DSGN 106-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=DSGN%20106-2",
+   "links": [
+    "DSGN 106-1"
+   ],
+   "autoPrereq": "DSGN 106-1"
+  },
+  {
+   "id": "ENGLISH 106-1",
+   "dept": "ENGLISH",
+   "num": "106-1",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENGLISH 106-2",
+   "dept": "ENGLISH",
+   "num": "106-2",
+   "title": "Writing in Special Contexts",
+   "units": 0.5,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Introduction to expository writing similar to ENGLISH 105-0 but paired with a course in another discipline.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENGLISH%20106-2",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 225-0",
+   "dept": "ENTREP",
+   "num": "225-0",
+   "title": "Principles of Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course serves as the foundational course for the undergraduate minor in entrepreneurship. This survey-style course is a good choice for students who wish to familiarize themselves with the world of entrepreneurship. Students will learn to think like entrepreneurs and will be introduced to key topics relevant to entrepreneurship, including customer discovery, finance, and marketing. They will also learn how to understand and perform analyses of a broad range of entrepreneurial activities related to different applications of entrepreneurship. Taught with IEMS 225-0; may not receive credit for both courses.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20225-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "ENTREP 325-0",
+   "dept": "ENTREP",
+   "num": "325-0",
+   "title": "Engineering Entrepreneurship",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "The goal of the course is to introduce students to innovation-driven entrepreneurship, a process by which emergent technology serves as the catalyst for new venture formation. This course challenges student teams to develop strategies for commercializing cutting-edge technologies. Each year, the course focuses on a significant innovation space. Taught with IEMS 325-0; may not receive credit for both courses.",
+   "text": "Prerequisite: ENTREP 330-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=ENTREP%20325-0",
+   "autoPrereq": "ENTREP 330-1"
+  },
+  {
+   "id": "GEN_ENG 150-0",
+   "dept": "GEN_ENG",
+   "num": "150-0",
+   "title": "Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). Students may receive credit for only one of: COMP_SCI 150, GEN_ENG 150, and GEN_ENG 151.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20150-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "GEN_ENG 151-0",
+   "dept": "GEN_ENG",
+   "num": "151-0",
+   "title": "Honors Programming for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Object-Oriented Programming including Programming Basics (Data abstraction, Simple procedures, Primitive data), Procedural Programming Fundamentals (Conditional Execution, Iteration, Recursion, Modularity and Procedural abstraction, Composite data - lists, dictionaries), and Object-Oriented Principles (Composite data -classes, Encapsulation, Inheritance). The honors section will include students who received a 4 or 5 on AP CS A.",
+   "text": "Prerequisite: COMP_SCI 1CA or instructor permission. Students may not receive credit for both GEN_ENG 151-0 and COMP_SCI 150-0 or GEN_ENG 150-0 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20151-0"
+  },
+  {
+   "id": "GEN_ENG 205-4",
+   "dept": "GEN_ENG",
+   "num": "205-4",
+   "title": "Engineering Analysis IV",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solution methods for ordinary differential equations, including exact, numerical, and qualitative methods. Applications and modeling principles; solution techniques.",
+   "text": "Prerequisites: C- or better in GEN_ENG 205-2 ; MATH 220-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20205-4",
+   "links": [
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "GEN_ENG 206-4",
+   "dept": "GEN_ENG",
+   "num": "206-4",
+   "title": "Honors Engineering Analysis IV",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Covers topics addressed in GEN_ENG 205-4 at a deeper level. Intended for students with demonstrated strength in mathematics, computer programming, and/or physics.",
+   "text": "Prerequisite: consent of instructor.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20206-4"
+  },
+  {
+   "id": "GEN_ENG 231-0",
+   "dept": "GEN_ENG",
+   "num": "231-0",
+   "title": "Probability and Statistics for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Collecting, summarizing and displaying data. An introduction to probability theory and its applications. Conditional probabilities and expected values. Random variables and distributions. Drawing conclusions and making decisions using data: confidence intervals, hypotheses testing, comparison tests, regression, and correlation.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20231-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "GEN_ENG 241-0",
+   "dept": "GEN_ENG",
+   "num": "241-0",
+   "title": "Linear Algebra for Engineers",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Solving linear systems of equations and LU factorization. Matrix/vector operations and algebra. Vector spaces and bases. Eigenvalues and eigenvectors, Orthogonality, solution of least squares, and QR factorization. Singular values, singular value decomposition. Applications in science and engineering.",
+   "text": "Prerequisites: GEN_ENG 150 or 151, MATH 220-2 . You may not enroll in both GEN_ENG 231-0 and GEN_ENG 241-0 during initial registration. This restriction will be removed after the initial registration period if capacity allows.",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20241-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "MATH 220-2"
+   ]
+  },
+  {
+   "id": "GEN_ENG 251-0",
+   "dept": "GEN_ENG",
+   "num": "251-0",
+   "title": "Applied Ordinary Differential Equations",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Students will learn to identify and solve differential equations derived from scientific and engineered systems. They will also learn to formulate a differential equation for modeling suitable applications, specifically mechanical vibrations and electrical circuits, among others.",
+   "text": "Prerequisites: GEN_ENG 150 or GEN_ENG 151 or CS 150, MATH 220-2 , PHYS 135-1 or GEN_ENG 212 (may be taken concurrently), GEN_ENG 241 (may be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=GEN_ENG%20251-0",
+   "links": [
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 241-0",
+    "MATH 220-2",
+    "PHYSICS 135-1"
+   ]
+  },
+  {
+   "id": "MATH 220-1",
+   "dept": "MATH",
+   "num": "220-1",
+   "title": "Single-Variable Differential Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Limits. Differentiation. Linear approximation and related rates. Extreme value theorem, mean value theorem, and curve-sketching. Optimization. Students may not receive credit for both MATH 220-1 and any of MATH 211-0, MATH 212-0 (former), MATH 213-0 (former), MATH 218-1, MATH 218-2, or MATH 220-0 (former).",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-1",
+   "autoPrereq": null
+  },
+  {
+   "id": "MATH 220-2",
+   "dept": "MATH",
+   "num": "220-2",
+   "title": "Single-Variable Integral Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Definite integrals, antiderivatives, and the fundamental theorem of calculus. Transcendental and inverse functions. Areas and volumes. Techniques of integration, numerical integration, and improper integrals. First-order linear and separable ordinary differential equations. Students may not receive credit for both MATH 220-2 and any of MATH 213-0 (former), MATH 214-0 (former), MATH 218-3, or MATH 224-0 (former).",
+   "text": "Prerequisite: MATH 218-2 or MATH 220-0 (former) or MATH 220-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20220-2",
+   "links": [
+    "MATH 220-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-2",
+     "MATH 220-0",
+     "MATH 220-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-1",
+   "dept": "MATH",
+   "num": "228-1",
+   "title": "Multivariable Differential Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Vectors, vector functions, partial derivatives, Taylor polynomials, and optimization. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-1 and any of MATH 230-0 (former), MATH 230-1, MATH 281-1, MATH 285-2, MATH 290-2, MATH 291-2, or ES_APPM 252-1.",
+   "text": "Prerequisite: MATH 218-3 or MATH 214-0 (former) or MATH 220-2 or MATH 224-0 (former).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-1",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-3",
+     "MATH 214-0",
+     "MATH 220-2",
+     "MATH 224-0"
+    ]
+   }
+  },
+  {
+   "id": "MATH 228-2",
+   "dept": "MATH",
+   "num": "228-2",
+   "title": "Multivariable Integral Calculus for Engineering",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Multiple integration: double integrals, triple integrals, and change of variables. Vector calculus: vector fields, line integrals, surface integrals, curl and divergence, Green's theorem, Stokes' theorem, and the divergence theorem. Emphasis on engineering applications. For McCormick School of Engineering students only. Students may not receive credit for both MATH 228-2 and any of MATH 230-2, MATH 234-0 (former), MATH 281-2, MATH 285-3, MATH 290-3, MATH 291-3, or ES_APPM 252-2.",
+   "text": "Prerequisite: MATH 228-1 or MATH 230-0 (former) or MATH 230-1 or MATH 281-1 or MATH 285-2 or MATH 290-2 or MATH 291-2 or ES_APPM 252-1 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20228-2",
+   "links": [
+    "MATH 228-1",
+    "MATH 230-1"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 228-1",
+     "MATH 230-0",
+     "MATH 230-1",
+     "MATH 281-1",
+     "MATH 285-2",
+     "MATH 290-2",
+     "MATH 291-2",
+     "ES_APPM 252-1"
+    ]
+   }
+  },
+  {
+   "id": "MATH 230-1",
+   "dept": "MATH",
+   "num": "230-1",
+   "title": "Multivariable Differential Calculus",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Vectors, vector functions, partial derivatives, and optimization. Not open to students in the McCormick School of Engineering. Students may not receive credit for both MATH 230-1 and any of MATH 228-1, MATH 230-0 (former), MATH 281-1, MATH 285-2, MATH 290-2, MATH 291-2, or ES_APPM 252-1.",
+   "text": "Prerequisite: MATH 218-3 or MATH 214-0 (former) or MATH 220-2 or MATH 224-0 (former).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=MATH%20230-1",
+   "links": [
+    "MATH 220-2"
+   ],
+   "autoPrereq": {
+    "or": [
+     "MATH 218-3",
+     "MATH 214-0",
+     "MATH 220-2",
+     "MATH 224-0"
+    ]
+   }
+  },
+  {
+   "id": "PERF_ST 103-0",
+   "dept": "PERF_ST",
+   "num": "103-0",
+   "title": "Analysis and Performance of Text",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "This course studies texts, broadly defined and situated, through performance. Students explore how performance helps the performer and audience interpret a text, as well as express challenging political and personal themes. They examine the ways performance illuminates and draws out deeper understandings of social relations through embodied praxis.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20103-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PERF_ST 203-0",
+   "dept": "PERF_ST",
+   "num": "203-0",
+   "title": "Performance Culture and Communication",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Explores how live performance and dramatic forms of communication are methods used to examine social behavior and cultural expressions.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PERF_ST%20203-0",
+   "autoPrereq": null
+  },
+  {
+   "id": "PHYSICS 135-1",
+   "dept": "PHYSICS",
+   "num": "135-1",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Mechanics. Must be taken concurrently with PHYSICS 136-1.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 ; MATH 230-1 OR MATH 290-1 OR MATH 291-1 (may be taken concurrently).",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-1",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2",
+    "MATH 230-1"
+   ]
+  },
+  {
+   "id": "PHYSICS 135-2",
+   "dept": "PHYSICS",
+   "num": "135-2",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Electricity and magnetism. Must be taken concurrently with PHYSICS 136-2.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-1 ; MATH 230-2 OR MATH 290-2 OR MATH 291-2 (may be taken concurrently).\".",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-2",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2",
+    "MATH 230-1",
+    "PHYSICS 135-1"
+   ]
+  },
+  {
+   "id": "PHYSICS 135-3",
+   "dept": "PHYSICS",
+   "num": "135-3",
+   "title": "General Physics",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Calculus-based physics for science and engineering majors and premedical students. Introduction to wave phenomena, optics, and modern physics. Must be taken concurrently with PHYSICS 136-3.",
+   "text": "Prerequisites: MATH 220-1 , MATH 220-2 , MATH 230-1 OR MATH 290-1 OR MATH 291-1 , PHYSICS 135-2 .",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PHYSICS%20135-3",
+   "links": [
+    "MATH 220-1",
+    "MATH 220-2",
+    "MATH 230-1",
+    "PHYSICS 135-2"
+   ]
+  },
+  {
+   "id": "PRDV 335-0",
+   "dept": "PRDV",
+   "num": "335-0",
+   "title": "Engineering Improv: From Allowing to Application",
+   "units": 1.0,
+   "role": "external",
+   "prereq": null,
+   "coreq": null,
+   "recommended": [],
+   "notes": [],
+   "desc": "Start anywhere, remember you are not the most important person in the scene, and say yes. Through these and other improv techniques, students learn to tackle unexpected obstacles, building skills that can be leveraged in both academic and non-academic contexts to face challenges with resilience.",
+   "text": "",
+   "reviewed": false,
+   "offered": {},
+   "url": "https://catalogs.northwestern.edu/search/?P=PRDV%20335-0",
+   "autoPrereq": null
+  }
+ ]
+}

@@ -84,13 +84,14 @@ export function findPath(map, plan, target, { perQuarter = 3, now = currentTerm(
   };
   if (path.done) return path;
 
-  // Which courses. Courses already planned cost nothing. Ones whose
+  // Which courses. Courses already planned, or already picked for another
+  // part of the path (one intro course, not two), cost nothing. Ones whose
   // prerequisites couldn't be read probably have some (later parts of a
   // sequence, at least the earlier parts); retired or unknown ones are a last resort.
   const cost = ids => {
     let n = 0;
     for (const id of ids) {
-      if (planned.has(id)) continue;
+      if (planned.has(id) || chosen.has(id)) continue;
       const c = map.get(id);
       n += !c || c.missing ? 5 : 1;
       if (!requirements(map, id).known) n += Math.max(1, Number(c?.num.split('-')[1]) || 0);
@@ -100,6 +101,7 @@ export function findPath(map, plan, target, { perQuarter = 3, now = currentTerm(
   const memo = new Map();
   const visiting = new Set();
   const choices = new Map();
+  const chosen = new Set();
   const withNeeds = id => {
     if (done.has(id)) return new Set();
     if (memo.has(id)) return memo.get(id);
@@ -121,17 +123,42 @@ export function findPath(map, plan, target, { perQuarter = 3, now = currentTerm(
     // An option in the plan, then the earlier part of the same sequence, then
     // the fewest courses. Ties go to the option listed first, usually the
     // standard one.
+    // Every option is priced against what was picked before this choice, not
+    // against what weighing the other options picked along the way.
+    const before = new Set(chosen);
+    const options = items.map(t => ({ t, set: needs(t, owner) }));
+    chosen.clear();
+    before.forEach(id => chosen.add(id));
     let best = null;
-    for (const t of items) {
-      const set = needs(t, owner);
+    for (const option of options) {
+      const { t, set } = option;
       const top = typeof t === 'string' ? [t] : Object.values(t)[0].filter(x => typeof x === 'string');
-      const rank = [top.some(x => planned.has(x)) ? 0 : 1, typeof t === 'string' && earlierPart(map, t, owner) ? 0 : 1, cost(set)];
-      if (!best || isBefore(rank, best.rank)) best = { t, set, rank };
+      option.rank = [top.some(x => planned.has(x)) ? 0 : 1, typeof t === 'string' && earlierPart(map, t, owner) ? 0 : 1, cost(set)];
+      if (!best || isBefore(option.rank, best.rank)) best = option;
     }
     if (typeof best.t === 'string' && !choices.has(best.t)) choices.set(best.t, items.filter(t => typeof t === 'string' && t !== best.t));
+    best.set.forEach(id => chosen.add(id));
     return best.set;
   };
-  const ids = withNeeds(target);
+  const ids = new Set(withNeeds(target));
+  // Drop what another choice made unnecessary: CS 150 picked for one course
+  // when GEN_ENG 150, picked for another, also covers it. Planned courses stay.
+  const covered = () => {
+    const have = new Set([...done, ...ids]);
+    return [...ids].every(id => {
+      const r = requirements(map, id);
+      return satisfied(r.pre, have) && satisfied(r.co, have);
+    });
+  };
+  for (let dropped = true; dropped;) {
+    dropped = false;
+    for (const id of [...ids]) {
+      if (id === target || planned.has(id)) continue;
+      ids.delete(id);
+      if (covered()) dropped = true;
+      else ids.add(id);
+    }
+  }
   // A course whose prerequisites couldn't be read still comes after the
   // courses on the path that its catalog text mentions.
   const reqs = new Map([...ids].map(id => {

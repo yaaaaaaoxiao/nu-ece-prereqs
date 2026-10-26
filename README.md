@@ -1,7 +1,7 @@
 # Course Prerequisite Map
 
-An interactive map of course prerequisites for Northwestern majors, starting
-with Electrical & Computer Engineering. Click a course to see everything it
+An interactive map of course prerequisites for Northwestern majors: Electrical &
+Computer Engineering, Computer Science, and Materials Science & Engineering. Click a course to see everything it
 requires and everything it unlocks, mark what you've taken to see what you can
 take next, and highlight a degree requirement, technical track or quarter.
 
@@ -168,7 +168,17 @@ keeping "or" alternatives, "&" sequences and counts such as "(choose one)" or
 "4 courses chosen from…". Rules the catalog only states in prose ("one course
 from each of any three areas") are kept as notes for students to read. Use
 `labels` to rename a list, hide it (`null`), or correct how it's read
-(`{"label", "kind", "need"}`). Check the result in the Plan tab.
+(`{"label", "kind", "need", "flatten"}`; `flatten` treats rows the catalog
+marks "or" as separate choices, for long lists formatted that way). `until`
+stops reading the page at a heading, e.g. `"Concentrations"` for optional
+extras whose headings repeat the requirement areas' names. Check the result in
+the Plan tab.
+
+McCormick degrees share a school core (math, science, engineering foundations,
+design and writing, speaking). Degree pages often only name those areas, so a
+program with `"core": "mccormick"` gets the core lists from the school's
+requirements page (`cores` in the config); where the degree page lists courses
+for an area itself (each degree's science, the CS math sequence), its list wins.
 
 **A map** (another department's graph) is an entry in `maps`:
 
@@ -216,6 +226,16 @@ Actions → General → Allow GitHub Actions to create and approve pull requests
 - [Undergraduate catalog, ELEC_ENG courses](https://catalogs.northwestern.edu/undergraduate/courses-az/elec_eng/)
 - [Electrical Engineering degree](https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/electrical-computer-engineering/electrical-engineering-degree/)
   and [Computer Engineering degree](https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/electrical-computer-engineering/computer-engineering-degree/)
-- [ECE course schedule](https://www.mccormick.northwestern.edu/electrical-computer/academics/courses/)
+- [Undergraduate catalog, COMP_SCI courses](https://catalogs.northwestern.edu/undergraduate/courses-az/comp_sci/)
+  and [MAT_SCI courses](https://catalogs.northwestern.edu/undergraduate/courses-az/mat_sci/)
+- [Computer Science BS](https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/computer-science/computer-science-degree/),
+  [Computer Science BA](https://catalogs.northwestern.edu/undergraduate/arts-sciences/computer-science/computer-science-major/)
+  and [Materials Science and Engineering BS](https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/materials-science-engineering/materials-science-engineering-degree/)
+- [McCormick degree requirements](https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/#requirementstext) (the school core)
+- Course schedules for [ECE](https://www.mccormick.northwestern.edu/electrical-computer/academics/courses/),
+  [CS](https://www.mccormick.northwestern.edu/computer-science/academics/courses/)
+  and [MSE](https://www.mccormick.northwestern.edu/materials-science/academics/courses/)
 
-Course descriptions aren't copied; each course links to its catalog entry.
+Course descriptions are shown as the catalog has them, apart from characters
+the catalog's source lost (it has "?" for some apostrophes, dashes and quotes,
+put back by `tidy()` in `scraper/prereqs.py`); each course links to its catalog entry.

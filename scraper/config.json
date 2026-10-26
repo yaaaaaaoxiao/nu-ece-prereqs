@@ -6,9 +6,38 @@
   "COMP_ENG": "CE",
   "COMP_SCI": "CS",
   "ELEC_ENG": "EE",
+  "ES_APPM": "ES APPM",
   "GEN_ENG": "GEN ENG",
+  "MAT_SCI": "MSE",
   "MECH_ENG": "ME",
   "PHYSICS": "PHYS"
+ },
+ "cores": {
+  "_comment": "School-wide requirements every degree with 'core' shares; degree pages often only name these areas. Only lists with kind 'core' are used, and a degree page's own list for an area (e.g. its science) wins.",
+  "mccormick": {
+   "path": "/undergraduate/engineering-applied-science/",
+   "container": "requirementstextcontainer",
+   "labels": {
+    "Mathematics (4 units)": {
+     "label": "Mathematics",
+     "kind": "core"
+    },
+    "Engineering Foundations (3 units)": {
+     "label": "Engineering foundations",
+     "kind": "core"
+    },
+    "Writing and Design": {
+     "label": "Design and writing",
+     "kind": "core",
+     "need": 1
+    },
+    "Innovation/Oral Communication": {
+     "label": "Speaking or innovation",
+     "kind": "core",
+     "need": 1
+    }
+   }
+  }
  },
  "programs": {
   "_comment": "'labels' renames a list heading on the site (null hides that list, e.g. lists of courses outside engineering).",
@@ -20,7 +49,8 @@
     "11 required courses": "Required courses",
     "1 design course from the options below": "Design project",
     "2 courses chosen from the options below": null
-   }
+   },
+   "core": "mccormick"
   },
   "ce-bs": {
    "name": "Computer Engineering BS",
@@ -32,7 +62,8 @@
     "1 course chosen from options below": "Math foundation (choose 1)",
     "1 design course chosen from the options below": "Design project",
     "3 elective courses chosen from the options below": null
-   }
+   },
+   "core": "mccormick"
   },
   "cs-minor": {
    "name": "Computer Science minor (McCormick)",
@@ -64,6 +95,133 @@
      "kind": "required"
     }
    }
+  },
+  "cs-bs": {
+   "name": "Computer Science BS (McCormick)",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/computer-science/computer-science-degree/",
+   "core": "mccormick",
+   "until": "Concentrations",
+   "labels": {
+    "4 required courses": "Required courses",
+    "Theory": {
+     "label": "Breadth: Theory",
+     "kind": "elective",
+     "need": 1,
+     "flatten": true
+    },
+    "Systems": {
+     "label": "Breadth: Systems",
+     "kind": "elective",
+     "need": 1,
+     "flatten": true
+    },
+    "Artificial Intelligence": {
+     "label": "Breadth: Artificial Intelligence",
+     "kind": "elective",
+     "need": 1,
+     "flatten": true
+    },
+    "Interfaces": {
+     "label": "Breadth: Interfaces",
+     "kind": "elective",
+     "need": 1,
+     "flatten": true
+    },
+    "Software Development and Programming Languages": {
+     "label": "Breadth: Software Development and Programming Languages",
+     "kind": "elective",
+     "need": 1,
+     "flatten": true
+    },
+    "Project course list": {
+     "label": "Project courses",
+     "kind": "elective",
+     "need": 2,
+     "flatten": true
+    },
+    "Societal Impact course list": {
+     "label": "Societal impact",
+     "kind": "elective",
+     "need": 1,
+     "flatten": true
+    },
+    "Technical electives list": {
+     "label": "Technical electives",
+     "kind": "elective",
+     "need": 6,
+     "flatten": true
+    }
+   }
+  },
+  "cs-ba": {
+   "name": "Computer Science BA (Weinberg)",
+   "type": "major",
+   "path": "/undergraduate/arts-sciences/computer-science/computer-science-major/",
+   "until": "Concentrations",
+   "labels": {
+    "6 core courses": {
+     "label": "Core courses",
+     "kind": "required"
+    },
+    "Theory": {
+     "label": "Breadth: Theory",
+     "kind": "elective",
+     "need": 1,
+     "flatten": true
+    },
+    "Systems": {
+     "label": "Breadth: Systems",
+     "kind": "elective",
+     "need": 1,
+     "flatten": true
+    },
+    "Artificial Intelligence": {
+     "label": "Breadth: Artificial Intelligence",
+     "kind": "elective",
+     "need": 1,
+     "flatten": true
+    },
+    "Interfaces": {
+     "label": "Breadth: Interfaces",
+     "kind": "elective",
+     "need": 1,
+     "flatten": true
+    },
+    "Software Development and Programming Languages": {
+     "label": "Breadth: Software Development and Programming Languages",
+     "kind": "elective",
+     "need": 1,
+     "flatten": true
+    },
+    "Project course list": {
+     "label": "Project courses",
+     "kind": "elective",
+     "need": 2,
+     "flatten": true
+    },
+    "Societal Impact course list": {
+     "label": "Societal impact",
+     "kind": "elective",
+     "need": 1,
+     "flatten": true
+    },
+    "Technical electives list": {
+     "label": "Technical electives",
+     "kind": "elective",
+     "need": 6,
+     "flatten": true
+    }
+   }
+  },
+  "mse-bs": {
+   "name": "Materials Science and Engineering BS",
+   "type": "major",
+   "path": "/undergraduate/engineering-applied-science/materials-science-engineering/materials-science-engineering-degree/",
+   "core": "mccormick",
+   "labels": {
+    "16 required courses": "Required courses"
+   }
   }
  },
  "maps": [
@@ -89,6 +247,45 @@
    "schedule": {
     "format": "mccormick",
     "url": "https://www.mccormick.northwestern.edu/electrical-computer/academics/courses/"
+   }
+  },
+  {
+   "id": "cs",
+   "name": "Computer Science",
+   "departments": [
+    "COMP_SCI"
+   ],
+   "programs": [
+    "cs-bs",
+    "cs-ba",
+    "cs-minor",
+    "ai-minor",
+    "mlds-minor",
+    "math-minor"
+   ],
+   "defaultPrograms": [
+    "cs-bs"
+   ],
+   "schedule": {
+    "format": "mccormick",
+    "url": "https://www.mccormick.northwestern.edu/computer-science/academics/courses/"
+   }
+  },
+  {
+   "id": "mse",
+   "name": "Materials Science & Engineering",
+   "departments": [
+    "MAT_SCI"
+   ],
+   "programs": [
+    "mse-bs"
+   ],
+   "defaultPrograms": [
+    "mse-bs"
+   ],
+   "schedule": {
+    "format": "mccormick",
+    "url": "https://www.mccormick.northwestern.edu/materials-science/academics/courses/"
    }
   }
  ]

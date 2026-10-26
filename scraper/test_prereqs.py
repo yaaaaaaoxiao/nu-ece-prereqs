@@ -5,7 +5,7 @@ Run: python -m unittest discover scraper
 
 import unittest
 
-from prereqs import is_plain, parse_requirements
+from prereqs import is_plain, parse_requirements, tidy
 
 CS111, CS211, CS213 = "COMP_SCI 111-0", "COMP_SCI 211-0", "COMP_SCI 213-0"
 
@@ -113,6 +113,22 @@ class IsPlain(unittest.TestCase):
         self.assertFalse(is_plain("Prerequisites: Students must have completed PHYSICS 135-3 and knowledge of Fourier concepts."))
         self.assertFalse(is_plain("Prerequisite: COMP_SCI 1CA or instructor permission."))
         self.assertFalse(is_plain("Enrollment by application."))
+
+
+class Tidy(unittest.TestCase):
+    def test_lost_characters_put_back(self):
+        self.assertEqual(tidy("integral calculus.?Students may not"), "integral calculus. Students may not")
+        self.assertEqual(tidy("China?s economy; it doesn?t; You?ll see"), "China\u2019s economy; it doesn\u2019t; You\u2019ll see")
+        self.assertEqual(tidy("how materials? performance matters"), "how materials\u2019 performance matters")
+        self.assertEqual(tidy("the study of ?life as it could be? rather"), "the study of \u201clife as it could be\u201d rather")
+        self.assertEqual(tidy("challenges ? including others"), "challenges \u2014 including others")
+        self.assertEqual(tidy("with or after? COMP_SCI 111-0 ."), "with or after COMP_SCI 111-0.")
+        self.assertEqual(tidy("both ( MATH 218-1 , MATH 218-2 ) ."), "both (MATH 218-1, MATH 218-2).")
+        self.assertEqual(tidy("topics as?time permits"), "topics as time permits")
+
+    def test_real_questions_stay(self):
+        text = "How do you build a website from scratch? How do designers work?"
+        self.assertEqual(tidy(text), text)
 
 
 if __name__ == "__main__":

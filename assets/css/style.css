@@ -615,6 +615,13 @@ svg { flex: none; }
 .schedule tr + tr th, .schedule tr + tr td { border-top: 1px solid var(--hairline); }
 .schedule .none { color: var(--muted); }
 
+/* The course description, under the title; long ones open with "Show more". */
+.desc { margin: 10px 0 2px; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
+.panel .desc p { margin: 0; }
+.desc.is-clamped p { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.desc-more { margin-top: 4px; font-size: 13px; }
+.code-link { padding: 0; border: 0; background: none; color: var(--accent); font: inherit; font-weight: 600;
+  text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
 .catalog-text { margin: 0; padding: 10px 12px; border-radius: 8px; background: var(--sunken); color: var(--ink-2); font-size: 13px; }
 .review-note { margin-top: 8px !important; font-size: 12.5px; color: var(--muted); }
 .review-note.ok { color: var(--good-ink); }
@@ -675,6 +682,10 @@ svg { flex: none; }
   .topbar { flex-wrap: wrap; gap: 8px; padding: 8px 16px; }
   .brand { flex: 1; }
   .brand-mark { width: 26px; height: 26px; }
+  /* With more than one map, the map menu stands in for the title. */
+  .brand:has(.map-picker:not([hidden])) .brand-text { display: none; }
+  .map-picker { flex: 1; min-width: 0; }
+  .map-picker select { width: 100%; font-weight: 650; }
   .search { order: 3; flex: 1 1 100%; max-width: none; margin-left: 0; }
   .search input { font-size: 16px; } /* 16px stops iOS zooming in on focus */
   .search-kbd { display: none; }

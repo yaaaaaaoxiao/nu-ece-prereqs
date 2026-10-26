@@ -5,7 +5,7 @@ Run: python -m unittest discover scraper
 
 import unittest
 
-from programs import need_from, parse_program
+from programs import core_lists, merge_core, need_from, parse_program
 
 PAGE = """
 <div id="textcontainer">
@@ -73,6 +73,70 @@ class ParseProgram(unittest.TestCase):
         self.assertIn("6 courses chosen from the tracks below", self.notes)
         # Before the requirements start, and footnotes, aren't rules.
         self.assertFalse(any("home school" in n or "lab" in n for n in self.notes))
+
+
+DEGREE = """
+<div id="textcontainer">
+  <h2>Requirements (48 units)</h2>
+  <h3>Core Courses (26 units) 1</h3>
+  <table><tbody>
+    <tr class="areaheader"><td>4 mathematics courses</td></tr>
+    <tr class="areaheader"><td>4 units of basic science: 2</td></tr>
+    <tr><td class="codecol">PHYSICS 135-2</td><td>General Physics</td></tr>
+    <tr class="areaheader"><td>7 social sciences/humanities courses</td></tr>
+  </tbody></table>
+  <h3>Major Program (22 units)</h3>
+  <table><tbody>
+    <tr class="areaheader"><td>2 required courses</td></tr>
+    <tr><td class="codecol">COMP_SCI 211-0</td><td>Programming</td></tr>
+    <tr><td class="codecol">COMP_SCI 213-0</td><td>Systems</td></tr>
+  </tbody></table>
+  <h3>Project course list</h3>
+  <table><tbody>
+    <tr><td class="codecol">COMP_SCI 311-0</td><td>Inclusive Making</td></tr>
+    <tr class="orclass"><td class="codecol">or COMP_SCI 412-0</td><td>Data Privacy</td></tr>
+  </tbody></table>
+  <h2>Concentrations</h2>
+  <h3>Systems</h3>
+  <table><tbody><tr><td class="codecol">COMP_SCI 322-0</td><td>Compilers</td></tr></tbody></table>
+</div>
+"""
+
+SCHOOL = """
+<div id="requirementstextcontainer">
+  <h4>Core Courses (26 units)</h4>
+  <h4>\u200bMathematics (4 units)</h4>
+  <table><tbody>
+    <tr><td class="codecol">MATH 220-1</td><td>Calculus</td></tr>
+    <tr><td class="codecol">MATH 220-2</td><td>Calculus</td></tr>
+  </tbody></table>
+  <h4>Basic Sciences (4 units)</h4>
+  <table><tbody><tr><td class="codecol">PHYSICS 135-1</td><td>General Physics</td></tr></tbody></table>
+</div>
+"""
+
+
+class CoreRequirements(unittest.TestCase):
+    def test_degree_core_areas_flatten_and_until(self):
+        lists, notes = parse_program(DEGREE, {"Project course list": {"kind": "elective", "need": 2, "flatten": True}},
+                                     until="Concentrations")
+        by_label = {l["label"]: l for l in lists}
+        science = by_label["Basic science"]
+        self.assertEqual((science["kind"], science["items"]), ("core", [[["PHYSICS 135-2"]]]))
+        self.assertNotIn("Mathematics", by_label)  # named but listed on the school page
+        self.assertEqual(by_label["Project course list"]["items"], [[["COMP_SCI 311-0"]], [["COMP_SCI 412-0"]]])
+        self.assertNotIn("Systems", by_label)  # after "Concentrations"
+        self.assertFalse(any("social sciences" in n for n in notes))
+
+    def test_school_core_fills_in_and_degree_wins(self):
+        lists, _ = parse_program(DEGREE)
+        core = core_lists(SCHOOL, {"Mathematics (4 units)": {"label": "Mathematics", "kind": "core"},
+                                   "Basic Sciences (4 units)": {"label": "Basic science", "kind": "core"}},
+                          "requirementstextcontainer")
+        merged = merge_core(lists, core)
+        self.assertEqual([l["label"] for l in merged][:3], ["Mathematics", "Basic science", "2 required courses"])
+        self.assertEqual(merged[0]["items"], [[["MATH 220-1"]], [["MATH 220-2"]]])
+        self.assertEqual(merged[1]["items"], [[["PHYSICS 135-2"]]])  # the degree page's own science
 
 
 if __name__ == "__main__":

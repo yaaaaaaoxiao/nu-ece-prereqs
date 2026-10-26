@@ -173,7 +173,8 @@ function listHTML(map, state, list, count) {
     <span class="ri-alts">${r.alts.map(alt => alt.map(id => miniChip(map, state, id, count)).join('<span class="amp">&amp;</span>')).join('<span class="or">or</span>')}</span></li>`;
   const long = total > MANY;
   return `<div class="req-list${complete ? ' is-complete' : covered ? ' is-covered' : ''}">
-    <div class="rl-head"><span class="rl-label">${esc(list.label)}${list.kind === 'prereq' ? ' <span class="rl-kind">before the program</span>' : ''}</span>
+    <div class="rl-head"><span class="rl-label">${esc(list.label)}${list.kind === 'prereq' ? ' <span class="rl-kind">before the program</span>'
+      : list.kind === 'core' ? ' <span class="rl-kind">school core</span>' : ''}</span>
       <span class="rl-summary">${complete ? '✓ ' : ''}${summary}</span></div>
     ${bar}
     ${long

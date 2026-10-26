@@ -28,5 +28,455 @@
    "GEN_ENG 231-0 prerequisite is from the EE degree page footnote, not the course entry"
   ],
   "why": "Course entry only lists a MATH 228-2 corequisite; the EE degree page says GEN_ENG 231-0 is required first."
+ },
+ "COMP_SCI 180-0": {
+  "text": "Prerequisites: GEN_ENG 150-0 or GEN_ENG 151-0 or COMP_SCI 150 or COMP_SCI 1CA. Students cannot concurrently be enrolled in COMP_SCI 208_0 or COMP_SCI 211_0.",
+  "notes": [
+   "or AP Computer Science credit (COMP_SCI 1CA)"
+  ],
+  "why": "Keeps the AP-credit option, which isn't a course on the map."
+ },
+ "COMP_SCI 208-0": {
+  "text": "Prerequisites: COMP_SCI 150 or GEN_ENG 150 or GEN_ENG 151 and COMP_SCI 180. Students cannot concurrently be enrolled in COMP_SCI 211-0 or COMP_SCI 180_0.",
+  "prereq": {
+   "and": [
+    {
+     "or": [
+      "COMP_SCI 150-0",
+      "GEN_ENG 150-0",
+      "GEN_ENG 151-0"
+     ]
+    },
+    "COMP_SCI 180-0"
+   ]
+  },
+  "why": "'A or B or C and D': the intro course (any of three) and COMP_SCI 180."
+ },
+ "COMP_SCI 301-0": {
+  "text": "Prerequisites: COMP_SCI 110-0 , COMP_SCI 111-0 , COMP_SCI 150, GEN_ENG 150-0 , GEN_ENG 151-0 , MECH_ENG 224-0 , or consent of instructor.",
+  "prereq": {
+   "or": [
+    "COMP_SCI 110-0",
+    "COMP_SCI 111-0",
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "MECH_ENG 224-0"
+   ]
+  },
+  "why": "Comma list ending in 'or consent': any one of the six."
+ },
+ "COMP_SCI 302-0": {
+  "text": "Prerequisites: Comp_sci 349 or MS CS or PhDs CS.",
+  "notes": [
+   "or MS/PhD student in CS"
+  ],
+  "why": "Graduate option kept as a note."
+ },
+ "COMP_SCI 303-0": {
+  "text": "Prerequisite: Students must have completed COMP_SCI 213-0 and 304-0 to enroll. CS MS and PhD students must receive instructor consent.",
+  "prereq": {
+   "and": [
+    "COMP_SCI 213-0",
+    "COMP_SCI 304-0"
+   ]
+  },
+  "notes": [
+   "CS MS/PhD students need instructor consent"
+  ],
+  "why": "'213-0 and 304-0': the bare 304-0 is COMP_SCI 304."
+ },
+ "COMP_SCI 312-0": {
+  "text": "Prerequisites: COMP_SCI 211-0 ; COMP_SCI 214-0; COMP_SCI 262-0 , GEN_ENG 231-0 , ELEC_ENG 302-0 , IEMS 201-0 , IEMS 303-0 , STAT 210-0 (COMP_SCI grad standing or consent of instructor).",
+  "prereq": {
+   "and": [
+    "COMP_SCI 211-0",
+    {
+     "or": [
+      "COMP_SCI 208-0",
+      "COMP_SCI 214-0"
+     ]
+    },
+    {
+     "or": [
+      "COMP_SCI 262-0",
+      "GEN_ENG 231-0",
+      "ELEC_ENG 302-0",
+      "IEMS 201-0",
+      "IEMS 303-0",
+      "STAT 210-0"
+     ]
+    }
+   ]
+  },
+  "notes": [
+   "or CS graduate standing",
+   "or instructor consent"
+  ],
+  "why": "211; 214; then one statistics course from the comma list. COMP_SCI 214 is now COMP_SCI 208 (Data Structures); either counts."
+ },
+ "COMP_SCI 314-0": {
+  "text": "Prerequisite: Must be a Junior/Senior COMP_SCI Major or Minor to enroll.",
+  "notes": [
+   "junior or senior CS major or minor"
+  ],
+  "why": "Standing requirement only."
+ },
+ "COMP_SCI 325-0": {
+  "text": "Prerequisite: (COMP_SCI 208 or COMP_SCI 214) or (COG_SCI major required and COMP_SCI 150 or GEN_ENG 150 or GEN_ENG 151) or CS MS or CS PhD or Instructor consent.",
+  "notes": [
+   "the COMP_SCI 150 / GEN_ENG 150 / 151 option is for cognitive science majors",
+   "or MS/PhD student in CS",
+   "or instructor consent"
+  ],
+  "why": "Cognitive-science-major condition kept as a note."
+ },
+ "COMP_SCI 326-0": {
+  "text": "Prerequisites: CS 212 and CS 214 or COMP_SCI MS or COMP_SCI PhDs or Instructor consent.",
+  "prereq": {
+   "and": [
+    "COMP_SCI 212-0",
+    {
+     "or": [
+      "COMP_SCI 208-0",
+      "COMP_SCI 214-0"
+     ]
+    }
+   ]
+  },
+  "why": "COMP_SCI 214 is now COMP_SCI 208 (Data Structures); either counts."
+ },
+ "COMP_SCI 327-0": {
+  "text": "Prerequisites: COMP_SCI 111-0 ; COMP_SCI 150-0 , GEN_ENG 150-0 , GEN_ENG 151-0 , or consent of instructor.",
+  "prereq": {
+   "or": [
+    "COMP_SCI 111-0",
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0"
+   ]
+  },
+  "why": "Intro programming: any one of the listed courses."
+ },
+ "COMP_SCI 329-0": {
+  "text": "Prerequisite: (COMP_SCI 208 or COMP_SCI 214) and has not completed CS 330 or Graduate Standing and has not completed CS 330.",
+  "prereq": {
+   "or": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  "notes": [
+   "not open after COMP_SCI 330",
+   "or graduate standing"
+  ],
+  "why": "'has not completed CS 330' excludes CS 330; it isn't a prerequisite."
+ },
+ "COMP_SCI 330-0": {
+  "text": "Prerequisite: (COMP_SCI 208 or COMP_SCI 214) and has not completed CS329 or Graduate Standing and has not completed CS 329.",
+  "prereq": {
+   "or": [
+    "COMP_SCI 208-0",
+    "COMP_SCI 214-0"
+   ]
+  },
+  "notes": [
+   "not open after COMP_SCI 329",
+   "or graduate standing"
+  ],
+  "why": "'has not completed CS 329' excludes CS 329; it isn't a prerequisite."
+ },
+ "COMP_SCI 336-0": {
+  "text": "Prerequisite: Comp_sci S 212 and (Comp_sci 208 or Comp_Sci 214), or Comp_Sci MS or Comp_Sci PhDs or consent of instructor.",
+  "prereq": {
+   "and": [
+    "COMP_SCI 212-0",
+    {
+     "or": [
+      "COMP_SCI 208-0",
+      "COMP_SCI 214-0"
+     ]
+    }
+   ]
+  },
+  "why": "'Comp_sci S 212' is a typo for COMP_SCI 212."
+ },
+ "COMP_SCI 344-0": {
+  "text": "Prerequisites: COMP_SCI 348-0 and COMP_SCI 325-1 or equivalent LISP experience.",
+  "prereq": {
+   "and": [
+    "COMP_SCI 348-0",
+    "COMP_SCI 325-0"
+   ]
+  },
+  "notes": [
+   "or equivalent LISP experience (the catalog names the former COMP_SCI 325-1)"
+  ],
+  "why": "COMP_SCI 325-1 no longer exists; COMP_SCI 325 is its successor."
+ },
+ "COMP_SCI 349-0": {
+  "text": "Prerequisites: COMP_SCI 214; GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 205-1 , GEN_ENG 206-1 , GEN_ENG 241-0 , or MATH 240-0 ; GEN_ENG 231-0 , IEMS 201-0 , IEMS 303-0 , ELEC_ENG 302-0 , STAT 210-0 , MATH 310-1 (or COMP_SCI grad standing).",
+  "prereq": {
+   "and": [
+    {
+     "or": [
+      "COMP_SCI 208-0",
+      "COMP_SCI 214-0"
+     ]
+    },
+    {
+     "or": [
+      "GEN_ENG 150-0",
+      "GEN_ENG 151-0"
+     ]
+    },
+    {
+     "or": [
+      "GEN_ENG 205-1",
+      "GEN_ENG 206-1",
+      "GEN_ENG 241-0",
+      "MATH 240-0"
+     ]
+    },
+    {
+     "or": [
+      "GEN_ENG 231-0",
+      "IEMS 201-0",
+      "IEMS 303-0",
+      "ELEC_ENG 302-0",
+      "STAT 210-0",
+      "MATH 310-1"
+     ]
+    }
+   ]
+  },
+  "notes": [
+   "or CS graduate standing"
+  ],
+  "why": "Semicolon-separated groups, each a choice from its comma list. COMP_SCI 214 is now COMP_SCI 208 (Data Structures); either counts."
+ },
+ "COMP_SCI 353-0": {
+  "text": "Prerequisites: ( MATH 228-1 or MATH 230-1 ) and ( GEN_ENG 205-1 or GEN_ENG 206-1 or GEN_ENG 241 or Math 240) or CS MS or CS PhD or Instructor Permission.",
+  "prereq": {
+   "and": [
+    {
+     "or": [
+      "MATH 228-1",
+      "MATH 230-1"
+     ]
+    },
+    {
+     "or": [
+      "GEN_ENG 205-1",
+      "GEN_ENG 206-1",
+      "GEN_ENG 241-0",
+      "MATH 240-0"
+     ]
+    }
+   ]
+  },
+  "why": "'Math 240' was missed by the parser."
+ },
+ "COMP_SCI 358-0": {
+  "text": "Prerequisite: (CS 213 or (CE 205 & 211)) or MS CS/CE or PhDs CS/CE or permission of Instructor.",
+  "prereq": {
+   "or": [
+    "COMP_SCI 213-0",
+    {
+     "and": [
+      "COMP_ENG 205-0",
+      "COMP_SCI 211-0"
+     ]
+    }
+   ]
+  },
+  "notes": [
+   "or MS/PhD student in CS/CE",
+   "or instructor consent"
+  ],
+  "why": "'(CS 213 or (CE 205 & 211))': 211 is COMP_SCI 211 (as for COMP_ENG 358)."
+ },
+ "COMP_SCI 370-0": {
+  "text": "Prerequisites: COMP_SCI 214-0; 1 unit of COMP_SCI 322-0 , COMP_SCI 343-0 , COMP_SCI 348-0 , or COMP_SCI 351-1 , COMP_SCI 351-2 .",
+  "prereq": {
+   "and": [
+    {
+     "or": [
+      "COMP_SCI 208-0",
+      "COMP_SCI 214-0"
+     ]
+    },
+    {
+     "or": [
+      "COMP_SCI 322-0",
+      "COMP_SCI 343-0",
+      "COMP_SCI 348-0",
+      "COMP_SCI 351-1",
+      "COMP_SCI 351-2"
+     ]
+    }
+   ]
+  },
+  "why": "214; then 1 unit of the listed courses. COMP_SCI 214 is now COMP_SCI 208 (Data Structures); either counts."
+ },
+ "COMP_SCI 380-0": {
+  "text": "Prerequisite: CS 211-and (CS 208 or CS 214) or MS CS or PhDs CS or PhD CS+LS or PhD TSB or permission of Instructor.",
+  "prereq": {
+   "and": [
+    "COMP_SCI 211-0",
+    {
+     "or": [
+      "COMP_SCI 208-0",
+      "COMP_SCI 214-0"
+     ]
+    }
+   ]
+  },
+  "why": "'CS 211-and (...)': the parser dropped 211."
+ },
+ "COMP_SCI 381-0": {
+  "text": "Prerequisite: CS 211 and CS 214 or MS CS or PhDs CS or PhD CS+LS or PhD TSB or permission of Instructor.",
+  "prereq": {
+   "and": [
+    "COMP_SCI 211-0",
+    {
+     "or": [
+      "COMP_SCI 208-0",
+      "COMP_SCI 214-0"
+     ]
+    }
+   ]
+  },
+  "why": "COMP_SCI 214 is now COMP_SCI 208 (Data Structures); either counts."
+ },
+ "COMP_SCI 393-0": {
+  "text": "Prerequisites: COMP_SCI 211-0 and COMP_SCI 214-0.",
+  "prereq": {
+   "and": [
+    "COMP_SCI 211-0",
+    {
+     "or": [
+      "COMP_SCI 208-0",
+      "COMP_SCI 214-0"
+     ]
+    }
+   ]
+  },
+  "why": "COMP_SCI 214 is now COMP_SCI 208 (Data Structures); either counts."
+ },
+ "MAT_SCI 301-0": {
+  "text": "Prerequisites: CHEM 131-0 , CHEM 151-0 , or CHEM 171-0 ; major in materials science and engineering or chemical and biological engineering; concurrent enrollment in MAT_SCI 302-0 .",
+  "prereq": {
+   "or": [
+    "CHEM 131-0",
+    "CHEM 151-0",
+    "CHEM 171-0"
+   ]
+  },
+  "coreq": "MAT_SCI 302-0",
+  "notes": [
+   "materials science or chemical and biological engineering majors"
+  ],
+  "why": "'Concurrent enrollment in MAT_SCI 302' is a corequisite."
+ },
+ "MAT_SCI 314-0": {
+  "text": "Prerequisite: CHEM 132-0 , CHEM 152-0 , or CHEM 172-0 ; MATH 228-1 or MATH 230-1 ; GEN_ENG 150; PHYSICS 135-1 to be taken concurrently.",
+  "prereq": {
+   "and": [
+    {
+     "or": [
+      "CHEM 132-0",
+      "CHEM 152-0",
+      "CHEM 172-0"
+     ]
+    },
+    {
+     "or": [
+      "MATH 228-1",
+      "MATH 230-1"
+     ]
+    },
+    "GEN_ENG 150-0"
+   ]
+  },
+  "coreq": "PHYSICS 135-1",
+  "why": "'PHYSICS 135-1 to be taken concurrently' is a corequisite."
+ },
+ "MAT_SCI 315-0": {
+  "text": "Prerequisite: MAT_SCI 201-0 or MAT_SCI 301-0 or equivalent and MAT_SCI 314-0 or equivalent.",
+  "prereq": {
+   "and": [
+    {
+     "or": [
+      "MAT_SCI 201-0",
+      "MAT_SCI 301-0"
+     ]
+    },
+    "MAT_SCI 314-0"
+   ]
+  },
+  "why": "'201 or 301 or equivalent and 314': (201 or 301) and 314."
+ },
+ "MAT_SCI 354-0": {
+  "text": "Prerequisites: BMD_ENG 353 or MAT_SCI 353. Concurrent enrollment is acceptable.",
+  "prereq": null,
+  "coreq": {
+   "or": [
+    "BMD_ENG 353-0",
+    "MAT_SCI 353-0"
+   ]
+  },
+  "why": "'Concurrent enrollment is acceptable', so it's a corequisite."
+ },
+ "MAT_SCI 381-0": {
+  "text": "Prerequisite: MAT_SCI 201-0 , MAT_SCI 301-0 , or consent of instructor.",
+  "prereq": {
+   "or": [
+    "MAT_SCI 201-0",
+    "MAT_SCI 301-0"
+   ]
+  },
+  "why": "Comma list ending in 'or consent': either one."
+ },
+ "MAT_SCI 390-1": {
+  "text": "Prerequisite: MatSci 316-2 and MatSci 351-2 or consent of instructor. MatSci 331 is recommended. MatSci 390-1 is a prerequisite for MatSci 390-2.",
+  "prereq": {
+   "and": [
+    "MAT_SCI 316-2",
+    "MAT_SCI 351-2"
+   ]
+  },
+  "recommended": [
+   "MAT_SCI 331-0"
+  ],
+  "notes": [
+   "or instructor consent"
+  ],
+  "why": "The catalog abbreviates MAT_SCI as 'MatSci'."
+ },
+ "MAT_SCI 390-2": {
+  "text": "Prerequisites: MAR_SCI 316-2 and MAT_SCI 351-2 or consent of instructor. MAT_SCI 331-0 and MAT_SCI 332-0 are recommended. MAT_SCI 390-1 is a prerequisite for MAT_SCI 390-2 .",
+  "prereq": {
+   "and": [
+    "MAT_SCI 316-2",
+    "MAT_SCI 351-2",
+    "MAT_SCI 390-1"
+   ]
+  },
+  "recommended": [
+   "MAT_SCI 331-0",
+   "MAT_SCI 332-0"
+  ],
+  "notes": [
+   "or instructor consent"
+  ],
+  "why": "'MAR_SCI 316-2' is a typo for MAT_SCI 316-2; MAT_SCI 390-1 is also required."
+ },
+ "MAT_SCI 394-0": {
+  "text": "Prerequisite: registration in department honors program.",
+  "notes": [
+   "department honors program"
+  ],
+  "why": "Program requirement only."
  }
 }

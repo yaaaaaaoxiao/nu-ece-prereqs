@@ -70,6 +70,7 @@ const state = {
   activePrograms: [],
   visible: new Set(),
   paths: new Map(), // paths to courses worked out so far (see path.js)
+  openDescs: new Set(), // courses whose long description is shown in full
 };
 let maps = [];
 const undoStack = []; // plan snapshots, newest last
@@ -699,6 +700,10 @@ document.addEventListener('click', e => {
   else if (action === 'unpick') togglePick(id);
   else if (action === 'pick-chain') pickCourses([id, ...[...state.map.requiredAncestors(id)].filter(c => state.visible.has(c))]);
   else if (action === 'show-path') showPath(id);
+  else if (action === 'toggle-desc') {
+    if (!state.openDescs.delete(id)) state.openDescs.add(id);
+    render();
+  }
   else if (action === 'plan-path') planPath(id);
   else if (action === 'undo') undo();
   else if (action === 'add-to-term') startAdding(t.dataset.term);

@@ -29,8 +29,8 @@ import urllib.request
 
 from bs4 import BeautifulSoup
 
-from prereqs import clean, codes_in, is_plain, parse_requirements
-from programs import parse_program, program_courses
+from prereqs import clean, codes_in, is_plain, parse_requirements, tidy
+from programs import core_lists, merge_core, parse_program, program_courses
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 HERE = ROOT / "scraper"
@@ -120,13 +120,16 @@ def parse_dept(html):
             t = clean(extra.get_text(" "))
             if re.match(r"(Prerequisites?|Corequisites?)", t):
                 text = t
-        if not text:
-            # A few courses put the sentence at the end of the description.
-            desc = block.select_one(".courseblockdesc")
-            m = desc and re.search(r"((?:Prerequisites?|Corequisites?)\s*:.*)$", clean(desc.get_text(" ")))
-            text = m.group(1) if m else ""
+        node = block.select_one(".courseblockdesc")
+        desc = clean(node.get_text(" ")) if node else ""
+        # A few courses put the prerequisite sentence at the end of the description.
+        m = re.search(r"((?:Prerequisites?|Corequisites?)\s*:.*)$", desc)
+        if m:
+            text = text or m.group(1)
+            desc = desc[:m.start()]
         courses[f"{dept} {num}"] = {
-            "dept": dept, "num": num, "title": clean(title), "units": float(units), "text": text,
+            "dept": dept, "num": num, "title": tidy(title), "units": float(units), "text": text,
+            "desc": tidy(desc),
         }
     return {"name": name, "courses": courses}
 
@@ -134,16 +137,19 @@ def parse_dept(html):
 def parse_mccormick_schedule(html):
     soup = BeautifulSoup(html, "html.parser")
     table = soup.find("table", id="course_list")
-    quarters = [clean(th.get_text()) for th in table.select("thead th")[2:]]
+    columns = [clean(th.get_text()) for th in table.select("thead th")[2:]]
+    # Fall, winter and spring only: a summer column is the summer before the
+    # school year, and the site plans the regular quarters.
+    quarters = [q for q in columns if not q.startswith("Summer")]
     rows = []
     for tr in table.select("tbody tr"):
         cells = tr.find_all("td")
-        if len(cells) < 2 + len(quarters):
+        if len(cells) < 2 + len(columns):
             continue
         offered = {}
-        for q, cell in zip(quarters, cells[2:]):
+        for q, cell in zip(columns, cells[2:]):
             text = " · ".join(clean(s) for s in cell.stripped_strings)
-            if text:
+            if text and q in quarters:
                 offered[q] = text
         rows.append((re.findall(r"\d{3}(?:-\d)?", cells[0].get_text()), clean(cells[1].get_text()), offered))
     return quarters, rows
@@ -208,12 +214,17 @@ def build_map(cfg, config, catalog, fetcher, overrides, verified):
                 issues["unreviewed"].append(cid)
             nodes[cid] = node
 
-    # Majors and minors students can pick (alone or combined) on this map.
+    # Majors and minors students can pick (alone or combined) on this map. A
+    # degree with a school core ("core") gets its math, foundations and design lists.
     programs = []
     for pid in cfg.get("programs", []):
         p = config["programs"][pid]
         url = config["catalog"] + p["path"]
-        lists, notes = parse_program(fetcher.get(url), without_comments(p.get("labels", {})))
+        lists, notes = parse_program(fetcher.get(url), without_comments(p.get("labels", {})), until=p.get("until"))
+        if p.get("core"):
+            core = config["cores"][p["core"]]
+            lists = merge_core(lists, core_lists(fetcher.get(config["catalog"] + core["path"]),
+                                                 without_comments(core.get("labels", {})), core["container"]))
         programs.append({"id": pid, "name": p["name"], "type": p["type"], "url": url,
                          "default": pid in cfg.get("defaultPrograms", []), "lists": lists, "notes": notes})
         if not lists:
@@ -231,21 +242,26 @@ def build_map(cfg, config, catalog, fetcher, overrides, verified):
             nodes[cid] = dict(c, role="external")
         else:
             dept, num = cid.split(" ")
-            nodes[cid] = {"dept": dept, "num": num, "title": "", "units": None, "text": "",
+            nodes[cid] = {"dept": dept, "num": num, "title": "", "units": None, "text": "", "desc": "",
                           "role": "external", "missing": True}
             issues["placeholders"].append(cid)
 
     # Courses from other departments: only keep links to courses already on the map.
-    # Their prerequisites aren't checked by hand, so they stay out of `prereq`. When
+    # They stay out of `prereq` (this map doesn't check them), but when their
+    # prerequisites were checked by hand on another map (overrides, verified) or
     # the sentence is plain enough to parse reliably, the tree is kept as
     # `auto_prereq` so the site can tell students whether they can take it yet.
     for cid, n in nodes.items():
         if n["role"] == "external":
             reqs = parse_requirements(n["text"], aliases)
+            fixed = overrides.get(cid, {})
+            checked = verified.get(cid) == n["text"] or (fixed.get("text") == n["text"])
+            if fixed.get("text") == n["text"]:
+                reqs.update({k: v for k, v in fixed.items() if k in ("prereq", "coreq")})
             linked = set(codes_in(reqs["prereq"]) + codes_in(reqs["coreq"]))
             n.update(prereq=None, coreq=None, recommended=[], notes=[], reviewed=False,
                      links=sorted(linked & nodes.keys() - {cid}))
-            if is_plain(n["text"], aliases):
+            if checked or is_plain(n["text"], aliases):
                 n["auto_prereq"] = reqs["prereq"]
 
     quarters = []
@@ -263,7 +279,7 @@ def build_map(cfg, config, catalog, fetcher, overrides, verified):
             "id": cid, "dept": n["dept"], "num": n["num"], "title": n["title"], "units": n["units"],
             "role": n["role"], "prereq": n.get("prereq"), "coreq": n.get("coreq"),
             "recommended": n.get("recommended", []), "notes": n.get("notes", []),
-            "text": n["text"], "reviewed": n.get("reviewed", False),
+            "desc": n.get("desc", ""), "text": n["text"], "reviewed": n.get("reviewed", False),
             "offered": n.get("offered", {}), "url": catalog.url(cid),
         }
         if n.get("links"):

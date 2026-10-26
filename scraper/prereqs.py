@@ -32,6 +32,29 @@ def clean(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
+# The catalog's source has "?" where a character was lost. Put back what's
+# clear from context; a "?" that may be a real question mark stays.
+LOST_CHARACTERS = [
+    (r"(?<=[A-Za-z])\?(?=(?:s|t|ll|re|ve|d|m)\b)", "’"),  # China?s, doesn?t, You?ll
+    (r"(?<=s)\?(?= [a-z])", "’"),  # materials? performance
+    (r"(?<![\w?])\?(?=\w)([^?]{1,60}?)(?<=[\w.!])\?(?=[\s.,;:)\]]|$)", "“\\1”"),  # ?life as it could be?
+    (r"(?<= )\?(?=\w)", ""),  # an opening quote whose closing one is gone: World ?Wide Web
+    (r" \? ", " — "),  # challenges ? including
+    (r"\?(?= [A-Z_]{3,} \d{3})", ""),  # with or after? COMP_SCI 111-0
+    (r"(?<=[.;:,)])\s*\?\s*", " "),  # calculus.?Students
+    (r"(?<=[A-Za-z])\?(?=[a-z])", " "),  # as?time, Part I?deals
+]
+
+
+def tidy(text):
+    """Catalog prose (titles, descriptions) with lost characters put back and
+    the spaces around linked course codes ("MATH 218-1 , MATH 218-2 .") closed up."""
+    for pattern, repl in LOST_CHARACTERS:
+        text = re.sub(pattern, repl, text)
+    text = re.sub(r"\s+([.,;:!?)\]])", r"\1", text)
+    return clean(re.sub(r"([(\[])\s+", r"\1", text))
+
+
 def normalize_codes(text, aliases):
     """'CS 214' / 'Comp_sci 208' / 'COMP_SCI 180_0' -> 'COMP_SCI 214-0' etc.
 
