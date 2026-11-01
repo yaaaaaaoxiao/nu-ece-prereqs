@@ -1,7 +1,7 @@
 {
  "id": "made",
  "name": "Manufacturing & Design Engineering",
- "generated": "2026-10-26",
+ "generated": "2026-11-01",
  "catalogYear": "2026-2027",
  "quarters": [],
  "departments": {
@@ -1442,16 +1442,10 @@
    "recommended": [],
    "notes": [],
    "desc": "Methods for designing and analyzing industrial experiments. Blocking; randomization; multiple regression; factorial and fractional factorial experiments; response surface methodology; Taguchi's robust design; split plot experimentation. Homework, labs, and project.",
-   "text": "Prerequisite: IEMS 201-0 , IEMS 303-0 , or equivalent.",
+   "text": "Prerequisites: IEMS 201-0 , IEMS 303-0 , or GEN_ENG 231-0 .",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20307-0",
-   "autoPrereq": {
-    "and": [
-     "IEMS 201-0",
-     "IEMS 303-0"
-    ]
-   }
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20307-0"
   },
   {
    "id": "IEMS 310-0",
@@ -1465,7 +1459,7 @@
    "recommended": [],
    "notes": [],
    "desc": "Survey of operations research techniques. Linear programming, decision theory, stochastic processes, game theory. May not be taken for credit with or after IEMS 313-0.",
-   "text": "Prerequisites: GEN_ENG 205-1 , GEN_ENG 206-1 or MATH 240-0 or GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 241-0 .",
+   "text": "Prerequisites: IEMS 201-0 , IEMS 302-0 , or GEN_ENG 231-0 .",
    "reviewed": false,
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20310-0"
@@ -1482,24 +1476,13 @@
    "recommended": [],
    "notes": [],
    "desc": "Applications of operations research methods in managing and control of operations processes in manufacturing and service systems: including operations strategy; process-flow analysis; forecasting; capacity management; variability analysis; flow time and inventory management; flexible operations; lean operations; and production and workforce scheduling in manufacturing and service systems. Case studies, homework, and exams.",
-   "text": "Prerequisites: IEMS 302-0 ; IEMS 310-0 or IEMS 313-0 .",
+   "text": "Prerequisites: IEMS 201-0 , IEMS 303-0 , or GEN_ENG 231-0 ; IEMS 310-0 or IEMS 313-0 .",
    "reviewed": false,
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20382-0",
    "links": [
     "IEMS 310-0"
-   ],
-   "autoPrereq": {
-    "and": [
-     "IEMS 302-0",
-     {
-      "or": [
-       "IEMS 310-0",
-       "IEMS 313-0"
-      ]
-     }
-    ]
-   }
+   ]
   },
   {
    "id": "MATH 220-1",

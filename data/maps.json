@@ -6,7 +6,7 @@
    "file": "ece.json",
    "courses": 237,
    "catalogYear": "2026-2027",
-   "generated": "2026-10-26",
+   "generated": "2026-11-01",
    "departments": [
     "COMP_ENG",
     "ELEC_ENG"
@@ -62,7 +62,7 @@
    "file": "cs.json",
    "courses": 239,
    "catalogYear": "2026-2027",
-   "generated": "2026-10-26",
+   "generated": "2026-11-01",
    "departments": [
     "COMP_SCI"
    ],
@@ -124,7 +124,7 @@
    "file": "mse.json",
    "courses": 79,
    "catalogYear": "2026-2027",
-   "generated": "2026-10-26",
+   "generated": "2026-11-01",
    "departments": [
     "MAT_SCI"
    ],
@@ -151,7 +151,7 @@
    "file": "bme.json",
    "courses": 76,
    "catalogYear": "2026-2027",
-   "generated": "2026-10-26",
+   "generated": "2026-11-01",
    "departments": [
     "BMD_ENG"
    ],
@@ -171,7 +171,7 @@
    "file": "chbe.json",
    "courses": 108,
    "catalogYear": "2026-2027",
-   "generated": "2026-10-26",
+   "generated": "2026-11-01",
    "departments": [
     "CHEM_ENG"
    ],
@@ -198,7 +198,7 @@
    "file": "cee.json",
    "courses": 111,
    "catalogYear": "2026-2027",
-   "generated": "2026-10-26",
+   "generated": "2026-11-01",
    "departments": [
     "CIV_ENV"
    ],
@@ -239,7 +239,7 @@
    "file": "iems.json",
    "courses": 83,
    "catalogYear": "2026-2027",
-   "generated": "2026-10-26",
+   "generated": "2026-11-01",
    "departments": [
     "IEMS"
    ],
@@ -259,7 +259,7 @@
    "file": "me.json",
    "courses": 82,
    "catalogYear": "2026-2027",
-   "generated": "2026-10-26",
+   "generated": "2026-11-01",
    "departments": [
     "MECH_ENG"
    ],
@@ -279,7 +279,7 @@
    "file": "esam.json",
    "courses": 58,
    "catalogYear": "2026-2027",
-   "generated": "2026-10-26",
+   "generated": "2026-11-01",
    "departments": [
     "ES_APPM"
    ],
@@ -299,7 +299,7 @@
    "file": "made.json",
    "courses": 76,
    "catalogYear": "2026-2027",
-   "generated": "2026-10-26",
+   "generated": "2026-11-01",
    "departments": [
     "DSGN"
    ],
@@ -319,7 +319,7 @@
    "file": "geneng.json",
    "courses": 43,
    "catalogYear": "2026-2027",
-   "generated": "2026-10-26",
+   "generated": "2026-11-01",
    "departments": [
     "GEN_ENG",
     "DATA_ENG",

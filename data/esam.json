@@ -1,7 +1,7 @@
 {
  "id": "esam",
  "name": "Engineering Sciences & Applied Mathematics",
- "generated": "2026-10-26",
+ "generated": "2026-11-01",
  "catalogYear": "2026-2027",
  "quarters": [
   "Fall 2026",
@@ -1123,12 +1123,16 @@
    "recommended": [],
    "notes": [],
    "desc": "A second course in statistics that goes deeper into estimation theory and nonparametric statistics, and introduces Bayesian inference, experiment design and ANOVA.",
-   "text": "Prerequisite: IEMS 302-0 or equivalent.",
+   "text": "Prerequisites: COMP_SCI 150-0 , GEN_ENG 150-0 , or GEN_ENG 151-0 ; IEMS 302-0 ; GEN_ENG 205-1 , GEN_ENG 206-1 , MATH 240-0 or GEN_ENG 241-0 .",
    "reviewed": false,
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20303-0",
    "links": [
-    "IEMS 302-0"
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 241-0",
+    "IEMS 302-0",
+    "MATH 240-0"
    ]
   },
   {
@@ -1143,15 +1147,13 @@
    "recommended": [],
    "notes": [],
    "desc": "Survey of operations research techniques. Linear programming, decision theory, stochastic processes, game theory. May not be taken for credit with or after IEMS 313-0.",
-   "text": "Prerequisites: GEN_ENG 205-1 , GEN_ENG 206-1 or MATH 240-0 or GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 241-0 .",
+   "text": "Prerequisites: IEMS 201-0 , IEMS 302-0 , or GEN_ENG 231-0 .",
    "reviewed": false,
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20310-0",
    "links": [
-    "GEN_ENG 150-0",
-    "GEN_ENG 151-0",
-    "GEN_ENG 241-0",
-    "MATH 240-0"
+    "GEN_ENG 231-0",
+    "IEMS 302-0"
    ]
   },
   {
@@ -1166,7 +1168,7 @@
    "recommended": [],
    "notes": [],
    "desc": "Formulation and solution of applicable optimization models, including linear, integer, nonlinear, and network problems. Efficient algorithmic methods and use of computer modeling languages and systems. Homework, exams, and project.",
-   "text": "Prerequisites: COMP_SCI 110-0 , COMP_SCI 111-0 , or COMP_SCI 150-0 ; GEN_ENG 205-1 , GEN_ENG 206-1 , GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 241-0 ; MATH 228-1 ; sophomore standing .",
+   "text": "Prerequisites: COMP_SCI 110-0 , COMP_SCI 111-0 , COMP_SCI 150-0 , GEN_ENG 150-0 , or GEN_ENG 151-0 , GEN_ENG 205-1 , GEN_ENG 206-1 , MATH 240-0 or GEN_ENG 241-0 ; MATH 228-1 .",
    "reviewed": false,
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20313-0",
@@ -1174,7 +1176,8 @@
     "GEN_ENG 150-0",
     "GEN_ENG 151-0",
     "GEN_ENG 241-0",
-    "MATH 228-1"
+    "MATH 228-1",
+    "MATH 240-0"
    ]
   },
   {

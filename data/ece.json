@@ -1,7 +1,7 @@
 {
  "id": "ece",
  "name": "Electrical & Computer Engineering",
- "generated": "2026-10-26",
+ "generated": "2026-11-01",
  "catalogYear": "2026-2027",
  "quarters": [
   "Fall 2026",
@@ -6547,13 +6547,11 @@
    "recommended": [],
    "notes": [],
    "desc": "This course offers a modern treatment of statistical learning, focusing on modeling data for prediction and insight. It blends theoretical foundations with practical programming applications to prepare students for both advanced study and real-world data analysis. May not receive credit for both IEMS 301-0 and IEMS 304-0.",
-   "text": "Prerequisites: IEMS 201-0 , IEMS 303-0 ,BMD_ENG 220-0, CHEM_ENG 312-0 , GEN_ENG 231-0 , or MATH 314-0 ; COMP_SCI 110-0 , COMP_SCI 150-0 , GEN_ENG 150-0 , GEN_ENG 151-0 , GEN_ENG 205-1 , or GEN_ENG 206-1 ; GEN_ENG 241-0 .",
+   "text": "Prerequisites: COMP_SCI 150-0 , GEN_ENG 150-0 , or GEN_ENG 151-0 ; IEMS 201-0 or GEN_ENG 231-0 ; GEN_ENG 205-1 , GEN_ENG 206-1 , MATH 240-0 or GEN_ENG 241-0 . Not open to IE majors.",
    "reviewed": false,
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20301-0",
    "links": [
-    "CHEM_ENG 312-0",
-    "COMP_SCI 110-0",
     "COMP_SCI 150-0",
     "GEN_ENG 150-0",
     "GEN_ENG 151-0",
@@ -6562,8 +6560,7 @@
     "GEN_ENG 231-0",
     "GEN_ENG 241-0",
     "IEMS 201-0",
-    "IEMS 303-0",
-    "MATH 314-0"
+    "MATH 240-0"
    ]
   },
   {
@@ -6578,10 +6575,19 @@
    "recommended": [],
    "notes": [],
    "desc": "A second course in statistics that goes deeper into estimation theory and nonparametric statistics, and introduces Bayesian inference, experiment design and ANOVA.",
-   "text": "Prerequisite: IEMS 302-0 or equivalent.",
+   "text": "Prerequisites: COMP_SCI 150-0 , GEN_ENG 150-0 , or GEN_ENG 151-0 ; IEMS 302-0 ; GEN_ENG 205-1 , GEN_ENG 206-1 , MATH 240-0 or GEN_ENG 241-0 .",
    "reviewed": false,
    "offered": {},
-   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20303-0"
+   "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20303-0",
+   "links": [
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 205-1",
+    "GEN_ENG 206-1",
+    "GEN_ENG 241-0",
+    "MATH 240-0"
+   ]
   },
   {
    "id": "IEMS 304-0",
@@ -6595,11 +6601,16 @@
    "recommended": [],
    "notes": [],
    "desc": "Predictive modeling of data using modern regression and classification methods. Multiple linear regression; logistic regression; pitfalls and diagnostics; nonparametric and nonlinear regression and classification such as trees, nearest neighbors, neural networks, and ensemble methods.",
-   "text": "Prerequisites: IEMS 303-0 or equivalent.",
+   "text": "Prerequisites: COMP_SCI 150-0 , GEN_ENG 150-0 , or GEN_ENG 151-0 ; IEMS 302-0 ; GEN_ENG 231-0 or IEMS 303-0 ; GEN_ENG 241-0 or ES_APPM 245-0 .",
    "reviewed": false,
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20304-0",
    "links": [
+    "COMP_SCI 150-0",
+    "GEN_ENG 150-0",
+    "GEN_ENG 151-0",
+    "GEN_ENG 231-0",
+    "GEN_ENG 241-0",
     "IEMS 303-0"
    ]
   },
@@ -6636,20 +6647,15 @@
    "recommended": [],
    "notes": [],
    "desc": "Methods for designing and analyzing industrial experiments. Blocking; randomization; multiple regression; factorial and fractional factorial experiments; response surface methodology; Taguchi's robust design; split plot experimentation. Homework, labs, and project.",
-   "text": "Prerequisite: IEMS 201-0 , IEMS 303-0 , or equivalent.",
+   "text": "Prerequisites: IEMS 201-0 , IEMS 303-0 , or GEN_ENG 231-0 .",
    "reviewed": false,
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20307-0",
    "links": [
+    "GEN_ENG 231-0",
     "IEMS 201-0",
     "IEMS 303-0"
-   ],
-   "autoPrereq": {
-    "and": [
-     "IEMS 201-0",
-     "IEMS 303-0"
-    ]
-   }
+   ]
   },
   {
    "id": "IEMS 313-0",
@@ -6663,7 +6669,7 @@
    "recommended": [],
    "notes": [],
    "desc": "Formulation and solution of applicable optimization models, including linear, integer, nonlinear, and network problems. Efficient algorithmic methods and use of computer modeling languages and systems. Homework, exams, and project.",
-   "text": "Prerequisites: COMP_SCI 110-0 , COMP_SCI 111-0 , or COMP_SCI 150-0 ; GEN_ENG 205-1 , GEN_ENG 206-1 , GEN_ENG 150-0 or GEN_ENG 151-0 ; GEN_ENG 241-0 ; MATH 228-1 ; sophomore standing .",
+   "text": "Prerequisites: COMP_SCI 110-0 , COMP_SCI 111-0 , COMP_SCI 150-0 , GEN_ENG 150-0 , or GEN_ENG 151-0 , GEN_ENG 205-1 , GEN_ENG 206-1 , MATH 240-0 or GEN_ENG 241-0 ; MATH 228-1 .",
    "reviewed": false,
    "offered": {},
    "url": "https://catalogs.northwestern.edu/search/?P=IEMS%20313-0",
@@ -6676,7 +6682,8 @@
     "GEN_ENG 205-1",
     "GEN_ENG 206-1",
     "GEN_ENG 241-0",
-    "MATH 228-1"
+    "MATH 228-1",
+    "MATH 240-0"
    ]
   },
   {
